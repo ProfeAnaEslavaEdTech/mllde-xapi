@@ -1,0 +1,26 @@
+# w3id.org/mllde — MLLDE xAPI IRI namespace
+# Measurement Module for Language Learning Data & Evidence
+# Maintainer: Ana Eslava-Graterol (profeanaeslavaedtech) · Universitat Politecnica de Valencia
+#
+# Coloca este archivo en:  ids/mllde/.htaccess  del repo perma-id/w3id.org
+# Redirige w3id.org/mllde/* a la documentacion legible del namespace.
+# Ajusta el destino si publicas los docs en otro sitio (tu dominio o el perfil ADL).
+
+Options +FollowSymLinks
+RewriteEngine on
+
+# --- Documentacion humana del registro (pagina de docs) ---
+# Cambia esta URL por donde alojes la documentacion MLLDE:
+#   GitHub Pages:  https://profeanaeslavaedtech.github.io/mllde-xapi/
+#   Dominio:       https://profeanaeslava.com/xapi/mllde/
+# Nota: se usa 302 durante el arranque. Cuando la doc este estable, cambia a
+# 303 (See Other), la respuesta correcta para IRIs que denotan conceptos (no docs).
+
+# Opcion A (simple, siempre resuelve): TODO el namespace -> la pagina de docs unica.
+# Es lo recomendado al arrancar, porque la doc es una sola pagina (index.html).
+RewriteRule ^(.*)$ https://profeanaeslavaedtech.github.io/mllde-xapi/ [R=302,L]
+
+# Opcion B (avanzada, cuando tengas una pagina por termino): preserva la ruta.
+# Descomenta estas dos y comenta la de arriba.
+# RewriteRule ^$ https://profeanaeslavaedtech.github.io/mllde-xapi/ [R=302,L]
+# RewriteRule ^(.+)$ https://profeanaeslavaedtech.github.io/mllde-xapi/$1 [R=302,L]
