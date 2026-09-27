@@ -1,0 +1,518 @@
+{
+  "@context": "https://w3id.org/xapi/profiles/context",
+  "@id": "https://w3id.org/mllde/profile",
+  "@type": "Profile",
+  "conformsTo": "https://w3id.org/xapi/profiles#1.0",
+  "prefLabel": {
+    "en": "MLLDE — CEFR Voice Language-Learning Measurement Profile"
+  },
+  "definition": {
+    "en": "xAPI Profile for measuring spoken language learning against CEFR descriptor scales. Defines MLLDE-minted verbs, activity types and context/result extensions; reuses ADL standard verbs in their canonical http:// form. Companion to the MLLDE xAPI IRI Registry v0.8.2."
+  },
+  "seeAlso": "https://profeanaeslavaedtech.github.io/mllde-xapi/",
+  "versions": [
+    {
+      "@id": "https://w3id.org/mllde/profile/v0.8.2",
+      "generatedAtTime": "2026-09-27T00:00:00Z"
+    }
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Ana Eslava-Graterol",
+    "url": "https://profeanaeslava.com"
+  },
+  "concepts": [
+    {
+      "@id": "https://w3id.org/mllde/verb/pronounced",
+      "@type": "Verb",
+      "prefLabel": {
+        "en": "pronounced"
+      },
+      "definition": {
+        "en": "Made a pronunciation attempt at a declared target feature (phoneme, stress, intonation). Result carries phoneme-scores and/or model-imitation outcome."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/verb/mediated",
+      "@type": "Verb",
+      "prefLabel": {
+        "en": "mediated"
+      },
+      "definition": {
+        "en": "Performed a mediation activity: transformed or relayed content from a source for a recipient. Context carries the mediation scale IRI and the output-channel skill IRI."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/verb/adapted",
+      "@type": "Verb",
+      "prefLabel": {
+        "en": "adapted"
+      },
+      "definition": {
+        "en": "Actor is the teaching agent (human or AI): the learning path or assessment was adapted for the learner. Context carries the pedagogical-action IRI and the evidence that motivated it."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/mission",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Mission / authentic task"
+      },
+      "definition": {
+        "en": "The unit of authentic assessment (service encounter, negotiation…). Candidate to align with the ADL seriousgames profile — verify overlap on packaging."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/conversation-scenario",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Conversation scenario (NPC-guided)"
+      },
+      "definition": {
+        "en": "Conversation scenario (NPC-guided)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/pronunciation-drill",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Pronunciation drill (Notice → Model → Invite → Move on)"
+      },
+      "definition": {
+        "en": "Pronunciation drill (Notice → Model → Invite → Move on)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/mediation-task",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Mediation task"
+      },
+      "definition": {
+        "en": "Mediation task"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/spoken-turn",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Single spoken turn"
+      },
+      "definition": {
+        "en": "Granularity for turn-level telemetry (latency, ASR confidence)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/learning-unit",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Learning unit / city module (persona-pack instance)"
+      },
+      "definition": {
+        "en": "Learning unit / city module (persona-pack instance)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/grammar-drill",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Grammar drill (controlled practice)"
+      },
+      "definition": {
+        "en": "A discrete controlled-practice item generated from a content-inventory grammar point (choose-form, transform, error-correct, meaning-match). Object of verb/answered; result ext/item-score feeds rubric/grammar-accuracy. Maps to demo screen S5 (warm-up). Added v0.6."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/activity-type/vocabulary-card",
+      "@type": "ActivityType",
+      "prefLabel": {
+        "en": "Vocabulary card (spaced repetition)"
+      },
+      "definition": {
+        "en": "A flashcard for a content-inventory vocabulary item or chunk under spaced repetition, optionally carrying the learner's own recording. Object of verbs/attempted or verb/answered; result ext/srs-outcome. Mastery = SRS interval >= 7 days. Maps to demo screens S4/SV. Added v0.6."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/cefr-level",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "cefr-level"
+      },
+      "definition": {
+        "en": "IRI from cefrLevels"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/cefr-skill",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "cefr-skill"
+      },
+      "definition": {
+        "en": "IRI from skills"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/cefr-scale",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "cefr-scale"
+      },
+      "definition": {
+        "en": "IRI from subskillScales — the specific Companion Volume descriptor scale the activity evidences"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/output-channel",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "output-channel"
+      },
+      "definition": {
+        "en": "oral | written — required for mediation statements"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/persona-pack",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "persona-pack"
+      },
+      "definition": {
+        "en": "Identifier of the active instance/city module (engine + pack architecture)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/evidence-tier",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "evidence-tier"
+      },
+      "definition": {
+        "en": "IRI from evidenceTiers — the confidence tier of the measurement in this statement"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/pedagogical-action",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "pedagogical-action"
+      },
+      "definition": {
+        "en": "IRI from pedagogicalActions — how the teaching side responded (the 'recorded pedagogy, not just performance' stream)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/help-request",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "help-request"
+      },
+      "definition": {
+        "en": "Object: what was asked + resolution strategy (defined-in-target-language, gloss, example…)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/content-ref",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "content-ref"
+      },
+      "definition": {
+        "en": "IRI/id of the target content point from the CEFR content inventory (pattern en.gram.<level>.* or en.voc.<level>.*). Ties a turn/item/card to the graded grammar point or vocab item it exercises. Added v0.6."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/level-decision",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "level-decision"
+      },
+      "definition": {
+        "en": "Object {from, to, evidenceCount, confidence, note} — MLLDE's demonstrated-level recalibration decision, carried on a verbs/progressed statement. Gated: accumulated evidence, asr-confidence >= 0.70, floors intelligibility AND interaction >= 4. Self-declared level (learner-set) is "
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/learning-target",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "learning-target"
+      },
+      "definition": {
+        "en": "Object {cefrLevel, type: grammar|vocab|sound, pointId} — the i+1 target the tutor teaches, carried on a verb/adapted statement. pointId references the content inventory (ext/content-ref). Added v0.6."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/measure-model",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "measure-model"
+      },
+      "definition": {
+        "en": "String/id — the measurement model that scored this session (the evaluator's measure_model). Kept for GDPR (interim model must also be no-train) and comparability: sessions scored by different models are NOT mixed in aggregates. Minted v0.8.1 (audit demand)."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/incident-type",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "incident-type"
+      },
+      "definition": {
+        "en": "IRI from incidentTypes"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/incident-severity",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "incident-severity"
+      },
+      "definition": {
+        "en": "low | medium | high | blocking"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/incident-resolution",
+      "@type": "ContextExtension",
+      "prefLabel": {
+        "en": "incident-resolution"
+      },
+      "definition": {
+        "en": "Object: change made + date + post-change rate — the resolution ledger for the admin improvement loop"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/rubric-scores",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "rubric-scores"
+      },
+      "definition": {
+        "en": "Object keyed by rubricCategories IRIs, integer bands 0-10 read against the level descriptor (pass = band>=6; floors intelligibility AND interaction >=4). The Cambridge 0-5 view = round(score/2), a reporting lens only. (Corrected v0.8.1: the earlier 1-3 wording was a v0.5 residue."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/phoneme-scores",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "phoneme-scores"
+      },
+      "definition": {
+        "en": "Array of { ipa: string (broad transcription), score: 0–100, confidence: 0–1, acceptedVariants: [ipa] } — acceptedVariants encodes legitimate variation (e.g. seseo/distinción); tier 3 until GOP or vendor scorer is integrated"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/asr-confidence",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "asr-confidence"
+      },
+      "definition": {
+        "en": "0–1 transcript confidence for the scored audio"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/turn-latency-ms",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "turn-latency-ms"
+      },
+      "definition": {
+        "en": "Milliseconds from prompt end to learner speech onset — cognitive-load proxy"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/retries",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "retries"
+      },
+      "definition": {
+        "en": "Retry count to completion (non-punitive mastery loop)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/grammar-error",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "grammar-error"
+      },
+      "definition": {
+        "en": "Object: category + example + handled-by (pedagogicalActions IRI)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/prosody-scores",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "prosody-scores"
+      },
+      "definition": {
+        "en": "Object: { intonation, rhythm, stress } — suprasegmental measures kept as SEPARATE lines, anchored to cefr/scale/prosodic-features; never merged into phoneme-scores. Tier 3 (bespoke GOP) / tier 2 (vendor). Minted v0.4 for AE's Pronunciation Model v1."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/fluency-measures",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "fluency-measures"
+      },
+      "definition": {
+        "en": "Object: { speechRate (syllables/sec), pauseCount, fillerCount, selfCorrections } — fluency measures, tier 2 (from ASR timing). Onset latency stays in ext/turn-latency-ms. Minted v0.4 for AE's Pronunciation Model v1."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/phoneme-accuracy",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "phoneme-accuracy"
+      },
+      "definition": {
+        "en": "Number 0–100 (Phoneme Accuracy) — preferred granular form of phoneme-scores"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/stress-accuracy",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "stress-accuracy"
+      },
+      "definition": {
+        "en": "Number 0–100 (Stress Accuracy)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/rhythm-score",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "rhythm-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Rhythm Score)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/intonation-score",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "intonation-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Intonation Score)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/speech-rate",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "speech-rate"
+      },
+      "definition": {
+        "en": "Number ≥0 WPM (Speech Rate)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/pause-frequency",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "pause-frequency"
+      },
+      "definition": {
+        "en": "Number ≥0 pauses/min (Pause Frequency)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/hesitation-rate",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "hesitation-rate"
+      },
+      "definition": {
+        "en": "Number 0–1 ratio (Hesitation Rate)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/fluency-score",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "fluency-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Fluency Score)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/intelligibility-score",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "intelligibility-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Intelligibility Score — engine estimate; band decided by MLLDE)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/acoustic-confidence",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "acoustic-confidence"
+      },
+      "definition": {
+        "en": "Number 0–1 (Acoustic Confidence — measurement reliability)"
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/item-score",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "item-score"
+      },
+      "definition": {
+        "en": "Object {itemId, drillType, correct: boolean, unaided: boolean, attempts} for a grammar-drill / warm-up item. Feeds rubric/grammar-accuracy. Objective mastery: a grammar point is mastered at >= 3/4 correct unaided. Added v0.6."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/srs-outcome",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "srs-outcome"
+      },
+      "definition": {
+        "en": "Object {cardId, outcome: known|repeat, prevIntervalDays, nextIntervalDays} — spaced-repetition result for a vocabulary-card. Objective mastery: a vocab item is mastered when nextIntervalDays >= 7. Added v0.6."
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/effective-time",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "effective-time"
+      },
+      "definition": {
+        "en": "Number >=0 minutes — effective interaction time in the session (voice/practice), NOT app-open time. Accumulates toward the >=80h HR/level 'passed' gate (anchored to CEFR/Cambridge guided hours). Carried on the per-session completed statement. Minted v0.8.1 (audit demand: the 80h "
+      }
+    },
+    {
+      "@id": "https://w3id.org/mllde/ext/srs-schedule",
+      "@type": "ResultExtension",
+      "prefLabel": {
+        "en": "srs-schedule"
+      },
+      "definition": {
+        "en": "Object {cardId, nextReviewDate, intervalDays} — the spaced-repetition SCHEDULE for a vocabulary-card (companion to ext/srs-outcome, which carries the outcome). Practice-loop signal, never a competency band. Minted v0.8.1 (was 'pending mint')."
+      }
+    }
+  ],
+  "_reusedVerbs": [
+    "http://adlnet.gov/expapi/verbs/attempted",
+    "http://adlnet.gov/expapi/verbs/completed",
+    "http://adlnet.gov/expapi/verbs/passed",
+    "http://adlnet.gov/expapi/verbs/failed",
+    "http://adlnet.gov/expapi/verbs/progressed",
+    "http://adlnet.gov/expapi/verbs/interacted",
+    "http://adlnet.gov/expapi/verbs/asked",
+    "https://w3id.org/xapi/audio/verbs/played",
+    "http://adlnet.gov/expapi/verbs/answered"
+  ],
+  "_note": "Los verbos de ADL se REUSAN en http://adlnet.gov/expapi/verbs/* (no se redefinen aqui). Los conceptos de este perfil son los IRIs propios de MLLDE bajo https://w3id.org/mllde/. CEFR levels/skills/scales, rubricCategories, pedagogicalActions, evidenceTiers e incidentTypes son vocabularios de valor referenciados por las extensiones; ver el registry v0.8.2 para su enumeracion completa."
+}

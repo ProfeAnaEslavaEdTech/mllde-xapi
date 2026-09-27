@@ -1,0 +1,1104 @@
+{
+  "_copyright": "© 2026 Ana Eslava-Graterol. All Rights Reserved. Brand & website: profeanaeslava · GitHub: profeanaeslavaedtech · Universitat Politècnica de València. All information forms part of a PhD proposal. MLLDE methodology; 'Language Passport'™; 'Grace'. CEFR © Council of Europe; xAPI © ADL/IEEE; ESCO © European Union; IPA © International Phonetic Association. Cited as standards, not redistributed.",
+  "_document": {
+    "title": "MLLDE xAPI IRI Registry — unified identifiers for CEFR skills, subskills and measurement concepts",
+    "version": "0.8.2",
+    "date": "2026-09-24",
+    "changelog": "v0.8 (2026-08-26, approved by AE): measurement-model / policy release — NO new IRIs (reuses v0.7.1 identifiers). MEDIATION: CA re-mapped to rubric/global-achievement (NOT interaction; +interaction only on facilitation descriptors facilitate-*/invite-*), and RAISED to a 9th competency cefr/skill/mediation used as a flat reporting rollup (B2B/teacher/admin only, never B2C; classification IRI already existed). Universal COMPUTE threshold >=2 samples (was 4 for drills; <2 = noise) across grammar/roles/drills/vocab/skills. THREE COMPUTATIONS kept separate: metric (>=2) != passed (band>=6 + >=80h effective-use gate for HR/level) != i+1 (a single weakness adjusts the loop). Attainment is DUAL-LEDGER: learner sees progress from day 1; HR/level gated at >=80 effective hours (anchored to CEFR/Cambridge guided hours). Measure!=Decide made CUMULATIVE: level = holistic global-achievement decided by the ENGINE (Global x5 + analytics x2, all on 0-10 with no 0-5 conversion, normalized total/pool*10; pool 130 today / 150 with pronunciation); one session never sets the level; the model observes and does not memorize. WRITING (option B): existing production rubric (grammar-accuracy+vocabulary-range+discourse-management+global-achievement) over en.wrt.* when built; NO cefr/skill/writing minted; not developed yet. AGENTS (D-1): three observing agents + a deterministic CODE consolidator (not a 4th LLM); corrector runs post-role-play and feeds the i+1 cards. Added a GDPR data-protection policy (pseudonymous UUID, no PII to the model, adapt-not-train, incident log). Purely policy/coverage; the 3 SRS IRIs (activity-type/card-pack, activity-type/chunk-in-context, ext/srs-schedule) remain pending mint. || v0.7.1 (approved by AE): +1 ADDITIVE rubric category — rubric/global-achievement, the holistic mark of the Cambridge English overall Speaking scales (the interlocutor's global-achievement scale, alongside the analytical criteria). Enables a Cambridge-aligned REPORTING VIEW over the 6-category diagnostic engine: bands 0-10 (finer granularity; 6 = meets the level, floor >=4, Cambridge 0-5 view = score/2), Grammar&Vocabulary reported combined at A2-B2 and separated at C1-C2, Pronunciation reported as one criterion (rolls up phonological-control + intelligibility; intelligibility kept as internal pass floor). Evidence honesty preserved: the engine measures FROM VOICE (ASR transcript + LLM-judge for grammar/lexis/discourse/interaction/global = Tier 1; pronunciation phonological detail is Tier 2/3, acoustic-tier-gated), so each criterion carries its evidence tier and nothing claims examiner-level precision the ASR does not have. Cambridge descriptors are cited and paraphrased for a business-adult context, NOT reproduced. Purely additive; nothing removed. || v0.7 (2026-08-10): +1 ADDITIVE rubric category — rubric/discourse-management (organisation, coherence, extended spoken turns) for full parity with the four official Cambridge English speaking criteria (Grammar&Vocabulary -> grammar-accuracy + vocabulary-range; Pronunciation -> pronunciation-phonological-control + intelligibility; Interactive Communication -> interaction; Discourse Management -> discourse-management). Band 1-3, MLLDE-decided, read against the level's Can-Do; acoustic evidence borrowed from ext/fluency-measures (speech-rate, pause-frequency, hesitation-rate) + transcript coherence. CEFR alignment: Coherence & cohesion / Overall spoken production. Scorecard is now 6 rubric categories. Purely additive; nothing removed. || v0.6 (2026-08-10): +8 ADDITIVE IRIs to carry the TK Coach teaching model (IPO) improvement on top of the v0.5 one-turn engine. VERBS: verb/answered (discrete scorable practice item). ACTIVITY-TYPES: activity-type/grammar-drill (S5 warm-up), activity-type/vocabulary-card (S4/SV spaced repetition). CONTEXT EXTENSIONS: ext/content-ref (target grammar/vocab point from the CEFR content inventory), ext/level-decision (demonstrated-level recalibration on verbs/progressed; self-declared level kept separately), ext/learning-target (i+1 target on verb/adapted). RESULT EXTENSIONS: ext/item-score (drill correctness, unaided → grammar-accuracy; mastery >=3/4 unaided), ext/srs-outcome (spaced-repetition result; vocab mastery when next interval >=7 days). Purely additive: no v0.5 IRI changed or removed. These connect the content layer (content/ inventory) and enable the model's two jobs — IMPROVE (rubric+then/now → i+1) and MAINTAIN (SRS retention). || v0.5 (2026-08-05): minted 10 first-class acoustic RESULT EXTENSIONS as measurement concepts — ext/phoneme-accuracy, ext/stress-accuracy, ext/rhythm-score, ext/intonation-score, ext/speech-rate, ext/pause-frequency, ext/hesitation-rate, ext/fluency-score, ext/intelligibility-score, ext/acoustic-confidence. Each defined in acousticMetrics with label/definition/dataType/range/unit/evidenceTier/CEFR-scale/usedBy/pedagogicalMeaning. calculationMethod owned by the acoustic engineer (MLLDE technology-agnostic). CEFR mapping: phoneme→Sound Articulation; stress/rhythm/intonation→Prosodic Features; speech-rate/pause/hesitation/fluency/intelligibility→Overall Phonological Control; acoustic-confidence=reliability. Granular extensions PREFERRED; v0.4 composites prosody-scores & fluency-measures retained as valid roll-ups. PROVENANCE: metrics are borrowed from speech-technology literature (Azure Pronunciation Assessment; Witt & Young 2000; Munro & Derwing 1995); MLLDE's contribution is the xAPI semantic model + CEFR alignment + pedagogical interpretation, not the metrics themselves. || v0.5 (2026-08-05): added the acousticMetrics catalogue — 10 first-class metric objects (phoneme-accuracy, prosody, rhythm, intonation, stress-accuracy, speech-rate, pause-frequency, hesitation-rate, fluency, intelligibility), each with definition, range/units, calculation method, evidence tier, xAPI carrier + JSON path, CEFR phonological-control scale, and pedagogicalMeaning (threshold → pedagogicalActions IRI). Metrics 1–9 measured by the engine; intelligibility decided by MLLDE. No new xAPI extensions minted — metrics reuse phoneme-scores/prosody-scores/fluency-measures/rubric-scores. New metric/* IRIs are catalogue identifiers, not statement carriers. || v0.4 (2026, approved by AE): two result extensions minted for the confirmed AE's Pronunciation Model v1 — prosody-scores (intonation·rhythm·stress → Prosodic features scale) and fluency-measures (speech rate·pauses·fillers·self-corrections); total 127 IRIs. v0.3 (2026-08-04, approved by AE): four incident types added from TK Coach hands-on evaluation — tutor-task-substitution, report-without-evidence, session-not-finalized, access-denied. v0.2: branding correction, APA references embedded. v0.1: initial 121-IRI registry. || v0.8.1 (2026-09-01, approved by AE): minted 3 IRIs for the audit demands (UX/UI demo audit) — ext/measure-model (context), ext/effective-time and ext/srs-schedule (result). NO new agents; NO scale change. Rule reaffirmed: descriptors feed lessons/practice, NEVER bands; only the evaluator emits bands. || v0.8.2 (2026-09-24, approved by AE): STANDARDS-CONFORMANCE FIX (no new concepts). H1 — the 7 reused ADL verbs (attempted, completed, passed, failed, progressed, interacted, asked) were written with https://adlnet.gov; corrected to the canonical http://adlnet.gov/expapi/verbs/* (http:// and https:// are DISTINCT IRIs to an LRS, so the https form silently duplicated instead of reusing the ADL verb and broke metric universalisation — reuse-first rule enforced). H3 — declared the reserved void verb http://adlnet.gov/expapi/verbs/voided in verbs.reused (already emitted in production, previously undocumented). answered (H2) left as an open authorial decision: keep minted or reuse ADL answered — unchanged in this version. Emitter must emit the same http:// forms. || H2 (2026-09-27, approved by AE): answered moved from minted to reused -> http://adlnet.gov/expapi/verbs/answered (ADL already defines it; keeps distinction from interacted).",
+    "status": "Design registry (production draft). Next step: convert to a formal xAPI Profile (JSON-LD, conformsTo https://w3id.org/xapi/profiles#1.0) and validate at https://profiles.adlnet.gov before publication.",
+    "researchFinding": "No official IRI vocabulary exists for CEFR skills, subskills or mediation (Council of Europe publishes descriptors as documents, not linked data). No language-learning xAPI profile exists in ADL's authored-profiles registry. Therefore MLLDE mints its own namespace, reusing established generic IRIs where semantics match, and records alignments to CEFR Companion Volume scales and ESCO/Europass as metadata."
+  },
+  "_namespacePolicy": {
+    "canonicalBase": "https://w3id.org/mllde",
+    "rationale": "w3id.org is the free, community-run persistent-identifier service used by modern xAPI profiles (audio, cmi5, seriousgames all live under w3id.org/xapi/). Registering w3id.org/mllde is a single GitHub pull request, filed from the profeanaeslavaedtech GitHub account, and keeps IRIs stable even if a personal domain lapses.",
+    "fallbackBase": "https://profeanaeslava.com/xapi",
+    "rules": [
+      "Reuse-first: if an established IRI (ADL, w3id profile) matches the meaning exactly, reuse it; never mint a duplicate.",
+      "One concept, one IRI: every skill, subskill scale, level, rubric category, extension, verb, incident type and pedagogical action has exactly one distinct IRI.",
+      "IRIs are identifiers, not links: they never need to resolve to a webpage, but each SHOULD eventually resolve to human-readable documentation.",
+      "Extension values are IRIs from this registry (e.g. cefr-level extension carries https://w3id.org/mllde/cefr/level/b1), so any LRS can interpret statements without MLLDE documentation at hand."
+    ]
+  },
+  "_referencesAPA7": [
+    "Advanced Distributed Learning Initiative. (2017). xAPI profiles specification (Version 1.0). GitHub. https://adlnet.github.io/xapi-profiles/",
+    "Advanced Distributed Learning Initiative. (n.d.). ADL xAPI profile server. Retrieved August 4, 2026, from https://profiles.adlnet.gov/",
+    "Advanced Distributed Learning Initiative. (n.d.). Companion specification for xAPI vocabularies. GitBook. https://adl.gitbooks.io/companion-specification-for-xapi-vocabularies/",
+    "Advanced Distributed Learning Initiative. (n.d.). xapi-authored-profiles [Repository]. GitHub. Retrieved August 4, 2026, from https://github.com/adlnet/xapi-authored-profiles",
+    "Council of Europe. (2020). Common European Framework of Reference for Languages: Learning, teaching, assessment — Companion volume. Council of Europe Publishing. https://www.coe.int/lang-cefr",
+    "European Commission. (n.d.). ESCO: European Skills, Competences, Qualifications and Occupations. Retrieved August 4, 2026, from https://esco.ec.europa.eu/",
+    "Europass. (n.d.). Common European Framework of Reference for language skills [Self-assessment grid]. European Union. Retrieved August 4, 2026, from https://europass.europa.eu/en/common-european-framework-reference-language-skills",
+    "IEEE. (2023). IEEE standard for learning technology — JSON data model format and RESTful web service for learner experience data tracking and access (xAPI) (IEEE Std 9274.1.1-2023). IEEE Standards Association.",
+    "International Phonetic Association. (1999). Handbook of the International Phonetic Association: A guide to the use of the International Phonetic Alphabet. Cambridge University Press.",
+    "Kirkpatrick, J. D., & Kirkpatrick, W. K. (2016). Kirkpatrick's four levels of training evaluation. ATD Press.",
+    "Krashen, S. D. (1985). The input hypothesis: Issues and implications. Longman.",
+    "Microsoft. (n.d.). Use pronunciation assessment [Documentation]. Microsoft Learn. Retrieved August 4, 2026, from https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-pronunciation-assessment",
+    "Phillips, J. J., & Phillips, P. P. (2016). Handbook of training evaluation and measurement methods (4th ed.). Routledge.",
+    "Rustici Software. (n.d.). cmi5 in 60 seconds [Video]. YouTube. Retrieved August 4, 2026, from https://www.youtube.com/watch?v=XxsO2RTakmM",
+    "Witt, S. M., & Young, S. J. (2000). Phone-level pronunciation scoring and assessment for interactive language learning. Speech Communication, 30(2–3), 95–108. https://doi.org/10.1016/S0167-6393(99)00044-8"
+  ],
+  "alignmentReferences": {
+    "cefrCompanionVolume2020": "https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors",
+    "europassSelfAssessmentGrid": "https://europass.europa.eu/en/common-european-framework-reference-language-skills",
+    "escoExampleLanguageSkill": "http://data.europa.eu/esco/skill/ff85b268-d74c-44ae-be8f-949e1614eb5d",
+    "note": "ESCO language skills are per-language UUID URIs referencing CEFR in prose; useful as alignment metadata for HR/admin reporting (persona 3), not usable as skill/subskill identifiers in statements."
+  },
+  "cefrLevels": [
+    {
+      "iri": "https://w3id.org/mllde/cefr/level/pre-a1",
+      "label": "Pre-A1",
+      "note": "Introduced by the Companion Volume"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/level/a1",
+      "label": "A1 — Basic user"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/level/a2",
+      "label": "A2 — Basic user"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/level/b1",
+      "label": "B1 — Independent user"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/level/b2",
+      "label": "B2 — Independent user"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/level/c1",
+      "label": "C1 — Proficient user"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/level/c2",
+      "label": "C2 — Proficient user"
+    }
+  ],
+  "skills": [
+    {
+      "iri": "https://w3id.org/mllde/cefr/skill/listening",
+      "label": "Listening",
+      "cvMode": "reception",
+      "channel": "oral"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/skill/reading",
+      "label": "Reading",
+      "cvMode": "reception",
+      "channel": "written"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/skill/speaking",
+      "label": "Speaking",
+      "cvMode": "production-and-interaction",
+      "channel": "oral"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/skill/writing",
+      "label": "Writing",
+      "cvMode": "production-and-interaction",
+      "channel": "written"
+    },
+    {
+      "iri": "https://w3id.org/mllde/cefr/skill/mediation",
+      "label": "Mediation",
+      "cvMode": "mediation",
+      "channel": "oral-or-written",
+      "note": "MLLDE fifth skill (decision 2026-08-04): mediation output is realised through the oral or written channel; statements carry both the mediation scale IRI and the output-channel skill IRI."
+    }
+  ],
+  "subskillScales": {
+    "_note": "One IRI per CEFR Companion Volume descriptor scale, grouped by MLLDE skill. 'cvScale' is the scale's name in the Companion Volume (2020) for traceability.",
+    "listening": [
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-oral-comprehension",
+        "cvScale": "Overall oral comprehension"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/understanding-interaction-between-others",
+        "cvScale": "Understanding conversation between other people"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/listening-live-audience",
+        "cvScale": "Understanding as a member of a live audience"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/listening-announcements-instructions",
+        "cvScale": "Understanding announcements and instructions"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/listening-audio-media",
+        "cvScale": "Understanding audio (or signed) media and recordings"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/audio-visual-comprehension",
+        "cvScale": "Watching TV, film and video"
+      }
+    ],
+    "reading": [
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-reading-comprehension",
+        "cvScale": "Overall reading comprehension"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/reading-correspondence",
+        "cvScale": "Reading correspondence"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/reading-orientation",
+        "cvScale": "Reading for orientation"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/reading-information-argument",
+        "cvScale": "Reading for information and argument"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/reading-instructions",
+        "cvScale": "Reading instructions"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/reading-leisure",
+        "cvScale": "Reading as a leisure activity"
+      }
+    ],
+    "speaking": [
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-spoken-production",
+        "cvScale": "Overall oral production"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/monologue-describing-experience",
+        "cvScale": "Sustained monologue: describing experience"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/monologue-giving-information",
+        "cvScale": "Sustained monologue: giving information"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/monologue-putting-case",
+        "cvScale": "Sustained monologue: putting a case"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/public-announcements",
+        "cvScale": "Public announcements"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/addressing-audiences",
+        "cvScale": "Addressing audiences"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-spoken-interaction",
+        "cvScale": "Overall oral interaction"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/understanding-interlocutor",
+        "cvScale": "Understanding an interlocutor"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/conversation",
+        "cvScale": "Conversation"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/informal-discussion",
+        "cvScale": "Informal discussion (with friends)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/formal-discussion",
+        "cvScale": "Formal discussion (meetings)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/goal-oriented-cooperation",
+        "cvScale": "Goal-oriented co-operation"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/obtaining-goods-services",
+        "cvScale": "Obtaining goods and services",
+        "note": "The Voicemode service-encounter mission maps here."
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/information-exchange",
+        "cvScale": "Information exchange"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/interviewing",
+        "cvScale": "Interviewing and being interviewed"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/using-telecommunications",
+        "cvScale": "Using telecommunications"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-phonological-control",
+        "cvScale": "Overall phonological control",
+        "note": "CV replaced the 2001 phonology scale; anchor for GOP metrics."
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/sound-articulation",
+        "cvScale": "Sound articulation",
+        "note": "Anchor for per-phoneme (IPA) scoring — evidence tier 3 until GOP is built."
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/prosodic-features",
+        "cvScale": "Prosodic features",
+        "note": "Stress, rhythm, intonation — kept as separate metric lines, never folded into phoneme scores."
+      }
+    ],
+    "writing": [
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-written-production",
+        "cvScale": "Overall written production"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/creative-writing",
+        "cvScale": "Creative writing"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/reports-essays",
+        "cvScale": "Reports and essays"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-written-interaction",
+        "cvScale": "Overall written interaction"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/correspondence",
+        "cvScale": "Correspondence"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/notes-messages-forms",
+        "cvScale": "Notes, messages and forms"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/online-conversation-discussion",
+        "cvScale": "Online conversation and discussion",
+        "note": "CV online-interaction scale; chat-based lessons map here."
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/goal-oriented-online-transactions",
+        "cvScale": "Goal-oriented online transactions and collaboration"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/orthographic-control",
+        "cvScale": "Orthographic control"
+      }
+    ],
+    "mediation": [
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/overall-mediation",
+        "cvScale": "Overall mediation"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/relaying-specific-information",
+        "cvScale": "Relaying specific information (in speech or writing)",
+        "group": "mediating-a-text"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/explaining-data",
+        "cvScale": "Explaining data, e.g. in graphs, diagrams, charts (in speech or writing)",
+        "group": "mediating-a-text"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/processing-text",
+        "cvScale": "Processing text (in speech or writing)",
+        "group": "mediating-a-text"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/translating-written-text",
+        "cvScale": "Translating a written text (in speech or writing)",
+        "group": "mediating-a-text"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/note-taking",
+        "cvScale": "Note-taking (lectures, seminars, meetings)",
+        "group": "mediating-a-text"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/personal-response-creative-texts",
+        "cvScale": "Expressing a personal response to creative texts",
+        "group": "mediating-a-text"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/analysis-criticism-creative-texts",
+        "cvScale": "Analysis and criticism of creative texts",
+        "group": "mediating-a-text"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/facilitating-collaborative-interaction",
+        "cvScale": "Facilitating collaborative interaction with peers",
+        "group": "mediating-concepts"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/collaborating-construct-meaning",
+        "cvScale": "Collaborating to construct meaning",
+        "group": "mediating-concepts"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/managing-interaction",
+        "cvScale": "Managing interaction",
+        "group": "mediating-concepts"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/encouraging-conceptual-talk",
+        "cvScale": "Encouraging conceptual talk",
+        "group": "mediating-concepts"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/facilitating-pluricultural-space",
+        "cvScale": "Facilitating pluricultural space",
+        "group": "mediating-communication"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/acting-as-intermediary",
+        "cvScale": "Acting as intermediary in informal situations",
+        "group": "mediating-communication"
+      },
+      {
+        "iri": "https://w3id.org/mllde/cefr/scale/facilitating-delicate-situations",
+        "cvScale": "Facilitating communication in delicate situations and disagreements",
+        "group": "mediating-communication"
+      }
+    ]
+  },
+  "verbs": {
+    "reused": [
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/attempted",
+        "use": "Learner attempts a task/mission"
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/completed",
+        "use": "Task completed — the <MISSION_COMPLETE> gate event"
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/passed",
+        "use": "Performance meets the level's can-do descriptors (rubric floors met)"
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/failed",
+        "use": "Attempt did not yet meet floors (non-punitive: pairs with unlimited retry)"
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/progressed",
+        "use": "Band or subskill progression event (e.g. B1 → B2 readiness signal)"
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/interacted",
+        "use": "A conversational turn in interaction scales"
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/asked",
+        "use": "Vocabulary/help request by the learner"
+      },
+      {
+        "iri": "https://w3id.org/xapi/audio/verbs/played",
+        "use": "Optional, listening media events (ADL audio profile)",
+        "verifyOnPackaging": true
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/voided",
+        "use": "Void a previously stored statement issued in error (reserved xAPI verb; MUST be exactly http://adlnet.gov/expapi/verbs/voided). The aggregator excludes voided targets.",
+        "addedIn": "0.8.2"
+      },
+      {
+        "iri": "http://adlnet.gov/expapi/verbs/answered",
+        "use": "Learner answers a discrete practice item (grammar drill / vocabulary card). Reused from ADL (H2).",
+        "addedIn": "0.8.2"
+      }
+    ],
+    "minted": [
+      {
+        "iri": "https://w3id.org/mllde/verb/pronounced",
+        "label": "pronounced",
+        "definition": "Made a pronunciation attempt at a declared target feature (phoneme, stress, intonation). Result carries phoneme-scores and/or model-imitation outcome."
+      },
+      {
+        "iri": "https://w3id.org/mllde/verb/mediated",
+        "label": "mediated",
+        "definition": "Performed a mediation activity: transformed or relayed content from a source for a recipient. Context carries the mediation scale IRI and the output-channel skill IRI."
+      },
+      {
+        "iri": "https://w3id.org/mllde/verb/adapted",
+        "label": "adapted",
+        "definition": "Actor is the teaching agent (human or AI): the learning path or assessment was adapted for the learner. Context carries the pedagogical-action IRI and the evidence that motivated it."
+      }
+    ]
+  },
+  "activityTypes": {
+    "minted": [
+      {
+        "iri": "https://w3id.org/mllde/activity-type/mission",
+        "label": "Mission / authentic task",
+        "note": "The unit of authentic assessment (service encounter, negotiation…). Candidate to align with the ADL seriousgames profile — verify overlap on packaging."
+      },
+      {
+        "iri": "https://w3id.org/mllde/activity-type/conversation-scenario",
+        "label": "Conversation scenario (NPC-guided)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/activity-type/pronunciation-drill",
+        "label": "Pronunciation drill (Notice → Model → Invite → Move on)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/activity-type/mediation-task",
+        "label": "Mediation task"
+      },
+      {
+        "iri": "https://w3id.org/mllde/activity-type/spoken-turn",
+        "label": "Single spoken turn",
+        "note": "Granularity for turn-level telemetry (latency, ASR confidence)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/activity-type/learning-unit",
+        "label": "Learning unit / city module (persona-pack instance)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/activity-type/grammar-drill",
+        "label": "Grammar drill (controlled practice)",
+        "note": "A discrete controlled-practice item generated from a content-inventory grammar point (choose-form, transform, error-correct, meaning-match). Object of verb/answered; result ext/item-score feeds rubric/grammar-accuracy. Maps to demo screen S5 (warm-up). Added v0.6."
+      },
+      {
+        "iri": "https://w3id.org/mllde/activity-type/vocabulary-card",
+        "label": "Vocabulary card (spaced repetition)",
+        "note": "A flashcard for a content-inventory vocabulary item or chunk under spaced repetition, optionally carrying the learner's own recording. Object of verbs/attempted or verb/answered; result ext/srs-outcome. Mastery = SRS interval >= 7 days. Maps to demo screens S4/SV. Added v0.6."
+      }
+    ]
+  },
+  "extensions": {
+    "context": [
+      {
+        "iri": "https://w3id.org/mllde/ext/cefr-level",
+        "value": "IRI from cefrLevels"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/cefr-skill",
+        "value": "IRI from skills"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/cefr-scale",
+        "value": "IRI from subskillScales — the specific Companion Volume descriptor scale the activity evidences"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/output-channel",
+        "value": "oral | written — required for mediation statements"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/persona-pack",
+        "value": "Identifier of the active instance/city module (engine + pack architecture)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/evidence-tier",
+        "value": "IRI from evidenceTiers — the confidence tier of the measurement in this statement"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/pedagogical-action",
+        "value": "IRI from pedagogicalActions — how the teaching side responded (the 'recorded pedagogy, not just performance' stream)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/help-request",
+        "value": "Object: what was asked + resolution strategy (defined-in-target-language, gloss, example…)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/content-ref",
+        "value": "IRI/id of the target content point from the CEFR content inventory (pattern en.gram.<level>.* or en.voc.<level>.*). Ties a turn/item/card to the graded grammar point or vocab item it exercises. Added v0.6."
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/level-decision",
+        "value": "Object {from, to, evidenceCount, confidence, note} — MLLDE's demonstrated-level recalibration decision, carried on a verbs/progressed statement. Gated: accumulated evidence, asr-confidence >= 0.70, floors intelligibility AND interaction >= 4. Self-declared level (learner-set) is kept separately in ext/cefr-level. Added v0.6."
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/learning-target",
+        "value": "Object {cefrLevel, type: grammar|vocab|sound, pointId} — the i+1 target the tutor teaches, carried on a verb/adapted statement. pointId references the content inventory (ext/content-ref). Added v0.6."
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/measure-model",
+        "value": "String/id — the measurement model that scored this session (the evaluator's measure_model). Kept for GDPR (interim model must also be no-train) and comparability: sessions scored by different models are NOT mixed in aggregates. Minted v0.8.1 (audit demand).",
+        "addedIn": "0.8.1"
+      }
+    ],
+    "result": [
+      {
+        "iri": "https://w3id.org/mllde/ext/rubric-scores",
+        "value": "Object keyed by rubricCategories IRIs, integer bands 0-10 read against the level descriptor (pass = band>=6; floors intelligibility AND interaction >=4). The Cambridge 0-5 view = round(score/2), a reporting lens only. (Corrected v0.8.1: the earlier 1-3 wording was a v0.5 residue.)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/phoneme-scores",
+        "value": "Array of { ipa: string (broad transcription), score: 0–100, confidence: 0–1, acceptedVariants: [ipa] } — acceptedVariants encodes legitimate variation (e.g. seseo/distinción); tier 3 until GOP or vendor scorer is integrated"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/asr-confidence",
+        "value": "0–1 transcript confidence for the scored audio"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/turn-latency-ms",
+        "value": "Milliseconds from prompt end to learner speech onset — cognitive-load proxy"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/retries",
+        "value": "Retry count to completion (non-punitive mastery loop)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/grammar-error",
+        "value": "Object: category + example + handled-by (pedagogicalActions IRI)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/prosody-scores",
+        "value": "Object: { intonation, rhythm, stress } — suprasegmental measures kept as SEPARATE lines, anchored to cefr/scale/prosodic-features; never merged into phoneme-scores. Tier 3 (bespoke GOP) / tier 2 (vendor). Minted v0.4 for AE's Pronunciation Model v1.",
+        "addedIn": "0.4.0"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/fluency-measures",
+        "value": "Object: { speechRate (syllables/sec), pauseCount, fillerCount, selfCorrections } — fluency measures, tier 2 (from ASR timing). Onset latency stays in ext/turn-latency-ms. Minted v0.4 for AE's Pronunciation Model v1.",
+        "addedIn": "0.4.0"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/phoneme-accuracy",
+        "value": "Number 0–100 (Phoneme Accuracy) — preferred granular form of phoneme-scores"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/stress-accuracy",
+        "value": "Number 0–100 (Stress Accuracy)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/rhythm-score",
+        "value": "Number 0–100 (Rhythm Score)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/intonation-score",
+        "value": "Number 0–100 (Intonation Score)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/speech-rate",
+        "value": "Number ≥0 WPM (Speech Rate)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/pause-frequency",
+        "value": "Number ≥0 pauses/min (Pause Frequency)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/hesitation-rate",
+        "value": "Number 0–1 ratio (Hesitation Rate)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/fluency-score",
+        "value": "Number 0–100 (Fluency Score)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/intelligibility-score",
+        "value": "Number 0–100 (Intelligibility Score — engine estimate; band decided by MLLDE)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/acoustic-confidence",
+        "value": "Number 0–1 (Acoustic Confidence — measurement reliability)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/item-score",
+        "value": "Object {itemId, drillType, correct: boolean, unaided: boolean, attempts} for a grammar-drill / warm-up item. Feeds rubric/grammar-accuracy. Objective mastery: a grammar point is mastered at >= 3/4 correct unaided. Added v0.6."
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/srs-outcome",
+        "value": "Object {cardId, outcome: known|repeat, prevIntervalDays, nextIntervalDays} — spaced-repetition result for a vocabulary-card. Objective mastery: a vocab item is mastered when nextIntervalDays >= 7. Added v0.6."
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/effective-time",
+        "value": "Number >=0 minutes — effective interaction time in the session (voice/practice), NOT app-open time. Accumulates toward the >=80h HR/level 'passed' gate (anchored to CEFR/Cambridge guided hours). Carried on the per-session completed statement. Minted v0.8.1 (audit demand: the 80h gate had no IRI).",
+        "addedIn": "0.8.1"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/srs-schedule",
+        "value": "Object {cardId, nextReviewDate, intervalDays} — the spaced-repetition SCHEDULE for a vocabulary-card (companion to ext/srs-outcome, which carries the outcome). Practice-loop signal, never a competency band. Minted v0.8.1 (was 'pending mint').",
+        "addedIn": "0.8.1"
+      }
+    ],
+    "incident": [
+      {
+        "iri": "https://w3id.org/mllde/ext/incident-type",
+        "value": "IRI from incidentTypes"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/incident-severity",
+        "value": "low | medium | high | blocking"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/incident-resolution",
+        "value": "Object: change made + date + post-change rate — the resolution ledger for the admin improvement loop"
+      }
+    ]
+  },
+  "rubricCategories": [
+    {
+      "iri": "https://w3id.org/mllde/rubric/grammar-accuracy",
+      "label": "Grammar / Accuracy"
+    },
+    {
+      "iri": "https://w3id.org/mllde/rubric/vocabulary-range",
+      "label": "Vocabulary / Range"
+    },
+    {
+      "iri": "https://w3id.org/mllde/rubric/pronunciation-phonological-control",
+      "label": "Pronunciation / Phonological control"
+    },
+    {
+      "iri": "https://w3id.org/mllde/rubric/intelligibility",
+      "label": "Intelligibility (pass floor ≥ 4)"
+    },
+    {
+      "iri": "https://w3id.org/mllde/rubric/interaction",
+      "label": "Interaction / Fluency (pass floor ≥ 4)"
+    },
+    {
+      "iri": "https://w3id.org/mllde/rubric/discourse-management",
+      "label": "Discourse management / Coherence"
+    },
+    {
+      "iri": "https://w3id.org/mllde/rubric/global-achievement",
+      "label": "Global achievement (holistic, 0-10; Cambridge 0-5 view = round/2)"
+    }
+  ],
+  "pedagogicalActions": [
+    {
+      "iri": "https://w3id.org/mllde/action/implicit-recast",
+      "label": "Implicit recast — correct by modelling, flow preserved"
+    },
+    {
+      "iri": "https://w3id.org/mllde/action/model-invite",
+      "label": "Model + invite retry (pronunciation ladder step)"
+    },
+    {
+      "iri": "https://w3id.org/mllde/action/scaffold",
+      "label": "Scaffold — graded hint, never the full answer first"
+    },
+    {
+      "iri": "https://w3id.org/mllde/action/simplify",
+      "label": "Simplify / slow down / repeat (penalty-free)"
+    },
+    {
+      "iri": "https://w3id.org/mllde/action/advance",
+      "label": "Advance — reduce support, raise challenge (i+1)"
+    }
+  ],
+  "evidenceTiers": [
+    {
+      "iri": "https://w3id.org/mllde/evidence-tier/1-measurable-today",
+      "label": "Tier 1 — task gates, retries, rubric bands, help requests"
+    },
+    {
+      "iri": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+      "label": "Tier 2 — requires instrumentation: latency, ASR-confidence-weighted scores, vendor pronunciation APIs over an IPA-coded inventory"
+    },
+    {
+      "iri": "https://w3id.org/mllde/evidence-tier/3-pending-gop",
+      "label": "Tier 3 — per-phoneme phonological control pending the GOP build (open research piece)"
+    }
+  ],
+  "incidentTypes": [
+    {
+      "iri": "https://w3id.org/mllde/incident/asr-failure",
+      "label": "ASR failure — no usable transcript"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/low-asr-confidence",
+      "label": "Low ASR confidence below scoring threshold"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/endpointing-cutoff",
+      "label": "Endpointing cut-off — learner interrupted mid-turn"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/text-fallback-activation",
+      "label": "Text fallback activated (accessibility signal)"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/completion-token-failure",
+      "label": "Completion token not emitted/parsed"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/offtopic-redirect",
+      "label": "Off-topic redirect by the agent"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/unresolved-help-request",
+      "label": "Help request left unresolved"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/tutor-task-substitution",
+      "label": "Tutor produced the learner's task output instead of coaching (pedagogy-fidelity violation; target 0)",
+      "addedIn": "0.3.0"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/report-without-evidence",
+      "label": "Report claim with no underlying statements (false positive; 0 by design)",
+      "addedIn": "0.3.0"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/session-not-finalized",
+      "label": "Session left open without finalisation — corrupts time-on-task and completion data",
+      "addedIn": "0.3.0"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/access-denied",
+      "label": "Learner or teacher blocked from reaching a module or feature (onboarding/permissions incident)",
+      "addedIn": "0.3.0"
+    }
+  ],
+  "acousticMetrics": {
+    "_note": "Acoustic Metrics — first-class xAPI RESULT EXTENSIONS (one IRI each), defined as measurement concepts. Each has label, definition, dataType, range, unit, evidenceTier, CEFR scale alignment, usedBy, and pedagogicalMeaning (threshold → pedagogicalActions IRI — MLLDE's decision layer, the differentiator). calculationMethod is OWNED BY THE ACOUSTIC ENGINEER; MLLDE is technology-agnostic and does not prescribe algorithms. RULE (Measure≠Decide): metrics are MEASURED by the engine and placed flat in result.extensions; the intelligibility BAND (pass floor) and every pedagogicalMeaning outcome are DECIDED by MLLDE. These granular extensions are PREFERRED for new statements; the v0.4 composites ext/prosody-scores and ext/fluency-measures remain valid roll-ups. See acoustic-profile-specification.md.",
+    "cefrAlignment": {
+      "phoneme-accuracy": "Sound Articulation",
+      "stress-accuracy": "Prosodic Features",
+      "rhythm-score": "Prosodic Features",
+      "intonation-score": "Prosodic Features",
+      "speech-rate": "Overall Phonological Control",
+      "pause-frequency": "Overall Phonological Control",
+      "hesitation-rate": "Overall Phonological Control",
+      "fluency-score": "Overall Phonological Control",
+      "intelligibility-score": "Overall Phonological Control",
+      "acoustic-confidence": "— (reliability / meta)"
+    },
+    "items": [
+      {
+        "iri": "https://w3id.org/mllde/ext/phoneme-accuracy",
+        "label": "Phoneme Accuracy",
+        "definition": "Degree to which produced phones match the expected IPA target sounds (accepted regional variants count as correct).",
+        "measures": "IPA phoneme production; segmental accuracy.",
+        "dataType": "decimal",
+        "range": "0–100",
+        "unit": "score",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/sound-articulation",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: GOP over a forced alignment.",
+        "priorArt": "GOP (Witt & Young, 2000); Azure AccuracyScore/PronScore; phoneme-level scores.",
+        "decidedBy": "engine-measures → MLLDE decides (accepted-variant check first)",
+        "pedagogicalMeaning": [
+          {
+            "when": "producedIpa ∈ acceptedVariants",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Accepted variant (seseo/distinción, yeísmo, s-aspiration) → full credit, never lowered"
+          },
+          {
+            "when": "score < 50 (non-accepted target)",
+            "action": "https://w3id.org/mllde/action/model-invite",
+            "label": "Practice target — model the sound + invite retry (never a penalty)"
+          },
+          {
+            "when": "50 ≤ score ≤ 80",
+            "action": "https://w3id.org/mllde/action/implicit-recast",
+            "label": "Correct by modelling, flow preserved"
+          },
+          {
+            "when": "score > 80",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Advance (i+1)"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/stress-accuracy",
+        "label": "Stress Accuracy",
+        "definition": "Degree to which lexical and sentence stress fall on the expected syllables.",
+        "measures": "Lexical stress; sentence stress.",
+        "dataType": "decimal",
+        "range": "0–100",
+        "unit": "score",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/prosodic-features",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: detected vs expected stress placement.",
+        "priorArt": "Prosody/stress in pronunciation assessment; Azure ProsodyScore (stress); ErrorType: unexpected break/monotone.",
+        "decidedBy": "engine-measures → MLLDE decides",
+        "pedagogicalMeaning": [
+          {
+            "when": "A1–A2",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Report-only at basic levels — feedback yes, gate no"
+          },
+          {
+            "when": "B1+ and score < 60",
+            "action": "https://w3id.org/mllde/action/model-invite",
+            "label": "Model the pattern + invite retry"
+          },
+          {
+            "when": "B1+ and 60 ≤ score ≤ 80",
+            "action": "https://w3id.org/mllde/action/implicit-recast",
+            "label": "Implicit recast — correct by modelling, flow preserved"
+          },
+          {
+            "when": "B1+ and score > 80",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Advance — reduce support, raise challenge (i+1)"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/rhythm-score",
+        "label": "Rhythm Score",
+        "definition": "Degree to which syllable timing and speech rhythm reproduce target patterns.",
+        "measures": "Syllable timing; speech rhythm.",
+        "dataType": "decimal",
+        "range": "0–100",
+        "unit": "score",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/prosodic-features",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: timing-regularity metrics (e.g. nPVI).",
+        "priorArt": "Speech-rhythm metrics (e.g. nPVI; Grabe & Low, 2002); prosody research.",
+        "decidedBy": "engine-measures → MLLDE decides",
+        "pedagogicalMeaning": [
+          {
+            "when": "A1–A2",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Report-only at basic levels — feedback yes, gate no"
+          },
+          {
+            "when": "B1+ and score < 60",
+            "action": "https://w3id.org/mllde/action/model-invite",
+            "label": "Model the pattern + invite retry"
+          },
+          {
+            "when": "B1+ and 60 ≤ score ≤ 80",
+            "action": "https://w3id.org/mllde/action/implicit-recast",
+            "label": "Implicit recast — correct by modelling, flow preserved"
+          },
+          {
+            "when": "B1+ and score > 80",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Advance — reduce support, raise challenge (i+1)"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/intonation-score",
+        "label": "Intonation Score",
+        "definition": "Degree to which pitch movement (rising/falling contours) matches target intonation.",
+        "measures": "Pitch movement; rising/falling contours.",
+        "dataType": "decimal",
+        "range": "0–100",
+        "unit": "score",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/prosodic-features",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: pitch/F0 contour tracking.",
+        "priorArt": "Intonation/F0 contour research; Azure ProsodyScore (intonation).",
+        "decidedBy": "engine-measures → MLLDE decides",
+        "pedagogicalMeaning": [
+          {
+            "when": "A1–A2",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Report-only at basic levels — feedback yes, gate no"
+          },
+          {
+            "when": "B1+ and score < 60",
+            "action": "https://w3id.org/mllde/action/model-invite",
+            "label": "Model the pattern + invite retry"
+          },
+          {
+            "when": "B1+ and 60 ≤ score ≤ 80",
+            "action": "https://w3id.org/mllde/action/implicit-recast",
+            "label": "Implicit recast — correct by modelling, flow preserved"
+          },
+          {
+            "when": "B1+ and score > 80",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Advance — reduce support, raise challenge (i+1)"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/speech-rate",
+        "label": "Speech Rate",
+        "definition": "Speaking tempo of the learner's delivery.",
+        "measures": "Words per minute.",
+        "dataType": "decimal",
+        "range": "≥ 0 (typical 90–180)",
+        "unit": "WPM",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/overall-phonological-control",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: word count / net speaking time.",
+        "priorArt": "Automatic fluency assessment; ASR word-timing (words/min).",
+        "decidedBy": "engine-measures → MLLDE decides (against a level-expected range)",
+        "pedagogicalMeaning": [
+          {
+            "when": "A1–A2",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Report-only; set expected WPM range per level in D1"
+          },
+          {
+            "when": "below level range",
+            "action": "https://w3id.org/mllde/action/simplify",
+            "label": "Slow-down / repeat model, penalty-free"
+          },
+          {
+            "when": "within level range",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "On track — advance-eligible"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/pause-frequency",
+        "label": "Pause Frequency",
+        "definition": "How often the learner pauses (silent and filled pauses) per minute of speech.",
+        "measures": "Silent pauses; filled pauses.",
+        "dataType": "decimal",
+        "range": "≥ 0",
+        "unit": "pauses/minute",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/overall-phonological-control",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: voice-activity detection over a duration threshold.",
+        "priorArt": "Fluency/disfluency literature; voice-activity detection.",
+        "decidedBy": "engine-measures → MLLDE decides",
+        "pedagogicalMeaning": [
+          {
+            "when": "A1–A2",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Report-only — pauses are normal while planning"
+          },
+          {
+            "when": "high vs level range",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Graded hint / sentence starter to sustain the turn"
+          },
+          {
+            "when": "within level range",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Advance-eligible"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/hesitation-rate",
+        "label": "Hesitation Rate",
+        "definition": "Rate of disfluencies — hesitation markers (um, er, eh), repetitions and false starts.",
+        "measures": "um…/er…/eh…; repetitions; false starts.",
+        "dataType": "decimal",
+        "range": "0–1",
+        "unit": "ratio (hesitations per word)",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/overall-phonological-control",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: filled-pause / repair detection.",
+        "priorArt": "Disfluency research (filled pauses, repairs, false starts).",
+        "decidedBy": "engine-measures → MLLDE decides",
+        "pedagogicalMeaning": [
+          {
+            "when": "A1–A2",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Report-only"
+          },
+          {
+            "when": "high vs level range",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Offer a chunk/frame to reduce load"
+          },
+          {
+            "when": "within level range",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Advance-eligible"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/fluency-score",
+        "label": "Fluency Score",
+        "definition": "Overall fluency, combining continuity, pause behaviour, speech rate and repairs.",
+        "measures": "Continuity; pause behaviour; speech rate; repairs (a composite).",
+        "dataType": "decimal",
+        "range": "0–100",
+        "unit": "score",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/overall-phonological-control",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: composite of speech-rate, pause-frequency, hesitation-rate, self-corrections, onset latency.",
+        "priorArt": "Azure FluencyScore; automatic fluency assessment literature.",
+        "decidedBy": "engine-measures → MLLDE decides",
+        "pedagogicalMeaning": [
+          {
+            "when": "A1–A2",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Report-only at basic levels"
+          },
+          {
+            "when": "B1+ and score < 60",
+            "action": "https://w3id.org/mllde/action/scaffold",
+            "label": "Fluency-building support (chunks, repetition)"
+          },
+          {
+            "when": "B1+ and 60 ≤ score ≤ 80",
+            "action": "https://w3id.org/mllde/action/implicit-recast",
+            "label": "Light modelling, keep the flow"
+          },
+          {
+            "when": "B1+ and score > 80",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Advance"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/intelligibility-score",
+        "label": "Intelligibility Score",
+        "definition": "Estimated probability that a native listener understands the utterance without effort. NOTE: this is the engine's ESTIMATE; the pass-floor intelligibility BAND (1–3) is decided by MLLDE (rubric/intelligibility), synthesising this with the NLU 'was the message understood?'.",
+        "measures": "Native-listener comprehensibility (intelligibility-first, not native-accent perfection).",
+        "dataType": "decimal",
+        "range": "0–100",
+        "unit": "score (probability ×100)",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "cefrScale": "https://w3id.org/mllde/cefr/scale/overall-phonological-control",
+        "usedBy": "Voice Assessment Engine (estimate) → MLLDE (decides the band / pass floor)",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: comprehensibility model / listener-effort estimate.",
+        "priorArt": "Intelligibility/comprehensibility research (Munro & Derwing, 1995).",
+        "decidedBy": "engine-ESTIMATES the score; MLLDE DECIDES the intelligibility band (pass floor ≥ 4)",
+        "pedagogicalMeaning": [
+          {
+            "when": "MLLDE band < 2",
+            "action": "https://w3id.org/mllde/action/simplify",
+            "label": "Below floor — simplify + clarification-request loop; task does NOT pass yet"
+          },
+          {
+            "when": "MLLDE band ≥ 6 (0–10)",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Pass floor met (with interaction ≥ 4) — advance-eligible"
+          }
+        ]
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/acoustic-confidence",
+        "label": "Acoustic Confidence",
+        "definition": "Confidence that the acoustic engine has correctly measured the other metrics for this utterance. Distinct from ext/asr-confidence (transcription confidence).",
+        "measures": "Reliability of the acoustic measurement itself.",
+        "dataType": "decimal",
+        "range": "0–1",
+        "unit": "confidence",
+        "evidenceTier": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+        "statementLocation": "result.extensions",
+        "usedBy": "Voice Assessment Engine",
+        "calculationMethod": "Defined by the acoustic engineer — MLLDE is technology-agnostic and does NOT prescribe the algorithm. Illustrative only: model posterior / SNR-based reliability.",
+        "priorArt": "ASR/acoustic-model posterior confidence; SNR-based reliability.",
+        "decidedBy": "engine-measures → MLLDE gates (low confidence → do not score, log incident)",
+        "pedagogicalMeaning": [
+          {
+            "when": "< 0.70",
+            "action": "https://w3id.org/mllde/action/simplify",
+            "label": "Low measurement confidence — do not score; ask to repeat; log incident/low-asr-confidence; exclude from aggregates (non-punitive)"
+          },
+          {
+            "when": "≥ 0.70",
+            "action": "https://w3id.org/mllde/action/advance",
+            "label": "Confident measurement — metrics may be scored"
+          }
+        ]
+      }
+    ],
+    "_provenance": "These acoustic metrics are ESTABLISHED in speech technology and pronunciation assessment (e.g. Microsoft Azure Pronunciation Assessment: AccuracyScore, FluencyScore, ProsodyScore, PronScore, phoneme/word scores, ErrorType; GOP after Witt & Young, 2000; intelligibility/comprehensibility after Munro & Derwing, 1995). MLLDE does NOT invent them. MLLDE's contribution is the SEMANTIC MODEL: formalising these borrowed measurements as interoperable xAPI result extensions, aligning each to a CEFR phonological-control descriptor scale, and attaching a pedagogicalMeaning (decision layer). Positioning: 'MLLDE adopts established acoustic pronunciation-assessment metrics reported in the speech-technology literature and formalises them as interoperable xAPI learning measurements aligned with CEFR phonological descriptors.' Borrowed = the metrics; NEW = the xAPI semantic model + the CEFR alignment + the pedagogical interpretation layer."
+  }
+}
