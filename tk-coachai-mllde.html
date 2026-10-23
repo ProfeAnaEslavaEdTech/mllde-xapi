@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TK CoachAI · MLLDE</title>
-<meta name="description" content="Explicador visual: TK CoachAI es la app; MLLDE es el método de diseño y medición que vive dentro.">
+<meta name="description" content="Explicador visual bilingüe: TK CoachAI es la app; MLLDE es el método de diseño y medición que vive dentro.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,35 +12,39 @@
   :root{
     --ink:#1C1E2E; --canvas:#F7F8FC; --surface:#FFFFFF; --line:#E6E8F2;
     --muted:#5B5F77; --primary:#3B5BD6; --primary-deep:#22307C; --on-primary:#FFFFFF;
-    --accent:#E8A33D; --accent-text:#9A5B00; --rose:#8B3A52;
-    --a1:#DCE4FB; --a2:#B9C8F6; --b1:#6480E3; --b2:#3B5BD6; --c1:#3049AE; --c2:#22307C;
+    --accent:#E8A33D; --accent-text:#9A5B00; --rose:#8B3A52; --focus-ring:#3B5BD6;
   }
-  :root:not([data-theme="light"]) { }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
       --ink:#EEF0F8; --canvas:#0F1120; --surface:#171A2B; --line:#2A2D44;
       --muted:#A6ADC8; --primary:#9DB2FF; --primary-deep:#B9C8F6; --on-primary:#131A44;
-      --accent:#EEC272; --accent-text:#EEC272; --rose:#E0A6B8;
+      --accent:#EEC272; --accent-text:#EEC272; --rose:#E0A6B8; --focus-ring:#9DB2FF;
     }
   }
   :root[data-theme="dark"]{
     --ink:#EEF0F8; --canvas:#0F1120; --surface:#171A2B; --line:#2A2D44;
     --muted:#A6ADC8; --primary:#9DB2FF; --primary-deep:#B9C8F6; --on-primary:#131A44;
-    --accent:#EEC272; --accent-text:#EEC272; --rose:#E0A6B8;
+    --accent:#EEC272; --accent-text:#EEC272; --rose:#E0A6B8; --focus-ring:#9DB2FF;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--canvas);color:var(--ink);
     font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
   .wrap{max-width:960px;margin:0 auto;padding:0 16px 56px}
+  /* controls */
+  .controls{position:fixed;top:12px;right:12px;display:flex;gap:8px;z-index:60}
+  .ctl{border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.18);color:#fff;font-family:inherit;
+    font-weight:700;font-size:13px;border-radius:999px;padding:7px 12px;cursor:pointer;backdrop-filter:blur(4px);
+    display:inline-flex;align-items:center;gap:6px;min-height:36px}
+  .ctl:hover{background:rgba(0,0,0,.30)}
+  .ctl:focus-visible{outline:3px solid #fff;outline-offset:2px}
   .hero{background:linear-gradient(135deg,#3B5BD6,#E8A33D);color:#fff;border-radius:0 0 22px 22px;
-    padding:34px 20px 30px;text-align:center;margin-bottom:28px}
+    padding:46px 20px 30px;text-align:center;margin-bottom:28px}
   .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
   h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(26px,5.5vw,38px);margin:.3em 0 .2em;line-height:1.1}
-  .hero p{margin:.2em auto 0;max-width:52ch;font-size:15.5px;opacity:.95}
+  .hero p{margin:.2em auto 0;max-width:54ch;font-size:15.5px;opacity:.95}
   h2{font-family:Fraunces,Georgia,serif;color:var(--primary-deep);font-weight:600;font-size:22px;margin:30px 0 14px}
   .lead{color:var(--muted);max-width:65ch;margin:-6px 0 18px}
-  /* nested model */
   .nest{border:2px solid var(--primary);border-radius:18px;background:var(--surface);padding:16px 16px 18px;position:relative}
   .nest>.tag{position:absolute;top:-12px;left:18px;background:var(--primary);color:var(--on-primary);
     font-weight:700;font-size:12.5px;letter-spacing:.04em;padding:3px 12px;border-radius:999px}
@@ -58,11 +62,9 @@
   .pill::after{content:"\2192";color:var(--muted);font-weight:700}
   .pill:hover{border-color:var(--primary);box-shadow:0 2px 10px rgba(59,91,214,.14)}
   .pill:active{transform:translateY(1px)}
-  .pill:focus-visible{outline:3px solid var(--focus-ring,var(--primary));outline-offset:2px}
+  .pill:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
   .pillhint{font-size:12.5px;color:var(--muted);margin:2px 2px 0}
-  /* modal */
-  .ov{position:fixed;inset:0;background:rgba(10,14,30,.55);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;
-    padding:18px;z-index:50}
+  .ov{position:fixed;inset:0;background:rgba(10,14,30,.55);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;padding:18px;z-index:70}
   .ov.open{display:flex}
   .mcard{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;max-width:560px;width:100%;
     padding:22px 22px 20px;box-shadow:0 18px 50px rgba(0,0,0,.35);max-height:88vh;overflow:auto}
@@ -73,30 +75,24 @@
     padding:10px 12px;font-size:13.5px;color:var(--muted);margin:4px 0 14px}
   .mrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
   .mnav{display:flex;gap:8px;flex-wrap:wrap}
-  .mbtn{border:1px solid var(--line);background:var(--canvas);color:inherit;font-family:inherit;font-size:12.5px;font-weight:600;
-    border-radius:999px;padding:7px 13px;cursor:pointer}
+  .mbtn{border:1px solid var(--line);background:var(--canvas);color:inherit;font-family:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:7px 13px;cursor:pointer}
   .mbtn:hover{border-color:var(--primary)}
   .mbtn.cur{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
-  .mclose{border:none;background:var(--primary);color:var(--on-primary);font-family:inherit;font-weight:700;font-size:13.5px;
-    border-radius:10px;padding:9px 16px;cursor:pointer}
-  .mclose:focus-visible,.mbtn:focus-visible{outline:3px solid var(--focus-ring,var(--primary));outline-offset:2px}
-  /* two defs */
+  .mclose{border:none;background:var(--primary);color:var(--on-primary);font-family:inherit;font-weight:700;font-size:13.5px;border-radius:10px;padding:9px 16px;cursor:pointer}
+  .mclose:focus-visible,.mbtn:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
   .card .h{font-weight:700;font-size:15.5px;margin:0 0 4px;color:var(--primary-deep)}
   .card .s{font-size:13px;color:var(--muted);margin:0 0 8px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
   .card p{margin:0;font-size:14.5px;color:var(--ink)}
-  /* flow */
   .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:8px 0 4px}
-  .step{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--primary);
-    border-radius:10px;padding:12px 12px}
+  .step{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:10px;padding:12px 12px}
   .step .n{font-size:11.5px;font-weight:700;color:var(--primary);letter-spacing:.08em}
   .step .t{font-weight:700;font-size:14.5px;margin:3px 0 2px}
   .step .d{font-size:13px;color:var(--muted)}
   .step.fire{border-left-color:var(--accent)}
   .step.fire .n{color:var(--accent-text)}
   .arrow{align-self:center;color:var(--muted);font-weight:700;font-size:18px}
-  /* dashboards */
   .dash{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
   .db{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
   .db .ic{font-size:22px}
@@ -107,69 +103,69 @@
 </style>
 </head>
 <body>
+  <div class="controls">
+    <button class="ctl" id="langBtn" type="button" aria-label="Switch language / Cambiar idioma">EN</button>
+    <button class="ctl" id="themeBtn" type="button" aria-label="Toggle light/dark">🌙</button>
+  </div>
+
   <div class="hero">
     <div class="kicker">UPV · Ana Eslava-Graterol &amp; Ricardo Casañ-Pitarch</div>
-    <h1>TK CoachAI y el MLLDE que vive dentro</h1>
-    <p>La app es lo que el alumno ve. El MLLDE es el método de diseño y medición que la hace fiable — invisible, pero es donde está la ciencia.</p>
+    <h1 data-k="h1"></h1>
+    <p data-k="heroP"></p>
   </div>
 
   <div class="wrap">
-
     <div class="grid">
       <div class="card">
-        <div class="s">El producto</div>
+        <div class="s" data-k="c1s"></div>
         <div class="h">TK CoachAI</div>
-        <p>Tutor comercial de <b>inglés de negocios por voz</b> (Talketika · desarrollo Orkelia). El alumno conversa, practica y recibe feedback. Es la <b>prueba de concepto</b>.</p>
+        <p data-k="c1p" data-html="1"></p>
       </div>
       <div class="card">
-        <div class="s">El método</div>
+        <div class="s" data-k="c2s"></div>
         <div class="h">MLLDE</div>
-        <p><b>Mobile Language Learning Design Environment</b>: el entorno de diseño (IPO × CLIL) y, sobre todo, su <b>Módulo de Medición</b>. No es una app: es el modelo reutilizable.</p>
+        <p data-k="c2p" data-html="1"></p>
       </div>
     </div>
 
-    <h2>Cómo encajan</h2>
-    <p class="lead">El MLLDE no es un añadido: es el núcleo que vive dentro de la app. TK CoachAI es una instancia del MLLDE; el mismo método podría vestir otra app.</p>
+    <h2 data-k="h2a"></h2>
+    <p class="lead" data-k="leadA"></p>
 
     <div class="nest">
-      <span class="tag">TK CoachAI · lo que el alumno usa</span>
-      <div class="appline">Voz · misiones de negocio · tarjetas (repetición espaciada) · drills · coach Capi · 3 paneles (alumno · profesor · admin)</div>
+      <span class="tag" data-k="nestTag"></span>
+      <div class="appline" data-k="appline"></div>
       <div class="core">
-        <span class="tag">MLLDE · el método dentro</span>
-        <h3>Módulo de Medición — “Medir ≠ Decidir”</h3>
-        <p>Un motor <b>mide</b> (marcas 0–10); el MLLDE <b>decide</b> la banda, la ancla al MCER y emite evidencia xAPI auditable. La ayuda nunca puntúa.</p>
+        <span class="tag" data-k="coreTag"></span>
+        <h3 data-k="coreH3"></h3>
+        <p data-k="coreP" data-html="1"></p>
         <div class="pills">
-          <button class="pill" type="button" data-m="md"><b>Measure ≠ Decide</b></button>
-          <button class="pill" type="button" data-m="fw"><b>Cortafuegos</b> de puntuación</button>
-          <button class="pill" type="button" data-m="xa"><b>MCER + xAPI</b> (IDs persistentes)</button>
-          <button class="pill" type="button" data-m="ev"><b>Evidencia honesta</b> (tiers · auditable)</button>
+          <button class="pill" type="button" data-m="md" data-k="pmd" data-html="1"></button>
+          <button class="pill" type="button" data-m="fw" data-k="pfw" data-html="1"></button>
+          <button class="pill" type="button" data-m="xa" data-k="pxa" data-html="1"></button>
+          <button class="pill" type="button" data-m="ev" data-k="pev" data-html="1"></button>
         </div>
-        <div class="pillhint">Pulsa cada principio para abrir su explicación y el enlace en GitHub ↗</div>
+        <div class="pillhint" data-k="pillhint"></div>
       </div>
     </div>
 
-    <h2>Una sola línea: de la voz a la evidencia</h2>
-    <p class="lead">El mismo turno recorre el sistema y termina como evidencia fiable — sin que la práctica infle la competencia.</p>
+    <h2 data-k="h2b"></h2>
+    <p class="lead" data-k="leadB"></p>
     <div class="flow">
-      <div class="step"><div class="n">1 · HABLA</div><div class="t">Turno de voz</div><div class="d">El alumno habla en una misión; la transcripción se lee (gate ASR 0,70).</div></div>
+      <div class="step"><div class="n" data-k="s1n"></div><div class="t" data-k="s1t"></div><div class="d" data-k="s1d"></div></div>
       <div class="arrow">→</div>
-      <div class="step fire"><div class="n">2 · MIDE ≠ DECIDE</div><div class="t">El MLLDE evalúa</div><div class="d">Motor marca 0–10; el código decide la banda. Drills y tarjetas NO la mueven.</div></div>
+      <div class="step fire"><div class="n" data-k="s2n"></div><div class="t" data-k="s2t"></div><div class="d" data-k="s2d"></div></div>
       <div class="arrow">→</div>
-      <div class="step"><div class="n">3 · EVIDENCIA</div><div class="t">Banda MCER + xAPI</div><div class="d">Statement anclado a descriptores MCER, con su nivel de evidencia declarado.</div></div>
+      <div class="step"><div class="n" data-k="s3n"></div><div class="t" data-k="s3t"></div><div class="d" data-k="s3d"></div></div>
     </div>
 
-    <h2>La misma verdad, tres vistas</h2>
+    <h2 data-k="h2c"></h2>
     <div class="dash">
-      <div class="db"><div class="ic">🎓</div><div class="n">Alumno</div><div class="d">Su banda 0–10 por competencia y su progreso.</div></div>
-      <div class="db"><div class="ic">👩‍🏫</div><div class="n">Profesor</div><div class="d">Objetivos trabajados y práctica (no banda).</div></div>
-      <div class="db"><div class="ic">🏢</div><div class="n">Admin / RR.HH.</div><div class="d">Tiempo efectivo e indicadores agregados.</div></div>
+      <div class="db"><div class="ic">🎓</div><div class="n" data-k="d1n"></div><div class="d" data-k="d1d"></div></div>
+      <div class="db"><div class="ic">👩‍🏫</div><div class="n" data-k="d2n"></div><div class="d" data-k="d2d"></div></div>
+      <div class="db"><div class="ic">🏢</div><div class="n" data-k="d3n"></div><div class="d" data-k="d3d"></div></div>
     </div>
 
-    <div class="note">
-      Aportación científica: un <b>patrón de gobernanza de la medición</b> reutilizable para el aprendizaje de lenguas mediado por IA — anclado al MCER, interoperable (xAPI), gobernado (Medir ≠ Decidir) y honesto (evidencia auditable). No depende de la app que lo probó.<br>
-      © 2026 Ana Eslava-Graterol — MLLDE, UPV · Documento asistido por IA, revisado por los autores (art. 50, Reg. (UE) 2024/1689).
-    </div>
-
+    <div class="note" data-k="note" data-html="1"></div>
   </div>
 
   <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mTitle">
@@ -178,62 +174,156 @@
       <h3 id="mTitle"></h3>
       <div id="mBody"></div>
       <div class="ex" id="mEx"></div>
-      <a class="mclose" id="mLink" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;background:var(--accent);color:#2a1800">Ver en GitHub ↗</a>
-      <div class="mrow">
-        <div class="mnav" id="mNav"></div>
-        <button class="mclose" id="mClose" type="button">Volver</button>
-      </div>
+      <a class="mclose" id="mLink" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;background:var(--accent);color:#2a1800"></a>
+      <div class="mrow"><div class="mnav" id="mNav"></div><button class="mclose" id="mClose" type="button"></button></div>
     </div>
   </div>
 
 <script>
 (function(){
-  var REG="https://profeanaeslavaedtech.github.io/mllde-xapi/"; // registro MLLDE xAPI publicado (GitHub Pages)
-  var GH_MLLDE=REG, GH_XAPI=REG;
+  var REG="https://profeanaeslavaedtech.github.io/mllde-xapi/";
   var ANCH={md:"#context-ext",fw:"#rubric",xa:"#scales",ev:"#tiers"};
-  var D={
-    md:{k:"Principio 1 · Gobernanza",t:"Measure ≠ Decide",
-      b:"Un motor <b>mide</b>; el MLLDE <b>decide</b>. El motor (LLM-juez, API de proveedor o evaluador propio) solo observa y marca 0–10 sobre los criterios oficiales. El código determinista decide la banda, la mapea al MCER y emite la evidencia xAPI. Cambiar de motor cambia la calidad de la evidencia, <b>nunca</b> la métrica ni su identificador. No hay un cuarto agente que “arregle” los datos.",
-      ex:"Ejemplo: el Evaluador propone marcas; el consolidador aplica la fórmula capi.v1 y fija la banda. El modelo observa, el código decide.",
-      link:GH_MLLDE},
-    fw:{k:"Principio 2 · Integridad",t:"Cortafuegos de puntuación",
-      b:"La banda de competencia deriva <b>solo</b> de la producción oral evidenciada (misiones de role-play + mediación), leída de la transcripción. Corrección, ayuda, drills, tarjetas, rachas y puntos <b>nunca</b> la mueven. Un informe es una consulta sobre statements → el falso positivo es estructuralmente difícil.",
-      ex:"Ejemplo real: el panel marca “Gramática 57%” (drills = práctica); la banda real por voz es 6,6/10. Dos constructos distintos — la práctica no toca la banda.",
-      link:GH_MLLDE},
-    xa:{k:"Principio 3 · Interoperabilidad",t:"MCER + xAPI (IDs persistentes)",
-      b:"Cada turno se convierte en un <b>statement xAPI</b> anclado a los descriptores del Volumen Complementario del MCER mediante <b>identificadores persistentes</b> (w3id.org/mllde). El inventario curado (271 descriptores) da el “qué”; xAPI hace el dato portable; el MCER lo hace significativo. Mediación = 5ª destreza.",
-      ex:"Ejemplo: content-ref = en.spk.b1.handle-complaint → la banda queda anclada a esa escala MCER. Los IRIs y el perfil están en GitHub.",
-      link:GH_XAPI},
-    ev:{k:"Principio 4 · Honestidad",t:"Evidencia honesta (tiers · auditable)",
-      b:"Cada medición declara su <b>nivel de evidencia</b> (Tier 1 medible hoy · Tier 2 instrumentado · Tier 3 pendiente). El gate ASR 0,70 retiene audio poco fiable; un 0 nunca sustituye a un valor ausente; cada statement declara el modelo que lo puntuó (measure-model). Así el registro se <b>auto-audita</b>.",
-      ex:"Prueba en vivo: 10 sesiones puntuadas por un proveedor de respaldo se detectaron y excluyeron — gracias a measure-model. La honestidad cazó el fallo.",
-      link:GH_XAPI}
+
+  var T={
+    es:{
+      h1:"TK CoachAI y el MLLDE que vive dentro",
+      heroP:"La app es lo que el alumno ve. El MLLDE es el método de diseño y medición que la hace fiable — invisible, pero es donde está la ciencia.",
+      c1s:"El producto", c2s:"El método",
+      c1p:"Tutor comercial de <b>inglés de negocios por voz</b> (Talketika · desarrollo Orkelia). El alumno conversa, practica y recibe feedback. Es la <b>prueba de concepto</b>.",
+      c2p:"<b>Mobile Language Learning Design Environment</b>: el entorno de diseño (IPO × CLIL) y, sobre todo, su <b>Módulo de Medición</b>. No es una app: es el modelo reutilizable.",
+      h2a:"Cómo encajan",
+      leadA:"El MLLDE no es un añadido: es el núcleo que vive dentro de la app. TK CoachAI es una instancia del MLLDE; el mismo método podría vestir otra app.",
+      nestTag:"TK CoachAI · lo que el alumno usa",
+      appline:"Voz · misiones de negocio · tarjetas (repetición espaciada) · drills · coach Capi · 3 paneles (alumno · profesor · admin)",
+      coreTag:"MLLDE · el método dentro",
+      coreH3:"Módulo de Medición — “Medir ≠ Decidir”",
+      coreP:"Un motor <b>mide</b> (marcas 0–10); el MLLDE <b>decide</b> la banda, la ancla al MCER y emite evidencia xAPI auditable. La ayuda nunca puntúa.",
+      pmd:"<b>Measure ≠ Decide</b>", pfw:"<b>Cortafuegos</b> de puntuación",
+      pxa:"<b>MCER + xAPI</b> (IDs persistentes)", pev:"<b>Evidencia honesta</b> (tiers · auditable)",
+      pillhint:"Pulsa cada principio para abrir su explicación y el enlace en GitHub ↗",
+      h2b:"Una sola línea: de la voz a la evidencia",
+      leadB:"El mismo turno recorre el sistema y termina como evidencia fiable — sin que la práctica infle la competencia.",
+      s1n:"1 · HABLA", s1t:"Turno de voz", s1d:"El alumno habla en una misión; la transcripción se lee (gate ASR 0,70).",
+      s2n:"2 · MIDE ≠ DECIDE", s2t:"El MLLDE evalúa", s2d:"Motor marca 0–10; el código decide la banda. Drills y tarjetas NO la mueven.",
+      s3n:"3 · EVIDENCIA", s3t:"Banda MCER + xAPI", s3d:"Statement anclado a descriptores MCER, con su nivel de evidencia declarado.",
+      h2c:"La misma verdad, tres vistas",
+      d1n:"Alumno", d1d:"Su banda 0–10 por competencia y su progreso.",
+      d2n:"Profesor", d2d:"Objetivos trabajados y práctica (no banda).",
+      d3n:"Admin / RR.HH.", d3d:"Tiempo efectivo e indicadores agregados.",
+      note:"Aportación científica: un <b>patrón de gobernanza de la medición</b> reutilizable para el aprendizaje de lenguas mediado por IA — anclado al MCER, interoperable (xAPI), gobernado (Medir ≠ Decidir) y honesto (evidencia auditable). No depende de la app que lo probó.<br>© 2026 Ana Eslava-Graterol — MLLDE, UPV · Documento asistido por IA, revisado por los autores (art. 50, Reg. (UE) 2024/1689).",
+      mlink:"Ver en el registro MLLDE xAPI ↗", mclose:"Volver"
+    },
+    en:{
+      h1:"TK CoachAI and the MLLDE inside it",
+      heroP:"The app is what the learner sees. MLLDE is the design-and-measurement method that makes it trustworthy — invisible, but where the science lives.",
+      c1s:"The product", c2s:"The method",
+      c1p:"Commercial <b>business-English voice tutor</b> (Talketika · built by Orkelia). The learner talks, practises and gets feedback. It is the <b>proof of concept</b>.",
+      c2p:"<b>Mobile Language Learning Design Environment</b>: the design environment (IPO × CLIL) and, above all, its <b>Measurement Module</b>. Not an app: the reusable model.",
+      h2a:"How they fit together",
+      leadA:"MLLDE is not an add-on: it is the core that lives inside the app. TK CoachAI is one instance of MLLDE; the same method could power another app.",
+      nestTag:"TK CoachAI · what the learner uses",
+      appline:"Voice · business missions · cards (spaced repetition) · drills · Capi coach · 3 dashboards (learner · teacher · admin)",
+      coreTag:"MLLDE · the method inside",
+      coreH3:"Measurement Module — “Measure ≠ Decide”",
+      coreP:"An engine <b>measures</b> (0–10 marks); MLLDE <b>decides</b> the band, anchors it to the CEFR and emits auditable xAPI evidence. Help never scores.",
+      pmd:"<b>Measure ≠ Decide</b>", pfw:"<b>Scoring</b> firewall",
+      pxa:"<b>CEFR + xAPI</b> (persistent IDs)", pev:"<b>Honest evidence</b> (tiers · auditable)",
+      pillhint:"Tap each principle to open its explanation and the GitHub link ↗",
+      h2b:"One line: from voice to evidence",
+      leadB:"The same turn travels the system and ends as trustworthy evidence — without practice inflating competence.",
+      s1n:"1 · SPEAKS", s1t:"Voice turn", s1d:"The learner speaks in a mission; the transcript is read (ASR gate 0.70).",
+      s2n:"2 · MEASURE ≠ DECIDE", s2t:"MLLDE evaluates", s2d:"Engine marks 0–10; code decides the band. Drills and cards do NOT move it.",
+      s3n:"3 · EVIDENCE", s3t:"CEFR band + xAPI", s3d:"Statement anchored to CEFR descriptors, with its evidence tier declared.",
+      h2c:"One truth, three views",
+      d1n:"Learner", d1d:"Their 0–10 band per competence and their progress.",
+      d2n:"Teacher", d2d:"Targets worked and practice (not the band).",
+      d3n:"Admin / HR", d3d:"Effective time and aggregate indicators.",
+      note:"Scientific contribution: a reusable <b>measurement-governance pattern</b> for AI-mediated language learning — CEFR-anchored, interoperable (xAPI), governed (Measure ≠ Decide) and honest (auditable evidence). It does not depend on the app that tested it.<br>© 2026 Ana Eslava-Graterol — MLLDE, UPV · AI-assisted, reviewed by the authors (Art. 50, Reg. (EU) 2024/1689).",
+      mlink:"Open in the MLLDE xAPI registry ↗", mclose:"Back"
+    }
   };
-  var order=["md","fw","xa","ev"];
+
+  var MOD={
+    es:{
+      md:{k:"Principio 1 · Gobernanza",t:"Measure ≠ Decide",
+        b:"Un motor <b>mide</b>; el MLLDE <b>decide</b>. El motor (LLM-juez, API de proveedor o evaluador propio) solo observa y marca 0–10 sobre los criterios oficiales. El código determinista decide la banda, la mapea al MCER y emite la evidencia xAPI. Cambiar de motor cambia la calidad de la evidencia, <b>nunca</b> la métrica ni su identificador. No hay un cuarto agente que “arregle” los datos.",
+        ex:"Ejemplo: el Evaluador propone marcas; el consolidador aplica la fórmula capi.v1 y fija la banda. El modelo observa, el código decide."},
+      fw:{k:"Principio 2 · Integridad",t:"Cortafuegos de puntuación",
+        b:"La banda de competencia deriva <b>solo</b> de la producción oral evidenciada (misiones de role-play + mediación), leída de la transcripción. Corrección, ayuda, drills, tarjetas, rachas y puntos <b>nunca</b> la mueven. Un informe es una consulta sobre statements → el falso positivo es estructuralmente difícil.",
+        ex:"Ejemplo real: el panel marca “Gramática 57%” (drills = práctica); la banda real por voz es 6,6/10. Dos constructos distintos — la práctica no toca la banda."},
+      xa:{k:"Principio 3 · Interoperabilidad",t:"MCER + xAPI (IDs persistentes)",
+        b:"Cada turno se convierte en un <b>statement xAPI</b> anclado a los descriptores del Volumen Complementario del MCER mediante <b>identificadores persistentes</b> (w3id.org/mllde). El inventario curado (271 descriptores) da el “qué”; xAPI hace el dato portable; el MCER lo hace significativo. Mediación = 5ª destreza.",
+        ex:"Ejemplo: content-ref = en.spk.b1.handle-complaint → la banda queda anclada a esa escala MCER. Los IRIs y el perfil están en GitHub."},
+      ev:{k:"Principio 4 · Honestidad",t:"Evidencia honesta (tiers · auditable)",
+        b:"Cada medición declara su <b>nivel de evidencia</b> (Tier 1 medible hoy · Tier 2 instrumentado · Tier 3 pendiente). El gate ASR 0,70 retiene audio poco fiable; un 0 nunca sustituye a un valor ausente; cada statement declara el modelo que lo puntuó (measure-model). Así el registro se <b>auto-audita</b>.",
+        ex:"Prueba en vivo: 10 sesiones puntuadas por un proveedor de respaldo se detectaron y excluyeron — gracias a measure-model. La honestidad cazó el fallo."}
+    },
+    en:{
+      md:{k:"Principle 1 · Governance",t:"Measure ≠ Decide",
+        b:"An engine <b>measures</b>; MLLDE <b>decides</b>. The engine (LLM judge, vendor API or bespoke scorer) only observes and marks 0–10 against the official criteria. The deterministic code decides the band, maps it to the CEFR and emits the xAPI evidence. Swapping engines changes evidence quality, <b>never</b> the metric or its identifier. No fourth agent “fixes” the data.",
+        ex:"Example: the Evaluator proposes marks; the consolidator applies the capi.v1 formula and sets the band. The model observes, the code decides."},
+      fw:{k:"Principle 2 · Integrity",t:"Scoring firewall",
+        b:"The competence band derives <b>only</b> from evidenced oral production (role-play missions + mediation), read from the transcript. Correction, help, drills, cards, streaks and points <b>never</b> move it. A report is a query over statements → false positives are structurally hard.",
+        ex:"Real example: the panel shows “Grammar 57%” (drills = practice); the real band by voice is 6.6/10. Two different constructs — practice does not touch the band."},
+      xa:{k:"Principle 3 · Interoperability",t:"CEFR + xAPI (persistent IDs)",
+        b:"Each turn becomes an <b>xAPI statement</b> anchored to the CEFR Companion Volume descriptors through <b>persistent identifiers</b> (w3id.org/mllde). The curated inventory (271 descriptors) gives the “what”; xAPI makes the data portable; the CEFR makes it meaningful. Mediation = 5th skill.",
+        ex:"Example: content-ref = en.spk.b1.handle-complaint → the band is anchored to that CEFR scale. The IRIs and the profile are on GitHub."},
+      ev:{k:"Principle 4 · Honesty",t:"Honest evidence (tiers · auditable)",
+        b:"Each measurement declares its <b>evidence tier</b> (Tier 1 measurable today · Tier 2 instrumented · Tier 3 pending). The ASR 0.70 gate withholds unreliable audio; a 0 never replaces a missing value; each statement declares the model that scored it (measure-model). So the record <b>self-audits</b>.",
+        ex:"Live proof: 10 sessions scored by a fallback provider were detected and excluded — thanks to measure-model. Honesty caught the lapse."}
+    }
+  };
+
+  var lang="es", order=["md","fw","xa","ev"], curKey=null;
   var ov=document.getElementById("ov");
-  function render(key){
-    var d=D[key]; if(!d) return;
+  var ls={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+  function applyLang(L){
+    lang=L; document.documentElement.setAttribute("lang",L);
+    var t=T[L];
+    document.querySelectorAll("[data-k]").forEach(function(el){
+      var v=t[el.getAttribute("data-k")]; if(v==null) return;
+      if(el.getAttribute("data-html")) el.innerHTML=v; else el.textContent=v;
+    });
+    document.getElementById("langBtn").textContent = (L==="es"?"EN":"ES");
+    if(ov.classList.contains("open")&&curKey) renderModal(curKey);
+    ls.set("tkv-lang",L);
+  }
+  function renderModal(key){
+    curKey=key; var d=MOD[lang][key], t=T[lang];
     document.getElementById("mKick").textContent=d.k;
-    document.getElementById("mTitle").innerHTML=d.t;
+    document.getElementById("mTitle").textContent=d.t;
     document.getElementById("mBody").innerHTML="<p>"+d.b+"</p>";
     document.getElementById("mEx").textContent=d.ex;
-    var lk=document.getElementById("mLink");
-    lk.href=REG+(ANCH[key]||""); lk.textContent="Ver en el registro MLLDE xAPI ↗";
+    var lk=document.getElementById("mLink"); lk.href=REG+(ANCH[key]||""); lk.textContent=t.mlink;
+    document.getElementById("mClose").textContent=t.mclose;
     var nav=document.getElementById("mNav"); nav.innerHTML="";
     order.forEach(function(k){
       var b=document.createElement("button"); b.type="button";
-      b.className="mbtn"+(k===key?" cur":""); b.textContent=D[k].t.replace(/ \(.*/,"").replace("≠","≠");
-      b.onclick=function(){render(k);}; nav.appendChild(b);
+      b.className="mbtn"+(k===key?" cur":""); b.textContent=MOD[lang][k].t.replace(/ \(.*/,"");
+      b.onclick=function(){renderModal(k);}; nav.appendChild(b);
     });
   }
-  function open(key){ render(key); ov.classList.add("open"); document.getElementById("mClose").focus(); }
-  function close(){ ov.classList.remove("open"); }
-  document.querySelectorAll(".pill[data-m]").forEach(function(p){
-    p.addEventListener("click",function(){ open(p.getAttribute("data-m")); });
-  });
-  document.getElementById("mClose").addEventListener("click",close);
-  ov.addEventListener("click",function(e){ if(e.target===ov) close(); });
-  document.addEventListener("keydown",function(e){ if(e.key==="Escape") close(); });
+  function openModal(key){ renderModal(key); ov.classList.add("open"); document.getElementById("mClose").focus(); }
+  function closeModal(){ ov.classList.remove("open"); }
+
+  function effTheme(){ var a=document.documentElement.getAttribute("data-theme");
+    if(a) return a; return window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"; }
+  function applyTheme(mode){ // mode: 'light'|'dark'|null(system)
+    if(mode) document.documentElement.setAttribute("data-theme",mode); else document.documentElement.removeAttribute("data-theme");
+    document.getElementById("themeBtn").textContent = (effTheme()==="dark"?"☀️":"🌙");
+    if(mode) ls.set("tkv-theme",mode); }
+
+  // init
+  var storedLang=ls.get("tkv-lang"); applyLang(storedLang==="en"?"en":"es");
+  var storedTheme=ls.get("tkv-theme"); applyTheme(storedTheme==="light"||storedTheme==="dark"?storedTheme:null);
+
+  document.getElementById("langBtn").addEventListener("click",function(){ applyLang(lang==="es"?"en":"es"); });
+  document.getElementById("themeBtn").addEventListener("click",function(){ applyTheme(effTheme()==="dark"?"light":"dark"); });
+  document.querySelectorAll(".pill[data-m]").forEach(function(p){ p.addEventListener("click",function(){ openModal(p.getAttribute("data-m")); }); });
+  document.getElementById("mClose").addEventListener("click",closeModal);
+  ov.addEventListener("click",function(e){ if(e.target===ov) closeModal(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeModal(); });
 })();
 </script>
 </body>
