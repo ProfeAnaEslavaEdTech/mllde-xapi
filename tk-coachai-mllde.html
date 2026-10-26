@@ -208,7 +208,7 @@
       s3n:"3 · EVIDENCIA", s3t:"Banda MCER + xAPI", s3d:"Statement anclado a descriptores MCER, con su nivel de evidencia declarado.",
       h2c:"La misma verdad, tres vistas",
       d1n:"Alumno", d1d:"Su banda 0–10 por competencia y su progreso.",
-      d2n:"Profesor", d2d:"Objetivos trabajados y práctica (no banda).",
+      d2n:"Profesor", d2d:"Banda de competencia (del LRS) + esfuerzo aparte (la práctica no mueve la banda).",
       d3n:"Admin / RR.HH.", d3d:"Tiempo efectivo e indicadores agregados.",
       note:"Aportación científica: un <b>patrón de gobernanza de la medición</b> reutilizable para el aprendizaje de lenguas mediado por IA — anclado al MCER, interoperable (xAPI), gobernado (Medir ≠ Decidir) y honesto (evidencia auditable). No depende de la app que lo probó.<br>© 2026 Ana Eslava-Graterol — MLLDE, UPV · Documento asistido por IA, revisado por los autores (art. 50, Reg. (UE) 2024/1689).",
       mlink:"Ver en el registro MLLDE xAPI ↗", mclose:"Volver"
@@ -236,7 +236,7 @@
       s3n:"3 · EVIDENCE", s3t:"CEFR band + xAPI", s3d:"Statement anchored to CEFR descriptors, with its evidence tier declared.",
       h2c:"One truth, three views",
       d1n:"Learner", d1d:"Their 0–10 band per competence and their progress.",
-      d2n:"Teacher", d2d:"Targets worked and practice (not the band).",
+      d2n:"Teacher", d2d:"Competence band (from the LRS) + effort shown separately (practice doesn't move the band).",
       d3n:"Admin / HR", d3d:"Effective time and aggregate indicators.",
       note:"Scientific contribution: a reusable <b>measurement-governance pattern</b> for AI-mediated language learning — CEFR-anchored, interoperable (xAPI), governed (Measure ≠ Decide) and honest (auditable evidence). It does not depend on the app that tested it.<br>© 2026 Ana Eslava-Graterol — MLLDE, UPV · AI-assisted, reviewed by the authors (Art. 50, Reg. (EU) 2024/1689).",
       mlink:"Open in the MLLDE xAPI registry ↗", mclose:"Back"
@@ -250,13 +250,13 @@
         ex:"Ejemplo: el Evaluador propone marcas; el consolidador aplica la fórmula capi.v1 y fija la banda. El modelo observa, el código decide."},
       fw:{k:"Principio 2 · Integridad",t:"Cortafuegos de puntuación",
         b:"La banda de competencia deriva <b>solo</b> de la producción oral evidenciada (misiones de role-play + mediación), leída de la transcripción. Corrección, ayuda, drills, tarjetas, rachas y puntos <b>nunca</b> la mueven. Un informe es una consulta sobre statements → el falso positivo es estructuralmente difícil.",
-        ex:"Ejemplo real: el panel marca “Gramática 57%” (drills = práctica); la banda real por voz es 6,6/10. Dos constructos distintos — la práctica no toca la banda."},
+        ex:"Ejemplo: un drill de gramática al 57% (práctica) y la banda por voz 6,6/10 son constructos distintos — la práctica no toca la banda. (El panel ya muestra la banda, no el %.)"},
       xa:{k:"Principio 3 · Interoperabilidad",t:"MCER + xAPI (IDs persistentes)",
-        b:"Cada turno se convierte en un <b>statement xAPI</b> anclado a los descriptores del Volumen Complementario del MCER mediante <b>identificadores persistentes</b> (w3id.org/mllde). El inventario curado (271 descriptores) da el “qué”; xAPI hace el dato portable; el MCER lo hace significativo. Mediación = 5ª destreza.",
+        b:"Cada turno se convierte en un <b>statement xAPI</b> anclado a los descriptores del Volumen Complementario del MCER mediante <b>identificadores</b> acuñados bajo w3id.org/mllde (resolución persistente pendiente). El inventario curado (271 descriptores) da el “qué”; xAPI hace el dato portable; el MCER lo hace significativo. Mediación = 5ª destreza.",
         ex:"Ejemplo: content-ref = en.spk.b1.handle-complaint → la banda queda anclada a esa escala MCER. Los IRIs y el perfil están en GitHub."},
       ev:{k:"Principio 4 · Honestidad",t:"Evidencia honesta (tiers · auditable)",
-        b:"Cada medición declara su <b>nivel de evidencia</b> (Tier 1 medible hoy · Tier 2 instrumentado · Tier 3 pendiente). El gate ASR 0,70 retiene audio poco fiable; un 0 nunca sustituye a un valor ausente; cada statement declara el modelo que lo puntuó (measure-model). Así el registro se <b>auto-audita</b>.",
-        ex:"Prueba en vivo: 10 sesiones puntuadas por un proveedor de respaldo se detectaron y excluyeron — gracias a measure-model. La honestidad cazó el fallo."}
+        b:"Cada medición declara su <b>nivel de evidencia</b> (Tier 1 medible hoy · Tier 2 instrumentado · Tier 3 pendiente). El gate ASR 0,70 retiene audio poco fiable; un 0 nunca sustituye a un valor ausente; cada statement de medición (completed) declara el modelo que lo puntuó (measure-model). Así el registro se <b>auto-audita</b>.",
+        ex:"Prueba en vivo: 10 statements con banda puntuados por un proveedor de respaldo se detectaron y excluyeron — gracias a measure-model. La honestidad cazó el fallo."}
     },
     en:{
       md:{k:"Principle 1 · Governance",t:"Measure ≠ Decide",
@@ -264,13 +264,13 @@
         ex:"Example: the Evaluator proposes marks; the consolidator applies the capi.v1 formula and sets the band. The model observes, the code decides."},
       fw:{k:"Principle 2 · Integrity",t:"Scoring firewall",
         b:"The competence band derives <b>only</b> from evidenced oral production (role-play missions + mediation), read from the transcript. Correction, help, drills, cards, streaks and points <b>never</b> move it. A report is a query over statements → false positives are structurally hard.",
-        ex:"Real example: the panel shows “Grammar 57%” (drills = practice); the real band by voice is 6.6/10. Two different constructs — practice does not touch the band."},
+        ex:"Example: a grammar drill at 57% (practice) and the voice band 6.6/10 are different constructs — practice does not touch the band. (The panel now shows the band, not the %.)"},
       xa:{k:"Principle 3 · Interoperability",t:"CEFR + xAPI (persistent IDs)",
-        b:"Each turn becomes an <b>xAPI statement</b> anchored to the CEFR Companion Volume descriptors through <b>persistent identifiers</b> (w3id.org/mllde). The curated inventory (271 descriptors) gives the “what”; xAPI makes the data portable; the CEFR makes it meaningful. Mediation = 5th skill.",
+        b:"Each turn becomes an <b>xAPI statement</b> anchored to the CEFR Companion Volume descriptors through <b>identifiers</b> minted under w3id.org/mllde (persistent resolution pending). The curated inventory (271 descriptors) gives the “what”; xAPI makes the data portable; the CEFR makes it meaningful. Mediation = 5th skill.",
         ex:"Example: content-ref = en.spk.b1.handle-complaint → the band is anchored to that CEFR scale. The IRIs and the profile are on GitHub."},
       ev:{k:"Principle 4 · Honesty",t:"Honest evidence (tiers · auditable)",
-        b:"Each measurement declares its <b>evidence tier</b> (Tier 1 measurable today · Tier 2 instrumented · Tier 3 pending). The ASR 0.70 gate withholds unreliable audio; a 0 never replaces a missing value; each statement declares the model that scored it (measure-model). So the record <b>self-audits</b>.",
-        ex:"Live proof: 10 sessions scored by a fallback provider were detected and excluded — thanks to measure-model. Honesty caught the lapse."}
+        b:"Each measurement declares its <b>evidence tier</b> (Tier 1 measurable today · Tier 2 instrumented · Tier 3 pending). The ASR 0.70 gate withholds unreliable audio; a 0 never replaces a missing value; each measurement statement (completed) declares the model that scored it (measure-model). So the record <b>self-audits</b>.",
+        ex:"Live proof: 10 band-carrying statements scored by a fallback provider were detected and excluded — thanks to measure-model. Honesty caught the lapse."}
     }
   };
 
