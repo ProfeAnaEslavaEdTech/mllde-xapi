@@ -1,0 +1,14 @@
+# MLLDE — Mobile Language Learning Design Environment
+# xAPI vocabulary & Profile namespace for voice-based CEFR language-learning measurement
+# Maintainer: Ana Eslava-Graterol, Universitat Politècnica de València
+# Target: https://profeanaeslavaedtech.github.io/mllde-xapi/
+Options +FollowSymLinks
+RewriteEngine on
+
+# Linked-data / JSON-LD clients receive the machine-readable xAPI Profile
+RewriteCond %{HTTP_ACCEPT} application/ld\+json [OR]
+RewriteCond %{HTTP_ACCEPT} application/json
+RewriteRule ^profile(/.*)?$ https://profeanaeslavaedtech.github.io/mllde-xapi/mllde-xapi-profile_v0.8.3.jsonld [R=302,L]
+
+# Everything else under /mllde/ resolves to the human-readable registry
+RewriteRule ^(.*)$ https://profeanaeslavaedtech.github.io/mllde-xapi/ [R=302,L]

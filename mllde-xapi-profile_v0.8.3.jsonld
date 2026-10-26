@@ -1,0 +1,2117 @@
+{
+  "id": "https://w3id.org/mllde/profile",
+  "@context": "https://w3id.org/xapi/profiles/context",
+  "type": "Profile",
+  "conformsTo": "https://w3id.org/xapi/profiles#1.0",
+  "prefLabel": {
+    "en": "MLLDE Measurement Module xAPI Profile"
+  },
+  "definition": {
+    "en": "CEFR-anchored, governed measurement (Measure != Decide + firewall). v0.8.3; cefr-scale required on completed & mediated."
+  },
+  "seeAlso": "https://w3id.org/mllde",
+  "versions": [
+    {
+      "id": "https://w3id.org/mllde/profile/v0.8.3",
+      "generatedAtTime": "2026-10-23T00:00:00Z"
+    }
+  ],
+  "author": {
+    "type": "Person",
+    "name": "Ana Eslava-Graterol (UPV)"
+  },
+  "concepts": [
+    {
+      "id": "http://adlnet.gov/expapi/verbs/attempted",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "attempted"
+      },
+      "definition": {
+        "en": "Learner attempts a task/mission"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/completed",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "completed"
+      },
+      "definition": {
+        "en": "Task completed — the <MISSION_COMPLETE> gate event"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/passed",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "passed"
+      },
+      "definition": {
+        "en": "Performance meets the level's can-do descriptors (rubric floors met)"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/failed",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "failed"
+      },
+      "definition": {
+        "en": "Attempt did not yet meet floors (non-punitive: pairs with unlimited retry)"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/progressed",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "progressed"
+      },
+      "definition": {
+        "en": "Band or subskill progression event (e.g. B1 → B2 readiness signal)"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/interacted",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "interacted"
+      },
+      "definition": {
+        "en": "A conversational turn in interaction scales"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/asked",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "asked"
+      },
+      "definition": {
+        "en": "Vocabulary/help request by the learner"
+      }
+    },
+    {
+      "id": "https://w3id.org/xapi/audio/verbs/played",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "played"
+      },
+      "definition": {
+        "en": "Optional, listening media events (ADL audio profile)"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/voided",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "voided"
+      },
+      "definition": {
+        "en": "Void a previously stored statement issued in error (reserved xAPI verb; MUST be exactly http://adlnet.gov/expapi/verbs/voided). The aggregator excludes voided targets."
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/verbs/answered",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "answered"
+      },
+      "definition": {
+        "en": "Discrete scorable practice item. H2 resolved: reuse ADL answered."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/verb/pronounced",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "pronounced"
+      },
+      "definition": {
+        "en": "Made a pronunciation attempt at a declared target feature (phoneme, stress, intonation). Result carries phoneme-scores and/or model-imitation outcome."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/verb/mediated",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "mediated"
+      },
+      "definition": {
+        "en": "Performed a mediation activity: transformed or relayed content from a source for a recipient. Context carries the mediation scale IRI and the output-channel skill IRI."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/verb/adapted",
+      "type": "Verb",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "adapted"
+      },
+      "definition": {
+        "en": "Actor is the teaching agent (human or AI): the learning path or assessment was adapted for the learner. Context carries the pedagogical-action IRI and the evidence that motivated it."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/mission",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Mission / authentic task"
+      },
+      "definition": {
+        "en": "Mission / authentic task"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/conversation-scenario",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Conversation scenario (NPC-guided)"
+      },
+      "definition": {
+        "en": "Conversation scenario (NPC-guided)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/pronunciation-drill",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Pronunciation drill (Notice → Model → Invite → Move on)"
+      },
+      "definition": {
+        "en": "Pronunciation drill (Notice → Model → Invite → Move on)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/mediation-task",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Mediation task"
+      },
+      "definition": {
+        "en": "Mediation task"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/spoken-turn",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Single spoken turn"
+      },
+      "definition": {
+        "en": "Single spoken turn"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/learning-unit",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Learning unit / city module (persona-pack instance)"
+      },
+      "definition": {
+        "en": "Learning unit / city module (persona-pack instance)"
+      }
+    },
+    {
+      "id": "http://adlnet.gov/expapi/activities/course",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Course (ADL reused) — course root container"
+      },
+      "definition": {
+        "en": "Course root container (reused from ADL). Carries no band; groups learning-units and activities."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/grammar-drill",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Grammar drill (controlled practice)"
+      },
+      "definition": {
+        "en": "Grammar drill (controlled practice)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/activity-type/vocabulary-card",
+      "type": "ActivityType",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Vocabulary card (spaced repetition)"
+      },
+      "definition": {
+        "en": "Vocabulary card (spaced repetition)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/cefr-level",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "cefr-level"
+      },
+      "definition": {
+        "en": "IRI from cefrLevels"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/cefr-skill",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "cefr-skill"
+      },
+      "definition": {
+        "en": "IRI from skills"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/cefr-scale",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "cefr-scale"
+      },
+      "definition": {
+        "en": "IRI from subskillScales — the specific Companion Volume descriptor scale the activity evidences"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/output-channel",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "output-channel"
+      },
+      "definition": {
+        "en": "oral | written — required for mediation statements"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/persona-pack",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "persona-pack"
+      },
+      "definition": {
+        "en": "Identifier of the active instance/city module (engine + pack architecture)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/evidence-tier",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "evidence-tier"
+      },
+      "definition": {
+        "en": "IRI from evidenceTiers — the confidence tier of the measurement in this statement"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/pedagogical-action",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "pedagogical-action"
+      },
+      "definition": {
+        "en": "IRI from pedagogicalActions — how the teaching side responded (the 'recorded pedagogy, not just performance' stream)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/help-request",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "help-request"
+      },
+      "definition": {
+        "en": "Object: what was asked + resolution strategy (defined-in-target-language, gloss, example…)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/content-ref",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "content-ref"
+      },
+      "definition": {
+        "en": "IRI/id of the target content point from the CEFR content inventory (pattern en.gram.<level>.* or en.voc.<level>.*). Ties a turn/item/card to the graded grammar point or vocab item it exercises. Added v0.6."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/level-decision",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "level-decision"
+      },
+      "definition": {
+        "en": "Object {from, to, evidenceCount, confidence, note} — MLLDE's demonstrated-level recalibration decision, carried on a verbs/progressed statement. Gated: accumulated evidence, asr-confidence >= 0.70, floors intelligibility AND interaction >= 4. Self-declared level (learner-set) is kept separately in ext/cefr-level. Added v0.6."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/learning-target",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "learning-target"
+      },
+      "definition": {
+        "en": "Object {cefrLevel, type: grammar|vocab|sound, pointId} — the i+1 target the tutor teaches, carried on a verb/adapted statement. pointId references the content inventory (ext/content-ref). Added v0.6."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/measure-model",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "measure-model"
+      },
+      "definition": {
+        "en": "String/id — the measurement model that scored this session (the evaluator's measure_model). Kept for GDPR (interim model must also be no-train) and comparability: sessions scored by different models are NOT mixed in aggregates. Minted v0.8.1 (audit demand)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/input-channel",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "input-channel"
+      },
+      "definition": {
+        "en": "voice | text — input channel. Added v0.8.3."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/rubric-scores",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "rubric-scores"
+      },
+      "definition": {
+        "en": "Object keyed by rubricCategories IRIs, integer bands 0-10 read against the level descriptor (pass = band>=6; floors intelligibility AND interaction >=4). The Cambridge 0-5 view = round(score/2), a reporting lens only. (Corrected v0.8.1: the earlier 1-3 wording was a v0.5 residue.)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/phoneme-scores",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "phoneme-scores"
+      },
+      "definition": {
+        "en": "Array of { ipa: string (broad transcription), score: 0–100, confidence: 0–1, acceptedVariants: [ipa] } — acceptedVariants encodes legitimate variation (e.g. seseo/distinción); tier 3 until GOP or vendor scorer is integrated"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/asr-confidence",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "asr-confidence"
+      },
+      "definition": {
+        "en": "0–1 transcript confidence for the scored audio"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/turn-latency-ms",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "turn-latency-ms"
+      },
+      "definition": {
+        "en": "Milliseconds from prompt end to learner speech onset — cognitive-load proxy"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/retries",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "retries"
+      },
+      "definition": {
+        "en": "Retry count to completion (non-punitive mastery loop)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/grammar-error",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "grammar-error"
+      },
+      "definition": {
+        "en": "Object: category + example + handled-by (pedagogicalActions IRI)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/prosody-scores",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "prosody-scores"
+      },
+      "definition": {
+        "en": "Object: { intonation, rhythm, stress } — suprasegmental measures kept as SEPARATE lines, anchored to cefr/scale/prosodic-features; never merged into phoneme-scores. Tier 3 (bespoke GOP) / tier 2 (vendor). Minted v0.4 for AE's Pronunciation Model v1."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/fluency-measures",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "fluency-measures"
+      },
+      "definition": {
+        "en": "Object: { speechRate (syllables/sec), pauseCount, fillerCount, selfCorrections } — fluency measures, tier 2 (from ASR timing). Onset latency stays in ext/turn-latency-ms. Minted v0.4 for AE's Pronunciation Model v1."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/phoneme-accuracy",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "phoneme-accuracy"
+      },
+      "definition": {
+        "en": "Number 0–100 (Phoneme Accuracy) — preferred granular form of phoneme-scores"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/stress-accuracy",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "stress-accuracy"
+      },
+      "definition": {
+        "en": "Number 0–100 (Stress Accuracy)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/rhythm-score",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "rhythm-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Rhythm Score)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/intonation-score",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "intonation-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Intonation Score)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/speech-rate",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "speech-rate"
+      },
+      "definition": {
+        "en": "Number ≥0 WPM (Speech Rate)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/pause-frequency",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "pause-frequency"
+      },
+      "definition": {
+        "en": "Number ≥0 pauses/min (Pause Frequency)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/hesitation-rate",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "hesitation-rate"
+      },
+      "definition": {
+        "en": "Number 0–1 ratio (Hesitation Rate)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/fluency-score",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "fluency-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Fluency Score)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/intelligibility-score",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "intelligibility-score"
+      },
+      "definition": {
+        "en": "Number 0–100 (Intelligibility Score — engine estimate; band decided by MLLDE)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/acoustic-confidence",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "acoustic-confidence"
+      },
+      "definition": {
+        "en": "Number 0–1 (Acoustic Confidence — measurement reliability)"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/item-score",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "item-score"
+      },
+      "definition": {
+        "en": "Object {itemId, drillType, correct: boolean, unaided: boolean, attempts} for a grammar-drill / warm-up item. Feeds rubric/grammar-accuracy. Objective mastery: a grammar point is mastered at >= 3/4 correct unaided. Added v0.6."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/srs-outcome",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "srs-outcome"
+      },
+      "definition": {
+        "en": "Object {cardId, outcome: known|repeat, prevIntervalDays, nextIntervalDays} — spaced-repetition result for a vocabulary-card. Objective mastery: a vocab item is mastered when nextIntervalDays >= 7. Added v0.6."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/effective-time",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "effective-time"
+      },
+      "definition": {
+        "en": "Number >=0 minutes — effective interaction time in the session (voice/practice), NOT app-open time. Accumulates toward the >=80h HR/level 'passed' gate (anchored to CEFR/Cambridge guided hours). Carried on the per-session completed statement. Minted v0.8.1 (audit demand: the 80h gate had no IRI)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/srs-schedule",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "srs-schedule"
+      },
+      "definition": {
+        "en": "Object {cardId, nextReviewDate, intervalDays} — the spaced-repetition SCHEDULE for a vocabulary-card (companion to ext/srs-outcome, which carries the outcome). Practice-loop signal, never a competency band. Minted v0.8.1 (was 'pending mint')."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/incident-type",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "incident-type"
+      },
+      "definition": {
+        "en": "IRI from incidentTypes"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/incident-severity",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "incident-severity"
+      },
+      "definition": {
+        "en": "low | medium | high | blocking"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/incident-resolution",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "incident-resolution"
+      },
+      "definition": {
+        "en": "Object: change made + date + post-change rate — the resolution ledger for the admin improvement loop"
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/level/pre-a1",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR level: Pre-A1"
+        },
+        "description": {
+          "en": "CEFR level: Pre-A1"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/level/a1",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR level: A1 — Basic user"
+        },
+        "description": {
+          "en": "CEFR level: A1 — Basic user"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/level/a2",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR level: A2 — Basic user"
+        },
+        "description": {
+          "en": "CEFR level: A2 — Basic user"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/level/b1",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR level: B1 — Independent user"
+        },
+        "description": {
+          "en": "CEFR level: B1 — Independent user"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/level/b2",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR level: B2 — Independent user"
+        },
+        "description": {
+          "en": "CEFR level: B2 — Independent user"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/level/c1",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR level: C1 — Proficient user"
+        },
+        "description": {
+          "en": "CEFR level: C1 — Proficient user"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/level/c2",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR level: C2 — Proficient user"
+        },
+        "description": {
+          "en": "CEFR level: C2 — Proficient user"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/skill/listening",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR skill: Listening"
+        },
+        "description": {
+          "en": "CEFR skill: Listening"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/skill/reading",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR skill: Reading"
+        },
+        "description": {
+          "en": "CEFR skill: Reading"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/skill/speaking",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR skill: Speaking"
+        },
+        "description": {
+          "en": "CEFR skill: Speaking"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/skill/writing",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR skill: Writing"
+        },
+        "description": {
+          "en": "CEFR skill: Writing"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/skill/mediation",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CEFR skill: Mediation"
+        },
+        "description": {
+          "en": "CEFR skill: Mediation"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-oral-comprehension",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall oral comprehension"
+        },
+        "description": {
+          "en": "CV scale: Overall oral comprehension"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/understanding-interaction-between-others",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Understanding conversation between other people"
+        },
+        "description": {
+          "en": "CV scale: Understanding conversation between other people"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/listening-live-audience",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Understanding as a member of a live audience"
+        },
+        "description": {
+          "en": "CV scale: Understanding as a member of a live audience"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/listening-announcements-instructions",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Understanding announcements and instructions"
+        },
+        "description": {
+          "en": "CV scale: Understanding announcements and instructions"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/listening-audio-media",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Understanding audio (or signed) media and recordings"
+        },
+        "description": {
+          "en": "CV scale: Understanding audio (or signed) media and recordings"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/audio-visual-comprehension",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Watching TV, film and video"
+        },
+        "description": {
+          "en": "CV scale: Watching TV, film and video"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-reading-comprehension",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall reading comprehension"
+        },
+        "description": {
+          "en": "CV scale: Overall reading comprehension"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/reading-correspondence",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Reading correspondence"
+        },
+        "description": {
+          "en": "CV scale: Reading correspondence"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/reading-orientation",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Reading for orientation"
+        },
+        "description": {
+          "en": "CV scale: Reading for orientation"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/reading-information-argument",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Reading for information and argument"
+        },
+        "description": {
+          "en": "CV scale: Reading for information and argument"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/reading-instructions",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Reading instructions"
+        },
+        "description": {
+          "en": "CV scale: Reading instructions"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/reading-leisure",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Reading as a leisure activity"
+        },
+        "description": {
+          "en": "CV scale: Reading as a leisure activity"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-spoken-production",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall oral production"
+        },
+        "description": {
+          "en": "CV scale: Overall oral production"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/monologue-describing-experience",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Sustained monologue: describing experience"
+        },
+        "description": {
+          "en": "CV scale: Sustained monologue: describing experience"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/monologue-giving-information",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Sustained monologue: giving information"
+        },
+        "description": {
+          "en": "CV scale: Sustained monologue: giving information"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/monologue-putting-case",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Sustained monologue: putting a case"
+        },
+        "description": {
+          "en": "CV scale: Sustained monologue: putting a case"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/public-announcements",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Public announcements"
+        },
+        "description": {
+          "en": "CV scale: Public announcements"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/addressing-audiences",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Addressing audiences"
+        },
+        "description": {
+          "en": "CV scale: Addressing audiences"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-spoken-interaction",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall oral interaction"
+        },
+        "description": {
+          "en": "CV scale: Overall oral interaction"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/understanding-interlocutor",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Understanding an interlocutor"
+        },
+        "description": {
+          "en": "CV scale: Understanding an interlocutor"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/conversation",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Conversation"
+        },
+        "description": {
+          "en": "CV scale: Conversation"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/informal-discussion",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Informal discussion (with friends)"
+        },
+        "description": {
+          "en": "CV scale: Informal discussion (with friends)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/formal-discussion",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Formal discussion (meetings)"
+        },
+        "description": {
+          "en": "CV scale: Formal discussion (meetings)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/goal-oriented-cooperation",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Goal-oriented co-operation"
+        },
+        "description": {
+          "en": "CV scale: Goal-oriented co-operation"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/obtaining-goods-services",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Obtaining goods and services"
+        },
+        "description": {
+          "en": "CV scale: Obtaining goods and services"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/information-exchange",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Information exchange"
+        },
+        "description": {
+          "en": "CV scale: Information exchange"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/interviewing",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Interviewing and being interviewed"
+        },
+        "description": {
+          "en": "CV scale: Interviewing and being interviewed"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/using-telecommunications",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Using telecommunications"
+        },
+        "description": {
+          "en": "CV scale: Using telecommunications"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-phonological-control",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall phonological control"
+        },
+        "description": {
+          "en": "CV scale: Overall phonological control"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/sound-articulation",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Sound articulation"
+        },
+        "description": {
+          "en": "CV scale: Sound articulation"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/prosodic-features",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Prosodic features"
+        },
+        "description": {
+          "en": "CV scale: Prosodic features"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-written-production",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall written production"
+        },
+        "description": {
+          "en": "CV scale: Overall written production"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/creative-writing",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Creative writing"
+        },
+        "description": {
+          "en": "CV scale: Creative writing"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/reports-essays",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Reports and essays"
+        },
+        "description": {
+          "en": "CV scale: Reports and essays"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-written-interaction",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall written interaction"
+        },
+        "description": {
+          "en": "CV scale: Overall written interaction"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/correspondence",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Correspondence"
+        },
+        "description": {
+          "en": "CV scale: Correspondence"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/notes-messages-forms",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Notes, messages and forms"
+        },
+        "description": {
+          "en": "CV scale: Notes, messages and forms"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/online-conversation-discussion",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Online conversation and discussion"
+        },
+        "description": {
+          "en": "CV scale: Online conversation and discussion"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/goal-oriented-online-transactions",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Goal-oriented online transactions and collaboration"
+        },
+        "description": {
+          "en": "CV scale: Goal-oriented online transactions and collaboration"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/orthographic-control",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Orthographic control"
+        },
+        "description": {
+          "en": "CV scale: Orthographic control"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/overall-mediation",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Overall mediation"
+        },
+        "description": {
+          "en": "CV scale: Overall mediation"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/relaying-specific-information",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Relaying specific information (in speech or writing)"
+        },
+        "description": {
+          "en": "CV scale: Relaying specific information (in speech or writing)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/explaining-data",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Explaining data, e.g. in graphs, diagrams, charts (in speech or writing)"
+        },
+        "description": {
+          "en": "CV scale: Explaining data, e.g. in graphs, diagrams, charts (in speech or writing)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/processing-text",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Processing text (in speech or writing)"
+        },
+        "description": {
+          "en": "CV scale: Processing text (in speech or writing)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/translating-written-text",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Translating a written text (in speech or writing)"
+        },
+        "description": {
+          "en": "CV scale: Translating a written text (in speech or writing)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/note-taking",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Note-taking (lectures, seminars, meetings)"
+        },
+        "description": {
+          "en": "CV scale: Note-taking (lectures, seminars, meetings)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/personal-response-creative-texts",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Expressing a personal response to creative texts"
+        },
+        "description": {
+          "en": "CV scale: Expressing a personal response to creative texts"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/analysis-criticism-creative-texts",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Analysis and criticism of creative texts"
+        },
+        "description": {
+          "en": "CV scale: Analysis and criticism of creative texts"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/facilitating-collaborative-interaction",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Facilitating collaborative interaction with peers"
+        },
+        "description": {
+          "en": "CV scale: Facilitating collaborative interaction with peers"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/collaborating-construct-meaning",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Collaborating to construct meaning"
+        },
+        "description": {
+          "en": "CV scale: Collaborating to construct meaning"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/managing-interaction",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Managing interaction"
+        },
+        "description": {
+          "en": "CV scale: Managing interaction"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/encouraging-conceptual-talk",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Encouraging conceptual talk"
+        },
+        "description": {
+          "en": "CV scale: Encouraging conceptual talk"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/facilitating-pluricultural-space",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Facilitating pluricultural space"
+        },
+        "description": {
+          "en": "CV scale: Facilitating pluricultural space"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/acting-as-intermediary",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Acting as intermediary in informal situations"
+        },
+        "description": {
+          "en": "CV scale: Acting as intermediary in informal situations"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/cefr/scale/facilitating-delicate-situations",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "CV scale: Facilitating communication in delicate situations and disagreements"
+        },
+        "description": {
+          "en": "CV scale: Facilitating communication in delicate situations and disagreements"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/rubric/grammar-accuracy",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Rubric: Grammar / Accuracy"
+        },
+        "description": {
+          "en": "Rubric: Grammar / Accuracy"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/rubric/vocabulary-range",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Rubric: Vocabulary / Range"
+        },
+        "description": {
+          "en": "Rubric: Vocabulary / Range"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/rubric/pronunciation-phonological-control",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Rubric: Pronunciation / Phonological control"
+        },
+        "description": {
+          "en": "Rubric: Pronunciation / Phonological control"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/rubric/intelligibility",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Rubric: Intelligibility (pass floor ≥ 4)"
+        },
+        "description": {
+          "en": "Rubric: Intelligibility (pass floor ≥ 4)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/rubric/interaction",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Rubric: Interaction / Fluency (pass floor ≥ 4)"
+        },
+        "description": {
+          "en": "Rubric: Interaction / Fluency (pass floor ≥ 4)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/rubric/discourse-management",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Rubric: Discourse management / Coherence"
+        },
+        "description": {
+          "en": "Rubric: Discourse management / Coherence"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/rubric/global-achievement",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Rubric: Global achievement (holistic, 0-10; Cambridge 0-5 view = round/2)"
+        },
+        "description": {
+          "en": "Rubric: Global achievement (holistic, 0-10; Cambridge 0-5 view = round/2)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/evidence-tier/1-measurable-today",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Evidence tier: Tier 1 — task gates, retries, rubric bands, help requests"
+        },
+        "description": {
+          "en": "Evidence tier: Tier 1 — task gates, retries, rubric bands, help requests"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/evidence-tier/2-instrumented",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Evidence tier: Tier 2 — requires instrumentation: latency, ASR-confidence-weighted scores, vendor pronunciation APIs over an IPA-coded inventory"
+        },
+        "description": {
+          "en": "Evidence tier: Tier 2 — requires instrumentation: latency, ASR-confidence-weighted scores, vendor pronunciation APIs over an IPA-coded inventory"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/evidence-tier/3-pending-gop",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Evidence tier: Tier 3 — per-phoneme phonological control pending the GOP build (open research piece)"
+        },
+        "description": {
+          "en": "Evidence tier: Tier 3 — per-phoneme phonological control pending the GOP build (open research piece)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/asr-failure",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: ASR failure — no usable transcript"
+        },
+        "description": {
+          "en": "Incident: ASR failure — no usable transcript"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/low-asr-confidence",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Low ASR confidence below scoring threshold"
+        },
+        "description": {
+          "en": "Incident: Low ASR confidence below scoring threshold"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/endpointing-cutoff",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Endpointing cut-off — learner interrupted mid-turn"
+        },
+        "description": {
+          "en": "Incident: Endpointing cut-off — learner interrupted mid-turn"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/text-fallback-activation",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Text fallback activated (accessibility signal)"
+        },
+        "description": {
+          "en": "Incident: Text fallback activated (accessibility signal)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/completion-token-failure",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Completion token not emitted/parsed"
+        },
+        "description": {
+          "en": "Incident: Completion token not emitted/parsed"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/offtopic-redirect",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Off-topic redirect by the agent"
+        },
+        "description": {
+          "en": "Incident: Off-topic redirect by the agent"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/unresolved-help-request",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Help request left unresolved"
+        },
+        "description": {
+          "en": "Incident: Help request left unresolved"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/tutor-task-substitution",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Tutor produced the learner's task output instead of coaching (pedagogy-fidelity violation; target 0)"
+        },
+        "description": {
+          "en": "Incident: Tutor produced the learner's task output instead of coaching (pedagogy-fidelity violation; target 0)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/report-without-evidence",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Report claim with no underlying statements (false positive; 0 by design)"
+        },
+        "description": {
+          "en": "Incident: Report claim with no underlying statements (false positive; 0 by design)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/session-not-finalized",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Session left open without finalisation — corrupts time-on-task and completion data"
+        },
+        "description": {
+          "en": "Incident: Session left open without finalisation — corrupts time-on-task and completion data"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/access-denied",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Learner or teacher blocked from reaching a module or feature (onboarding/permissions incident)"
+        },
+        "description": {
+          "en": "Incident: Learner or teacher blocked from reaching a module or feature (onboarding/permissions incident)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/action/implicit-recast",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Pedagogical action: Implicit recast — correct by modelling, flow preserved"
+        },
+        "description": {
+          "en": "Pedagogical action: Implicit recast — correct by modelling, flow preserved"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/action/model-invite",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Pedagogical action: Model + invite retry (pronunciation ladder step)"
+        },
+        "description": {
+          "en": "Pedagogical action: Model + invite retry (pronunciation ladder step)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/action/scaffold",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Pedagogical action: Scaffold — graded hint, never the full answer first"
+        },
+        "description": {
+          "en": "Pedagogical action: Scaffold — graded hint, never the full answer first"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/action/simplify",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Pedagogical action: Simplify / slow down / repeat (penalty-free)"
+        },
+        "description": {
+          "en": "Pedagogical action: Simplify / slow down / repeat (penalty-free)"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/action/advance",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Pedagogical action: Advance — reduce support, raise challenge (i+1)"
+        },
+        "description": {
+          "en": "Pedagogical action: Advance — reduce support, raise challenge (i+1)"
+        }
+      }
+    }
+  ],
+  "templates": [
+    {
+      "id": "https://w3id.org/mllde/template/completed-measurement",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Session measurement (band) — MUST anchor to a CV scale"
+      },
+      "definition": {
+        "en": "Session measurement (band) — MUST anchor to a CV scale"
+      },
+      "verb": "http://adlnet.gov/expapi/verbs/completed",
+      "rules": [
+        {
+          "location": "$.result.extensions['https://w3id.org/mllde/ext/rubric-scores']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/cefr-level']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/evidence-tier']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/cefr-scale']",
+          "presence": "included"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/mllde/template/answered-practice-firewall",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Grammar drill — FIREWALL: never a band"
+      },
+      "definition": {
+        "en": "Grammar drill — FIREWALL: never a band"
+      },
+      "verb": "http://adlnet.gov/expapi/verbs/answered",
+      "rules": [
+        {
+          "location": "$.result.extensions['https://w3id.org/mllde/ext/item-score']",
+          "presence": "included"
+        },
+        {
+          "location": "$.result.extensions['https://w3id.org/mllde/ext/rubric-scores']",
+          "presence": "excluded"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/mllde/template/attempted-card-firewall",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Vocabulary card — FIREWALL: never a band"
+      },
+      "definition": {
+        "en": "Vocabulary card — FIREWALL: never a band"
+      },
+      "verb": "http://adlnet.gov/expapi/verbs/attempted",
+      "rules": [
+        {
+          "location": "$.result.extensions['https://w3id.org/mllde/ext/rubric-scores']",
+          "presence": "excluded"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/mllde/template/progressed-level",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Level progression (Measure != Decide)"
+      },
+      "definition": {
+        "en": "Level progression (Measure != Decide)"
+      },
+      "verb": "http://adlnet.gov/expapi/verbs/progressed",
+      "rules": [
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/level-decision']",
+          "presence": "included"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/mllde/template/adapted-pedagogy",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Pedagogy stream"
+      },
+      "definition": {
+        "en": "Pedagogy stream"
+      },
+      "verb": "https://w3id.org/mllde/verb/adapted",
+      "rules": [
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/pedagogical-action']",
+          "presence": "included"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/mllde/template/mediated-session",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Mediation (fifth skill) — MUST anchor to a CV scale + output-channel"
+      },
+      "definition": {
+        "en": "Mediation (fifth skill) — MUST anchor to a CV scale + output-channel"
+      },
+      "verb": "https://w3id.org/mllde/verb/mediated",
+      "rules": [
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/output-channel']",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/cefr-scale']",
+          "presence": "included"
+        }
+      ]
+    }
+  ]
+}

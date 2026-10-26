@@ -12,9 +12,10 @@ vocabulary and Profile for measuring **voice-based language learning** against t
 ## Contents
 | File | What it is |
 |---|---|
-| `mllde-xapi-iri-registry_v0.8.2.json` | The IRI registry: verbs, activity types, extensions, CEFR levels/skills/scales, rubric categories, pedagogical actions, evidence tiers, incident types, acoustic metrics. |
-| `mllde-xapi-profile_v0.8.2.jsonld` | The xAPI **Profile** (JSON-LD, `conformsTo w3id.org/xapi/profiles#1.0`), ready to import/validate on the ADL xAPI Profile Server. |
-| `docs/index.html` | Human-readable documentation of every IRI (served via GitHub Pages). |
+| `mllde-xapi-profile_v0.8.3.jsonld` | **Current** xAPI **Profile** (JSON-LD, `conformsTo w3id.org/xapi/profiles#1.0`; 153 concepts, 6 statement templates), ready to import/validate on an xAPI Profile Server or LRS. |
+| `mllde-xapi-profile_v0.8.2.jsonld` | Previous Profile — superseded by v0.8.3, kept for provenance. |
+| `mllde-xapi-iri-registry_v0.8.2.json` | The IRI registry (JSON): verbs, activity types, extensions, CEFR levels/skills/scales, rubric categories, pedagogical actions, evidence tiers, incident types, acoustic metrics. (A matching v0.8.3 JSON is pending; the v0.8.3 vocabulary is authoritative in `index.html` and in the Profile.) |
+| `index.html` | Human-readable registry of every IRI, **v0.8.3** (served via GitHub Pages). |
 | `w3id/mllde/` | Files for the `w3id.org/mllde` namespace Pull Request (`.htaccess` + `README.md`). |
 | `LICENSE` | CC BY 4.0. |
 
@@ -29,7 +30,7 @@ practice signals (`item-score`, `srs-outcome`) that feed the loop and spaced
 repetition — **never a band**.
 
 ## Roadmap
-1. **Profile (done):** `mllde-xapi-profile_v0.8.2.jsonld` — a self-contained JSON-LD document; it does not depend on any external server.
+1. **Profile (published, v0.8.3):** `mllde-xapi-profile_v0.8.3.jsonld` — a self-contained JSON-LD document; it does not depend on any external server.
 2. **Persistent IRIs:** register `w3id.org/mllde` (PR to `perma-id/w3id.org` using `w3id/mllde/`). This is the durable, vendor-independent home for the vocabulary and the Profile.
 3. **Discovery (optional / reference):** `adlnet/xapi-authored-profiles` exists but was **archived (read-only) on 2026-03-12** — it no longer accepts PRs, so it serves as a reference/template (`adl/adl.jsonld`), not a publication target. The xAPI Profiles spec is under review. MLLDE is therefore self-hosted here and resolved via w3id, independent of ADL; submit to a public registry if and when a stable one is available.
 
