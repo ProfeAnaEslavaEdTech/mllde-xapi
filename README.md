@@ -30,7 +30,7 @@ Cite the work on two independent axes — do not conflate them:
 | `mllde-xapi-iri-registry_v0.8.2.json` | The IRI registry (JSON): verbs, activity types, extensions, CEFR levels/skills/scales, rubric categories, pedagogical actions, evidence tiers, incident types, acoustic metrics. A matching v0.8.3 JSON is pending; the v0.8.3 vocabulary is authoritative in `index.html` and in the Profile. |
 | `index.html` | Human-readable registry of every IRI, **v0.8.3** (served via GitHub Pages). |
 | `tk-coachai-mllde.html` | Interactive TK CoachAI · MLLDE visual. |
-| `w3id/mllde/` | Payload for the `w3id.org/mllde` namespace pull request (`.htaccess` + `README.md`). |
+| `w3id/ids/mllde/` | Payload for the `w3id.org/mllde` namespace pull request (`.htaccess` + `README.md`), mirroring the destination path in `perma-id/w3id.org`. |
 | `LICENSE` | CC BY 4.0. |
 
 ## Scheme rule (one canonical IRI per authority)
@@ -67,14 +67,14 @@ interaction and mediation.
 ## Roadmap
 
 1. **Profile (published, v0.8.3):** `mllde-xapi-profile_v0.8.3.jsonld` — a self-contained JSON-LD document; it does not depend on any external server.
-2. **Persistent IRIs (PR prepared):** the payload in `w3id/mllde/` is ready; open a pull request to `perma-id/w3id.org` adding a root `mllde/` directory with this `.htaccess`. On merge, `w3id.org/mllde/*` resolves (`/profile` content-negotiates to the JSON-LD Profile; all other paths to the registry). This is the durable, vendor-independent home for the vocabulary.
+2. **Persistent IRIs (PR prepared):** the payload in `w3id/ids/mllde/` is ready; open a pull request to `perma-id/w3id.org` adding the directory **`ids/mllde/`** (identifiers live under `ids/`, not the repo root) with this `.htaccess`. On merge, `w3id.org/mllde/*` resolves: `/profile` → the JSON-LD Profile, all other paths → the registry (302). This is the durable, vendor-independent home for the vocabulary.
 3. **Discovery (reference only):** `adlnet/xapi-authored-profiles` was **archived (read-only) on 2026-03-12** and no longer accepts PRs; it serves as a template, not a publication target. MLLDE is therefore self-hosted here and resolved via w3id, independent of ADL; submit to a public registry if and when a stable one is available.
 
 ## Setup notes
 
 - **GitHub Pages:** Settings → Pages → Source serves the registry at
   `https://profeanaeslavaedtech.github.io/mllde-xapi/`.
-- `w3id/mllde/.htaccess` redirects `w3id.org/mllde/*` to that Pages URL.
+- `w3id/ids/mllde/.htaccess` (destined for `ids/mllde/.htaccess` in `perma-id/w3id.org`) redirects `w3id.org/mllde/*` to that Pages URL.
 
 ---
 © 2026 Ana Eslava-Graterol — MLLDE (Universitat Politècnica de València).

@@ -1,0 +1,13 @@
+# # /mllde/
+#
+# https://w3id.org/mllde/ and everything under it redirects to the MLLDE
+# xAPI vocabulary & registry. /mllde/profile resolves to the machine-readable
+# xAPI Profile (JSON-LD); all other paths resolve to the human-readable registry.
+#
+# ## Contact
+# Ana Eslava-Graterol (Universitat Politecnica de Valencia)
+# GitHub username: ProfeAnaEslavaEdTech
+
+RewriteEngine on
+RewriteRule ^profile/?$ https://profeanaeslavaedtech.github.io/mllde-xapi/mllde-xapi-profile_v0.8.3.jsonld [R=302,L]
+RewriteRule ^(.*)$ https://profeanaeslavaedtech.github.io/mllde-xapi/ [R=302,L]
