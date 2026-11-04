@@ -18,7 +18,7 @@ Cite the work on two independent axes — do not conflate them:
 
 | Axis | Version | What it is | Where it lives |
 |---|---|---|---|
-| **Content inventory** | **v0.7.1** | *What is taught* — 271 CEFR content descriptors (115 grammar, 86 vocabulary, 43 speaking, 27 mediation), A1–C1. | the application repository |
+| **Content inventory** | **v0.7.2** | *What is taught* — 382 CEFR content descriptors (115 grammar, 96 vocabulary, 100 speaking, 71 mediation), A1–C2. v0.7.2 (approved 4 Nov 2026) adds 111 descriptors to v0.7.1 (271) so that all 25 speaking and mediation scales cover A1–C2; existing ids are unchanged. Evidence against v0.7.2 counts from its implementation date in the app. | the application repository |
 | **Measurement model** | **v0.8.3** | *How it is measured and recorded* — this registry and Profile. | **this repository** |
 
 ## Contents
