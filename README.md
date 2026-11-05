@@ -1,8 +1,9 @@
 # MLLDE xAPI
 
 **MLLDE** (Mobile Language Learning Design Environment) is a framework for
-designing language-learning products in which AI agents **measure** and a
-deterministic engine and a human **decide**. This repository is MLLDE's
+designing language-learning products under one principle, **Measure, Not
+Decide**: AI agents measure against human-written CEFR descriptors, deterministic
+code governs, and a teacher decides attainment outside the system. This repository is MLLDE's
 **measurement module**: the xAPI vocabulary, the machine-readable Profile, and
 the human-readable registry used to measure **voice-based language learning**
 against the **CEFR** descriptor scales (Companion Volume, 2020).
@@ -77,6 +78,6 @@ interaction and mediation.
 - `w3id/ids/mllde/.htaccess` (destined for `ids/mllde/.htaccess` in `perma-id/w3id.org`) redirects `w3id.org/mllde/*` to that Pages URL.
 
 ---
-© 2026 Ana Eslava-Graterol — MLLDE (Universitat Politècnica de València).
+MLLDE © 2026 Ana Eslava-Graterol (Universitat Politècnica de València). Copyright registration in progress.
 CEFR © Council of Europe · xAPI © ADL/IEEE · ESCO © European Union · IPA © IPA
 (cited as standards, not redistributed). Licensed CC BY 4.0.
