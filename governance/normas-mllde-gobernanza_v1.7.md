@@ -133,11 +133,11 @@
 - **Fundamento de diseño:** la IA no califica. El Evaluador aporta evidencia, el código calcula (N10) y el profesor decide (G-NIVEL-1). Por eso el logro es del alumno y el agente consta como quien intervino.
 
 **Qué recibe identificador de agente (enlace con la clasificación de componentes):**
-- **Solo los componentes generativos del mapa canónico.** Cada función tiene un identificador.
-- **Nunca aparecen en `instructor`:**
+- **Todo componente generativo que actúa en el aprendizaje o habla con el usuario.** Cada función tiene un identificador.
+- **Teo, el agente de soporte, se declara en el registro** (`support-agent`, decisión de la autora, 10 nov). Está fuera del aprendizaje, pero habla con el usuario (art. 50). **Nunca aparece en una sentencia de aprendizaje** (si aparece, salta A2); su rastro es el registro de llamadas.
+- **Nunca reciben identificador de agente ni aparecen en `instructor`:**
   - la infraestructura (ASR, OCR, planificador SRS);
-  - el código (consolidador, guardián, límite de ritmo);
-  - los componentes fuera del aprendizaje (Teo).
+  - el código (consolidador, guardián, límite de ritmo).
 
 **Forma exacta de los identificadores** (equivalente a la regla de IRIs del 24 sep: «0 verbos ADL en https://», «0 verbos MLLDE en http://», que se mantiene):
 1. Un solo identificador, `account`; nunca `mbox` ni `openid`.
