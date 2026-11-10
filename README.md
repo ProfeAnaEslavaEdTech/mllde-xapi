@@ -31,6 +31,7 @@ Cite the work on two independent axes — do not conflate them:
 | `mllde-xapi-iri-registry_v0.8.2.json` | The IRI registry (JSON): verbs, activity types, extensions, CEFR levels/skills/scales, rubric categories, pedagogical actions, evidence tiers, incident types, acoustic metrics. A matching v0.8.3 JSON is pending; the v0.8.3 vocabulary is authoritative in `index.html` and in the Profile. |
 | `index.html` | Human-readable registry of every IRI, **v0.8.3** (served via GitHub Pages). |
 | `tk-coachai-mllde.html` | Interactive TK CoachAI · MLLDE visual. |
+| `governance/normas-mllde-gobernanza_v1.6.md` | MLLDE AI-governance norms v1.6 (Spanish): main measurement rule R-MED-1, structural norms N1–N13, level decision G-NIVEL-1 (teacher, and free user without a teacher), agent admission R-ADM, vocabulary tracks, and the proposed IRI coinage for registry v0.8.4. |
 | `w3id/ids/mllde/` | Payload for the `w3id.org/mllde` namespace pull request (`.htaccess` + `README.md`), mirroring the destination path in `perma-id/w3id.org`. |
 | `LICENSE` | CC BY 4.0. |
 
