@@ -1,5 +1,5 @@
 # Normas de gobernanza MLLDE — paquete descargable
-**Versión:** 1.6 · **Fecha:** 9 de noviembre de 2026 · **Cambio v1.6:** propuesta de acuñación de IRIs (bump v0.8.4 del registro) tras el análisis del registro publicado v0.8.3 — sin verbos nuevos; 7 extensiones, 4 campos en `ext/level-decision` y 2–3 tipos de incidente. **Cambio v1.5:** regla de decisión de nivel para el usuario libre sin profesor — el código propone y el propio usuario acepta tras ver la evidencia, con revisor humano obligatorio en saltos de dos niveles, entrada en nivel C o disputa; menores excluidos de la autoaceptación. **Cambio v1.4:** regla principal de gobernanza (R-MED-1) — toda medición pasa por el flujo de medición contra la base completa y ningún otro agente mide por su cuenta. **Cambio v1.3:** doble vía de vocabulario según el tipo de usuario (decisión de la autora), alcance del lector OCR (decide sobre la imagen, nunca sobre el alumno) y regla de medición en toda interacción con comparación nivel real vs declarado. **Cambio v1.2:** tabla de equivalencia con la numeración de la spec del Evaluador v2 (§6.1) y nota sobre la referencia huérfana «N14» de la Cartilla de los 7.
+**Versión:** 1.7 · **Fecha:** 9 de noviembre de 2026 · **Cambio v1.7:** regla de trazabilidad N6-bis — paquete de auditoría semanal en cmi5 (decisión de la autora, reunión del 9 nov). **Cambio v1.6:** propuesta de acuñación de IRIs (bump v0.8.4 del registro) tras el análisis del registro publicado v0.8.3 — sin verbos nuevos; 7 extensiones, 4 campos en `ext/level-decision` y 2–3 tipos de incidente. **Cambio v1.5:** regla de decisión de nivel para el usuario libre sin profesor — el código propone y el propio usuario acepta tras ver la evidencia, con revisor humano obligatorio en saltos de dos niveles, entrada en nivel C o disputa; menores excluidos de la autoaceptación. **Cambio v1.4:** regla principal de gobernanza (R-MED-1) — toda medición pasa por el flujo de medición contra la base completa y ningún otro agente mide por su cuenta. **Cambio v1.3:** doble vía de vocabulario según el tipo de usuario (decisión de la autora), alcance del lector OCR (decide sobre la imagen, nunca sobre el alumno) y regla de medición en toda interacción con comparación nivel real vs declarado. **Cambio v1.2:** tabla de equivalencia con la numeración de la spec del Evaluador v2 (§6.1) y nota sobre la referencia huérfana «N14» de la Cartilla de los 7.
 **Principio rector:** La base define · la IA localiza · el código calcula · el profesor decide · la LRS lo registra.
 
 > Estas normas gobiernan a todo agente de IA del modelo MLLDE y de sus aplicaciones (p. ej. TK CoachAI). Un agente que no está en el mapa no entra en el loop.
@@ -31,6 +31,20 @@
 | **N11 — Incidentes declarados** | Cada agente define sus tipos de incidente con IRI del registry; van a su registro, nunca a KPIs del alumno. |
 | **N12 — Versionado firmado** | Cambio de prompt/modelo/reglas = bump + firma (pedagogía + ingeniería) + entrada en el mapa + fecha desde la que cuenta. |
 | **N13 — Pruebas en CI** | Toda prueba de admisión corre en CI en cada despliegue; si falla, el despliegue se bloquea. |
+
+### N6-bis — Paquete de auditoría semanal en cmi5 (regla de trazabilidad, v1.7)
+
+> **Regla:** cada semana, el entorno entrega a la diseñadora un **paquete cmi5** de la versión en producción, descargable sin intervención del desarrollador. Se importa en **SCORM Cloud** y se lanza con un alumno de prueba; las sentencias xAPI que emite se comparan con el registro y el perfil vigentes.
+
+- **Qué se comprueba:**
+  - **a. Continuidad del loop:** Input → Process → Output → Adaptar, paso a paso y en orden.
+  - **b. Métricas no declaradas:** ninguna extensión, verbo ni resultado que no esté en el registro.
+  - **c. Métricas duplicadas:** una sesión, un `completed`; ningún dato emitido dos veces.
+  - **d. Actores y agentes no autorizados:** ningún actor ni agente que no esté en el mapa canónico. Un actor desconocido es un incidente y se revisa antes de seguir.
+- **Por qué cmi5 y no SCORM 2004:** cmi5 se basa en xAPI, así que muestra actores, verbos y objetos. SCORM 2004 no transporta sentencias xAPI y no permite esta comprobación.
+- **Lo que el paquete no sustituye:** el paquete prueba lo que la versión **emite**. Lo que **ha pasado** se audita con los 3 exportables del LRS (sentencias, verbos y objetos, agentes) y con el JSON del panel de administración (modelo de medida). Las dos auditorías se cruzan.
+- **Registro:** cada paquete lleva fecha, versión de la app y `prompt-hash` de los agentes; se conserva con el resultado de la comprobación.
+- Regla acordada en la reunión del 9 nov; entra en vigor con las firmas de pedagogía e ingeniería (N12).
 
 ### Equivalencia con la numeración de la spec del Evaluador v2 (§6.1)
 
