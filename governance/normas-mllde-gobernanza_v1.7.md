@@ -1,5 +1,5 @@
 # Normas de gobernanza MLLDE — paquete descargable
-**Versión:** 1.7 · **Fecha:** 9 de noviembre de 2026 · **Cambio v1.7:** regla de trazabilidad N6-bis — paquete de auditoría semanal en cmi5 (decisión de la autora, reunión del 9 nov). Recordatorio en N9 del acuerdo previo: el nombre del alumno lo pone la app al presentar el informe, nunca el modelo. Corregida la nota sobre la N14: existe desde el 8 nov. Añadido el principio de verificación junto al principio rector. **Cambio v1.6:** propuesta de acuñación de IRIs (bump v0.8.4 del registro) tras el análisis del registro publicado v0.8.3 — sin verbos nuevos; 7 extensiones, 4 campos en `ext/level-decision` y 2–3 tipos de incidente. **Cambio v1.5:** regla de decisión de nivel para el usuario libre sin profesor — el código propone y el propio usuario acepta tras ver la evidencia, con revisor humano obligatorio en saltos de dos niveles, entrada en nivel C o disputa; menores excluidos de la autoaceptación. **Cambio v1.4:** regla principal de gobernanza (R-MED-1) — toda medición pasa por el flujo de medición contra la base completa y ningún otro agente mide por su cuenta. **Cambio v1.3:** doble vía de vocabulario según el tipo de usuario (decisión de la autora), alcance del lector OCR (decide sobre la imagen, nunca sobre el alumno) y regla de medición en toda interacción con comparación nivel real vs declarado. **Cambio v1.2:** tabla de equivalencia con la numeración de la spec del Evaluador v2 (§6.1) y nota sobre la referencia huérfana «N14» de la Cartilla de los 7.
+**Versión:** 1.7 · **Fecha:** 9 de noviembre de 2026 · **Cambio v1.7:** regla de trazabilidad N6-bis — paquete de auditoría semanal en cmi5 (decisión de la autora, reunión del 9 nov). Recordatorio en N9 del acuerdo previo: el nombre del alumno lo pone la app al presentar el informe, nunca el modelo. Corregida la nota sobre la N14: existe desde el 8 nov. Añadido el principio de verificación junto al principio rector. Nueva sección **R-ID**: identificación de los agentes en el registro (`context.instructor`, xAPI 1.0.3 §2.4.6) y forma exacta de sus identificadores; sustituye la regla «actor = el agente que actúa» (decisión 53). **Cambio v1.6:** propuesta de acuñación de IRIs (bump v0.8.4 del registro) tras el análisis del registro publicado v0.8.3 — sin verbos nuevos; 7 extensiones, 4 campos en `ext/level-decision` y 2–3 tipos de incidente. **Cambio v1.5:** regla de decisión de nivel para el usuario libre sin profesor — el código propone y el propio usuario acepta tras ver la evidencia, con revisor humano obligatorio en saltos de dos niveles, entrada en nivel C o disputa; menores excluidos de la autoaceptación. **Cambio v1.4:** regla principal de gobernanza (R-MED-1) — toda medición pasa por el flujo de medición contra la base completa y ningún otro agente mide por su cuenta. **Cambio v1.3:** doble vía de vocabulario según el tipo de usuario (decisión de la autora), alcance del lector OCR (decide sobre la imagen, nunca sobre el alumno) y regla de medición en toda interacción con comparación nivel real vs declarado. **Cambio v1.2:** tabla de equivalencia con la numeración de la spec del Evaluador v2 (§6.1) y nota sobre la referencia huérfana «N14» de la Cartilla de los 7.
 **Principio rector:** La base define · la IA localiza · el código calcula · el profesor decide · la LRS lo registra.
 **Principio de verificación (Ana Eslava-Graterol):** cotejar cada afirmación con los datos es lo que destapó los fallos de TK CoachAI. Si se hubiera aceptado lo que se decía sin comprobarlo, seguiríamos con cifras falsas. Cotejar no es lentitud: es la auditoría. Para la gobernanza, ninguna afirmación se da por buena sin su prueba (IDs de sentencias en el LRS, extracto de código y fecha desde la que se cumple).
 
@@ -62,7 +62,7 @@
 | N5 · Una función por agente; ningún agente decide | Principio rector + **N10** |
 | N6 · Bloque común obligatorio en cada prompt | ➕ **Ausente en v1.1 — incorporar** (texto literal en la spec §6.2) |
 | N7 · La base se hereda por código | **N4** |
-| N8 · Trazabilidad (actor = el agente que actúa) | **N6** |
+| N8 · Trazabilidad (actor = el agente que actúa) | **N6** + **R-ID** (v1.7: el actor es el alumno; el agente va en `context.instructor`) |
 | N9 · Modelos aprobados y fijos, sin respaldo | **N5** |
 | N10 · Datos mínimos (sin datos personales) | **N9** |
 | N11 · Cambios = versión nueva, con prueba y firmas | **N12** |
@@ -116,6 +116,63 @@
 - ¿Es determinista (misma entrada → misma salida)? → **infraestructura**, no es agente (ASR, OCR, planificador SRS). Se gobierna con puerta de confianza, contrato no-train y sin almacenar la entrada cruda.
 - ¿Es generativo y cabe en una pieza canónica? → **se absorbe** (los 4 generadores → pieza 5; la Pista → pieza 1).
 - ¿No cabe en ninguna? → **examen R-ADM completo o retirada**.
+
+## R-ID — Identificación de los agentes en el registro (v1.7)
+
+**Fundamento (estándar xAPI 1.0.3 publicado por ADL, xAPI-Data):**
+- §2.4.6, propiedad `instructor` del contexto: «Agent (MAY be a Group). Instructor that the Statement relates to, if not included as the Actor of the Statement.»
+- §2.4.2.1: «An Agent MUST be identified by one (1) of the four types of Inverse Functional Identifiers».
+- §2.4.2.4: el objeto `account` exige `homePage` (IRL del sistema) y `name` (identificador único en ese sistema).
+
+**Regla del actor (decisión de la autora, 10 nov; sustituye la decisión 53):**
+- **El actor de toda sentencia de aprendizaje es el alumno.** Aplica a `completed`, `answered`, `attempted`, `mediated` y `adapted`.
+- **El agente de IA que interviene va en `context.instructor`**, con su `account`. Si intervienen dos a la vez (p. ej. el Corrector y el Juez), va un **Group** con los dos.
+- **Las anulaciones (`voided`) llevan como actor la cuenta del sistema**, `tk-coach-engine`. Es un acto de sistema, no de un agente de IA.
+- **La `authority` la pone el LRS** a partir de la clave de servicio. La app no la escribe (N9).
+- **Fundamento de diseño:** la IA no califica. El Evaluador aporta evidencia, el código calcula (N10) y el profesor decide (G-NIVEL-1). Por eso el logro es del alumno y el agente consta como quien intervino.
+
+**Qué recibe identificador de agente (enlace con la clasificación de componentes):**
+- **Solo los componentes generativos del mapa canónico.** Cada función tiene un identificador.
+- **Nunca aparecen en `instructor`:**
+  - la infraestructura (ASR, OCR, planificador SRS);
+  - el código (consolidador, guardián, límite de ritmo);
+  - los componentes fuera del aprendizaje (Teo).
+
+**Forma exacta de los identificadores** (equivalente a la regla de IRIs del 24 sep: «0 verbos ADL en https://», «0 verbos MLLDE en http://», que se mantiene):
+1. Un solo identificador, `account`; nunca `mbox` ni `openid`.
+2. `homePage` exacta: `https://tkcoach.talketika.app`. Con «s», en minúsculas, sin barra final y sin ruta.
+3. `account.name` exacto, tal como está en el registro de identificadores: en minúsculas, con guiones y terminado en `-agent`. La única excepción es la cuenta del sistema, `tk-coach-engine`.
+4. La etiqueta `name` (p. ej. «Capi») no identifica; los controles filtran siempre por `account.name`.
+5. La versión nunca va en el nombre (nada de `capi-agent-v2`): va en `ext/agent-version`.
+6. Un identificador no se renombra ni se reutiliza; el de un agente retirado no se asigna a otro.
+7. La `authority` no la escribe la app: la pone el LRS (`https://tk-coach-prod.lrs.io/keys/<clave>`).
+
+**Detección de salidas de rol** (en el control diario y en la auditoría con el export del LRS):
+- **A1:** un `instructor` que no está en el registro indica un agente no autorizado.
+- **A2:** un agente en un verbo o flujo que no es el suyo indica una salida de rol. Por ejemplo, cualquier agente distinto del Evaluador en un `completed`.
+- **A3:** un agente como actor de una sentencia de aprendizaje.
+- **A4:** una llamada registrada (N8 de la spec) sin sentencia o sin `instructor`.
+
+**Cierre:**
+- 0 cuentas de agente con otra `homePage`;
+- 0 `account.name` fuera del registro;
+- 0 agentes como actor de una sentencia de aprendizaje;
+- 0 sentencias nuevas con `authority` personal.
+
+**Línea de base (export de Veracity, 10 nov, 2.243 sentencias):**
+- `account` como único identificador: 2.243 de 2.243;
+- una sola `homePage`, la correcta: 2.243 de 2.243;
+- 0 sentencias con `context.instructor`;
+- `capi-agent` como actor en 141 `adapted`;
+- `tk-coach-engine` en 36 `voided`;
+- `authority` «Simon» en 2.243 de 2.243.
+
+**Prueba de cumplimiento** (principio de verificación):
+- el ID de una sentencia nueva con `instructor`;
+- el extracto de código;
+- la fecha desde la que se cumple.
+
+Entra en vigor con las firmas de pedagogía e ingeniería (N12).
 
 ## Vocabulario desde imágenes o prompts — doble vía según el tipo de usuario (v1.3)
 
