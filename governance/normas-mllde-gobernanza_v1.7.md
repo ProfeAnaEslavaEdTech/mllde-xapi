@@ -24,8 +24,8 @@
 | **N2 — Puerta única** | Toda emisión a la LRS pasa por el Consolidador (código). Ningún agente escribe a la LRS por su cuenta. |
 | **N3 — Anti-agente-rogue** | El prompt en producción debe coincidir con el aprobado (`prompt-hash`); si difiere, el agente no arranca. |
 | **N4 — Base cerrada** | Un solo bundle de conocimiento (registry v0.8.3 + inventario v0.7.2), montado por código, con `kb-version` y `kb-hash` declarados. Nada de material con copyright en el prompt. |
-| **N5 — Modelos fijos** | Modelo con versión fijada por escrito; contrato no-train verificado; **sin fallback jamás** (lección Gemini, 5–19 oct). |
-| **N6 — Trazabilidad** | `agent-id` + `agent-version` + `measure-model` + `rules-version` en cada statement. Meta: 5 de 5 con rastro propio. |
+| **N5 — Modelos fijos** | Modelo con versión fijada por escrito; contrato no-train verificado; **sin fallback jamás** (lección Gemini, 5–19 oct). El identificador exacto del modelo va en cada sentencia (R-ID). Fundamento legal: ver la nota bajo esta tabla. |
+| **N6 — Trazabilidad** | El agente en `context.instructor`, con su `account` del registro (R-ID, v1.7; antes, `agent-id`), + `agent-version` + `measure-model` (identificador exacto) + `rules-version` en cada statement. Meta: todos los agentes registrados con rastro propio. El registro está en `governance/registro-agentes/`. |
 | **N7 — Flujos que no se cruzan** | Medición (1×/sesión), pedagogía (por turno), actividad (loop). La banda solo nace del flujo de medición. |
 | **N8 — Fail-closed** | Ante la duda, no emite: puerta ASR 0.70, juez no disponible → sin tip, esquema inválido → descarte. |
 | **N9 — PII** | Al modelo solo va UUID + transcripción; nunca nombre, empresa, puesto ni correo. Autoridad LRS = cuenta de servicio, nunca credencial personal. |
@@ -33,6 +33,26 @@
 | **N11 — Incidentes declarados** | Cada agente define sus tipos de incidente con IRI del registry; van a su registro, nunca a KPIs del alumno. |
 | **N12 — Versionado firmado** | Cambio de prompt/modelo/reglas = bump + firma (pedagogía + ingeniería) + entrada en el mapa + fecha desde la que cuenta. |
 | **N13 — Pruebas en CI** | Toda prueba de admisión corre en CI en cada despliegue; si falla, el despliegue se bloquea. |
+
+**Fundamento legal de N5** (desarrollado en la cartilla de agentes, §3.1):
+- **AI Act:**
+  - art. 11 y anexo IV 2(a);
+  - art. 25(4);
+  - art. 53(1)(b) y anexo XII;
+  - arts. 12, 15(1), 15(4) y 19;
+  - modificación sustancial: arts. 3(23) y 43(4);
+  - art. 86.
+
+  Las obligaciones de alto riesgo aplican desde el 2 dic 2027 (Reglamento (UE) 2026/1744).
+- **RGPD** (aplica hoy):
+  - arts. 5(1)(a), (b), (d) y (f), y art. 5(2);
+  - arts. 13(1)(e)–(f);
+  - art. 28(3);
+  - art. 30(1)(d)–(e);
+  - art. 32;
+  - art. 35;
+  - arts. 44–46.
+- **ISO/IEC 42001:** A.6.2.8 y A.10.
 
 > **Recordatorio de un acuerdo previo (N9 · datos personales).** Si el informe tiene que mostrar el nombre del alumno, lo pone **la app al presentarlo, fuera de la IA**: el código toma el texto del modelo y le añade el nombre desde el perfil. Así el nombre aparece en pantalla o en el PDF **sin pasar nunca por el modelo**. Es lo que pide la minimización de datos (RGPD, art. 5(1)(c)).
 

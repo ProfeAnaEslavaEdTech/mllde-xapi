@@ -1,0 +1,220 @@
+{
+  "titulo": "Registro de identificadores de los agentes MLLDE · TK CoachAI",
+  "version": "1.0",
+  "fecha": "2026-11-10",
+  "regla": "R-ID, normas de gobernanza v1.7 (xAPI 1.0.3, §2.4.6): el actor de toda sentencia de aprendizaje es el alumno; el agente que interviene va en context.instructor con este objeto exacto (un Group si son dos).",
+  "registrado_no_es_aprobado": "Un identificador no autoriza a actuar: hace falta la ficha aprobada con dos firmas (N1, N4) y, para los agentes 8–10, la N14. A 10 nov ninguno la tiene.",
+  "homePage": "https://tkcoach.talketika.app",
+  "agentes": [
+    {
+      "numero": 1,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Generador de misiones",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "mission-agent"
+        }
+      },
+      "tipo": "I",
+      "pieza": "5",
+      "fase": "Input",
+      "funcion": "Redacta la misión (escena, papeles y tarea) sobre los descriptores objetivo que le da el código",
+      "aparece_en": "Ninguna sentencia propia hoy; cómo se registra la tarea está pendiente (Q24)",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 2,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Capi",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "capi-agent"
+        }
+      },
+      "tipo": "C",
+      "pieza": "1",
+      "fase": "Process",
+      "funcion": "Role-play: crea ocasiones para los objetivos y hace el recast después del intento",
+      "aparece_en": "adapted (recast, andamiaje), en context.instructor",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 3,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Corrector",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "corrector-agent"
+        }
+      },
+      "tipo": "P",
+      "pieza": "2",
+      "fase": "Process",
+      "funcion": "Propone un tip sobre un error claro del turno del alumno",
+      "aparece_en": "adapted por turno, en un Group con judge-agent",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 4,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Juez del tip",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "judge-agent"
+        }
+      },
+      "tipo": "P",
+      "pieza": "2",
+      "fase": "Process",
+      "funcion": "Aprueba o rechaza el tip del Corrector antes de mostrarlo",
+      "aparece_en": "adapted por turno, en un Group con corrector-agent",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 5,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Evaluador MLLDE",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "evaluator-agent"
+        }
+      },
+      "tipo": "M",
+      "pieza": "3",
+      "fase": "Output",
+      "funcion": "Marca la evidencia de los descriptores (id, estado, turno, cita); el único que mide",
+      "aparece_en": "completed y mediated (el único agente en el flujo de medición)",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 6,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Generador de drills",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "drill-agent"
+        }
+      },
+      "tipo": "P",
+      "pieza": "5",
+      "fase": "Adaptar",
+      "funcion": "Redacta drills sobre el descriptor que le da el código (el i+1)",
+      "aparece_en": "answered, en un Group con drill-judge-agent",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 7,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Generador de tarjetas",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "card-agent"
+        }
+      },
+      "tipo": "P",
+      "pieza": "5",
+      "fase": "Adaptar",
+      "funcion": "Escribe el ejemplo y la función de cada término que le da el código",
+      "aparece_en": "attempted del flujo SRS",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 8,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Verificador de drills",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "drill-judge-agent"
+        }
+      },
+      "tipo": "P",
+      "pieza": "5",
+      "fase": "Adaptar",
+      "funcion": "Aprueba o descarta cada drill del lote antes de mostrarlo",
+      "aparece_en": "answered, en un Group con drill-agent",
+      "estado": "registrado; ficha pendiente de firma; N14 pendiente",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 9,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Generador de mediación",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "mediation-agent"
+        }
+      },
+      "tipo": "I",
+      "pieza": "5",
+      "fase": "Input",
+      "funcion": "Redacta la tarea de mediación sobre el descriptor que le da el código",
+      "aparece_en": "Ninguna sentencia propia hoy (los mediated los emite el Evaluador); rastro de la tarea pendiente (Q24)",
+      "estado": "registrado; ficha pendiente de firma; N14 pendiente",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 10,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Redactor del resumen",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "summary-agent"
+        }
+      },
+      "tipo": "P",
+      "pieza": "4",
+      "fase": "Output (informe)",
+      "funcion": "Redacta el resumen de la sesión a partir de las métricas que le da el código",
+      "aparece_en": "Ninguna sentencia: solo el registro de llamadas (N8)",
+      "estado": "registrado; ficha pendiente de firma; N14 pendiente",
+      "registrado_desde": "2026-11-10"
+    },
+    {
+      "numero": 11,
+      "agent": {
+        "objectType": "Agent",
+        "name": "Teo",
+        "account": {
+          "homePage": "https://tkcoach.talketika.app",
+          "name": "support-agent"
+        }
+      },
+      "tipo": "S + C",
+      "pieza": "fuera del loop",
+      "fase": "Soporte",
+      "funcion": "Responde el soporte por correo; habla con el usuario, fuera del aprendizaje",
+      "aparece_en": "Nunca en una sentencia de aprendizaje: solo el registro de llamadas (N8)",
+      "estado": "registrado; ficha pendiente de firma",
+      "registrado_desde": "2026-11-10"
+    }
+  ],
+  "cuenta_de_sistema": {
+    "agent": {
+      "objectType": "Agent",
+      "name": "TK Coach Engine",
+      "account": {
+        "homePage": "https://tkcoach.talketika.app",
+        "name": "tk-coach-engine"
+      }
+    },
+    "nota": "No es un agente de IA. Es el actor de las anulaciones (voided). Nunca va en context.instructor.",
+    "en_el_lrs_desde": "2026-11-09 (36 voided)"
+  }
+}
