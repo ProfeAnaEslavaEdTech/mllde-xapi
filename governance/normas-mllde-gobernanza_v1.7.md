@@ -34,7 +34,7 @@
 | **N12 — Versionado firmado** | Cambio de prompt/modelo/reglas = bump + firma (pedagogía + ingeniería) + entrada en el mapa + fecha desde la que cuenta. |
 | **N13 — Pruebas en CI** | Toda prueba de admisión corre en CI en cada despliegue; si falla, el despliegue se bloquea. |
 
-**Fundamento legal de N5** (desarrollado en la cartilla de agentes, §3.1):
+**Fundamento legal de N5** (desarrollado en la cartilla de agentes, §3.1). Las citas del AI Act se cotejaron el 11 nov con el texto oficial del DOUE (Reglamento (UE) 2024/1689, versión original, sin los cambios del Reglamento (UE) 2026/1744):
 - **AI Act:**
   - art. 11 y anexo IV 2(a);
   - art. 25(4);

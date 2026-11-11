@@ -202,7 +202,8 @@
       "funcion": "Responde el soporte por correo; habla con el usuario, fuera del aprendizaje",
       "aparece_en": "Nunca en una sentencia de aprendizaje: solo el registro de llamadas (N8)",
       "estado": "registrado; ficha pendiente de firma",
-      "registrado_desde": "2026-11-10"
+      "registrado_desde": "2026-11-10",
+      "base_legal": "AI Act (Reglamento (UE) 2024/1689), art. 50(1), aplicable desde el 2 ago 2026: «Providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system». RGPD: art. 5(1)(c) (minimización; según el inventario A2, Teo recibe el correo de soporte tal cual, con su remitente) y art. 28 (encargo de tratamiento). Lectura mínima por código (Q8)."
     }
   ],
   "cuenta_de_sistema": {
