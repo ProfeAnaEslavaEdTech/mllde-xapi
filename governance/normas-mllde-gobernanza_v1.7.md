@@ -208,7 +208,7 @@ Entra en vigor con las firmas de pedagogía e ingeniería (N12).
 - El lector OCR decide **sobre la imagen, nunca sobre el alumno**: extrae texto y términos del estímulo; no evalúa.
 - **Toda interacción** contrasta la producción del usuario con la base completa — 381 descriptores A1–C2 (gram 115 · voc 96 · spk 100 · med 71) — con `ext/input-channel` declarado.
 - El **nivel real vs declarado** lo computa el código (regla pública del 80 %, umbrales v0.7.2); el Evaluador nunca recibe el nivel declarado (P1, anti-anclaje). Los descriptores que el usuario evidencia con cita literal seleccionan el contenido de la fase Process siguiente (i+1 por código).
-- La decisión de cambiar el nivel exige actor humano (G-NIVEL-1): el profesor en el piloto; **para el usuario libre, la regla del actor decisor está pendiente de definir por la autora** — sin ella, la propuesta queda «pendiente de decisión» y el perfil no cambia (P3/P5).
+- La decisión de cambiar el nivel exige actor humano (G-NIVEL-1): el profesor en el piloto; **para el usuario libre, rige la regla de la sección «Decisión de nivel del usuario libre, sin profesor» (v1.5).** (Hasta el 11 nov esta línea decía, por error, que estaba pendiente de definir.) El OCR es infraestructura: se registra con `ext/input-channel: ocr` y nunca va en `context.instructor` (R-ID).
 
 ## Propuesta de acuñación de IRIs — bump v0.8.4 del registro (v1.6)
 
