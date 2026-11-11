@@ -24,7 +24,7 @@
 | **N2 — Puerta única** | Toda emisión a la LRS pasa por el Consolidador (código). Ningún agente escribe a la LRS por su cuenta. |
 | **N3 — Anti-agente-rogue** | El prompt en producción debe coincidir con el aprobado (`prompt-hash`); si difiere, el agente no arranca. |
 | **N4 — Base cerrada** | Un solo bundle de conocimiento (registry v0.8.3 + inventario v0.7.2), montado por código, con `kb-version` y `kb-hash` declarados. Nada de material con copyright en el prompt. |
-| **N5 — Modelos fijos** | Modelo con versión fijada por escrito; contrato no-train verificado; **sin fallback jamás** (lección Gemini, 5–19 oct). El identificador exacto del modelo va en cada sentencia (R-ID). Fundamento legal: ver la nota bajo esta tabla. |
+| **N5 — Modelos fijos** | Modelo con versión fijada por escrito; contrato no-train verificado; **sin fallback jamás** (lección Gemini, 5–19 oct). El identificador exacto del modelo va en cada sentencia (R-ID). **Aplica a todos los agentes, no solo al que mide** (decisión de la autora, 11 nov), con seguimiento de la tasa de apego por modelo. Fundamento legal: ver la nota bajo esta tabla. |
 | **N6 — Trazabilidad** | El agente en `context.instructor`, con su `account` del registro (R-ID, v1.7; antes, `agent-id`), + `agent-version` + `measure-model` (identificador exacto) + `rules-version` en cada statement. Meta: todos los agentes registrados con rastro propio. El registro está en `governance/registro-agentes/`. |
 | **N7 — Flujos que no se cruzan** | Medición (1×/sesión), pedagogía (por turno), actividad (loop). La banda solo nace del flujo de medición. |
 | **N8 — Fail-closed** | Ante la duda, no emite: puerta ASR 0.70, juez no disponible → sin tip, esquema inválido → descarte. |
