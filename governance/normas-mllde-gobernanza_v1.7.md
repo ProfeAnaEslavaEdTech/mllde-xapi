@@ -206,7 +206,7 @@
 - 0 sentencias con `context.instructor`;
 - `capi-agent` como actor en 141 `adapted`;
 - `tk-coach-engine` en 36 `voided`;
-- `authority` «Simon» en 2.243 de 2.243.
+- `authority` = la clave personal de un miembro del equipo, no la de servicio, en 2.243 de 2.243.
 
 **Prueba de cumplimiento** (principio de verificación):
 - el ID de una sentencia nueva con `instructor`;
