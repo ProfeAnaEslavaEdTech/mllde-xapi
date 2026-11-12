@@ -54,6 +54,14 @@
   - arts. 44–46.
 - **ISO/IEC 42001:** A.6.2.8 y A.10.
 
+> **Qué es el UUID de N9 (12 nov).** UUID son las siglas de *Universally Unique Identifier*, «identificador único universal». Es un código de 32 caracteres hexadecimales en cinco grupos separados por guiones, por ejemplo `7ba714b6-b6b5-4b7f-8cbd-1ca44b43145e`. Se genera de forma que la probabilidad de que se repita es prácticamente nula.
+>
+> **En TK CoachAI** es el identificador seudónimo del alumno: aparece en la LRS como `account.name` del actor, en lugar de su nombre. Al modelo solo van el UUID y la transcripción: así el modelo sabe a qué alumno pertenece una sesión sin saber quién es (sin nombre, empresa, puesto ni correo).
+>
+> **El seudónimo corto de los paneles**, del tipo `TK-7BA714B6`, son los 8 primeros caracteres del UUID en mayúsculas. Comprobado en el export de Veracity del 11 nov: 577 de 577 sentencias con seudónimo.
+>
+> **Seudónimo no es anónimo:** quien tiene la tabla que une el UUID con el perfil puede identificar al alumno. Por eso el UUID sigue siendo un dato personal y se protege como tal.
+
 > **Recordatorio de un acuerdo previo (N9 · datos personales).** Si el informe tiene que mostrar el nombre del alumno, lo pone **la app al presentarlo, fuera de la IA**: el código toma el texto del modelo y le añade el nombre desde el perfil. Así el nombre aparece en pantalla o en el PDF **sin pasar nunca por el modelo**. Es lo que pide la minimización de datos (RGPD, art. 5(1)(c)).
 
 ### N6-bis — Paquete de auditoría semanal en cmi5 (regla de trazabilidad, v1.7)
