@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TK CoachAI · MLLDE</title>
+<meta name="description" content="Explicador visual bilingüe: TK CoachAI es la app de Talketika; MLLDE es el método de diseño y medición que vive dentro, bajo el principio Measure, Not Decide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1E2E; --canvas:#F7F8FC; --surface:#FFFFFF; --line:#E6E8F2;
+    --muted:#5B5F77; --primary:#3B5BD6; --primary-deep:#22307C; --on-primary:#FFFFFF;
+    --accent:#E8A33D; --accent-text:#9A5B00; --rose:#8B3A52; --focus-ring:#3B5BD6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EEF0F8; --canvas:#0F1120; --surface:#171A2B; --line:#2A2D44;
+      --muted:#A6ADC8; --primary:#9DB2FF; --primary-deep:#B9C8F6; --on-primary:#131A44;
+      --accent:#EEC272; --accent-text:#EEC272; --rose:#E0A6B8; --focus-ring:#9DB2FF;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EEF0F8; --canvas:#0F1120; --surface:#171A2B; --line:#2A2D44;
+    --muted:#A6ADC8; --primary:#9DB2FF; --primary-deep:#B9C8F6; --on-primary:#131A44;
+    --accent:#EEC272; --accent-text:#EEC272; --rose:#E0A6B8; --focus-ring:#9DB2FF;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--canvas);color:var(--ink);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px 56px}
+  /* controls */
+  .controls{position:fixed;top:12px;right:12px;display:flex;gap:8px;z-index:60}
+  .ctl{border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.18);color:#fff;font-family:inherit;
+    font-weight:700;font-size:13px;border-radius:999px;padding:7px 12px;cursor:pointer;backdrop-filter:blur(4px);
+    display:inline-flex;align-items:center;gap:6px;min-height:36px}
+  .ctl:hover{background:rgba(0,0,0,.30)}
+  .ctl:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .hero{background:linear-gradient(135deg,#3B5BD6,#E8A33D);color:#fff;border-radius:0 0 22px 22px;
+    padding:46px 20px 30px;text-align:center;margin-bottom:28px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(26px,5.5vw,38px);margin:.3em 0 .2em;line-height:1.1}
+  .hero p{margin:.2em auto 0;max-width:54ch;font-size:15.5px;opacity:.95}
+  h2{font-family:Fraunces,Georgia,serif;color:var(--primary-deep);font-weight:600;font-size:22px;margin:30px 0 14px}
+  .lead{color:var(--muted);max-width:65ch;margin:-6px 0 18px}
+  .nest{border:2px solid var(--primary);border-radius:18px;background:var(--surface);padding:16px 16px 18px;position:relative}
+  .nest>.tag{position:absolute;top:-12px;left:18px;background:var(--primary);color:var(--on-primary);
+    font-weight:700;font-size:12.5px;letter-spacing:.04em;padding:3px 12px;border-radius:999px}
+  .nest .appline{color:var(--muted);font-size:14.5px;margin:8px 2px 16px}
+  .core{border:2px dashed var(--accent);border-radius:14px;background:color-mix(in srgb,var(--accent) 9%,var(--surface));
+    padding:16px 14px 14px;position:relative}
+  .core>.tag{position:absolute;top:-12px;left:16px;background:var(--accent);color:#2a1800;
+    font-weight:700;font-size:12.5px;letter-spacing:.04em;padding:3px 12px;border-radius:999px}
+  .core h3{margin:6px 2px 4px;font-size:16px;color:var(--ink)}
+  .core p{margin:0 2px;color:var(--muted);font-size:14.5px}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin:12px 2px 4px}
+  .pill{border:1px solid var(--line);background:var(--canvas);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;
+    color:inherit;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:border-color .15s,transform .05s,box-shadow .15s}
+  .pill b{color:var(--accent-text)}
+  .pill::after{content:"\2192";color:var(--muted);font-weight:700}
+  .pill:hover{border-color:var(--primary);box-shadow:0 2px 10px rgba(59,91,214,.14)}
+  .pill:active{transform:translateY(1px)}
+  .pill:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+  .pillhint{font-size:12.5px;color:var(--muted);margin:2px 2px 0}
+  .ov{position:fixed;inset:0;background:rgba(10,14,30,.55);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;padding:18px;z-index:70}
+  .ov.open{display:flex}
+  .mcard{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;max-width:560px;width:100%;
+    padding:22px 22px 20px;box-shadow:0 18px 50px rgba(0,0,0,.35);max-height:88vh;overflow:auto}
+  .mcard .mk{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text)}
+  .mcard h3{font-family:Fraunces,Georgia,serif;color:var(--primary-deep);font-size:21px;margin:.2em 0 .5em}
+  .mcard p{font-size:14.5px;margin:0 0 10px}
+  .mcard .ex{background:var(--canvas);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;
+    padding:10px 12px;font-size:13.5px;color:var(--muted);margin:4px 0 14px}
+  .mrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
+  .mnav{display:flex;gap:8px;flex-wrap:wrap}
+  .mbtn{border:1px solid var(--line);background:var(--canvas);color:inherit;font-family:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:7px 13px;cursor:pointer}
+  .mbtn:hover{border-color:var(--primary)}
+  .mbtn.cur{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+  .mclose{border:none;background:var(--primary);color:var(--on-primary);font-family:inherit;font-weight:700;font-size:13.5px;border-radius:10px;padding:9px 16px;cursor:pointer}
+  .mclose:focus-visible,.mbtn:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .card .h{font-weight:700;font-size:15.5px;margin:0 0 4px;color:var(--primary-deep)}
+  .card .s{font-size:13px;color:var(--muted);margin:0 0 8px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+  .card p{margin:0;font-size:14.5px;color:var(--ink)}
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:8px 0 4px}
+  .step{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--primary);border-radius:10px;padding:12px 12px}
+  .step .n{font-size:11.5px;font-weight:700;color:var(--primary);letter-spacing:.08em}
+  .step .t{font-weight:700;font-size:14.5px;margin:3px 0 2px}
+  .step .d{font-size:13px;color:var(--muted)}
+  .step.fire{border-left-color:var(--accent)}
+  .step.fire .n{color:var(--accent-text)}
+  .arrow{align-self:center;color:var(--muted);font-weight:700;font-size:18px}
+  .dash{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+  .db{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .db .ic{font-size:22px}
+  .db .n{font-weight:700;margin:4px 0 2px;font-size:14.5px;color:var(--primary-deep)}
+  .db .d{font-size:12.5px;color:var(--muted)}
+  .note{margin-top:22px;font-size:12.5px;color:var(--muted);text-align:center;border-top:1px solid var(--line);padding-top:14px}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}.dash{grid-template-columns:1fr}.arrow{display:none}}
+</style>
+</head>
+<body>
+  <div class="controls">
+    <button class="ctl" id="langBtn" type="button" aria-label="Switch language / Cambiar idioma">EN</button>
+    <button class="ctl" id="themeBtn" type="button" aria-label="Toggle light/dark"></button>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">UPV · Ana Eslava-Graterol &amp; Ricardo Casañ-Pitarch</div>
+    <h1 data-k="h1"></h1>
+    <p data-k="heroP"></p>
+  </div>
+
+  <div class="wrap">
+    <div class="grid">
+      <div class="card">
+        <div class="s" data-k="c1s"></div>
+        <div class="h">TK CoachAI</div>
+        <p data-k="c1p" data-html="1"></p>
+      </div>
+      <div class="card">
+        <div class="s" data-k="c2s"></div>
+        <div class="h">MLLDE</div>
+        <p data-k="c2p" data-html="1"></p>
+      </div>
+    </div>
+
+    <h2 data-k="h2a"></h2>
+    <p class="lead" data-k="leadA"></p>
+
+    <div class="nest">
+      <span class="tag" data-k="nestTag"></span>
+      <div class="appline" data-k="appline"></div>
+      <div class="core">
+        <span class="tag" data-k="coreTag"></span>
+        <h3 data-k="coreH3"></h3>
+        <p data-k="coreP" data-html="1"></p>
+        <div class="pills">
+          <button class="pill" type="button" data-m="md" data-k="pmd" data-html="1"></button>
+          <button class="pill" type="button" data-m="fw" data-k="pfw" data-html="1"></button>
+          <button class="pill" type="button" data-m="xa" data-k="pxa" data-html="1"></button>
+          <button class="pill" type="button" data-m="ev" data-k="pev" data-html="1"></button>
+        </div>
+        <div class="pillhint" data-k="pillhint"></div>
+      </div>
+    </div>
+
+    <h2 data-k="h2b"></h2>
+    <p class="lead" data-k="leadB"></p>
+    <div class="flow">
+      <div class="step"><div class="n" data-k="s1n"></div><div class="t" data-k="s1t"></div><div class="d" data-k="s1d"></div></div>
+      <div class="arrow">→</div>
+      <div class="step fire"><div class="n" data-k="s2n"></div><div class="t" data-k="s2t"></div><div class="d" data-k="s2d"></div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n" data-k="s3n"></div><div class="t" data-k="s3t"></div><div class="d" data-k="s3d"></div></div>
+    </div>
+
+    <h2 data-k="h2c"></h2>
+    <div class="dash">
+      <div class="db"><div class="n" data-k="d1n"></div><div class="d" data-k="d1d"></div></div>
+      <div class="db"><div class="n" data-k="d2n"></div><div class="d" data-k="d2d"></div></div>
+      <div class="db"><div class="n" data-k="d3n"></div><div class="d" data-k="d3d"></div></div>
+    </div>
+
+    <div class="note" data-k="note" data-html="1"></div>
+  </div>
+
+  <div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="mcard">
+      <div class="mk" id="mKick"></div>
+      <h3 id="mTitle"></h3>
+      <div id="mBody"></div>
+      <div class="ex" id="mEx"></div>
+      <a class="mclose" id="mLink" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;background:var(--accent);color:#2a1800"></a>
+      <div class="mrow"><div class="mnav" id="mNav"></div><button class="mclose" id="mClose" type="button"></button></div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  var REG="https://profeanaeslavaedtech.github.io/mllde-xapi/";
+  var ANCH={md:"#context-ext",fw:"#rubric",xa:"#scales",ev:"#tiers"};
+
+  var T={
+    es:{
+      h1:"TK CoachAI y el MLLDE que vive dentro",
+      heroP:"La app es lo que el alumno ve. El MLLDE es el método de diseño y medición que la hace fiable — invisible, pero es donde está la ciencia.",
+      c1s:"El producto", c2s:"El método",
+      c1p:"Tutor comercial de <b>inglés de negocios por voz</b> (Talketika · desarrollo Orkelia). El alumno conversa, practica y recibe feedback. Es la <b>prueba de concepto</b>.",
+      c2p:"<b>Mobile Language Learning Design Environment</b>: el entorno de diseño (IPO × CLIL) y, sobre todo, su <b>Módulo de Medición</b>. No es una app: es el modelo reutilizable.",
+      h2a:"Cómo encajan",
+      leadA:"El MLLDE no es un añadido: es el núcleo que vive dentro de la app. TK CoachAI es una instancia del MLLDE; el mismo método podría vestir otra app.",
+      nestTag:"TK CoachAI · lo que el alumno usa",
+      appline:"Voz · misiones de negocio · tarjetas (repetición espaciada) · drills · coach Capi · 3 paneles (alumno · profesor · admin)",
+      coreTag:"MLLDE · el método dentro",
+      coreH3:"Módulo de Medición — “Measure, Not Decide”",
+      coreP:"La IA <b>mide</b>: solo devuelve evidencia citada contra descriptores del MCER escritos por personas. El <b>código</b> calcula cada número con reglas publicadas y emite evidencia xAPI auditable. El progreso queda a nombre del alumno y una <b>persona docente valida</b> el nivel fuera de la app. La ayuda nunca puntúa.",
+      pmd:"<b>Measure, Not Decide</b>", pfw:"<b>Cortafuegos</b> de puntuación",
+      pxa:"<b>MCER + xAPI</b> (IDs persistentes)", pev:"<b>Evidencia honesta</b> (tiers · auditable)",
+      pillhint:"Pulsa cada principio para abrir su explicación y el enlace en GitHub ↗",
+      h2b:"Una sola línea: de la voz a la evidencia",
+      leadB:"El mismo turno recorre el sistema y termina como evidencia fiable — sin que la práctica infle la competencia.",
+      s1n:"1 · HABLA", s1t:"Turno de voz", s1d:"El alumno habla en una misión; la transcripción se lee (gate ASR 0,70).",
+      s2n:"2 · MEASURE, NOT DECIDE", s2t:"La IA aporta evidencia", s2d:"Evaluador v2 (en validación; hoy sigue midiendo el v1): descriptor, estado, turno y cita literal, sin notas. El código calcula notas y banda. Drills y tarjetas NO la mueven.",
+      s3n:"3 · EVIDENCIA", s3t:"Banda + xAPI + docente", s3d:"Sentencia anclada a descriptores del MCER, con su nivel de evidencia. El progreso queda a nombre del alumno; el nivel lo valida una persona docente fuera de la app.",
+      h2c:"La misma verdad, tres vistas",
+      d1n:"Alumno", d1d:"Su banda 0–10 por competencia, calculada por el código, y su progreso.",
+      d2n:"Profesor", d2d:"Banda (del LRS), descriptores demostrados con sus citas y perfil por niveles; valida el nivel fuera de la app, con otra evaluación. El esfuerzo va aparte.",
+      d3n:"Admin / RR.HH.", d3d:"Tiempo efectivo e indicadores agregados.",
+      note:"Aportación científica: un <b>patrón de gobernanza de la medición</b> reutilizable para el aprendizaje de lenguas mediado por IA — anclado al MCER, interoperable (xAPI), gobernado (Measure, Not Decide) y honesto (evidencia auditable). No depende de la app que lo probó.<br>MLLDE © 2026 Ana Eslava-Graterol, UPV. Registro de derechos de autor en trámite. · Documento elaborado con asistencia de IA, revisado y aprobado bajo responsabilidad humana (art. 50, Reg. (UE) 2024/1689).",
+      mlink:"Ver en el registro MLLDE xAPI ↗", mclose:"Volver"
+    },
+    en:{
+      h1:"TK CoachAI and the MLLDE inside it",
+      heroP:"The app is what the learner sees. MLLDE is the design-and-measurement method that makes it trustworthy — invisible, but where the science lives.",
+      c1s:"The product", c2s:"The method",
+      c1p:"Commercial <b>business-English voice tutor</b> (Talketika · built by Orkelia). The learner talks, practises and gets feedback. It is the <b>proof of concept</b>.",
+      c2p:"<b>Mobile Language Learning Design Environment</b>: the design environment (IPO × CLIL) and, above all, its <b>Measurement Module</b>. Not an app: the reusable model.",
+      h2a:"How they fit together",
+      leadA:"MLLDE is not an add-on: it is the core that lives inside the app. TK CoachAI is one instance of MLLDE; the same method could power another app.",
+      nestTag:"TK CoachAI · what the learner uses",
+      appline:"Voice · business missions · cards (spaced repetition) · drills · Capi coach · 3 dashboards (learner · teacher · admin)",
+      coreTag:"MLLDE · the method inside",
+      coreH3:"Measurement Module — “Measure, Not Decide”",
+      coreP:"The AI <b>measures</b>: it returns only quoted evidence against human-written CEFR descriptors. <b>Code</b> computes every number with published rules and emits auditable xAPI evidence. Progress is recorded in the learner’s name and a <b>teacher validates</b> the level outside the app. Help never scores.",
+      pmd:"<b>Measure, Not Decide</b>", pfw:"<b>Scoring</b> firewall",
+      pxa:"<b>CEFR + xAPI</b> (persistent IDs)", pev:"<b>Honest evidence</b> (tiers · auditable)",
+      pillhint:"Tap each principle to open its explanation and the GitHub link ↗",
+      h2b:"One line: from voice to evidence",
+      leadB:"The same turn travels the system and ends as trustworthy evidence — without practice inflating competence.",
+      s1n:"1 · SPEAKS", s1t:"Voice turn", s1d:"The learner speaks in a mission; the transcript is read (ASR gate 0.70).",
+      s2n:"2 · MEASURE, NOT DECIDE", s2t:"The AI gives evidence", s2d:"Evaluator v2 (in validation; v1 still measures today): descriptor, status, turn and verbatim quote, no marks. Code computes marks and band. Drills and cards do NOT move it.",
+      s3n:"3 · EVIDENCE", s3t:"Band + xAPI + teacher", s3d:"Statement anchored to CEFR descriptors, with its evidence tier. Progress is the learner’s; a teacher validates the level outside the app.",
+      h2c:"One truth, three views",
+      d1n:"Learner", d1d:"Their 0–10 band per competence, computed by code, and their progress.",
+      d2n:"Teacher", d2d:"Band (from the LRS), demonstrated descriptors with their quotes and a level profile; validates the level outside the app, with another assessment. Effort is shown separately.",
+      d3n:"Admin / HR", d3d:"Effective time and aggregate indicators.",
+      note:"Scientific contribution: a reusable <b>measurement-governance pattern</b> for AI-mediated language learning — CEFR-anchored, interoperable (xAPI), governed (Measure, Not Decide) and honest (auditable evidence). It does not depend on the app that tested it.<br>MLLDE © 2026 Ana Eslava-Graterol, UPV. Copyright registration in progress. · Prepared with AI assistance; reviewed and approved under human responsibility (Art. 50, Reg. (EU) 2024/1689).",
+      mlink:"Open in the MLLDE xAPI registry ↗", mclose:"Back"
+    }
+  };
+
+  var MOD={
+    es:{
+      md:{k:"Principio 1 · Gobernanza",t:"Measure, Not Decide",
+        b:"La IA <b>mide</b>, el código <b>gobierna</b> y una persona <b>valida</b>. Con el Evaluador v2 (en validación; hoy sigue midiendo el v1), la IA revisa la lista completa de descriptores (A1–C2) sin conocer el nivel declarado y devuelve solo evidencia: descriptor, estado (logrado o intentado), turno y cita literal. Sin cita no hay marca. El código comprueba cada cita, calcula las notas y la banda con reglas publicadas y registra el modelo y la versión del prompt. El nivel lo valida una persona docente fuera de la app. No hay un cuarto agente que “arregle” los datos.",
+        ex:"Ejemplo: la IA devuelve en.spk.b1.make-suggestions · logrado · T2 · “I think we should call them today”. El código comprueba que la frase está en ese turno del alumno y calcula la nota. La IA no da ningún número."},
+      fw:{k:"Principio 2 · Integridad",t:"Cortafuegos de puntuación",
+        b:"La banda de competencia deriva <b>solo</b> de la producción oral evidenciada (misiones de role-play + mediación), leída de la transcripción. Corrección, ayuda, drills, tarjetas, rachas y puntos <b>nunca</b> la mueven. Un informe es una consulta sobre statements → el falso positivo es estructuralmente difícil.",
+        ex:"Ejemplo: un drill de gramática al 57% (práctica) y la banda por voz 6,6/10 son constructos distintos — la práctica no toca la banda. (El panel ya muestra la banda, no el %.)"},
+      xa:{k:"Principio 3 · Interoperabilidad",t:"MCER + xAPI (IDs persistentes)",
+        b:"Cada turno se convierte en un <b>statement xAPI</b> anclado a los descriptores del Volumen Complementario del MCER mediante <b>identificadores</b> acuñados bajo w3id.org/mllde (resolución persistente pendiente). El inventario curado (382 descriptores, v0.7.2) da el “qué”; xAPI hace el dato portable; el MCER lo hace significativo. Mediación = 5ª destreza.",
+        ex:"Ejemplo: content-ref = en.spk.b1.handle-complaint → la banda queda anclada a esa escala MCER. Los IRIs y el perfil están en GitHub."},
+      ev:{k:"Principio 4 · Honestidad",t:"Evidencia honesta (tiers · auditable)",
+        b:"Cada medición declara su <b>nivel de evidencia</b> (Tier 1 medible hoy · Tier 2 instrumentado · Tier 3 pendiente). El gate ASR 0,70 retiene audio poco fiable; un 0 nunca sustituye a un valor ausente; cada sentencia de medición (completed) declara el modelo que la midió (measure-model; con el Evaluador v2, también la versión del prompt). Así el registro se <b>auto-audita</b>.",
+        ex:"Prueba en vivo: 10 statements con banda puntuados por un proveedor de respaldo se detectaron y excluyeron — gracias a measure-model. La honestidad cazó el fallo."}
+    },
+    en:{
+      md:{k:"Principle 1 · Governance",t:"Measure, Not Decide",
+        b:"The AI <b>measures</b>, code <b>governs</b> and a person <b>validates</b>. With Evaluator v2 (in validation; v1 still measures today), the AI checks the whole descriptor list (A1–C2) without knowing the declared level and returns only evidence: descriptor, status (evidenced or attempted), turn and verbatim quote. No quote, no mark. Code checks every quote, computes the marks and the band with published rules and records the model and prompt version. A teacher validates the level outside the app. No fourth agent “fixes” the data.",
+        ex:"Example: the AI returns en.spk.b1.make-suggestions · evidenced · T2 · “I think we should call them today”. Code checks that the quote is in that learner turn and computes the mark. The AI gives no number."},
+      fw:{k:"Principle 2 · Integrity",t:"Scoring firewall",
+        b:"The competence band derives <b>only</b> from evidenced oral production (role-play missions + mediation), read from the transcript. Correction, help, drills, cards, streaks and points <b>never</b> move it. A report is a query over statements → false positives are structurally hard.",
+        ex:"Example: a grammar drill at 57% (practice) and the voice band 6.6/10 are different constructs — practice does not touch the band. (The panel now shows the band, not the %.)"},
+      xa:{k:"Principle 3 · Interoperability",t:"CEFR + xAPI (persistent IDs)",
+        b:"Each turn becomes an <b>xAPI statement</b> anchored to the CEFR Companion Volume descriptors through <b>identifiers</b> minted under w3id.org/mllde (persistent resolution pending). The curated inventory (382 descriptors, v0.7.2) gives the “what”; xAPI makes the data portable; the CEFR makes it meaningful. Mediation = 5th skill.",
+        ex:"Example: content-ref = en.spk.b1.handle-complaint → the band is anchored to that CEFR scale. The IRIs and the profile are on GitHub."},
+      ev:{k:"Principle 4 · Honesty",t:"Honest evidence (tiers · auditable)",
+        b:"Each measurement declares its <b>evidence tier</b> (Tier 1 measurable today · Tier 2 instrumented · Tier 3 pending). The ASR 0.70 gate withholds unreliable audio; a 0 never replaces a missing value; each measurement statement (completed) declares the model that measured it (measure-model; with Evaluator v2, also the prompt version). So the record <b>self-audits</b>.",
+        ex:"Live proof: 10 band-carrying statements scored by a fallback provider were detected and excluded — thanks to measure-model. Honesty caught the lapse."}
+    }
+  };
+
+  var SUN='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var MOON='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  var lang="es", order=["md","fw","xa","ev"], curKey=null;
+  var ov=document.getElementById("ov");
+  var ls={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+  function applyLang(L){
+    lang=L; document.documentElement.setAttribute("lang",L);
+    var t=T[L];
+    document.querySelectorAll("[data-k]").forEach(function(el){
+      var v=t[el.getAttribute("data-k")]; if(v==null) return;
+      if(el.getAttribute("data-html")) el.innerHTML=v; else el.textContent=v;
+    });
+    document.getElementById("langBtn").textContent = (L==="es"?"EN":"ES");
+    if(ov.classList.contains("open")&&curKey) renderModal(curKey);
+    ls.set("tkv-lang",L);
+  }
+  function renderModal(key){
+    curKey=key; var d=MOD[lang][key], t=T[lang];
+    document.getElementById("mKick").textContent=d.k;
+    document.getElementById("mTitle").textContent=d.t;
+    document.getElementById("mBody").innerHTML="<p>"+d.b+"</p>";
+    document.getElementById("mEx").textContent=d.ex;
+    var lk=document.getElementById("mLink"); lk.href=REG+(ANCH[key]||""); lk.textContent=t.mlink;
+    document.getElementById("mClose").textContent=t.mclose;
+    var nav=document.getElementById("mNav"); nav.innerHTML="";
+    order.forEach(function(k){
+      var b=document.createElement("button"); b.type="button";
+      b.className="mbtn"+(k===key?" cur":""); b.textContent=MOD[lang][k].t.replace(/ \(.*/,"");
+      b.onclick=function(){renderModal(k);}; nav.appendChild(b);
+    });
+  }
+  function openModal(key){ renderModal(key); ov.classList.add("open"); document.getElementById("mClose").focus(); }
+  function closeModal(){ ov.classList.remove("open"); }
+
+  function effTheme(){ var a=document.documentElement.getAttribute("data-theme");
+    if(a) return a; return window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"; }
+  function applyTheme(mode){ // mode: 'light'|'dark'|null(system)
+    if(mode) document.documentElement.setAttribute("data-theme",mode); else document.documentElement.removeAttribute("data-theme");
+    document.getElementById("themeBtn").innerHTML = (effTheme()==="dark"?SUN:MOON);
+    if(mode) ls.set("tkv-theme",mode); }
+
+  // init
+  var storedLang=ls.get("tkv-lang"); applyLang(storedLang==="en"?"en":"es");
+  var storedTheme=ls.get("tkv-theme"); applyTheme(storedTheme==="light"||storedTheme==="dark"?storedTheme:null);
+
+  document.getElementById("langBtn").addEventListener("click",function(){ applyLang(lang==="es"?"en":"es"); });
+  document.getElementById("themeBtn").addEventListener("click",function(){ applyTheme(effTheme()==="dark"?"light":"dark"); });
+  document.querySelectorAll(".pill[data-m]").forEach(function(p){ p.addEventListener("click",function(){ openModal(p.getAttribute("data-m")); }); });
+  document.getElementById("mClose").addEventListener("click",closeModal);
+  ov.addEventListener("click",function(e){ if(e.target===ov) closeModal(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeModal(); });
+})();
+</script>
+</body>
+</html>
