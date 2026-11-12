@@ -28,7 +28,7 @@
 | **N6 — Trazabilidad** | El agente en `context.instructor`, con su `account` del registro (R-ID, v1.7; antes, `agent-id`), + `agent-version` + `measure-model` (identificador exacto) + `rules-version` en cada statement. Meta: todos los agentes registrados con rastro propio. El registro está en `governance/registro-agentes/`. |
 | **N7 — Flujos que no se cruzan** | Medición (1×/sesión), pedagogía (por turno), actividad (loop). La banda solo nace del flujo de medición. |
 | **N8 — Fail-closed** | Ante la duda, no emite: puerta ASR 0.70, juez no disponible → sin tip, esquema inválido → descarte. |
-| **N9 — PII** | Al modelo solo va UUID + transcripción; nunca nombre, empresa, puesto ni correo. Autoridad LRS = cuenta de servicio, nunca credencial personal. **Los hitos (texto libre del perfil) dejan de enviarse al modelo** (decisión de la autora, 12 nov). |
+| **N9 — PII** | Al modelo solo va UUID + transcripción; nunca nombre, empresa, puesto ni correo. Autoridad LRS = cuenta de servicio, nunca credencial personal. **Los hitos (texto libre del perfil): en revisión** (12 nov), sin decisión final. Propuesta: dejar de enviarlos al modelo. |
 | **N10 — Cero cálculos en LLM** | Ningún agente genera números de competencia: notas (5.2/5.3), banda (fórmula del 26/08), i+1 y nivel propuesto los calcula el código. |
 | **N11 — Incidentes declarados** | Cada agente define sus tipos de incidente con IRI del registry; van a su registro, nunca a KPIs del alumno. |
 | **N12 — Versionado firmado** | Cambio de prompt/modelo/reglas = bump + firma (pedagogía + ingeniería) + entrada en el mapa + fecha desde la que cuenta. |

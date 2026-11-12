@@ -28,7 +28,7 @@
 | **N6 — Traceability** | The agent in `context.instructor`, with its `account` from the registry (R-ID, v1.7; formerly `agent-id`), + `agent-version` + `measure-model` (exact identifier) + `rules-version` in every statement. Goal: every registered agent with its own trace. The registry is in `governance/registro-agentes/`. |
 | **N7 — Flows that never cross** | Measurement (1×/session), pedagogy (per turn), activity (loop). The band arises only from the measurement flow. |
 | **N8 — Fail-closed** | When in doubt, nothing is emitted: ASR gate 0.70, judge unavailable → no tip, invalid schema → discard. |
-| **N9 — PII** | Only the UUID + transcript go to the model; never name, company, job title or email. LRS authority = service account, never a personal credential. **Milestones (free text in the profile) are no longer sent to the model** (author’s decision, 12 Nov). |
+| **N9 — PII** | Only the UUID + transcript go to the model; never name, company, job title or email. LRS authority = service account, never a personal credential. **Milestones (free text in the profile): under review** (12 Nov), no final decision. Proposal: stop sending them to the model. |
 | **N10 — Zero calculations in an LLM** | No agent generates competence numbers: marks (5.2/5.3), band (formula of 26/08), i+1 and proposed level are computed by code. |
 | **N11 — Declared incidents** | Each agent defines its incident types with an IRI from the registry; they go to its log, never to the learner's KPIs. |
 | **N12 — Signed versioning** | A change of prompt/model/rules = version bump + signature (pedagogy + engineering) + entry on the map + the date from which it counts. |
