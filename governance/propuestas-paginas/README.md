@@ -15,7 +15,21 @@ Doce frases cambian (seis en español y sus seis equivalentes en inglés). El re
 
 **Lo que no se cambia y queda pendiente de la autora:** la página nombra a Talketika y a Orkelia (Q21, autorización por escrito).
 
-## 2. `index.html` (registro y perfil v0.8.3) → **no se cambia todavía**
+## 2. `index.html` (registro y perfil v0.8.3)
+
+### 2a. Rediseño sin cambio de contenido → copia en esta carpeta (12 nov)
+
+Aplica la regla de diseño de la autora: ES/EN, modo claro y oscuro, WCAG 2.1 AA, Ocean Ink y el estilo minimalista del portafolio.
+
+**El contenido no cambia.** Comprobado sobre el archivo: 8 de 8 verbos de ADL, 382 de 382 filas del inventario, las 17 anclas originales y las mismas IRIs. La de más es la repetición en inglés de la introducción.
+
+**Cambian el idioma de la interfaz y los títulos.** El contenido normativo (IRIs, definiciones y descriptores) queda en su idioma original en las dos versiones.
+
+**Por revisar antes de pasarla a `main`:**
+- la traducción al inglés de las 15 etiquetas de categoría del inventario;
+- «Etiqueta» como cabecera de la columna «Label» en español.
+
+### 2b. Cambios de contenido previstos para la v0.8.4 → **no se hacen todavía**
 
 `index.html` muestra el vocabulario del perfil v0.8.3. Sus definiciones cambian en la v0.8.4, cuando la autora apruebe las de los verbos (`../verbos-xapi/README.md`) y al terminar la auditoría (Q24). Cambios previstos:
 
