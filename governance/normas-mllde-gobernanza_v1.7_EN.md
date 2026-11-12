@@ -126,6 +126,11 @@
 | Setting | Training with a responsible teacher | Outside official education settings |
 
 - **RULE:** the app PROPOSES a measure with a public rule, against the criteria set in the app: the highest level with **≥80% of descriptors evidenced with a verbatim quote** (v0.7.2 thresholds: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). **The AI does not decide:** it does not assess the evidence by its own judgement or by what seems right to it. It compares real data from different sources, the learner's evidence and the descriptors of the base: the AI locates the evidence and code counts and computes the band. **`progressed` is the learner's mark of progress in the app, not the certification of the level:** that is given, where appropriate, by an external validation.
+- **Level verbs (Ana Eslava-Graterol, 11–12 Nov):**
+  - **`progressed`:** linear, non-final progress within the learner's level package of descriptors. It is emitted when the learner shows more descriptors than before and carries how many out of how many. It never goes from the declared level to the same level.
+  - **Level `passed`:** the learner reaches the public 80% rule (12 Nov).
+  - **Level `completed`:** the learner has worked all the objectives of the level (12 Nov). The mission `completed` is still the close of each session.
+  - The 8 `progressed` from a level to the same level now in the LRS are reviewed with the developer (12 Nov).
 - **P1:** no agent receives the learner's declared level (anti-anchoring).
 - **P2:** no model returns levels or marks (a `level`/`grade` field invalidates the whole response).
 - **P3:** the proposal is never written into the profile; it is shown as "pending decision".

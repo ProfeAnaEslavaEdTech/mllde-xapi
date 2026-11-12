@@ -126,6 +126,11 @@
 | Entorno | Formación con profesor responsable | Fuera de los entornos educativos oficiales |
 
 - **REGLA:** la app PROPONE una medida con una regla pública, contra los criterios fijados en la app: el nivel más alto con **≥80% de descriptores evidenciados con cita literal** (umbrales v0.7.2: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). **La IA no decide:** no evalúa la evidencia con su propio criterio ni con lo que le parece. Compara datos reales de distintas fuentes, la evidencia del alumno y los descriptores de la base: la IA localiza la evidencia y el código cuenta y calcula la banda. **El `progressed` es la marca de progreso del alumno en la app, no la acreditación del nivel:** esa la da, cuando corresponde, una validación externa.
+- **Verbos del nivel (Ana Eslava-Graterol, 11–12 nov):**
+  - **`progressed`:** progreso lineal y no final dentro del paquete de descriptores del nivel del alumno. Se emite cuando demuestra más descriptores que antes y lleva cuántos de cuántos. Nunca va del nivel declarado al mismo nivel.
+  - **`passed` de nivel:** el alumno alcanza la regla pública del 80 % (12 nov).
+  - **`completed` de nivel:** el alumno ha trabajado todos los objetivos del nivel (12 nov). El `completed` de misión sigue siendo el cierre de cada sesión.
+  - Los 8 `progressed` del nivel al mismo nivel que hay hoy en la LRS se revisan con el desarrollador (12 nov).
 - **P1:** ningún agente recibe el nivel declarado del alumno (anti-anclaje).
 - **P2:** ningún modelo devuelve niveles ni notas (un campo `level`/`grade` invalida la respuesta entera).
 - **P3:** la propuesta nunca se escribe en el perfil; se muestra como «pendiente de decisión».

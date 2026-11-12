@@ -74,7 +74,14 @@ Reglas que aplican:
 | adapted | **La ruta o la tarea se adaptó para el alumno.** Actor = el alumno; el agente que adapta va en `context.instructor` (R-ID). El «advance» que decide el código va sin `instructor` y con `rules-version` | Misión |
 | voided | Sin cambios. Actor = `tk-coach-engine` | La sentencia anulada |
 
-## 4. Lo que hay que decidir el 12 nov
+## 4. Decisiones del 12 nov
+
+1. **El 80 %: decidido.** `passed` de nivel cuando el alumno alcanza la regla pública del 80 %; `completed` de nivel cuando ha trabajado todos los objetivos del nivel. Así lo hace cmi5. Está en las normas, G-NIVEL-1.
+2. **Los 8 `progressed` «B1 → B1»: se revisan con el desarrollador.**
+3. **La prueba T-NIVEL-1 (b):** pendiente.
+4. **Las definiciones del §3:** pendientes de aprobar, salvo las de `progressed`, `passed` y `completed` de nivel, que ya están en las normas.
+
+## 4-bis. Lo que había que decidir (11 nov)
 
 1. **El 80 %:**
    - ¿es `passed` (ADL: superar un umbral fijado) o `completed` (ADL: terminar con normalidad)?
