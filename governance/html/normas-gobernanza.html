@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Normas de gobernanza MLLDE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: barra fija como el hub del portafolio, cabecera centrada, índice lateral en pantallas anchas. Ocean Ink · AE Evolution. */
+:root {
+  --fd:'Fraunces',Georgia,'Times New Roman',serif; --fb:'Inter',-apple-system,'Segoe UI',Roboto,Arial,sans-serif; --fm:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --primary:#3B5BD6; --primary-deep:#293B83; --accent-text:#9A5B00; --berry:#8F3B59;
+  --ink:#1C1E2E; --muted:#5B5F77; --canvas:#F7F8FC; --surface:#FFFFFF; --line:#E6E8F2;
+  --bar:#293B83; --bar-sub:#A9B8F5; --chip:#ECEFFE; --chip-text:#293B83; --focus:#9A5B00;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ink:#EEF0FC; --muted:#A3ABD0; --canvas:#0F1120; --surface:#20243A; --line:#2F3556;
+  --primary:#A9B8F5; --primary-deep:#C6D2FB; --accent-text:#F3B861; --berry:#E0A6B8;
+  --bar:#0F1120; --bar-sub:#A9B8F5; --chip:#1E2240; --chip-text:#C6CFFA; --focus:#F3B861; color-scheme:dark; } }
+:root[data-theme="dark"] {
+  --ink:#EEF0FC; --muted:#A3ABD0; --canvas:#0F1120; --surface:#20243A; --line:#2F3556;
+  --primary:#A9B8F5; --primary-deep:#C6D2FB; --accent-text:#F3B861; --berry:#E0A6B8;
+  --bar:#0F1120; --bar-sub:#A9B8F5; --chip:#1E2240; --chip-text:#C6CFFA; --focus:#F3B861; color-scheme:dark; }
+:root[data-lang="en"] .lang-es, :root:not([data-lang="en"]) .lang-en { display:none !important; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:var(--fb); background:var(--canvas); color:var(--ink); line-height:1.6; font-size:16px; -webkit-font-smoothing:antialiased; }
+a { color:var(--primary); text-underline-offset:2px; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--focus); outline-offset:2px; border-radius:6px; }
+code { font-family:var(--fm); font-size:.86em; background:var(--chip); color:var(--chip-text); padding:.05em .35em; border-radius:4px; overflow-wrap:anywhere; }
+.wrap { max-width:1100px; margin:0 auto; padding-left:max(20px,env(safe-area-inset-left,0px)); padding-right:max(20px,env(safe-area-inset-right,0px)); }
+body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:60; background:var(--bar); }
+.bar { background:var(--bar); color:#FFFFFF; position:sticky; top:env(safe-area-inset-top,0px); z-index:50; }
+.bar .wrap { display:flex; align-items:center; gap:10px; min-height:56px; flex-wrap:wrap; padding-block:6px; }
+.brand { font-family:var(--fd); font-weight:700; font-size:16px; line-height:1.15; }
+.brand small { display:block; font:600 9.5px/1.3 var(--fb); letter-spacing:.14em; text-transform:uppercase; color:var(--bar-sub); margin-top:2px; }
+.spacer { flex:1; }
+.bar button { font:700 12.5px var(--fb); color:#FFFFFF; background:rgba(255,255,255,.16); border:1.5px solid rgba(255,255,255,.55); border-radius:999px; padding:8px 14px; cursor:pointer; min-height:44px; min-width:44px; }
+.bar button:hover { background:rgba(255,255,255,.28); }
+.head { text-align:center; padding-block:34px 8px; }
+.head h1 { font-family:var(--fd); font-weight:700; color:var(--primary-deep); font-size:clamp(24px,4vw,34px); line-height:1.2; margin:0; text-wrap:balance; }
+.head .sub { color:var(--muted); max-width:62ch; margin:10px auto 0; }
+.head .principle { font-family:var(--fd); font-style:italic; color:var(--muted); margin:12px auto 0; font-size:clamp(15px,2.4vw,17px); }
+.chips { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:18px 0 0; padding:0; list-style:none; }
+.chips li { background:var(--chip); color:var(--chip-text); border-radius:999px; padding:6px 12px; font-size:13px; font-weight:600; }
+.note { max-width:72ch; margin:18px auto 0; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--primary); border-radius:10px; padding:12px 16px; font-size:14.5px; }
+.layout { display:grid; grid-template-columns:1fr; gap:32px; padding-block:28px 56px; }
+@media (min-width:960px) { .layout { grid-template-columns:230px minmax(0,1fr); } nav.toc { position:sticky; top:calc(env(safe-area-inset-top,0px) + 72px); align-self:start; max-height:calc(100vh - 88px); overflow:auto; } }
+nav.toc { font-size:14px; min-width:0; }
+nav.toc p { font:700 10px var(--fb); letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin:0 0 6px; }
+nav.toc ol { list-style:none; margin:0 0 18px; padding:0; }
+nav.toc a { display:block; padding:6px 8px; border-radius:6px; color:var(--ink); text-decoration:none; }
+nav.toc a:hover { background:var(--chip); }
+main { min-width:0; }
+section { margin-bottom:48px; }
+.sec { font-family:var(--fd); color:var(--primary-deep); font-size:24px; line-height:1.25; margin:0 0 4px; }
+.lead { color:var(--muted); margin:0 0 18px; max-width:68ch; }
+ol.tl { list-style:none; margin:0; padding:0; border-left:2px solid var(--line); }
+.ev { display:grid; grid-template-columns:84px minmax(0,1fr); gap:14px; padding:0 0 18px 16px; position:relative; }
+.ev::before { content:""; position:absolute; left:-6px; top:7px; width:10px; height:10px; border-radius:50%; background:var(--canvas); border:2px solid var(--primary); }
+.ev-date b { display:block; color:var(--primary-deep); font-variant-numeric:tabular-nums; }
+.ev-date small { color:var(--muted); font-size:12px; }
+.ev-body p { margin:0 0 4px; }
+.ev-body dl { margin:0; font-size:13.5px; color:var(--muted); display:grid; gap:2px; }
+.ev-body dl div { display:grid; grid-template-columns:76px minmax(0,1fr); gap:8px; }
+.ev-body dt { font-weight:600; } .ev-body dd { margin:0; min-width:0; }
+@media (max-width:520px) { .ev { grid-template-columns:1fr; gap:2px; } }
+.tw { overflow-x:auto; margin:14px 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; }
+table { border-collapse:collapse; width:100%; font-size:14.5px; }
+th, td { text-align:left; vertical-align:top; padding:10px 12px; border-bottom:1px solid var(--line); }
+thead th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:var(--chip); }
+tbody tr:last-child > * { border-bottom:0; }
+tbody th { font-weight:600; color:var(--primary-deep); }
+.st { display:inline-flex; gap:6px; align-items:center; font-weight:700; font-size:13.5px; white-space:nowrap; }
+.st-ok, .st-fixed { color:var(--berry); } .st-part { color:var(--primary); } .st-open { color:var(--accent-text); }
+.sum { display:flex; flex-wrap:wrap; gap:6px 18px; margin:0 0 4px; }
+.norms { max-width:76ch; }
+.norms h2 { font-family:var(--fd); color:var(--primary-deep); font-size:20px; line-height:1.3; margin:32px 0 8px; padding-top:14px; border-top:1px solid var(--line); scroll-margin-top:84px; }
+.norms h3 { font-size:16.5px; color:var(--primary-deep); margin:22px 0 6px; }
+.norms p, .norms li { max-width:72ch; }
+.norms blockquote { margin:14px 0; padding:10px 16px; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--primary); border-radius:0 10px 10px 0; }
+.norms blockquote p { margin:6px 0; }
+@media (max-width:640px) {
+  .tw { border:0; background:none; overflow:visible; }
+  .tw table, .tw tbody, .tw tr, .tw th, .tw td { display:block; width:auto; }
+  .tw thead { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  .tw tr { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin:0 0 10px; }
+  .tw th, .tw td { border:0; padding:3px 0; }
+  .tw [data-label]:not([data-label=""])::before { content:attr(data-label); display:block; font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+}
+footer { border-top:1px solid var(--line); color:var(--muted); font-size:13.5px; }
+footer .wrap { padding-block:18px 28px; }
+.ext { font-size:.82em; }
+</style>
+<div class="bar"><div class="wrap">
+  <div class="brand">MLLDE<small><span class="lang-es" lang="es">Gobernanza de IA · TK CoachAI</span><span class="lang-en" lang="en">AI governance · TK CoachAI</span></small></div>
+  <div class="spacer"></div>
+  <button id="langBtn" type="button" aria-label="Switch language / Cambiar idioma">EN</button>
+  <button id="themeBtn" type="button" aria-label="Toggle theme / Cambiar tema"><span class="lang-es" lang="es">Oscuro</span><span class="lang-en" lang="en">Dark</span></button>
+</div></div>
+<header class="head"><div class="wrap">
+  <h1><span class="lang-es" lang="es">Normas de gobernanza MLLDE</span><span class="lang-en" lang="en">MLLDE governance norms</span></h1>
+  <p class="sub"><span class="lang-es" lang="es">Las reglas que siguen todos los agentes de IA de MLLDE y de sus apps. Con la historia de cada cambio y lo que dicen los datos.</span><span class="lang-en" lang="en">The rules that every AI agent of MLLDE and its apps follows. With the history of each change and what the data show.</span></p>
+  <p class="principle"><span class="lang-es" lang="es">La base define · la IA localiza · el código calcula · el profesor valida · el LRS lo registra</span><span class="lang-en" lang="en">The base defines · the AI locates · the code computes · the teacher validates · the LRS records it</span></p>
+  <ul class="chips">
+    <li><span class="lang-es" lang="es">Versión 1.7</span><span class="lang-en" lang="en">Version 1.7</span></li>
+    <li><span class="lang-es" lang="es">Actualizada el 12 nov 2026</span><span class="lang-en" lang="en">Updated 12 Nov 2026</span></li>
+    <li><span class="lang-es" lang="es">Propuesta sin firmar</span><span class="lang-en" lang="en">Unsigned proposal</span></li>
+    <li><span class="lang-es" lang="es">En vigor con dos firmas (N12)</span><span class="lang-en" lang="en">In force with two signatures (N12)</span></li>
+  </ul>
+  <p class="note"><span class="lang-es" lang="es"><strong>Principio de verificación.</strong> Nada se da por bueno sin su prueba: los IDs de las sentencias en el LRS, el extracto del código y la fecha. Esta página se genera desde el repositorio; último cambio: <code>bd1aaf0</code>. <a href="https://github.com/ProfeAnaEslavaEdTech/mllde-xapi/tree/claude/normas-gobernanza-v1.6/governance" target="_blank" rel="noopener">Ver la fuente en GitHub</a> <span class="ext">(abre en pestaña nueva)</span>.</span><span class="lang-en" lang="en"><strong>Verification principle.</strong> Nothing is accepted without its proof: the statement IDs in the LRS, the code excerpt and the date. This page is built from the repository; last change: <code>bd1aaf0</code>. <a href="https://github.com/ProfeAnaEslavaEdTech/mllde-xapi/tree/claude/normas-gobernanza-v1.6/governance" target="_blank" rel="noopener">See the source on GitHub</a> <span class="ext">(opens in a new tab)</span>.</span></p>
+</div></header>
+<div class="wrap layout">
+<nav class="toc" aria-label="Índice / Contents">
+  <p><span class="lang-es" lang="es">En esta página</span><span class="lang-en" lang="en">On this page</span></p>
+  <ol><li><a href="#cronologia"><span class="lang-es" lang="es">Cronología</span><span class="lang-en" lang="en">Timeline</span></a></li><li><a href="#auditoria"><span class="lang-es" lang="es">Auditoría</span><span class="lang-en" lang="en">Audit</span></a></li><li><a href="#normas"><span class="lang-es" lang="es">Las normas</span><span class="lang-en" lang="en">The norms</span></a></li></ol>
+  <p><span class="lang-es" lang="es">Normas</span><span class="lang-en" lang="en">Norms</span></p>
+  <ol class="lang-es" lang="es"><li><a href="#es-r-med-1-regla-principal-toda-medicion-pasa-p">R-MED-1 — Regla principal: toda medición pasa por el flujo de medición</a></li><li><a href="#es-n-normas-estructurales-n1-n13-extracto-opera">N — Normas estructurales (N1–N13, extracto operativo)</a></li><li><a href="#es-g-nivel-1-el-nivel-la-app-propone-nunca-gene">G-NIVEL-1 — El nivel: la app propone, nunca genera el nivel</a></li><li><a href="#es-decision-de-nivel-en-b2c-el-usuario-libre-si">Decisión de nivel en B2C: el usuario libre, sin profesor (v1.5)</a></li><li><a href="#es-t-nivel-1-test-automatico-en-cada-despliegue">T-NIVEL-1 — Test automático en cada despliegue</a></li><li><a href="#es-r-adm-admision-de-un-agente-nuevo-las-5-regl">R-ADM — Admisión de un agente nuevo (las 5 reglas)</a></li><li><a href="#es-clasificacion-de-componentes-agente-vs-infra">Clasificación de componentes (agente vs. infraestructura)</a></li><li><a href="#es-r-id-identificacion-de-los-agentes-en-el-reg">R-ID — Identificación de los agentes en el registro (v1.7)</a></li><li><a href="#es-vocabulario-desde-imagenes-o-prompts-doble-v">Vocabulario desde imágenes o prompts — doble vía según el tipo de usuario (v1.3)</a></li><li><a href="#es-alcance-del-lector-ocr-y-medicion-en-toda-in">Alcance del lector OCR y medición en toda interacción (v1.3)</a></li><li><a href="#es-propuesta-de-acunacion-de-iris-bump-v0-8-4-d">Propuesta de acuñación de IRIs — bump v0.8.4 del registro (v1.6)</a></li><li><a href="#es-el-guardian-regla-especifica">El guardián (regla específica)</a></li></ol><ol class="lang-en" lang="en"><li><a href="#en-r-med-1-main-rule-every-measurement-goes-thr">R-MED-1 — Main rule: every measurement goes through the measurement flow</a></li><li><a href="#en-n-structural-norms-n1-n13-operational-extrac">N — Structural norms (N1–N13, operational extract)</a></li><li><a href="#en-g-nivel-1-the-level-the-app-proposes-it-neve">G-NIVEL-1 — The level: the app proposes, it never generates the level</a></li><li><a href="#en-level-decision-in-b2c-the-free-user-without-">Level decision in B2C: the free user, without a teacher (v1.5)</a></li><li><a href="#en-t-nivel-1-automatic-test-on-every-deployment">T-NIVEL-1 — Automatic test on every deployment</a></li><li><a href="#en-r-adm-admission-of-a-new-agent-the-5-rules">R-ADM — Admission of a new agent (the 5 rules)</a></li><li><a href="#en-classification-of-components-agent-vs-infras">Classification of components (agent vs infrastructure)</a></li><li><a href="#en-r-id-identification-of-agents-in-the-record-">R-ID — Identification of agents in the record (v1.7)</a></li><li><a href="#en-vocabulary-from-images-or-prompts-two-tracks">Vocabulary from images or prompts — two tracks by user type (v1.3)</a></li><li><a href="#en-scope-of-the-ocr-reader-and-measurement-in-e">Scope of the OCR reader and measurement in every interaction (v1.3)</a></li><li><a href="#en-proposal-to-mint-iris-registry-bump-v0-8-4-v">Proposal to mint IRIs — registry bump v0.8.4 (v1.6)</a></li><li><a href="#en-the-guardian-specific-rule">The guardian (specific rule)</a></li></ol>
+</nav>
+<main>
+<section id="cronologia" aria-labelledby="h-crono">
+  <h2 class="sec" id="h-crono"><span class="lang-es" lang="es">Cronología</span><span class="lang-en" lang="en">Timeline</span></h2>
+  <p class="lead"><span class="lang-es" lang="es">Cada cambio con su fecha, quién lo pidió y su prueba. Primero, el más reciente.</span><span class="lang-en" lang="en">Each change with its date, who asked for it and its proof. Most recent first.</span></p>
+  <ol class="tl"><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">12 nov</b><b class="lang-en" lang="en">12 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Versión en inglés de las normas. El principio dice «el profesor valida». 381 descriptores medibles desde texto (inventario de 382).</span><span class="lang-en" lang="en">English version of the norms. The principle reads “the teacher validates”. 381 descriptors measurable from text (inventory of 382).</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Petición de la autora</span><span class="lang-en" lang="en">Author’s request</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>61e948f</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">12 nov</b><b class="lang-en" lang="en">12 Nov</b><small>—</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Propuestas para las páginas publicadas: el Evaluador v2 no está en producción; el profesor valida fuera de la app. La rama principal no se toca.</span><span class="lang-en" lang="en">Proposals for the published pages: Evaluator v2 is not in production; the teacher validates outside the app. The main branch is untouched.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Petición de la autora</span><span class="lang-en" lang="en">Author’s request</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">LRS: la nota es la de la IA en 127 de 127 cierres</span><span class="lang-en" lang="en">LRS: the mark is the AI’s in 127 of 127 closings</span></dd></div><div><dt>Commit</dt><dd><code>6cd9041</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">12 nov</b><b class="lang-en" lang="en">12 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">La clave personal del LRS se nombra sin su titular.</span><span class="lang-en" lang="en">The personal LRS key is named without its holder.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Corrección</span><span class="lang-en" lang="en">Correction</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>7bd138e</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">12 nov</b><b class="lang-en" lang="en">12 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">N9: qué es el UUID y cómo se forma el seudónimo de los paneles.</span><span class="lang-en" lang="en">N9: what the UUID is and how the dashboard pseudonym is formed.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Petición de la autora</span><span class="lang-en" lang="en">Author’s request</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">LRS: el seudónimo coincide con el UUID en 577 de 577 sentencias</span><span class="lang-en" lang="en">LRS: the pseudonym matches the UUID in 577 of 577 statements</span></dd></div><div><dt>Commit</dt><dd><code>1ddbb45</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">11 nov</b><b class="lang-en" lang="en">11 Nov</b><small>—</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Verbos: definiciones oficiales de ADL y comparación con el uso real (borrador).</span><span class="lang-en" lang="en">Verbs: official ADL definitions compared with real use (draft).</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Petición de la autora</span><span class="lang-en" lang="en">Author’s request</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">Perfiles oficiales de ADL, descargados el 11 nov</span><span class="lang-en" lang="en">Official ADL profiles, downloaded on 11 Nov</span></dd></div><div><dt>Commit</dt><dd><code>01b36ff</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">11 nov</b><b class="lang-en" lang="en">11 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">G-NIVEL-1: dos modalidades, B2B y B2C. El progressed lleva siempre al alumno como actor; el profesor valida fuera de la app; la IA no decide. El test de nivel se desactiva.</span><span class="lang-en" lang="en">G-NIVEL-1: two modes, B2B and B2C. progressed always has the learner as actor; the teacher validates outside the app; the AI does not decide. The level test is disabled.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora, tabla confirmada</span><span class="lang-en" lang="en">Author’s decision, table confirmed</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">LRS: 8 de 8 progressed vivos ya con el alumno como actor</span><span class="lang-en" lang="en">LRS: 8 of 8 live progressed already have the learner as actor</span></dd></div><div><dt>Commit</dt><dd><code>a469fa8 · b96b6ad · db5fd04</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">11 nov</b><b class="lang-en" lang="en">11 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">La sección del OCR remite a la regla del usuario libre y a R-ID.</span><span class="lang-en" lang="en">The OCR section points to the free-user rule and to R-ID.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Corrección</span><span class="lang-en" lang="en">Correction</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>328e961</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">11 nov</b><b class="lang-en" lang="en">11 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">N5 vale para todos los agentes: modelo exacto y tasa de apego por modelo.</span><span class="lang-en" lang="en">N5 applies to every agent: exact model and adherence rate per model.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora</span><span class="lang-en" lang="en">Author’s decision</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>70d318e</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">11 nov</b><b class="lang-en" lang="en">11 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Base legal del agente de soporte (AI Act, art. 50(1)). Citas del AI Act cotejadas con el Diario Oficial.</span><span class="lang-en" lang="en">Legal basis of the support agent (AI Act, art. 50(1)). AI Act citations checked against the Official Journal.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Verificación</span><span class="lang-en" lang="en">Verification</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">Reglamento (UE) 2024/1689, texto del DOUE</span><span class="lang-en" lang="en">Regulation (EU) 2024/1689, Official Journal text</span></dd></div><div><dt>Commit</dt><dd><code>1ca31d4</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">11 nov</b><b class="lang-en" lang="en">11 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Registro de identificadores: 11 agentes y la cuenta del sistema. Base legal de N5.</span><span class="lang-en" lang="en">Identifier registry: 11 agents and the system account. Legal basis of N5.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora</span><span class="lang-en" lang="en">Author’s decision</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>f6c8a22</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">El agente de soporte (Teo) queda declarado en el registro.</span><span class="lang-en" lang="en">The support agent (Teo) is declared in the registry.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora</span><span class="lang-en" lang="en">Author’s decision</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>002eaa9</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Invariancia del rol: ningún agente decide. La temperatura deja de ser condición.</span><span class="lang-en" lang="en">Role invariance: no agent decides. Temperature is no longer a condition.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora</span><span class="lang-en" lang="en">Author’s decision</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">Página de deprecaciones de la API de Anthropic, verificada</span><span class="lang-en" lang="en">Anthropic API deprecations page, verified</span></dd></div><div><dt>Commit</dt><dd><code>d2738d9</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">R-ID: el actor es el alumno; el agente que interviene va en context.instructor, con un identificador exacto.</span><span class="lang-en" lang="en">R-ID: the actor is the learner; the agent that intervenes goes in context.instructor, with an exact identifier.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora</span><span class="lang-en" lang="en">Author’s decision</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">LRS: 0 sentencias con context.instructor; 141 con un agente como actor. xAPI 1.0.3, §2.4.6</span><span class="lang-en" lang="en">LRS: 0 statements with context.instructor; 141 with an agent as actor. xAPI 1.0.3, §2.4.6</span></dd></div><div><dt>Commit</dt><dd><code>807dbfd</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Principio de verificación: ninguna afirmación sin su prueba.</span><span class="lang-en" lang="en">Verification principle: no claim without its proof.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora</span><span class="lang-en" lang="en">Author’s decision</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>e038518</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Corrección: la N14 (necesidad demostrada) existe desde el 8 nov.</span><span class="lang-en" lang="en">Correction: N14 (demonstrated need) exists since 8 Nov.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Corrección</span><span class="lang-en" lang="en">Correction</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>0f40010</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">N9: el nombre del alumno lo pone la app, nunca el modelo.</span><span class="lang-en" lang="en">N9: the app adds the learner’s name, never the model.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Acuerdo previo</span><span class="lang-en" lang="en">Prior agreement</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>12c4e5f</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.7</small></div><div class="ev-body"><p><span class="lang-es" lang="es">N6-bis: cada semana, un paquete cmi5 para auditar lo que emite la app.</span><span class="lang-en" lang="en">N6-bis: every week, a cmi5 package to audit what the app emits.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Decisión de la autora</span><span class="lang-en" lang="en">Author’s decision</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>0443825</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">10 nov</b><b class="lang-en" lang="en">10 Nov</b><small>v1.6</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Las normas entran en el repositorio, en una rama de trabajo.</span><span class="lang-en" lang="en">The norms enter the repository, on a working branch.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">—</span><span class="lang-en" lang="en">—</span></dd></div><div><dt>Commit</dt><dd><code>cd4bfda</code></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">9 nov</b><b class="lang-en" lang="en">9 Nov</b><small>v1.2–v1.6</small></div><div class="ev-body"><p><span class="lang-es" lang="es">El nivel lo propone la IA (G-NIVEL-1), admisión de agentes (R-ADM), tipos de componentes, dos vías de vocabulario, nivel del usuario libre y propuesta de IRIs v0.8.4.</span><span class="lang-en" lang="en">The AI proposes the level (G-NIVEL-1), agent admission (R-ADM), component types, two vocabulary tracks, free-user level and v0.8.4 IRI proposal.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Análisis y reunión del 9 nov</span><span class="lang-en" lang="en">Analysis and meeting of 9 Nov</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">Sitio de gobernanza (sustituido el 11 nov)</span><span class="lang-en" lang="en">Governance site (replaced on 11 Nov)</span></dd></div></dl></div></li><li class="ev"><div class="ev-date"><b class="lang-es" lang="es">8 nov</b><b class="lang-en" lang="en">8 Nov</b><small>v1.1</small></div><div class="ev-body"><p><span class="lang-es" lang="es">Primer paquete: la regla principal R-MED-1 y las normas N1–N13.</span><span class="lang-en" lang="en">First package: main rule R-MED-1 and norms N1–N13.</span></p><dl><div><dt><span class="lang-es" lang="es">Origen</span><span class="lang-en" lang="en">Origin</span></dt><dd><span class="lang-es" lang="es">Auditoría del 8 nov</span><span class="lang-en" lang="en">Audit of 8 Nov</span></dd></div><div><dt><span class="lang-es" lang="es">Evidencia</span><span class="lang-en" lang="en">Evidence</span></dt><dd><span class="lang-es" lang="es">Sitio de gobernanza (sustituido)</span><span class="lang-en" lang="en">Governance site (replaced)</span></dd></div></dl></div></li></ol>
+</section>
+<section id="auditoria" aria-labelledby="h-aud">
+  <h2 class="sec" id="h-aud"><span class="lang-es" lang="es">Auditoría</span><span class="lang-en" lang="en">Audit</span></h2>
+  <p class="lead"><span class="lang-es" lang="es">Cómo se cumplen hoy las normas en TK CoachAI, comprobado en un export independiente del LRS (Veracity, 11 nov 2026, 2.244 sentencias). Un punto solo pasa a «corregido» cuando los datos muestran que ya no ocurre.</span><span class="lang-en" lang="en">How TK CoachAI meets the norms today, checked on an independent LRS export (Veracity, 11 Nov 2026, 2,244 statements). A point is “fixed” only when the data show it no longer happens.</span></p>
+  <p class="sum"><span class="st st-ok"><span aria-hidden="true">✓</span> <span class="lang-es" lang="es">Conforme: 2</span><span class="lang-en" lang="en">Compliant: 2</span></span><span class="st st-fixed"><span aria-hidden="true">✓</span> <span class="lang-es" lang="es">Corregido: 3</span><span class="lang-en" lang="en">Fixed: 3</span></span><span class="st st-part"><span aria-hidden="true">▸</span> <span class="lang-es" lang="es">En curso: 1</span><span class="lang-en" lang="en">In progress: 1</span></span><span class="st st-open"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">Por corregir: 5</span><span class="lang-en" lang="en">To fix: 5</span></span></p>
+  <div class="tw"><table><thead><tr><th scope="col"><span class="lang-es" lang="es">Qué se comprueba</span><span class="lang-en" lang="en">What is checked</span></th><th scope="col"><span class="lang-es" lang="es">Resultado en el LRS</span><span class="lang-en" lang="en">Result in the LRS</span></th><th scope="col"><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></th><th scope="col"><span class="lang-es" lang="es">Norma</span><span class="lang-en" lang="en">Norm</span></th></tr></thead><tbody><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Actor de las sentencias de aprendizaje</span><span class="lang-en" lang="en">Actor of learning statements</span></th><td data-label=""><span class="lang-es" lang="es">Siempre el alumno (seudónimo o UUID). Las 36 anulaciones, la cuenta del sistema</span><span class="lang-en" lang="en">Always the learner (pseudonym or UUID). The 36 voids, the system account</span></td><td data-label=""><span class="st st-ok"><span aria-hidden="true">✓</span> <span class="lang-es" lang="es">Conforme</span><span class="lang-en" lang="en">Compliant</span></span></td><td data-label="">R-ID</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Seudónimo de los paneles</span><span class="lang-en" lang="en">Dashboard pseudonym</span></th><td data-label=""><span class="lang-es" lang="es">Son los 8 primeros caracteres del UUID en 577 de 577</span><span class="lang-en" lang="en">The first 8 characters of the UUID in 577 of 577</span></td><td data-label=""><span class="st st-ok"><span aria-hidden="true">✓</span> <span class="lang-es" lang="es">Conforme</span><span class="lang-en" lang="en">Compliant</span></span></td><td data-label="">N9</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Agente en context.instructor</span><span class="lang-en" lang="en">Agent in context.instructor</span></th><td data-label=""><span class="lang-es" lang="es">0 de 2.244 sentencias</span><span class="lang-en" lang="en">0 of 2,244 statements</span></td><td data-label=""><span class="st st-open"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">Por corregir</span><span class="lang-en" lang="en">To fix</span></span></td><td data-label="">R-ID</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Agente como actor</span><span class="lang-en" lang="en">Agent as actor</span></th><td data-label=""><span class="lang-es" lang="es">141 adapted con un agente como actor; el último, del 4 nov</span><span class="lang-en" lang="en">141 adapted with an agent as actor; the last on 4 Nov</span></td><td data-label=""><span class="st st-open"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">Por corregir</span><span class="lang-en" lang="en">To fix</span></span></td><td data-label="">R-ID · A3</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Firma del LRS (authority)</span><span class="lang-en" lang="en">LRS signature (authority)</span></th><td data-label=""><span class="lang-es" lang="es">Clave personal en 2.244 de 2.244. La clave de servicio está pendiente de un export nuevo</span><span class="lang-en" lang="en">Personal key in 2,244 of 2,244. The service key awaits a new export</span></td><td data-label=""><span class="st st-open"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">Por corregir</span><span class="lang-en" lang="en">To fix</span></span></td><td data-label="">N9</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Quién pone la nota</span><span class="lang-en" lang="en">Who sets the mark</span></th><td data-label=""><span class="lang-es" lang="es">La nota es la nota global de la IA en 127 de 127 cierres con nota</span><span class="lang-en" lang="en">The mark is the AI’s global mark in 127 of 127 closings with a mark</span></td><td data-label=""><span class="st st-open"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">Por corregir</span><span class="lang-en" lang="en">To fix</span></span></td><td data-label="">R-MED-1</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Modelo exacto en cada medición</span><span class="lang-en" lang="en">Exact model in each measurement</span></th><td data-label=""><span class="lang-es" lang="es">Exacto en 20; sin versión en 74; Gemini en 10 (fuera de las medias); sin modelo en 35 (fuera de la lista o de las medias)</span><span class="lang-en" lang="en">Exact in 20; no version in 74; Gemini in 10 (out of the averages); no model in 35 (off the list or out of the averages)</span></td><td data-label=""><span class="st st-part"><span aria-hidden="true">▸</span> <span class="lang-es" lang="es">En curso</span><span class="lang-en" lang="en">In progress</span></span></td><td data-label="">N5</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Qué significa progressed</span><span class="lang-en" lang="en">What progressed means</span></th><td data-label=""><span class="lang-es" lang="es">10 de 10 van del nivel declarado al mismo nivel: no son progreso</span><span class="lang-en" lang="en">10 of 10 go from the declared level to the same level: they are not progress</span></td><td data-label=""><span class="st st-open"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">Por corregir</span><span class="lang-en" lang="en">To fix</span></span></td><td data-label="">G-NIVEL-1</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Unidad del tiempo efectivo</span><span class="lang-en" lang="en">Unit of effective time</span></th><td data-label=""><span class="lang-es" lang="es">92 valores en segundos, todos antes del 12 oct; en minutos desde entonces</span><span class="lang-en" lang="en">92 values in seconds, all before 12 Oct; in minutes since then</span></td><td data-label=""><span class="st st-fixed"><span aria-hidden="true">✓</span> <span class="lang-es" lang="es">Corregido</span><span class="lang-en" lang="en">Fixed</span></span></td><td data-label="">—</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">Una sesión, un cierre</span><span class="lang-en" lang="en">One session, one closing</span></th><td data-label=""><span class="lang-es" lang="es">3 sesiones con dos cierres, ninguna después del 15 sep</span><span class="lang-en" lang="en">3 sessions with two closings, none after 15 Sep</span></td><td data-label=""><span class="st st-fixed"><span aria-hidden="true">✓</span> <span class="lang-es" lang="es">Corregido</span><span class="lang-en" lang="en">Fixed</span></span></td><td data-label="">—</td></tr><tr><th scope="row" data-label=""><span class="lang-es" lang="es">IRIs de los verbos</span><span class="lang-en" lang="en">Verb IRIs</span></th><td data-label=""><span class="lang-es" lang="es">Formas no canónicas hasta el 25 sep; canónicas desde entonces</span><span class="lang-en" lang="en">Non-canonical forms until 25 Sep; canonical since then</span></td><td data-label=""><span class="st st-fixed"><span aria-hidden="true">✓</span> <span class="lang-es" lang="es">Corregido</span><span class="lang-en" lang="en">Fixed</span></span></td><td data-label="">—</td></tr></tbody></table></div>
+</section>
+<section id="normas" aria-labelledby="h-normas">
+  <h2 class="sec" id="h-normas"><span class="lang-es" lang="es">Las normas</span><span class="lang-en" lang="en">The norms</span></h2>
+  <p class="lead"><span class="lang-es" lang="es">Versión 1.7, tal como está en el repositorio.</span><span class="lang-en" lang="en">Version 1.7, as it stands in the repository. If the two versions differ, the Spanish text prevails.</span></p>
+  <div class="norms lang-es" lang="es">
+<p><strong>Versión:</strong> 1.7 · <strong>Fecha:</strong> 9–11 de noviembre de 2026 · <strong>Cambio del 11 nov (G-NIVEL-1):</strong> dos modalidades, B2B y B2C. En las dos, el <code>progressed</code> entra en la LRS con el alumno como actor, y la validación del profesor es externa a la app. La IA no decide: compara la evidencia con los descriptores. El test de nivel de la app se desactiva (P6). <strong>Cambio v1.7:</strong> regla de trazabilidad N6-bis — paquete de auditoría semanal en cmi5 (decisión de la autora, reunión del 9 nov). Recordatorio en N9 del acuerdo previo: el nombre del alumno lo pone la app al presentar el informe, nunca el modelo. Corregida la nota sobre la N14: existe desde el 8 nov. Añadido el principio de verificación junto al principio rector. Principio de invariancia del rol (la temperatura deja de ser condición de cumplimiento; R-ADM-2 ajustada). Teo (<code>support-agent</code>) declarado en el registro, por el art. 50(1) del AI Act. Registro de identificadores con un JSON por agente en <code>governance/registro-agentes/</code>. N6 apunta a <code>context.instructor</code>. Fundamento legal de N5 (AI Act cotejado con el texto del DOUE, RGPD, ISO/IEC 42001). Nueva sección <strong>R-ID</strong>: identificación de los agentes en el registro (<code>context.instructor</code>, xAPI 1.0.3 §2.4.6) y forma exacta de sus identificadores; sustituye la regla «actor = el agente que actúa» (decisión 53). <strong>Cambio v1.6:</strong> propuesta de acuñación de IRIs (bump v0.8.4 del registro) tras el análisis del registro publicado v0.8.3 — sin verbos nuevos; 7 extensiones, 4 campos en <code>ext/level-decision</code> y 2–3 tipos de incidente. <strong>Cambio v1.5:</strong> regla de decisión de nivel para el usuario libre sin profesor — el código propone y el propio usuario acepta tras ver la evidencia, con revisor humano obligatorio en saltos de dos niveles, entrada en nivel C o disputa; menores excluidos de la autoaceptación. <strong>Cambio v1.4:</strong> regla principal de gobernanza (R-MED-1) — toda medición pasa por el flujo de medición contra la base completa y ningún otro agente mide por su cuenta. <strong>Cambio v1.3:</strong> doble vía de vocabulario según el tipo de usuario (decisión de la autora), alcance del lector OCR (decide sobre la imagen, nunca sobre el alumno) y regla de medición en toda interacción con comparación nivel real vs declarado. <strong>Cambio v1.2:</strong> tabla de equivalencia con la numeración de la spec del Evaluador v2 (§6.1) y nota sobre la referencia huérfana «N14» de la Cartilla de los 7. <strong>Principio rector:</strong> La base define · la IA localiza · el código calcula · el profesor valida · la LRS lo registra. <em>(Hasta el 12 nov decía «el profesor decide»; cambia por G-NIVEL-1: la validación del profesor es externa a la app.)</em> <strong>Principio de verificación (Ana Eslava-Graterol):</strong> cotejar cada afirmación con los datos es lo que destapó los fallos de TK CoachAI. Si se hubiera aceptado lo que se decía sin comprobarlo, seguiríamos con cifras falsas. Cotejar no es lentitud: es la auditoría. Para la gobernanza, ninguna afirmación se da por buena sin su prueba (IDs de sentencias en el LRS, extracto de código y fecha desde la que se cumple). <strong>Principio de invariancia del rol (Ana Eslava-Graterol, 10 nov):</strong> ningún agente decide, y todos se apegan a su rol, sea cual sea el modelo, se llame como se llame, y sea cual sea la temperatura que aplique el sistema. El rol lo hacen cumplir el código y las pruebas (esquema validado, ids de la base, bloque común, controles A1–A4 de R-ID, prueba de estabilidad), no los parámetros del modelo. El identificador exacto del modelo se registra para auditar, no para confiar.</p>
+<blockquote>
+<p>Estas normas gobiernan a todo agente de IA del modelo MLLDE y de sus aplicaciones (p. ej. TK CoachAI). Un agente que no está en el mapa no entra en el loop.</p>
+</blockquote>
+<h2 id="es-r-med-1-regla-principal-toda-medicion-pasa-p">R-MED-1 — Regla principal: toda medición pasa por el flujo de medición</h2>
+<blockquote>
+<p><strong>REGLA PRINCIPAL, vinculante para todo agente de IA:</strong> la producción del usuario la contrasta siempre el flujo de medición contra la base completa — <strong>381 descriptores A1–C2 medibles desde texto</strong> (el inventario tiene 382: gram 115 · voc 96 · spk 100 · med 71; se excluye un descriptor de pronunciación, que no se mide desde texto) —, con <code>ext/input-channel</code> declarado. <strong>Ningún otro agente mide, puntúa ni evalúa al usuario por su cuenta.</strong></p>
+</blockquote>
+<ul>
+<li>Un agente que no es el flujo de medición puede extraer, seleccionar, redactar o planificar, pero <strong>nunca emite juicio sobre el nivel o la competencia del usuario</strong> (N10: cero cálculos en LLM; P2 de G-NIVEL-1: un campo <code>level</code>/<code>grade</code> invalida la respuesta entera).</li>
+<li>La comparación <strong>nivel real vs declarado</strong> la computa el código con la regla pública del 80 % (umbrales v0.7.2); el Evaluador nunca recibe el nivel declarado (P1, anti-anclaje).</li>
+<li>Los descriptores que el usuario evidencia con cita literal seleccionan el contenido de la fase Process siguiente (i+1 por código).</li>
+<li>Toda emisión al perfil exige actor humano (G-NIVEL-1, P3–P5).</li>
+<li>Regla acuñada el 9 nov por decisión de la autora; entra en vigor con las firmas de pedagogía e ingeniería (N12).</li>
+</ul>
+<h2 id="es-n-normas-estructurales-n1-n13-extracto-opera">N — Normas estructurales (N1–N13, extracto operativo)</h2>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Norma</th>
+<th>Regla</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="Norma"><strong>N1 — Registro cerrado</strong></td><td data-label="Regla">Solo los agentes del mapa canónico pueden actuar. Agente nuevo = propuesta con ficha firmada, no una instalación.</td></tr>
+<tr><td data-label="Norma"><strong>N2 — Puerta única</strong></td><td data-label="Regla">Toda emisión a la LRS pasa por el Consolidador (código). Ningún agente escribe a la LRS por su cuenta.</td></tr>
+<tr><td data-label="Norma"><strong>N3 — Anti-agente-rogue</strong></td><td data-label="Regla">El prompt en producción debe coincidir con el aprobado (<code>prompt-hash</code>); si difiere, el agente no arranca.</td></tr>
+<tr><td data-label="Norma"><strong>N4 — Base cerrada</strong></td><td data-label="Regla">Un solo bundle de conocimiento (registry v0.8.3 + inventario v0.7.2), montado por código, con <code>kb-version</code> y <code>kb-hash</code> declarados. Nada de material con copyright en el prompt.</td></tr>
+<tr><td data-label="Norma"><strong>N5 — Modelos fijos</strong></td><td data-label="Regla">Modelo con versión fijada por escrito; contrato no-train verificado; <strong>sin fallback jamás</strong> (lección Gemini, 5–19 oct). El identificador exacto del modelo va en cada sentencia (R-ID). <strong>Aplica a todos los agentes, no solo al que mide</strong> (decisión de la autora, 11 nov), con seguimiento de la tasa de apego por modelo. Fundamento legal: ver la nota bajo esta tabla.</td></tr>
+<tr><td data-label="Norma"><strong>N6 — Trazabilidad</strong></td><td data-label="Regla">El agente en <code>context.instructor</code>, con su <code>account</code> del registro (R-ID, v1.7; antes, <code>agent-id</code>), + <code>agent-version</code> + <code>measure-model</code> (identificador exacto) + <code>rules-version</code> en cada statement. Meta: todos los agentes registrados con rastro propio. El registro está en <code>governance/registro-agentes/</code>.</td></tr>
+<tr><td data-label="Norma"><strong>N7 — Flujos que no se cruzan</strong></td><td data-label="Regla">Medición (1×/sesión), pedagogía (por turno), actividad (loop). La banda solo nace del flujo de medición.</td></tr>
+<tr><td data-label="Norma"><strong>N8 — Fail-closed</strong></td><td data-label="Regla">Ante la duda, no emite: puerta ASR 0.70, juez no disponible → sin tip, esquema inválido → descarte.</td></tr>
+<tr><td data-label="Norma"><strong>N9 — PII</strong></td><td data-label="Regla">Al modelo solo va UUID + transcripción; nunca nombre, empresa, puesto ni correo. Autoridad LRS = cuenta de servicio, nunca credencial personal.</td></tr>
+<tr><td data-label="Norma"><strong>N10 — Cero cálculos en LLM</strong></td><td data-label="Regla">Ningún agente genera números de competencia: notas (5.2/5.3), banda (fórmula del 26/08), i+1 y nivel propuesto los calcula el código.</td></tr>
+<tr><td data-label="Norma"><strong>N11 — Incidentes declarados</strong></td><td data-label="Regla">Cada agente define sus tipos de incidente con IRI del registry; van a su registro, nunca a KPIs del alumno.</td></tr>
+<tr><td data-label="Norma"><strong>N12 — Versionado firmado</strong></td><td data-label="Regla">Cambio de prompt/modelo/reglas = bump + firma (pedagogía + ingeniería) + entrada en el mapa + fecha desde la que cuenta.</td></tr>
+<tr><td data-label="Norma"><strong>N13 — Pruebas en CI</strong></td><td data-label="Regla">Toda prueba de admisión corre en CI en cada despliegue; si falla, el despliegue se bloquea.</td></tr>
+</tbody>
+</table></div>
+<p><strong>Fundamento legal de N5</strong> (desarrollado en la cartilla de agentes, §3.1). Las citas del AI Act se cotejaron el 11 nov con el texto oficial del DOUE (Reglamento (UE) 2024/1689, versión original, sin los cambios del Reglamento (UE) 2026/1744):</p>
+<ul>
+<li><p><strong>AI Act:</strong></p>
+<ul>
+<li>art. 11 y anexo IV 2(a);</li>
+<li>art. 25(4);</li>
+<li>art. 53(1)(b) y anexo XII;</li>
+<li>arts. 12, 15(1), 15(4) y 19;</li>
+<li>modificación sustancial: arts. 3(23) y 43(4);</li>
+<li>art. 86.</li>
+</ul>
+<p>Las obligaciones de alto riesgo aplican desde el 2 dic 2027 (Reglamento (UE) 2026/1744).</p></li>
+<li><p><strong>RGPD</strong> (aplica hoy):</p>
+<ul>
+<li>arts. 5(1)(a), (b), (d) y (f), y art. 5(2);</li>
+<li>arts. 13(1)(e)–(f);</li>
+<li>art. 28(3);</li>
+<li>art. 30(1)(d)–(e);</li>
+<li>art. 32;</li>
+<li>art. 35;</li>
+<li>arts. 44–46.</li>
+</ul></li>
+<li><p><strong>ISO/IEC 42001:</strong> A.6.2.8 y A.10.</p></li>
+</ul>
+<blockquote>
+<p><strong>Qué es el UUID de N9 (12 nov).</strong> UUID son las siglas de <em>Universally Unique Identifier</em>, «identificador único universal». Es un código de 32 caracteres hexadecimales en cinco grupos separados por guiones, por ejemplo <code>7ba714b6-b6b5-4b7f-8cbd-1ca44b43145e</code>. Se genera de forma que la probabilidad de que se repita es prácticamente nula.</p>
+<p><strong>En TK CoachAI</strong> es el identificador seudónimo del alumno: aparece en la LRS como <code>account.name</code> del actor, en lugar de su nombre. Al modelo solo van el UUID y la transcripción: así el modelo sabe a qué alumno pertenece una sesión sin saber quién es (sin nombre, empresa, puesto ni correo).</p>
+<p><strong>El seudónimo corto de los paneles</strong>, del tipo <code>TK-7BA714B6</code>, son los 8 primeros caracteres del UUID en mayúsculas. Comprobado en el export de Veracity del 11 nov: 577 de 577 sentencias con seudónimo.</p>
+<p><strong>Seudónimo no es anónimo:</strong> quien tiene la tabla que une el UUID con el perfil puede identificar al alumno. Por eso el UUID sigue siendo un dato personal y se protege como tal.</p>
+</blockquote>
+<blockquote>
+<p><strong>Recordatorio de un acuerdo previo (N9 · datos personales).</strong> Si el informe tiene que mostrar el nombre del alumno, lo pone <strong>la app al presentarlo, fuera de la IA</strong>: el código toma el texto del modelo y le añade el nombre desde el perfil. Así el nombre aparece en pantalla o en el PDF <strong>sin pasar nunca por el modelo</strong>. Es lo que pide la minimización de datos (RGPD, art. 5(1)(c)).</p>
+</blockquote>
+<h3>N6-bis — Paquete de auditoría semanal en cmi5 (regla de trazabilidad, v1.7)</h3>
+<blockquote>
+<p><strong>Regla:</strong> cada semana, el entorno entrega a la diseñadora un <strong>paquete cmi5</strong> de la versión en producción, descargable sin intervención del desarrollador. Se importa en <strong>SCORM Cloud</strong> y se lanza con un alumno de prueba; las sentencias xAPI que emite se comparan con el registro y el perfil vigentes.</p>
+</blockquote>
+<ul>
+<li><strong>Qué se comprueba:</strong>
+<ul>
+<li><strong>a. Continuidad del loop:</strong> Input → Process → Output → Adaptar, paso a paso y en orden.</li>
+<li><strong>b. Métricas no declaradas:</strong> ninguna extensión, verbo ni resultado que no esté en el registro.</li>
+<li><strong>c. Métricas duplicadas:</strong> una sesión, un <code>completed</code>; ningún dato emitido dos veces.</li>
+<li><strong>d. Actores y agentes no autorizados:</strong> ningún actor ni agente que no esté en el mapa canónico. Un actor desconocido es un incidente y se revisa antes de seguir.</li>
+</ul></li>
+<li><strong>Por qué cmi5 y no SCORM 2004:</strong> cmi5 se basa en xAPI, así que muestra actores, verbos y objetos. SCORM 2004 no transporta sentencias xAPI y no permite esta comprobación.</li>
+<li><strong>Lo que el paquete no sustituye:</strong> el paquete prueba lo que la versión <strong>emite</strong>. Lo que <strong>ha pasado</strong> se audita con los 3 exportables del LRS (sentencias, verbos y objetos, agentes) y con el JSON del panel de administración (modelo de medida). Las dos auditorías se cruzan.</li>
+<li><strong>Registro:</strong> cada paquete lleva fecha, versión de la app y <code>prompt-hash</code> de los agentes; se conserva con el resultado de la comprobación.</li>
+<li>Regla acordada en la reunión del 9 nov; entra en vigor con las firmas de pedagogía e ingeniería (N12).</li>
+</ul>
+<h3>Equivalencia con la numeración de la spec del Evaluador v2 (§6.1)</h3>
+<blockquote>
+<p><strong>Aviso de numeración.</strong> La spec del Evaluador v2 (8 nov) numera sus normas de otra forma a partir de N4, y la Cartilla de los 7 (8 nov) cita esa numeración de la spec (p. ej. «N9 = modelo exacto»). Para que el comité no encuentre dos «N9» distintas, esta es la correspondencia oficial:</p>
+</blockquote>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Spec Evaluador v2 (§6.1)</th>
+<th>Equivalente en este paquete v1.1</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N1 · Registro cerrado</td><td data-label="Equivalente en este paquete v1.1"><strong>N1</strong> (misma regla)</td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N2 · Puerta única de llamadas a modelos</td><td data-label="Equivalente en este paquete v1.1"><strong>N2</strong> (aquí con énfasis en la emisión a la LRS)</td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N3 · Prueba anti-agentes sueltos (incluye prompt-hash)</td><td data-label="Equivalente en este paquete v1.1"><strong>N3</strong> (misma regla)</td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N4 · Ficha antes que código (solicitud justificada + dos firmas)</td><td data-label="Equivalente en este paquete v1.1"><strong>R-ADM-1 y R-ADM-5</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N5 · Una función por agente; ningún agente decide</td><td data-label="Equivalente en este paquete v1.1">Principio rector + <strong>N10</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N6 · Bloque común obligatorio en cada prompt</td><td data-label="Equivalente en este paquete v1.1"><strong>Ausente en v1.1 — incorporar</strong> (texto literal en la spec §6.2)</td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N7 · La base se hereda por código</td><td data-label="Equivalente en este paquete v1.1"><strong>N4</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N8 · Trazabilidad (actor = el agente que actúa)</td><td data-label="Equivalente en este paquete v1.1"><strong>N6</strong> + <strong>R-ID</strong> (v1.7: el actor es el alumno; el agente va en <code>context.instructor</code>)</td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N9 · Modelos aprobados y fijos, sin respaldo</td><td data-label="Equivalente en este paquete v1.1"><strong>N5</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N10 · Datos mínimos (sin datos personales)</td><td data-label="Equivalente en este paquete v1.1"><strong>N9</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N11 · Cambios = versión nueva, con prueba y firmas</td><td data-label="Equivalente en este paquete v1.1"><strong>N12</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N12 · Auditoría periódica (agentes ↔︎ llamadas ↔︎ Veracity)</td><td data-label="Equivalente en este paquete v1.1"><strong>Ausente en v1.1 — incorporar</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N13 · Retirada de agentes sin ficha en plazo</td><td data-label="Equivalente en este paquete v1.1"><strong>Ausente en v1.1 — incorporar</strong></td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N14 · Necesidad demostrada (8 nov)</td><td data-label="Equivalente en este paquete v1.1"><strong>R-ADM-1</strong>, con la condición de necesidad demostrada</td></tr>
+<tr><td data-label="Spec Evaluador v2 (§6.1)">N12-bis · Paquete de auditoría semanal en cmi5 (9 nov)</td><td data-label="Equivalente en este paquete v1.1"><strong>N6-bis</strong> (v1.7)</td></tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Sobre la «N14» que cita la Cartilla de los 7 (corregido en v1.7):</strong> la N14 <strong>sí existe</strong>. La añadió la autora a la spec del Evaluador v2 el 8 nov, con su decisión de que el loop solo necesita 7 agentes: <strong>N14 · Necesidad demostrada</strong> — un agente solo se aprueba si su ficha demuestra qué parte del loop lo necesita y por qué no lo puede hacer el código ni uno de los 7 agentes del loop. Su equivalente en este paquete es <strong>R-ADM-1</strong> (registro en el mapa con justificación) reforzada con esa condición. La nota de la v1.2 que la daba por huérfana se escribió sobre una versión anterior de la spec. Entra en vigor con las firmas de pedagogía e ingeniería (N12).</p>
+</blockquote>
+<h2 id="es-g-nivel-1-el-nivel-la-app-propone-nunca-gene">G-NIVEL-1 — El nivel: la app propone, nunca genera el nivel</h2>
+<p><strong>Dos modalidades de usuario (Ana Eslava-Graterol, 11 nov).</strong> TK CoachAI se creó para B2B y para B2C. Las especificaciones las distinguen siempre:</p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>B2B</strong> (empresa · <code>user-track: pilot</code>)</th>
+<th><strong>B2C</strong> (consumidor · <code>user-track: free</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="">Quién hay</td><td data-label="B2B (empresa · user-track: pilot)">El alumno y, detrás, un profesor que modera</td><td data-label="B2C (consumidor · user-track: free)">El alumno solo, sin profesor</td></tr>
+<tr><td data-label="">Qué hace la app</td><td data-label="B2B (empresa · user-track: pilot)">Compara la evidencia real del alumno con los descriptores: cuántos se cumplen y de qué nivel son, y emite una banda</td><td data-label="B2C (consumidor · user-track: free)">Lo mismo</td></tr>
+<tr><td data-label="">Qué entra en la LRS</td><td data-label="B2B (empresa · user-track: pilot)"><strong><code>progressed</code>, con el alumno como actor</strong>: el usuario que interactúa y produce la conversación es siempre el que ha progresado. Lleva su marca y su evidencia</td><td data-label="B2C (consumidor · user-track: free)">Lo mismo</td></tr>
+<tr><td data-label="">Validación externa (fuera de la app; no entra en la LRS)</td><td data-label="B2B (empresa · user-track: pilot)">El profesor constata el nivel con otra evaluación, oral y escrita</td><td data-label="B2C (consumidor · user-track: free)">Si la persona quiere el nivel validado, un profesor lo constata fuera, con otra evaluación</td></tr>
+<tr><td data-label="">Entorno</td><td data-label="B2B (empresa · user-track: pilot)">Formación con profesor responsable</td><td data-label="B2C (consumidor · user-track: free)">Fuera de los entornos educativos oficiales</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>REGLA:</strong> la app PROPONE una medida con una regla pública, contra los criterios fijados en la app: el nivel más alto con <strong>≥80% de descriptores evidenciados con cita literal</strong> (umbrales v0.7.2: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). <strong>La IA no decide:</strong> no evalúa la evidencia con su propio criterio ni con lo que le parece. Compara datos reales de distintas fuentes, la evidencia del alumno y los descriptores de la base: la IA localiza la evidencia y el código cuenta y calcula la banda. <strong>El <code>progressed</code> es la marca de progreso del alumno en la app, no la acreditación del nivel:</strong> esa la da, cuando corresponde, una validación externa.</li>
+<li><strong>P1:</strong> ningún agente recibe el nivel declarado del alumno (anti-anclaje).</li>
+<li><strong>P2:</strong> ningún modelo devuelve niveles ni notas (un campo <code>level</code>/<code>grade</code> invalida la respuesta entera).</li>
+<li><strong>P3:</strong> la propuesta nunca se escribe en el perfil; se muestra como «pendiente de decisión».</li>
+<li><strong>P4 (Ana Eslava-Graterol, 11 nov): actor del <code>progressed</code> = el alumno, en B2B y en B2C.</strong> La validación del profesor es externa a la app: constata el nivel con otra evaluación (oral, escrita) y no entra en la LRS. Por eso la app nunca emite un <code>progressed</code> en nombre del profesor ni de un agente. <strong>Lo que la app debe garantizar:</strong> que la evidencia que sostiene cada <code>progressed</code> (respuestas, errores, citas y descriptores) se pueda ver en los paneles. <em>Sustituye a:</em> «todo <code>progressed</code> exige actor humano + <code>evidenceReviewed: true</code>; si no, la puerta lo rechaza».</li>
+<li><strong>P5:</strong> el perfil no cambia por desempeño sin decisión humana (R-DESAJUSTE-1: 3 sesiones desajustadas → marca «revisar», perfil intacto).</li>
+<li><strong>P6 (Ana Eslava-Graterol, 11 nov): el test de nivel de la app se desactiva.</strong> Cambiaba el nivel del alumno sin dejar sentencia y sin profesor, y los generadores usaban ese nivel.</li>
+<li><strong>Base legal:</strong> AI Act art. 14 + Anexo III 3(b)/(c) · RGPD art. 22.</li>
+<li><strong>Incidentes propios:</strong> <code>incident/nivel-sin-decision-humana</code> · <code>incident/nivel-propuesto-escrito-en-perfil</code> (severidad alta: detienen la emisión).</li>
+</ul>
+<h2 id="es-decision-de-nivel-en-b2c-el-usuario-libre-si">Decisión de nivel en B2C: el usuario libre, sin profesor (v1.5)</h2>
+<p><em>B2C = usuario libre (<code>user-track: free</code>): no tiene profesor y no forma parte de los entornos educativos oficiales (Ana, 11 nov).</em> <em>Su <code>progressed</code> sigue la regla general de G-NIVEL-1 P4: el actor es el alumno.</em></p>
+<blockquote>
+<p><strong>Regla:</strong> para el usuario libre, el código propone y <strong>el propio usuario decide sobre su perfil tras ver la evidencia</strong>; en los casos de mayor impacto la decisión exige <strong>revisor humano</strong>.</p>
+</blockquote>
+<ul>
+<li><strong>Propuesta con evidencia:</strong> la propuesta (regla pública del 80 %) se muestra con los descriptores evidenciados y su cita literal; el usuario acepta o no. Si ignora, nada cambia (P3/P5 intactos).</li>
+<li><strong>Rastro de la decisión del usuario libre:</strong> su aceptación sí ocurre dentro de la app, así que su <code>progressed</code> lleva actor = UUID del usuario + <code>evidenceReviewed: true</code> + versión de la regla.</li>
+<li><strong>Revisión humana obligatoria</strong> en tres casos: salto de dos niveles o más (p. ej. A2→B2), entrada en nivel C, o disputa del usuario.</li>
+<li><strong>Nunca hacia abajo sin aceptación:</strong> una propuesta de bajada se notifica, no se aplica; si se ignora, el perfil se mantiene y R-DESAJUSTE-1 marca «revisar».</li>
+<li><strong>Sin patrones oscuros:</strong> aceptar no puede ser más atractivo que rechazar; sin presión ni cuenta atrás.</li>
+<li><strong>Menores:</strong> si el canal libre admite menores, la autoaceptación no es válida — exige mayoría de edad o revisión de un adulto responsable.</li>
+<li>Regla adoptada del análisis del 9 nov (opción híbrida recomendada); entra en vigor con las firmas de pedagogía e ingeniería (N12).</li>
+</ul>
+<h2 id="es-t-nivel-1-test-automatico-en-cada-despliegue">T-NIVEL-1 — Test automático en cada despliegue</h2>
+<ul>
+<li><strong>a.</strong> Respuesta del modelo con <code>{"level":"b2"}</code> → rechazo total + incidente; nada se calcula.</li>
+<li><strong>b.</strong> <code>progressed</code> cuyo actor no es el alumno (un agente, la app o el profesor) → rechazado antes de la LRS (P4, 11 nov).</li>
+<li><strong>c.</strong> 3 sesiones simuladas con evidencia de otro nivel → perfil intacto + «revisar» + incidente.</li>
+</ul>
+<h2 id="es-r-adm-admision-de-un-agente-nuevo-las-5-regl">R-ADM — Admisión de un agente nuevo (las 5 reglas)</h2>
+<ol type="1">
+<li><strong>R-ADM-1 · Mapa:</strong> registro previo en el mapa canónico con justificación.</li>
+<li><strong>R-ADM-2 · Modelo fijado:</strong> versión concreta, sin fallback. La temperatura no es condición de admisión (principio de invariancia, 10 nov): el agente demuestra su estabilidad con la prueba de la misma entrada repetida. Hasta el 10 nov decía «temperatura fijada».</li>
+<li><strong>R-ADM-3 · Base cerrada:</strong> solo el bundle oficial; nada de copyright; nada «del modelo».</li>
+<li><strong>R-ADM-4 · Prompt con hash (N3):</strong> producción == aprobado o no arranca.</li>
+<li><strong>R-ADM-5 · Firma:</strong> ficha firmada por pedagogía e ingeniería antes del despliegue.</li>
+</ol>
+<h2 id="es-clasificacion-de-componentes-agente-vs-infra">Clasificación de componentes (agente vs. infraestructura)</h2>
+<ul>
+<li>¿Es determinista (misma entrada → misma salida)? → <strong>infraestructura</strong>, no es agente (ASR, OCR, planificador SRS). Se gobierna con puerta de confianza, contrato no-train y sin almacenar la entrada cruda.</li>
+<li>¿Es generativo y cabe en una pieza canónica? → <strong>se absorbe</strong> (los 4 generadores → pieza 5; la Pista → pieza 1).</li>
+<li>¿No cabe en ninguna? → <strong>examen R-ADM completo o retirada</strong>.</li>
+</ul>
+<h2 id="es-r-id-identificacion-de-los-agentes-en-el-reg">R-ID — Identificación de los agentes en el registro (v1.7)</h2>
+<p><strong>Fundamento (estándar xAPI 1.0.3 publicado por ADL, xAPI-Data):</strong></p>
+<ul>
+<li>§2.4.6, propiedad <code>instructor</code> del contexto: «Agent (MAY be a Group). Instructor that the Statement relates to, if not included as the Actor of the Statement.»</li>
+<li>§2.4.2.1: «An Agent MUST be identified by one (1) of the four types of Inverse Functional Identifiers».</li>
+<li>§2.4.2.4: el objeto <code>account</code> exige <code>homePage</code> (IRL del sistema) y <code>name</code> (identificador único en ese sistema).</li>
+</ul>
+<p><strong>Regla del actor (decisión de la autora, 10 nov; sustituye la decisión 53):</strong></p>
+<ul>
+<li><strong>El actor de toda sentencia de aprendizaje es el alumno.</strong> Aplica a <code>completed</code>, <code>answered</code>, <code>attempted</code>, <code>mediated</code> y <code>adapted</code>.</li>
+<li><strong>El agente de IA que interviene va en <code>context.instructor</code></strong>, con su <code>account</code>. Si intervienen dos a la vez (p. ej. el Corrector y el Juez), va un <strong>Group</strong> con los dos.</li>
+<li><strong>Las anulaciones (<code>voided</code>) llevan como actor la cuenta del sistema</strong>, <code>tk-coach-engine</code>. Es un acto de sistema, no de un agente de IA.</li>
+<li><strong>La <code>authority</code> la pone el LRS</strong> a partir de la clave de servicio. La app no la escribe (N9).</li>
+<li><strong>Fundamento de diseño:</strong> la IA no califica. El Evaluador aporta evidencia, el código calcula (N10) y el profesor valida el nivel fuera de la app (G-NIVEL-1). Por eso el logro es del alumno y el agente consta como quien intervino.</li>
+</ul>
+<p><strong>Qué recibe identificador de agente (enlace con la clasificación de componentes):</strong></p>
+<ul>
+<li><strong>Todo componente generativo que actúa en el aprendizaje o habla con el usuario.</strong> Cada función tiene un identificador.</li>
+<li><strong>Teo, el agente de soporte, se declara en el registro</strong> (<code>support-agent</code>, decisión de la autora, 10 nov). Está fuera del aprendizaje, pero habla con el usuario (art. 50). <strong>Nunca aparece en una sentencia de aprendizaje</strong> (si aparece, salta A2); su rastro es el registro de llamadas.</li>
+<li><strong>Nunca reciben identificador de agente ni aparecen en <code>instructor</code>:</strong>
+<ul>
+<li>la infraestructura (ASR, OCR, planificador SRS);</li>
+<li>el código (consolidador, guardián, límite de ritmo).</li>
+</ul></li>
+</ul>
+<p><strong>Forma exacta de los identificadores</strong> (equivalente a la regla de IRIs del 24 sep: «0 verbos ADL en https://», «0 verbos MLLDE en http://», que se mantiene):</p>
+<ol type="1">
+<li>Un solo identificador, <code>account</code>; nunca <code>mbox</code> ni <code>openid</code>.</li>
+<li><code>homePage</code> exacta: <code>https://tkcoach.talketika.app</code>. Con «s», en minúsculas, sin barra final y sin ruta.</li>
+<li><code>account.name</code> exacto, tal como está en el registro de identificadores: en minúsculas, con guiones y terminado en <code>-agent</code>. La única excepción es la cuenta del sistema, <code>tk-coach-engine</code>.</li>
+<li>La etiqueta <code>name</code> (p. ej. «Capi») no identifica; los controles filtran siempre por <code>account.name</code>.</li>
+<li>La versión nunca va en el nombre (nada de <code>capi-agent-v2</code>): va en <code>ext/agent-version</code>.</li>
+<li>Un identificador no se renombra ni se reutiliza; el de un agente retirado no se asigna a otro.</li>
+<li>La <code>authority</code> no la escribe la app: la pone el LRS (<code>https://tk-coach-prod.lrs.io/keys/&lt;clave&gt;</code>).</li>
+</ol>
+<p><strong>Detección de salidas de rol</strong> (en el control diario y en la auditoría con el export del LRS):</p>
+<ul>
+<li><strong>A1:</strong> un <code>instructor</code> que no está en el registro indica un agente no autorizado.</li>
+<li><strong>A2:</strong> un agente en un verbo o flujo que no es el suyo indica una salida de rol. Por ejemplo, cualquier agente distinto del Evaluador en un <code>completed</code>.</li>
+<li><strong>A3:</strong> un agente como actor de una sentencia de aprendizaje.</li>
+<li><strong>A4:</strong> una llamada registrada (N8 de la spec) sin sentencia o sin <code>instructor</code>.</li>
+</ul>
+<p><strong>Cierre:</strong></p>
+<ul>
+<li>0 cuentas de agente con otra <code>homePage</code>;</li>
+<li>0 <code>account.name</code> fuera del registro;</li>
+<li>0 agentes como actor de una sentencia de aprendizaje;</li>
+<li>0 sentencias nuevas con <code>authority</code> personal.</li>
+</ul>
+<p><strong>Línea de base (export de Veracity, 10 nov, 2.243 sentencias):</strong></p>
+<ul>
+<li><code>account</code> como único identificador: 2.243 de 2.243;</li>
+<li>una sola <code>homePage</code>, la correcta: 2.243 de 2.243;</li>
+<li>0 sentencias con <code>context.instructor</code>;</li>
+<li><code>capi-agent</code> como actor en 141 <code>adapted</code>;</li>
+<li><code>tk-coach-engine</code> en 36 <code>voided</code>;</li>
+<li><code>authority</code> = la clave personal de un miembro del equipo, no la de servicio, en 2.243 de 2.243.</li>
+</ul>
+<p><strong>Prueba de cumplimiento</strong> (principio de verificación):</p>
+<ul>
+<li>el ID de una sentencia nueva con <code>instructor</code>;</li>
+<li>el extracto de código;</li>
+<li>la fecha desde la que se cumple.</li>
+</ul>
+<p>Entra en vigor con las firmas de pedagogía e ingeniería (N12).</p>
+<h2 id="es-vocabulario-desde-imagenes-o-prompts-doble-v">Vocabulario desde imágenes o prompts — doble vía según el tipo de usuario (v1.3)</h2>
+<ul>
+<li><strong>Alumno institucional (piloto) — Vía A (por defecto):</strong> el componente solo puede SELECCIONAR términos que ya existen en el inventario (<code>en.voc.*</code>); validación contra allow-list en código; lo que no está, se descarta. El contenido lo fija el programa, para que la medición sea comparable.</li>
+<li><strong>Alumno institucional — Vía B (vocabulario nuevo):</strong> el componente PROPONE candidatos a una cola de revisión humana; entran al inventario en el próximo bump de versión con fecha desde la que cuentan. El componente nunca escribe en la base.</li>
+<li><strong>Usuario libre — vía propia (selección del propio usuario):</strong> el input lo genera él (su imagen, su presentación). Sus tarjetas de vocabulario las selecciona <strong>el propio usuario</strong> de entre los términos extraídos de su material; el código valida el formato y exige el origen (<code>own-image</code>), sin pasar por la cola del inventario. <strong>Justificación CLIL/AICLE:</strong> la lengua se aprende a través de contenido significativo para el aprendiz; su contexto y su necesidad comunicativa real deciden qué vocabulario se trabaja.</li>
+<li><strong>Prohibido en ambas vías:</strong> que vocabulario generado por IA alimente tarjetas o drills sin validación en código y origen declarado.</li>
+<li>En ambos casos, el vocabulario de contenido es <strong>práctica sin medición</strong> (decisión 51): maestría objetiva por SRS, nunca banda.</li>
+</ul>
+<h2 id="es-alcance-del-lector-ocr-y-medicion-en-toda-in">Alcance del lector OCR y medición en toda interacción (v1.3)</h2>
+<ul>
+<li>El lector OCR decide <strong>sobre la imagen, nunca sobre el alumno</strong>: extrae texto y términos del estímulo; no evalúa.</li>
+<li><strong>Toda interacción</strong> contrasta la producción del usuario con la base completa — 381 descriptores A1–C2 medibles desde texto (inventario de 382; se excluye un descriptor de pronunciación) — con <code>ext/input-channel</code> declarado.</li>
+<li>El <strong>nivel real vs declarado</strong> lo computa el código (regla pública del 80 %, umbrales v0.7.2); el Evaluador nunca recibe el nivel declarado (P1, anti-anclaje). Los descriptores que el usuario evidencia con cita literal seleccionan el contenido de la fase Process siguiente (i+1 por código).</li>
+<li>El <code>progressed</code> lleva siempre al alumno como actor, y la acreditación del nivel es una validación externa a la app (G-NIVEL-1); <strong>para el usuario libre, rige la regla de la sección «Decisión de nivel del usuario libre, sin profesor» (v1.5).</strong> (Hasta el 11 nov esta línea decía, por error, que estaba pendiente de definir.) El OCR es infraestructura: se registra con <code>ext/input-channel: ocr</code> y nunca va en <code>context.instructor</code> (R-ID).</li>
+</ul>
+<h2 id="es-propuesta-de-acunacion-de-iris-bump-v0-8-4-d">Propuesta de acuñación de IRIs — bump v0.8.4 del registro (v1.6)</h2>
+<p>Análisis del registro publicado v0.8.3 (153 conceptos) frente a estas normas. <strong>No hacen falta verbos nuevos:</strong> los ADL reusados (<code>progressed</code>, <code>attempted</code>, <code>completed</code>, <code>passed</code>, <code>failed</code>, <code>interacted</code>, <code>asked</code>, <code>answered</code>) y los 3 acuñados (<code>pronounced</code>, <code>mediated</code>, <code>adapted</code>) cubren todas las propuestas — la aceptación del usuario libre (v1.5) es un <code>progressed</code> con actor propio, no un verbo nuevo.</p>
+<p><strong>Urgente — las normas ya los citan y no existen en el registro:</strong></p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>IRI propuesto</th>
+<th>Tipo</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="IRI propuesto"><code>incident/nivel-sin-decision-humana</code></td><td data-label="Tipo">incidente</td><td data-label="Motivo">G-NIVEL-1 lo nombra; la tabla de incidentes no lo tiene</td></tr>
+<tr><td data-label="IRI propuesto"><code>incident/nivel-propuesto-escrito-en-perfil</code></td><td data-label="Tipo">incidente</td><td data-label="Motivo">Ídem — hoy son referencias huérfanas</td></tr>
+</tbody>
+</table></div>
+<p><strong>Altos — cierran hallazgos de la auditoría:</strong></p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>IRI propuesto</th>
+<th>Tipo</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="IRI propuesto"><code>ext/descriptor-results</code></td><td data-label="Tipo">resultado</td><td data-label="Motivo">Salida por descriptor <code>{id, evidenciado, cita}</code>; sin ella no hay evidencia visible para la autoaceptación v1.5 (prevista en v0.9)</td></tr>
+<tr><td data-label="IRI propuesto"><code>ext/vocabulary-origin</code></td><td data-label="Tipo">contexto</td><td data-label="Motivo">Valores cerrados: <code>inventory · correction · prompt · image · summary · own-image</code>; es el campo que llegaba «undefined» en 16 términos</td></tr>
+<tr><td data-label="IRI propuesto"><code>ext/user-track</code></td><td data-label="Tipo">contexto</td><td data-label="Motivo"><code>pilot · free</code>; hace auditable la doble vía y la decisión por colectivo</td></tr>
+</tbody>
+</table></div>
+<p><strong>Medios — hacen R-MED-1 y N6 comprobables por máquina:</strong></p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>IRI propuesto</th>
+<th>Tipo</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="IRI propuesto"><code>ext/flow</code></td><td data-label="Tipo">contexto</td><td data-label="Motivo"><code>measurement · pedagogy · activity</code>; hoy N7 es una regla escrita, no un dato en la LRS</td></tr>
+<tr><td data-label="IRI propuesto"><code>ext/agent-version</code> · <code>ext/rules-version</code> · <code>ext/prompt-hash</code> · <code>ext/kb-version</code></td><td data-label="Tipo">contexto</td><td data-label="Motivo">N6/N3/N4 los exigen en cada statement y solo existe <code>ext/measure-model</code></td></tr>
+<tr><td data-label="IRI propuesto"><code>ext/ocr-confidence</code></td><td data-label="Tipo">resultado</td><td data-label="Motivo">Análogo a <code>ext/asr-confidence</code> para la puerta OCR</td></tr>
+</tbody>
+</table></div>
+<p><strong>Campos nuevos dentro de <code>ext/level-decision</code> (bump del objeto, no IRI nuevo):</strong> <code>decisionActor</code> (self · reviewer; <code>teacher</code> sale el 11 nov: la decisión del profesor no entra en la LRS, P4) · <code>evidenceReviewed</code> (boolean, P4) · <code>status</code> (proposed · accepted · rejected · pending) · <code>reviewTrigger</code> (none · jump2plus · c-entry · dispute).</p>
+<p><strong>Lo que NO se acuña:</strong> bajadas sin aceptación, patrones oscuros y menores son reglas de código, UX y onboarding; se auditan en T-NIVEL-1 y en revisión de diseño, no en la LRS. Los IRIs funcionan como identificadores aunque <code>w3id.org/mllde</code> siga en PR; conviene resolver el namespace antes de publicar v0.8.4. Propuesta del análisis del 9 nov; entra en vigor con las firmas de pedagogía e ingeniería (N12).</p>
+<h2 id="es-el-guardian-regla-especifica">El guardián (regla específica)</h2>
+<p>Ningún agente puede <strong>analizar y corregir el sistema por su cuenta</strong>. Un vigilante solo alerta (fail-closed, sin acceso de escritura). Su función la cubre la prueba N3 + CI: auditable, repetible y sin privilegios.</p>
+<hr />
+<p><em>Método MLLDE © 2026 Ana Eslava-Graterol (UPV). Preparado con asistencia de IA y revisado por la autora, en el espíritu del art. 50 del Reglamento (UE) 2024/1689.</em></p>
+</div>
+  <div class="norms lang-en" lang="en">
+<p><strong>Version:</strong> 1.7 · <strong>Date:</strong> 9–12 November 2026 · <em>English translation of <code>normas-mllde-gobernanza_v1.7.md</code>. If the two versions differ, the Spanish text prevails.</em> · <strong>Change of 11 Nov (G-NIVEL-1):</strong> two user modes, B2B and B2C. In both, <code>progressed</code> enters the LRS with the learner as actor, and the teacher's validation is external to the app. The AI does not decide: it compares the evidence with the descriptors. The app's level test is disabled (P6). <strong>Change v1.7:</strong> traceability rule N6-bis — weekly cmi5 audit package (author's decision, meeting of 9 Nov). Reminder in N9 of a prior agreement: the learner's name is added by the app when it presents the report, never by the model. Corrected note on N14: it exists since 8 Nov. Verification principle added next to the guiding principle. Role-invariance principle (temperature is no longer a compliance condition; R-ADM-2 adjusted). Teo (<code>support-agent</code>) declared in the registry, under AI Act art. 50(1). Identifier registry with one JSON per agent in <code>governance/registro-agentes/</code>. N6 points to <code>context.instructor</code>. Legal basis of N5 (AI Act checked against the Official Journal text, GDPR, ISO/IEC 42001). New section <strong>R-ID</strong>: identification of agents in the record (<code>context.instructor</code>, xAPI 1.0.3 §2.4.6) and exact form of their identifiers; it replaces the rule "actor = the agent that acts" (decision 53). <strong>Change v1.6:</strong> proposal to mint IRIs (registry bump v0.8.4) after analysing the published registry v0.8.3 — no new verbs; 7 extensions, 4 fields in <code>ext/level-decision</code> and 2–3 incident types. <strong>Change v1.5:</strong> level-decision rule for the free user without a teacher — code proposes and the user accepts after seeing the evidence, with a mandatory human reviewer for jumps of two levels, entry into level C or a dispute; minors excluded from self-acceptance. <strong>Change v1.4:</strong> main governance rule (R-MED-1) — every measurement goes through the measurement flow against the full base, and no other agent measures on its own. <strong>Change v1.3:</strong> two-track vocabulary by user type (author's decision), scope of the OCR reader (it decides about the image, never about the learner) and a rule of measurement in every interaction, comparing actual and declared level. <strong>Change v1.2:</strong> equivalence table with the numbering of the Evaluator v2 spec (§6.1) and a note on the orphan reference "N14" in the Primer of the 7. <strong>Guiding principle:</strong> The base defines · the AI locates · the code computes · the teacher validates · the LRS records it. <em>(Until 12 Nov it read "the teacher decides"; it changes under G-NIVEL-1: the teacher's validation is external to the app.)</em> <strong>Verification principle (Ana Eslava-Graterol):</strong> checking every claim against the data is what exposed TK CoachAI's failures. Had we accepted what was said without checking it, we would still have false figures. Checking is not slowness: it is the audit. In governance, no claim is accepted without its proof (statement IDs in the LRS, the code excerpt and the date from which it holds). <strong>Role-invariance principle (Ana Eslava-Graterol, 10 Nov):</strong> no agent decides, and every agent keeps to its role, whatever the model, whatever it is called, and whatever temperature the system applies. Code and tests enforce the role (validated schema, ids from the base, common block, R-ID checks A1–A4, stability test), not the model's parameters. The exact model identifier is recorded to audit it, not to trust it.</p>
+<blockquote>
+<p>These norms govern every AI agent of the MLLDE model and its applications (e.g. TK CoachAI). An agent that is not on the map does not enter the loop.</p>
+</blockquote>
+<h2 id="en-r-med-1-main-rule-every-measurement-goes-thr">R-MED-1 — Main rule: every measurement goes through the measurement flow</h2>
+<blockquote>
+<p><strong>MAIN RULE, binding on every AI agent:</strong> the user's production is always checked by the measurement flow against the full base — <strong>381 A1–C2 descriptors measurable from text</strong> (the inventory has 382: gram 115 · voc 96 · spk 100 · med 71; one pronunciation descriptor, which cannot be measured from text, is excluded) — with <code>ext/input-channel</code> declared. <strong>No other agent measures, scores or assesses the user on its own.</strong></p>
+</blockquote>
+<ul>
+<li>An agent that is not the measurement flow may extract, select, write or plan, but <strong>never passes judgement on the user's level or competence</strong> (N10: zero calculations in an LLM; G-NIVEL-1 P2: a <code>level</code>/<code>grade</code> field invalidates the whole response).</li>
+<li>The comparison <strong>actual vs declared level</strong> is computed by code with the public 80% rule (v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring).</li>
+<li>The descriptors the user evidences with a verbatim quote select the content of the next Process phase (i+1 by code).</li>
+<li>Every write to the profile requires a human actor (G-NIVEL-1, P3–P5).</li>
+<li>Rule coined on 9 Nov by the author's decision; it comes into force with the signatures of pedagogy and engineering (N12).</li>
+</ul>
+<h2 id="en-n-structural-norms-n1-n13-operational-extrac">N — Structural norms (N1–N13, operational extract)</h2>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Norm</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="Norm"><strong>N1 — Closed registry</strong></td><td data-label="Rule">Only the agents on the canonical map may act. A new agent = a proposal with a signed card, not an installation.</td></tr>
+<tr><td data-label="Norm"><strong>N2 — Single gate</strong></td><td data-label="Rule">Every write to the LRS goes through the Consolidator (code). No agent writes to the LRS on its own.</td></tr>
+<tr><td data-label="Norm"><strong>N3 — Anti-rogue-agent</strong></td><td data-label="Rule">The prompt in production must match the approved one (<code>prompt-hash</code>); if it differs, the agent does not start.</td></tr>
+<tr><td data-label="Norm"><strong>N4 — Closed base</strong></td><td data-label="Rule">A single knowledge bundle (registry v0.8.3 + inventory v0.7.2), mounted by code, with <code>kb-version</code> and <code>kb-hash</code> declared. No copyrighted material in the prompt.</td></tr>
+<tr><td data-label="Norm"><strong>N5 — Fixed models</strong></td><td data-label="Rule">Model with its version fixed in writing; no-train contract verified; <strong>never any fallback</strong> (Gemini lesson, 5–19 Oct). The exact model identifier goes in every statement (R-ID). <strong>It applies to every agent, not only to the one that measures</strong> (author's decision, 11 Nov), with tracking of the adherence rate per model. Legal basis: see the note under this table.</td></tr>
+<tr><td data-label="Norm"><strong>N6 — Traceability</strong></td><td data-label="Rule">The agent in <code>context.instructor</code>, with its <code>account</code> from the registry (R-ID, v1.7; formerly <code>agent-id</code>), + <code>agent-version</code> + <code>measure-model</code> (exact identifier) + <code>rules-version</code> in every statement. Goal: every registered agent with its own trace. The registry is in <code>governance/registro-agentes/</code>.</td></tr>
+<tr><td data-label="Norm"><strong>N7 — Flows that never cross</strong></td><td data-label="Rule">Measurement (1×/session), pedagogy (per turn), activity (loop). The band arises only from the measurement flow.</td></tr>
+<tr><td data-label="Norm"><strong>N8 — Fail-closed</strong></td><td data-label="Rule">When in doubt, nothing is emitted: ASR gate 0.70, judge unavailable → no tip, invalid schema → discard.</td></tr>
+<tr><td data-label="Norm"><strong>N9 — PII</strong></td><td data-label="Rule">Only the UUID + transcript go to the model; never name, company, job title or email. LRS authority = service account, never a personal credential.</td></tr>
+<tr><td data-label="Norm"><strong>N10 — Zero calculations in an LLM</strong></td><td data-label="Rule">No agent generates competence numbers: marks (5.2/5.3), band (formula of 26/08), i+1 and proposed level are computed by code.</td></tr>
+<tr><td data-label="Norm"><strong>N11 — Declared incidents</strong></td><td data-label="Rule">Each agent defines its incident types with an IRI from the registry; they go to its log, never to the learner's KPIs.</td></tr>
+<tr><td data-label="Norm"><strong>N12 — Signed versioning</strong></td><td data-label="Rule">A change of prompt/model/rules = version bump + signature (pedagogy + engineering) + entry on the map + the date from which it counts.</td></tr>
+<tr><td data-label="Norm"><strong>N13 — Tests in CI</strong></td><td data-label="Rule">Every admission test runs in CI on every deployment; if it fails, the deployment is blocked.</td></tr>
+</tbody>
+</table></div>
+<p><strong>Legal basis of N5</strong> (developed in the agent primer, §3.1). The AI Act citations were checked on 11 Nov against the official text in the Official Journal (Regulation (EU) 2024/1689, original version, without the changes of Regulation (EU) 2026/1744):</p>
+<ul>
+<li><p><strong>AI Act:</strong></p>
+<ul>
+<li>art. 11 and Annex IV 2(a);</li>
+<li>art. 25(4);</li>
+<li>art. 53(1)(b) and Annex XII;</li>
+<li>arts. 12, 15(1), 15(4) and 19;</li>
+<li>substantial modification: arts. 3(23) and 43(4);</li>
+<li>art. 86.</li>
+</ul>
+<p>High-risk obligations apply from 2 Dec 2027 (Regulation (EU) 2026/1744).</p></li>
+<li><p><strong>GDPR</strong> (applies today):</p>
+<ul>
+<li>arts. 5(1)(a), (b), (d) and (f), and art. 5(2);</li>
+<li>arts. 13(1)(e)–(f);</li>
+<li>art. 28(3);</li>
+<li>art. 30(1)(d)–(e);</li>
+<li>art. 32;</li>
+<li>art. 35;</li>
+<li>arts. 44–46.</li>
+</ul></li>
+<li><p><strong>ISO/IEC 42001:</strong> A.6.2.8 and A.10.</p></li>
+</ul>
+<blockquote>
+<p><strong>What the UUID in N9 is (12 Nov).</strong> UUID stands for <em>Universally Unique Identifier</em>. It is a code of 32 hexadecimal characters in five groups separated by hyphens, for example <code>7ba714b6-b6b5-4b7f-8cbd-1ca44b43145e</code>. It is generated so that the probability of a repeat is practically nil.</p>
+<p><strong>In TK CoachAI</strong> it is the learner's pseudonymous identifier: it appears in the LRS as the actor's <code>account.name</code>, instead of their name. Only the UUID and the transcript go to the model: so the model knows which learner a session belongs to without knowing who they are (no name, company, job title or email).</p>
+<p><strong>The short pseudonym in the dashboards</strong>, of the form <code>TK-7BA714B6</code>, is the first 8 characters of the UUID in capitals. Checked in the Veracity export of 11 Nov: 577 of 577 statements with a pseudonym.</p>
+<p><strong>A pseudonym is not anonymous:</strong> whoever holds the table that links the UUID to the profile can identify the learner. That is why the UUID is still personal data and is protected as such.</p>
+</blockquote>
+<blockquote>
+<p><strong>Reminder of a prior agreement (N9 · personal data).</strong> If the report has to show the learner's name, it is added by <strong>the app when it presents the report, outside the AI</strong>: the code takes the model's text and adds the name from the profile. So the name appears on screen or in the PDF <strong>without ever passing through the model</strong>. This is what data minimisation requires (GDPR, art. 5(1)(c)).</p>
+</blockquote>
+<h3>N6-bis — Weekly cmi5 audit package (traceability rule, v1.7)</h3>
+<blockquote>
+<p><strong>Rule:</strong> every week, the environment delivers to the designer a <strong>cmi5 package</strong> of the version in production, downloadable without the developer's involvement. It is imported into <strong>SCORM Cloud</strong> and launched with a test learner; the xAPI statements it emits are compared with the current registry and profile.</p>
+</blockquote>
+<ul>
+<li><strong>What is checked:</strong>
+<ul>
+<li><strong>a. Continuity of the loop:</strong> Input → Process → Output → Adapt, step by step and in order.</li>
+<li><strong>b. Undeclared metrics:</strong> no extension, verb or result that is not in the registry.</li>
+<li><strong>c. Duplicate metrics:</strong> one session, one <code>completed</code>; no data emitted twice.</li>
+<li><strong>d. Unauthorised actors and agents:</strong> no actor or agent that is not on the canonical map. An unknown actor is an incident and is reviewed before going on.</li>
+</ul></li>
+<li><strong>Why cmi5 and not SCORM 2004:</strong> cmi5 is based on xAPI, so it shows actors, verbs and objects. SCORM 2004 does not carry xAPI statements and does not allow this check.</li>
+<li><strong>What the package does not replace:</strong> the package proves what the version <strong>emits</strong>. What <strong>has happened</strong> is audited with the 3 LRS exports (statements, verbs and objects, agents) and with the admin dashboard's JSON (measurement model). The two audits are cross-checked.</li>
+<li><strong>Record:</strong> each package carries the date, the app version and the agents' <code>prompt-hash</code>; it is kept with the result of the check.</li>
+<li>Rule agreed at the meeting of 9 Nov; it comes into force with the signatures of pedagogy and engineering (N12).</li>
+</ul>
+<h3>Equivalence with the numbering of the Evaluator v2 spec (§6.1)</h3>
+<blockquote>
+<p><strong>Numbering notice.</strong> The Evaluator v2 spec (8 Nov) numbers its norms differently from N4 onwards, and the Primer of the 7 (8 Nov) cites that spec numbering (e.g. "N9 = exact model"). So that the committee does not find two different "N9", this is the official correspondence:</p>
+</blockquote>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Evaluator v2 spec (§6.1)</th>
+<th>Equivalent in this package (v1.1)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N1 · Closed registry</td><td data-label="Equivalent in this package (v1.1)"><strong>N1</strong> (same rule)</td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N2 · Single gate for model calls</td><td data-label="Equivalent in this package (v1.1)"><strong>N2</strong> (here with emphasis on writing to the LRS)</td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N3 · Anti-stray-agent test (includes prompt-hash)</td><td data-label="Equivalent in this package (v1.1)"><strong>N3</strong> (same rule)</td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N4 · Card before code (justified request + two signatures)</td><td data-label="Equivalent in this package (v1.1)"><strong>R-ADM-1 and R-ADM-5</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N5 · One function per agent; no agent decides</td><td data-label="Equivalent in this package (v1.1)">Guiding principle + <strong>N10</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N6 · Common block mandatory in every prompt</td><td data-label="Equivalent in this package (v1.1)"><strong>Missing in v1.1 — to be added</strong> (literal text in spec §6.2)</td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N7 · The base is inherited by code</td><td data-label="Equivalent in this package (v1.1)"><strong>N4</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N8 · Traceability (actor = the agent that acts)</td><td data-label="Equivalent in this package (v1.1)"><strong>N6</strong> + <strong>R-ID</strong> (v1.7: the actor is the learner; the agent goes in <code>context.instructor</code>)</td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N9 · Approved, fixed models, no fallback</td><td data-label="Equivalent in this package (v1.1)"><strong>N5</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N10 · Minimum data (no personal data)</td><td data-label="Equivalent in this package (v1.1)"><strong>N9</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N11 · Changes = new version, with test and signatures</td><td data-label="Equivalent in this package (v1.1)"><strong>N12</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N12 · Periodic audit (agents ↔︎ calls ↔︎ Veracity)</td><td data-label="Equivalent in this package (v1.1)"><strong>Missing in v1.1 — to be added</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N13 · Withdrawal of agents without a card on time</td><td data-label="Equivalent in this package (v1.1)"><strong>Missing in v1.1 — to be added</strong></td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N14 · Demonstrated need (8 Nov)</td><td data-label="Equivalent in this package (v1.1)"><strong>R-ADM-1</strong>, with the demonstrated-need condition</td></tr>
+<tr><td data-label="Evaluator v2 spec (§6.1)">N12-bis · Weekly cmi5 audit package (9 Nov)</td><td data-label="Equivalent in this package (v1.1)"><strong>N6-bis</strong> (v1.7)</td></tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>On the "N14" cited by the Primer of the 7 (corrected in v1.7):</strong> N14 <strong>does exist</strong>. The author added it to the Evaluator v2 spec on 8 Nov, with her decision that the loop needs only 7 agents: <strong>N14 · Demonstrated need</strong> — an agent is approved only if its card shows which part of the loop needs it and why neither code nor one of the 7 loop agents can do it. Its equivalent in this package is <strong>R-ADM-1</strong> (entry on the map with justification), reinforced with that condition. The v1.2 note that called it an orphan was written on an earlier version of the spec. It comes into force with the signatures of pedagogy and engineering (N12).</p>
+</blockquote>
+<h2 id="en-g-nivel-1-the-level-the-app-proposes-it-neve">G-NIVEL-1 — The level: the app proposes, it never generates the level</h2>
+<p><strong>Two user modes (Ana Eslava-Graterol, 11 Nov).</strong> TK CoachAI was built for B2B and for B2C. The specifications always distinguish them:</p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>B2B</strong> (business · <code>user-track: pilot</code>)</th>
+<th><strong>B2C</strong> (consumer · <code>user-track: free</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="">Who is there</td><td data-label="B2B (business · user-track: pilot)">The learner and, behind them, a teacher who moderates</td><td data-label="B2C (consumer · user-track: free)">The learner alone, without a teacher</td></tr>
+<tr><td data-label="">What the app does</td><td data-label="B2B (business · user-track: pilot)">It compares the learner's real evidence with the descriptors: how many are met and at which level, and it emits a band</td><td data-label="B2C (consumer · user-track: free)">The same</td></tr>
+<tr><td data-label="">What enters the LRS</td><td data-label="B2B (business · user-track: pilot)"><strong><code>progressed</code>, with the learner as actor</strong>: the user who interacts and produces the conversation is always the one who has progressed. It carries their mark and their evidence</td><td data-label="B2C (consumer · user-track: free)">The same</td></tr>
+<tr><td data-label="">External validation (outside the app; it does not enter the LRS)</td><td data-label="B2B (business · user-track: pilot)">The teacher confirms the level with another assessment, oral and written</td><td data-label="B2C (consumer · user-track: free)">If the person wants the level validated, a teacher confirms it outside, with another assessment</td></tr>
+<tr><td data-label="">Setting</td><td data-label="B2B (business · user-track: pilot)">Training with a responsible teacher</td><td data-label="B2C (consumer · user-track: free)">Outside official education settings</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>RULE:</strong> the app PROPOSES a measure with a public rule, against the criteria set in the app: the highest level with <strong>≥80% of descriptors evidenced with a verbatim quote</strong> (v0.7.2 thresholds: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). <strong>The AI does not decide:</strong> it does not assess the evidence by its own judgement or by what seems right to it. It compares real data from different sources, the learner's evidence and the descriptors of the base: the AI locates the evidence and code counts and computes the band. <strong><code>progressed</code> is the learner's mark of progress in the app, not the certification of the level:</strong> that is given, where appropriate, by an external validation.</li>
+<li><strong>P1:</strong> no agent receives the learner's declared level (anti-anchoring).</li>
+<li><strong>P2:</strong> no model returns levels or marks (a <code>level</code>/<code>grade</code> field invalidates the whole response).</li>
+<li><strong>P3:</strong> the proposal is never written into the profile; it is shown as "pending decision".</li>
+<li><strong>P4 (Ana Eslava-Graterol, 11 Nov): actor of <code>progressed</code> = the learner, in B2B and in B2C.</strong> The teacher's validation is external to the app: they confirm the level with another assessment (oral, written) and it does not enter the LRS. That is why the app never emits a <code>progressed</code> in the name of the teacher or of an agent. <strong>What the app must guarantee:</strong> that the evidence behind each <code>progressed</code> (answers, errors, quotes and descriptors) can be seen in the dashboards. <em>Replaces:</em> "every <code>progressed</code> requires a human actor + <code>evidenceReviewed: true</code>; otherwise the gate rejects it".</li>
+<li><strong>P5:</strong> the profile does not change through performance without a human decision (R-DESAJUSTE-1: 3 mismatched sessions → "review" flag, profile intact).</li>
+<li><strong>P6 (Ana Eslava-Graterol, 11 Nov): the app's level test is disabled.</strong> It changed the learner's level without leaving a statement and without a teacher, and the generators used that level.</li>
+<li><strong>Legal basis:</strong> AI Act art. 14 + Annex III 3(b)/(c) · GDPR art. 22.</li>
+<li><strong>Own incidents:</strong> <code>incident/nivel-sin-decision-humana</code> · <code>incident/nivel-propuesto-escrito-en-perfil</code> (high severity: they stop emission).</li>
+</ul>
+<h2 id="en-level-decision-in-b2c-the-free-user-without-">Level decision in B2C: the free user, without a teacher (v1.5)</h2>
+<p><em>B2C = free user (<code>user-track: free</code>): they have no teacher and are not part of official education settings (Ana, 11 Nov).</em> <em>Their <code>progressed</code> follows the general rule of G-NIVEL-1 P4: the actor is the learner.</em></p>
+<blockquote>
+<p><strong>Rule:</strong> for the free user, code proposes and <strong>the user decides about their own profile after seeing the evidence</strong>; in the highest-impact cases the decision requires a <strong>human reviewer</strong>.</p>
+</blockquote>
+<ul>
+<li><strong>Proposal with evidence:</strong> the proposal (public 80% rule) is shown with the evidenced descriptors and their verbatim quote; the user accepts or not. If they ignore it, nothing changes (P3/P5 intact).</li>
+<li><strong>Trace of the free user's decision:</strong> their acceptance does happen inside the app, so their <code>progressed</code> carries actor = the user's UUID + <code>evidenceReviewed: true</code> + the rule version.</li>
+<li><strong>Mandatory human review</strong> in three cases: a jump of two levels or more (e.g. A2→B2), entry into level C, or a dispute by the user.</li>
+<li><strong>Never downwards without acceptance:</strong> a proposal to go down is notified, not applied; if it is ignored, the profile stays and R-DESAJUSTE-1 flags "review".</li>
+<li><strong>No dark patterns:</strong> accepting cannot be more attractive than declining; no pressure and no countdown.</li>
+<li><strong>Minors:</strong> if the free channel admits minors, self-acceptance is not valid — it requires legal age or review by a responsible adult.</li>
+<li>Rule adopted from the analysis of 9 Nov (recommended hybrid option); it comes into force with the signatures of pedagogy and engineering (N12).</li>
+</ul>
+<h2 id="en-t-nivel-1-automatic-test-on-every-deployment">T-NIVEL-1 — Automatic test on every deployment</h2>
+<ul>
+<li><strong>a.</strong> Model response with <code>{"level":"b2"}</code> → total rejection + incident; nothing is computed.</li>
+<li><strong>b.</strong> <code>progressed</code> whose actor is not the learner (an agent, the app or the teacher) → rejected before the LRS (P4, 11 Nov).</li>
+<li><strong>c.</strong> 3 simulated sessions with evidence of another level → profile intact + "review" + incident.</li>
+</ul>
+<h2 id="en-r-adm-admission-of-a-new-agent-the-5-rules">R-ADM — Admission of a new agent (the 5 rules)</h2>
+<ol type="1">
+<li><strong>R-ADM-1 · Map:</strong> prior entry on the canonical map, with justification.</li>
+<li><strong>R-ADM-2 · Fixed model:</strong> a specific version, no fallback. Temperature is not an admission condition (role-invariance principle, 10 Nov): the agent demonstrates its stability with the repeated-input test. Until 10 Nov it read "temperature fixed".</li>
+<li><strong>R-ADM-3 · Closed base:</strong> only the official bundle; no copyright; nothing "from the model".</li>
+<li><strong>R-ADM-4 · Prompt with hash (N3):</strong> production == approved, or it does not start.</li>
+<li><strong>R-ADM-5 · Signature:</strong> card signed by pedagogy and engineering before deployment.</li>
+</ol>
+<h2 id="en-classification-of-components-agent-vs-infras">Classification of components (agent vs infrastructure)</h2>
+<ul>
+<li>Is it deterministic (same input → same output)? → <strong>infrastructure</strong>, not an agent (ASR, OCR, SRS scheduler). It is governed with a confidence gate, a no-train contract and without storing the raw input.</li>
+<li>Is it generative and does it fit in a canonical piece? → <strong>it is absorbed</strong> (the 4 generators → piece 5; the Hint → piece 1).</li>
+<li>Does it fit in none? → <strong>full R-ADM examination or withdrawal</strong>.</li>
+</ul>
+<h2 id="en-r-id-identification-of-agents-in-the-record-">R-ID — Identification of agents in the record (v1.7)</h2>
+<p><strong>Basis (xAPI 1.0.3 standard published by ADL, xAPI-Data):</strong></p>
+<ul>
+<li>§2.4.6, context property <code>instructor</code>: "Agent (MAY be a Group). Instructor that the Statement relates to, if not included as the Actor of the Statement."</li>
+<li>§2.4.2.1: "An Agent MUST be identified by one (1) of the four types of Inverse Functional Identifiers".</li>
+<li>§2.4.2.4: the <code>account</code> object requires <code>homePage</code> (IRL of the system) and <code>name</code> (unique identifier in that system).</li>
+</ul>
+<p><strong>Actor rule (author's decision, 10 Nov; replaces decision 53):</strong></p>
+<ul>
+<li><strong>The actor of every learning statement is the learner.</strong> It applies to <code>completed</code>, <code>answered</code>, <code>attempted</code>, <code>mediated</code> and <code>adapted</code>.</li>
+<li><strong>The AI agent that intervenes goes in <code>context.instructor</code></strong>, with its <code>account</code>. If two intervene at once (e.g. the Corrector and the Judge), a <strong>Group</strong> with both goes there.</li>
+<li><strong>Voids (<code>voided</code>) have the system account as actor</strong>, <code>tk-coach-engine</code>. It is a system act, not an act of an AI agent.</li>
+<li><strong>The <code>authority</code> is set by the LRS</strong> from the service key. The app does not write it (N9).</li>
+<li><strong>Design basis:</strong> the AI does not grade. The Evaluator provides evidence, code computes (N10) and the teacher validates the level outside the app (G-NIVEL-1). That is why the achievement belongs to the learner and the agent is recorded as the one who intervened.</li>
+</ul>
+<p><strong>What receives an agent identifier (link with the classification of components):</strong></p>
+<ul>
+<li><strong>Every generative component that acts in learning or talks to the user.</strong> Each function has an identifier.</li>
+<li><strong>Teo, the support agent, is declared in the registry</strong> (<code>support-agent</code>, author's decision, 10 Nov). It is outside learning, but it talks to the user (art. 50). <strong>It never appears in a learning statement</strong> (if it does, A2 fires); its trace is the call log.</li>
+<li><strong>They never receive an agent identifier or appear in <code>instructor</code>:</strong>
+<ul>
+<li>infrastructure (ASR, OCR, SRS scheduler);</li>
+<li>code (consolidator, guardian, rate limit).</li>
+</ul></li>
+</ul>
+<p><strong>Exact form of identifiers</strong> (equivalent to the IRI rule of 24 Sep: "0 ADL verbs in https://", "0 MLLDE verbs in http://", which still holds):</p>
+<ol type="1">
+<li>A single identifier, <code>account</code>; never <code>mbox</code> or <code>openid</code>.</li>
+<li>Exact <code>homePage</code>: <code>https://tkcoach.talketika.app</code>. With "s", lowercase, no trailing slash and no path.</li>
+<li>Exact <code>account.name</code>, as in the identifier registry: lowercase, with hyphens and ending in <code>-agent</code>. The only exception is the system account, <code>tk-coach-engine</code>.</li>
+<li>The <code>name</code> label (e.g. "Capi") does not identify; checks always filter by <code>account.name</code>.</li>
+<li>The version never goes in the name (no <code>capi-agent-v2</code>): it goes in <code>ext/agent-version</code>.</li>
+<li>An identifier is never renamed or reused; that of a withdrawn agent is not assigned to another.</li>
+<li>The <code>authority</code> is not written by the app: the LRS sets it (<code>https://tk-coach-prod.lrs.io/keys/&lt;key&gt;</code>).</li>
+</ol>
+<p><strong>Detection of out-of-role behaviour</strong> (in the daily check and in the audit with the LRS export):</p>
+<ul>
+<li><strong>A1:</strong> an <code>instructor</code> that is not in the registry indicates an unauthorised agent.</li>
+<li><strong>A2:</strong> an agent in a verb or flow that is not its own indicates out-of-role behaviour. For example, any agent other than the Evaluator in a <code>completed</code>.</li>
+<li><strong>A3:</strong> an agent as actor of a learning statement.</li>
+<li><strong>A4:</strong> a logged call (N8 of the spec) without a statement or without <code>instructor</code>.</li>
+</ul>
+<p><strong>Closure:</strong></p>
+<ul>
+<li>0 agent accounts with another <code>homePage</code>;</li>
+<li>0 <code>account.name</code> outside the registry;</li>
+<li>0 agents as actor of a learning statement;</li>
+<li>0 new statements with a personal <code>authority</code>.</li>
+</ul>
+<p><strong>Baseline (Veracity export, 10 Nov, 2,243 statements):</strong></p>
+<ul>
+<li><code>account</code> as the only identifier: 2,243 of 2,243;</li>
+<li>a single <code>homePage</code>, the correct one: 2,243 of 2,243;</li>
+<li>0 statements with <code>context.instructor</code>;</li>
+<li><code>capi-agent</code> as actor in 141 <code>adapted</code>;</li>
+<li><code>tk-coach-engine</code> in 36 <code>voided</code>;</li>
+<li><code>authority</code> = the personal key of a team member, not the service key, in 2,243 of 2,243.</li>
+</ul>
+<p><strong>Proof of compliance</strong> (verification principle):</p>
+<ul>
+<li>the ID of a new statement with <code>instructor</code>;</li>
+<li>the code excerpt;</li>
+<li>the date from which it holds.</li>
+</ul>
+<p>It comes into force with the signatures of pedagogy and engineering (N12).</p>
+<h2 id="en-vocabulary-from-images-or-prompts-two-tracks">Vocabulary from images or prompts — two tracks by user type (v1.3)</h2>
+<ul>
+<li><strong>Institutional learner (pilot) — Track A (default):</strong> the component may only SELECT terms that already exist in the inventory (<code>en.voc.*</code>); validation against an allow-list in code; what is not there is discarded. The content is set by the programme, so that measurement is comparable.</li>
+<li><strong>Institutional learner — Track B (new vocabulary):</strong> the component PROPOSES candidates to a human review queue; they enter the inventory in the next version bump, with the date from which they count. The component never writes to the base.</li>
+<li><strong>Free user — own track (the user's own selection):</strong> the input is generated by the user (their image, their presentation). Their vocabulary cards are selected by <strong>the user</strong> from the terms extracted from their material; code validates the format and requires the origin (<code>own-image</code>), without going through the inventory queue. <strong>CLIL justification:</strong> language is learnt through content that is meaningful to the learner; their context and real communicative need decide which vocabulary is worked on.</li>
+<li><strong>Forbidden in both tracks:</strong> AI-generated vocabulary feeding cards or drills without validation in code and a declared origin.</li>
+<li>In both cases, content vocabulary is <strong>practice without measurement</strong> (decision 51): objective mastery by SRS, never a band.</li>
+</ul>
+<h2 id="en-scope-of-the-ocr-reader-and-measurement-in-e">Scope of the OCR reader and measurement in every interaction (v1.3)</h2>
+<ul>
+<li>The OCR reader decides <strong>about the image, never about the learner</strong>: it extracts text and terms from the stimulus; it does not assess.</li>
+<li><strong>Every interaction</strong> checks the user's production against the full base — 381 A1–C2 descriptors measurable from text (inventory of 382; one pronunciation descriptor excluded) — with <code>ext/input-channel</code> declared.</li>
+<li>The <strong>actual vs declared level</strong> is computed by code (public 80% rule, v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring). The descriptors the user evidences with a verbatim quote select the content of the next Process phase (i+1 by code).</li>
+<li><code>progressed</code> always has the learner as actor, and certification of the level is a validation external to the app (G-NIVEL-1); <strong>for the free user, the rule in the section "Level decision in B2C" (v1.5) applies.</strong> (Until 11 Nov this line said, by mistake, that it was still to be defined.) OCR is infrastructure: it is recorded with <code>ext/input-channel: ocr</code> and never goes in <code>context.instructor</code> (R-ID).</li>
+</ul>
+<h2 id="en-proposal-to-mint-iris-registry-bump-v0-8-4-v">Proposal to mint IRIs — registry bump v0.8.4 (v1.6)</h2>
+<p>Analysis of the published registry v0.8.3 (153 concepts) against these norms. <strong>No new verbs are needed:</strong> the reused ADL verbs (<code>progressed</code>, <code>attempted</code>, <code>completed</code>, <code>passed</code>, <code>failed</code>, <code>interacted</code>, <code>asked</code>, <code>answered</code>) and the 3 coined ones (<code>pronounced</code>, <code>mediated</code>, <code>adapted</code>) cover every proposal — the free user's acceptance (v1.5) is a <code>progressed</code> with its own actor, not a new verb.</p>
+<p><strong>Urgent — the norms already cite them and they do not exist in the registry:</strong></p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Proposed IRI</th>
+<th>Type</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="Proposed IRI"><code>incident/nivel-sin-decision-humana</code></td><td data-label="Type">incident</td><td data-label="Reason">G-NIVEL-1 names it; the incident table does not have it</td></tr>
+<tr><td data-label="Proposed IRI"><code>incident/nivel-propuesto-escrito-en-perfil</code></td><td data-label="Type">incident</td><td data-label="Reason">Same — today they are orphan references</td></tr>
+</tbody>
+</table></div>
+<p><strong>High — they close audit findings:</strong></p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Proposed IRI</th>
+<th>Type</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="Proposed IRI"><code>ext/descriptor-results</code></td><td data-label="Type">result</td><td data-label="Reason">Output per descriptor <code>{id, evidenced, quote}</code>; without it there is no visible evidence for v1.5 self-acceptance (planned in v0.9)</td></tr>
+<tr><td data-label="Proposed IRI"><code>ext/vocabulary-origin</code></td><td data-label="Type">context</td><td data-label="Reason">Closed values: <code>inventory · correction · prompt · image · summary · own-image</code>; it is the field that arrived "undefined" in 16 terms</td></tr>
+<tr><td data-label="Proposed IRI"><code>ext/user-track</code></td><td data-label="Type">context</td><td data-label="Reason"><code>pilot · free</code>; it makes the two tracks and the decision by group auditable</td></tr>
+</tbody>
+</table></div>
+<p><strong>Medium — they make R-MED-1 and N6 machine-checkable:</strong></p>
+<div class="tw"><table>
+<thead>
+<tr class="header">
+<th>Proposed IRI</th>
+<th>Type</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-label="Proposed IRI"><code>ext/flow</code></td><td data-label="Type">context</td><td data-label="Reason"><code>measurement · pedagogy · activity</code>; today N7 is a written rule, not data in the LRS</td></tr>
+<tr><td data-label="Proposed IRI"><code>ext/agent-version</code> · <code>ext/rules-version</code> · <code>ext/prompt-hash</code> · <code>ext/kb-version</code></td><td data-label="Type">context</td><td data-label="Reason">N6/N3/N4 require them in every statement and only <code>ext/measure-model</code> exists</td></tr>
+<tr><td data-label="Proposed IRI"><code>ext/ocr-confidence</code></td><td data-label="Type">result</td><td data-label="Reason">Analogous to <code>ext/asr-confidence</code> for the OCR gate</td></tr>
+</tbody>
+</table></div>
+<p><strong>New fields inside <code>ext/level-decision</code> (bump of the object, not a new IRI):</strong> <code>decisionActor</code> (self · reviewer; <code>teacher</code> removed on 11 Nov: the teacher's decision does not enter the LRS, P4) · <code>evidenceReviewed</code> (boolean, P4) · <code>status</code> (proposed · accepted · rejected · pending) · <code>reviewTrigger</code> (none · jump2plus · c-entry · dispute).</p>
+<p><strong>What is NOT minted:</strong> downgrades without acceptance, dark patterns and minors are rules of code, UX and onboarding; they are audited in T-NIVEL-1 and in design review, not in the LRS. The IRIs work as identifiers even while <code>w3id.org/mllde</code> is still in a PR; the namespace should be resolved before publishing v0.8.4. Proposal from the analysis of 9 Nov; it comes into force with the signatures of pedagogy and engineering (N12).</p>
+<h2 id="en-the-guardian-specific-rule">The guardian (specific rule)</h2>
+<p>No agent may <strong>analyse and correct the system on its own</strong>. A watcher only alerts (fail-closed, without write access). Its function is covered by the N3 test + CI: auditable, repeatable and without privileges.</p>
+<hr />
+<p><em>MLLDE method © 2026 Ana Eslava-Graterol (UPV). Prepared with AI assistance and reviewed by the author, in the spirit of art. 50 of Regulation (EU) 2024/1689.</em></p>
+</div>
+</section>
+</main>
+</div>
+<footer><div class="wrap"><span class="lang-es" lang="es">Método MLLDE © 2026 Ana Eslava-Graterol (UPV). Hecho con ayuda de IA y revisado por la autora (Reglamento (UE) 2024/1689, art. 50). Las normas no están firmadas: describen el diseño gobernado y el estado comprobado, no un cumplimiento ya logrado.</span><span class="lang-en" lang="en">MLLDE method © 2026 Ana Eslava-Graterol (UPV). Made with AI assistance and reviewed by the author (Regulation (EU) 2024/1689, art. 50). The norms are not signed: they describe the governed design and the verified state, not compliance already achieved.</span></div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  var lb=document.getElementById('langBtn'), tb=document.getElementById('themeBtn');
+  function setLang(l){root.setAttribute('data-lang',l);root.setAttribute('lang',l);lb.textContent=l==='en'?'ES':'EN';set('mllde-norms-lang',l);}
+  function isDark(){var t=root.getAttribute('data-theme');if(t)return t==='dark';return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;}
+  function paintTheme(){var d=isDark();tb.innerHTML=d?'<span class="lang-es" lang="es">Claro</span><span class="lang-en" lang="en">Light</span>':'<span class="lang-es" lang="es">Oscuro</span><span class="lang-en" lang="en">Dark</span>';tb.setAttribute('aria-pressed',d?'true':'false');}
+  lb.addEventListener('click',function(){setLang(root.getAttribute('data-lang')==='en'?'es':'en');});
+  tb.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);set('mllde-norms-theme',n);paintTheme();});
+  var sl=get('mllde-norms-lang'); setLang(sl==='en'?'en':'es');
+  var st=get('mllde-norms-theme'); if(st==='dark'||st==='light') root.setAttribute('data-theme',st);
+  paintTheme();
+})();
+</script>
+
+</body>
+</html>

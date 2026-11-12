@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Registro de agentes MLLDE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: barra fija como el hub del portafolio, cabecera centrada, una ficha por agente. Ocean Ink · AE Evolution. */
+:root {
+  --fd:'Fraunces',Georgia,'Times New Roman',serif; --fb:'Inter',-apple-system,'Segoe UI',Roboto,Arial,sans-serif; --fm:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --primary:#3B5BD6; --primary-deep:#293B83; --accent-text:#9A5B00;
+  --ink:#1C1E2E; --muted:#5B5F77; --canvas:#F7F8FC; --surface:#FFFFFF; --line:#E6E8F2;
+  --bar:#293B83; --bar-sub:#A9B8F5; --chip:#ECEFFE; --chip-text:#293B83; --focus:#9A5B00;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ink:#EEF0FC; --muted:#A3ABD0; --canvas:#0F1120; --surface:#20243A; --line:#2F3556;
+  --primary:#A9B8F5; --primary-deep:#C6D2FB; --accent-text:#F3B861;
+  --bar:#0F1120; --bar-sub:#A9B8F5; --chip:#1E2240; --chip-text:#C6CFFA; --focus:#F3B861; color-scheme:dark; } }
+:root[data-theme="dark"] {
+  --ink:#EEF0FC; --muted:#A3ABD0; --canvas:#0F1120; --surface:#20243A; --line:#2F3556;
+  --primary:#A9B8F5; --primary-deep:#C6D2FB; --accent-text:#F3B861;
+  --bar:#0F1120; --bar-sub:#A9B8F5; --chip:#1E2240; --chip-text:#C6CFFA; --focus:#F3B861; color-scheme:dark; }
+:root[data-lang="en"] .lang-es, :root:not([data-lang="en"]) .lang-en { display:none !important; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:var(--fb); background:var(--canvas); color:var(--ink); line-height:1.6; font-size:16px; -webkit-font-smoothing:antialiased; }
+a { color:var(--primary); text-underline-offset:2px; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--focus); outline-offset:2px; border-radius:6px; }
+code { font-family:var(--fm); font-size:.86em; background:var(--chip); color:var(--chip-text); padding:.05em .35em; border-radius:4px; overflow-wrap:anywhere; }
+.wrap { max-width:1100px; margin:0 auto; padding-left:max(20px,env(safe-area-inset-left,0px)); padding-right:max(20px,env(safe-area-inset-right,0px)); }
+body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:60; background:var(--bar); }
+.bar { background:var(--bar); color:#FFFFFF; position:sticky; top:env(safe-area-inset-top,0px); z-index:50; }
+.bar .wrap { display:flex; align-items:center; gap:10px; min-height:56px; flex-wrap:wrap; padding-block:6px; }
+.brand { font-family:var(--fd); font-weight:700; font-size:16px; line-height:1.15; }
+.brand small { display:block; font:600 9.5px/1.3 var(--fb); letter-spacing:.14em; text-transform:uppercase; color:var(--bar-sub); margin-top:2px; }
+.spacer { flex:1; }
+.bar button { font:700 12.5px var(--fb); color:#FFFFFF; background:rgba(255,255,255,.16); border:1.5px solid rgba(255,255,255,.55); border-radius:999px; padding:8px 14px; cursor:pointer; min-height:44px; min-width:44px; }
+.bar button:hover { background:rgba(255,255,255,.28); }
+.head { text-align:center; padding-block:34px 8px; }
+.head h1 { font-family:var(--fd); font-weight:700; color:var(--primary-deep); font-size:clamp(24px,4vw,34px); line-height:1.2; margin:0; text-wrap:balance; }
+.head .sub { color:var(--muted); max-width:64ch; margin:10px auto 0; }
+.note { max-width:74ch; margin:16px auto 0; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--primary); border-radius:10px; padding:12px 16px; font-size:14.5px; text-align:left; }
+.note p { margin:0 0 6px; } .note p:last-child { margin:0; }
+.layout { display:grid; grid-template-columns:1fr; gap:32px; padding-block:28px 56px; }
+@media (min-width:960px) { .layout { grid-template-columns:230px minmax(0,1fr); } nav.toc { position:sticky; top:calc(env(safe-area-inset-top,0px) + 72px); align-self:start; max-height:calc(100vh - 88px); overflow:auto; } }
+nav.toc { font-size:14px; min-width:0; }
+nav.toc p { font:700 10px var(--fb); letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin:0 0 6px; }
+nav.toc ol, nav.toc ul { list-style:none; margin:0 0 18px; padding:0; }
+nav.toc a { display:flex; gap:8px; padding:6px 8px; border-radius:6px; color:var(--ink); text-decoration:none; }
+nav.toc a span:first-child { color:var(--muted); font-variant-numeric:tabular-nums; min-width:1.4em; }
+nav.toc a:hover { background:var(--chip); }
+nav.toc .legend li { padding:3px 8px; color:var(--muted); } nav.toc .legend b { color:var(--primary-deep); margin-right:4px; }
+main { min-width:0; display:grid; gap:14px; }
+.ag { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 18px; scroll-margin-top:84px; min-width:0; }
+.ag header { display:flex; gap:12px; align-items:flex-start; margin-bottom:8px; }
+.num { flex:none; width:32px; height:32px; border-radius:50%; background:var(--chip); color:var(--chip-text); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; }
+.ag h3 { font-family:var(--fd); color:var(--primary-deep); font-size:19px; line-height:1.25; margin:0 0 2px; }
+.ag dl { margin:0; display:grid; gap:6px; font-size:14.5px; }
+.ag dl > div { display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; }
+.ag dt { color:var(--muted); font-weight:600; } .ag dd { margin:0; min-width:0; }
+@media (max-width:560px) { .ag dl > div { grid-template-columns:1fr; gap:0; } }
+.st { color:var(--accent-text); font-weight:700; }
+.obj { display:block; white-space:pre-wrap; padding:6px 8px; font-size:12.5px; }
+.sys { border-style:dashed; }
+footer { border-top:1px solid var(--line); color:var(--muted); font-size:13.5px; }
+footer .wrap { padding-block:18px 28px; }
+.ext { font-size:.82em; }
+</style>
+<div class="bar"><div class="wrap">
+  <div class="brand">MLLDE<small><span class="lang-es" lang="es">Registro de agentes · TK CoachAI</span><span class="lang-en" lang="en">Agent registry · TK CoachAI</span></small></div>
+  <div class="spacer"></div>
+  <button id="langBtn" type="button" aria-label="Switch language / Cambiar idioma">EN</button>
+  <button id="themeBtn" type="button" aria-label="Toggle theme / Cambiar tema"><span class="lang-es" lang="es">Oscuro</span><span class="lang-en" lang="en">Dark</span></button>
+</div></div>
+<header class="head"><div class="wrap">
+  <h1><span class="lang-es" lang="es">Registro de agentes MLLDE</span><span class="lang-en" lang="en">MLLDE agent registry</span></h1>
+  <p class="sub"><span class="lang-es" lang="es">Los 11 agentes de IA de TK CoachAI y la cuenta del sistema. Cada uno con su identificador exacto, qué hace y dónde aparece en el LRS.</span><span class="lang-en" lang="en">The 11 AI agents of TK CoachAI and the system account. Each one with its exact identifier, what it does and where it appears in the LRS.</span></p>
+  <div class="note">
+    <p><span class="lang-es" lang="es"><strong>Cómo se usa (regla R-ID).</strong> El actor de toda sentencia de aprendizaje es el alumno. El agente que interviene va en <code>context.instructor</code>, con su objeto xAPI copiado tal cual. Si intervienen dos a la vez, va un <code>Group</code> con los dos.</span><span class="lang-en" lang="en"><strong>How it is used (rule R-ID).</strong> The actor of every learning statement is the learner. The agent that intervenes goes in <code>context.instructor</code>, with its xAPI object copied as is. If two intervene at once, a <code>Group</code> with both goes there.</span></p>
+    <p><span class="lang-es" lang="es"><strong>Registrado no es aprobado.</strong> Un identificador no autoriza a un agente a actuar: necesita su ficha firmada por pedagogía e ingeniería. Hoy ninguno la tiene.</span><span class="lang-en" lang="en"><strong>Registered is not approved.</strong> An identifier does not authorise an agent to act: it needs its card signed by pedagogy and engineering. Today none has it.</span></p>
+    <p><span class="lang-es" lang="es">Fuente: <a href="https://github.com/ProfeAnaEslavaEdTech/mllde-xapi/tree/claude/normas-gobernanza-v1.6/governance/registro-agentes" target="_blank" rel="noopener">registro en GitHub</a> <span class="ext">(abre en pestaña nueva)</span>, último cambio <code>1ca31d4</code>. Las reglas: <a href="https://claude.ai/artifact/1bSZ992Q93ZXeLPdfC9VGd" target="_blank" rel="noopener">normas de gobernanza</a> <span class="ext">(abre en pestaña nueva)</span>.</span><span class="lang-en" lang="en">Source: <a href="https://github.com/ProfeAnaEslavaEdTech/mllde-xapi/tree/claude/normas-gobernanza-v1.6/governance/registro-agentes" target="_blank" rel="noopener">registry on GitHub</a> <span class="ext">(opens in a new tab)</span>, last change <code>1ca31d4</code>. The rules: <a href="https://claude.ai/artifact/1bSZ992Q93ZXeLPdfC9VGd" target="_blank" rel="noopener">governance norms</a> <span class="ext">(opens in a new tab)</span>.</span></p>
+  </div>
+</div></header>
+<div class="wrap layout">
+<nav class="toc" aria-label="Agentes / Agents">
+  <p><span class="lang-es" lang="es">Agentes</span><span class="lang-en" lang="en">Agents</span></p>
+  <ol><li><a href="#mission-agent"><span>1</span> <span class="lang-es" lang="es">Generador de misiones</span><span class="lang-en" lang="en">Mission generator</span></a></li><li><a href="#capi-agent"><span>2</span> <span class="lang-es" lang="es">Capi</span><span class="lang-en" lang="en">Capi</span></a></li><li><a href="#corrector-agent"><span>3</span> <span class="lang-es" lang="es">Corrector</span><span class="lang-en" lang="en">Corrector</span></a></li><li><a href="#judge-agent"><span>4</span> <span class="lang-es" lang="es">Juez del tip</span><span class="lang-en" lang="en">Tip judge</span></a></li><li><a href="#evaluator-agent"><span>5</span> <span class="lang-es" lang="es">Evaluador MLLDE</span><span class="lang-en" lang="en">MLLDE Evaluator</span></a></li><li><a href="#drill-agent"><span>6</span> <span class="lang-es" lang="es">Generador de drills</span><span class="lang-en" lang="en">Drill generator</span></a></li><li><a href="#card-agent"><span>7</span> <span class="lang-es" lang="es">Generador de tarjetas</span><span class="lang-en" lang="en">Card generator</span></a></li><li><a href="#drill-judge-agent"><span>8</span> <span class="lang-es" lang="es">Verificador de drills</span><span class="lang-en" lang="en">Drill checker</span></a></li><li><a href="#mediation-agent"><span>9</span> <span class="lang-es" lang="es">Generador de mediación</span><span class="lang-en" lang="en">Mediation generator</span></a></li><li><a href="#summary-agent"><span>10</span> <span class="lang-es" lang="es">Redactor del resumen</span><span class="lang-en" lang="en">Summary writer</span></a></li><li><a href="#support-agent"><span>11</span> <span class="lang-es" lang="es">Teo</span><span class="lang-en" lang="en">Teo</span></a></li><li><a href="#tk-coach-engine"><span>—</span> <span class="lang-es" lang="es">Cuenta del sistema</span><span class="lang-en" lang="en">System account</span></a></li></ol>
+  <p><span class="lang-es" lang="es">Tipos</span><span class="lang-en" lang="en">Types</span></p>
+  <ul class="legend"><li><b>M</b> <span class="lang-es" lang="es">mide</span><span class="lang-en" lang="en">measures</span></li><li><b>I</b> <span class="lang-es" lang="es">influye en la medición o en los objetivos</span><span class="lang-en" lang="en">shapes the measurement or the targets</span></li><li><b>C</b> <span class="lang-es" lang="es">conversa con el alumno</span><span class="lang-en" lang="en">talks to the learner</span></li><li><b>P</b> <span class="lang-es" lang="es">genera práctica, contenido o feedback</span><span class="lang-en" lang="en">produces practice, content or feedback</span></li><li><b>S</b> <span class="lang-es" lang="es">soporte u operación</span><span class="lang-en" lang="en">support or operations</span></li></ul>
+</nav>
+<main><article class="ag" id="mission-agent">
+  <header><span class="num">1</span><div><h3><span class="lang-es" lang="es">Generador de misiones</span><span class="lang-en" lang="en">Mission generator</span></h3><code>mission-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">I · influye en la medición o en los objetivos</span><span class="lang-en" lang="en">I · shapes the measurement or the targets</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Input</span><span class="lang-en" lang="en">Input</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Redacta la misión (escena, papeles y tarea) sobre los descriptores objetivo que le da el código</span><span class="lang-en" lang="en">Writes the mission (scene, roles and task) on the target descriptors that code gives it</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">Ninguna sentencia propia hoy; cómo se registra la tarea está pendiente (Q24)</span><span class="lang-en" lang="en">No statement of its own today; how the task is recorded is pending (Q24)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Generador de misiones&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;mission-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="capi-agent">
+  <header><span class="num">2</span><div><h3><span class="lang-es" lang="es">Capi</span><span class="lang-en" lang="en">Capi</span></h3><code>capi-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">C · conversa con el alumno</span><span class="lang-en" lang="en">C · talks to the learner</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Process</span><span class="lang-en" lang="en">Process</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Role-play: crea ocasiones para los objetivos y hace el recast después del intento</span><span class="lang-en" lang="en">Role-play: creates chances to use the targets and recasts after the attempt</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">adapted (recast, andamiaje), en context.instructor</span><span class="lang-en" lang="en">adapted (recast, scaffolding), in context.instructor</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Capi&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;capi-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="corrector-agent">
+  <header><span class="num">3</span><div><h3><span class="lang-es" lang="es">Corrector</span><span class="lang-en" lang="en">Corrector</span></h3><code>corrector-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">P · genera práctica, contenido o feedback</span><span class="lang-en" lang="en">P · produces practice, content or feedback</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Process</span><span class="lang-en" lang="en">Process</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Propone un tip sobre un error claro del turno del alumno</span><span class="lang-en" lang="en">Proposes a tip on a clear error in the learner’s turn</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">adapted por turno, en un Group con judge-agent</span><span class="lang-en" lang="en">adapted per turn, in a Group with judge-agent</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Corrector&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;corrector-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="judge-agent">
+  <header><span class="num">4</span><div><h3><span class="lang-es" lang="es">Juez del tip</span><span class="lang-en" lang="en">Tip judge</span></h3><code>judge-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">P · genera práctica, contenido o feedback</span><span class="lang-en" lang="en">P · produces practice, content or feedback</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Process</span><span class="lang-en" lang="en">Process</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Aprueba o rechaza el tip del Corrector antes de mostrarlo</span><span class="lang-en" lang="en">Approves or rejects the Corrector’s tip before it is shown</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">adapted por turno, en un Group con corrector-agent</span><span class="lang-en" lang="en">adapted per turn, in a Group with corrector-agent</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Juez del tip&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;judge-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="evaluator-agent">
+  <header><span class="num">5</span><div><h3><span class="lang-es" lang="es">Evaluador MLLDE</span><span class="lang-en" lang="en">MLLDE Evaluator</span></h3><code>evaluator-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">M · mide</span><span class="lang-en" lang="en">M · measures</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Output</span><span class="lang-en" lang="en">Output</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Marca la evidencia de los descriptores (id, estado, turno, cita); el único que mide</span><span class="lang-en" lang="en">Marks the evidence for the descriptors (id, status, turn, quote); the only one that measures</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">completed y mediated (el único agente en el flujo de medición)</span><span class="lang-en" lang="en">completed and mediated (the only agent in the measurement flow)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Evaluador MLLDE&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;evaluator-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="drill-agent">
+  <header><span class="num">6</span><div><h3><span class="lang-es" lang="es">Generador de drills</span><span class="lang-en" lang="en">Drill generator</span></h3><code>drill-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">P · genera práctica, contenido o feedback</span><span class="lang-en" lang="en">P · produces practice, content or feedback</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Adaptar</span><span class="lang-en" lang="en">Adapt</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Redacta drills sobre el descriptor que le da el código (el i+1)</span><span class="lang-en" lang="en">Writes drills on the descriptor that code gives it (the i+1)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">answered, en un Group con drill-judge-agent</span><span class="lang-en" lang="en">answered, in a Group with drill-judge-agent</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Generador de drills&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;drill-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="card-agent">
+  <header><span class="num">7</span><div><h3><span class="lang-es" lang="es">Generador de tarjetas</span><span class="lang-en" lang="en">Card generator</span></h3><code>card-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">P · genera práctica, contenido o feedback</span><span class="lang-en" lang="en">P · produces practice, content or feedback</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Adaptar</span><span class="lang-en" lang="en">Adapt</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Escribe el ejemplo y la función de cada término que le da el código</span><span class="lang-en" lang="en">Writes the example and the function of each term that code gives it</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">attempted del flujo SRS</span><span class="lang-en" lang="en">attempted in the SRS flow</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Generador de tarjetas&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;card-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="drill-judge-agent">
+  <header><span class="num">8</span><div><h3><span class="lang-es" lang="es">Verificador de drills</span><span class="lang-en" lang="en">Drill checker</span></h3><code>drill-judge-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">P · genera práctica, contenido o feedback</span><span class="lang-en" lang="en">P · produces practice, content or feedback</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Adaptar</span><span class="lang-en" lang="en">Adapt</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Aprueba o descarta cada drill del lote antes de mostrarlo</span><span class="lang-en" lang="en">Approves or discards each drill in the batch before it is shown</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">answered, en un Group con drill-agent</span><span class="lang-en" lang="en">answered, in a Group with drill-agent</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma; N14 pendiente</span><span class="lang-en" lang="en">registered; card awaiting signature; N14 pending</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Verificador de drills&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;drill-judge-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="mediation-agent">
+  <header><span class="num">9</span><div><h3><span class="lang-es" lang="es">Generador de mediación</span><span class="lang-en" lang="en">Mediation generator</span></h3><code>mediation-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">I · influye en la medición o en los objetivos</span><span class="lang-en" lang="en">I · shapes the measurement or the targets</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Input</span><span class="lang-en" lang="en">Input</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Redacta la tarea de mediación sobre el descriptor que le da el código</span><span class="lang-en" lang="en">Writes the mediation task on the descriptor that code gives it</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">Ninguna sentencia propia hoy (los mediated los emite el Evaluador); rastro de la tarea pendiente (Q24)</span><span class="lang-en" lang="en">No statement of its own today (the Evaluator emits mediated); the task trace is pending (Q24)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma; N14 pendiente</span><span class="lang-en" lang="en">registered; card awaiting signature; N14 pending</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Generador de mediación&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;mediation-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="summary-agent">
+  <header><span class="num">10</span><div><h3><span class="lang-es" lang="es">Redactor del resumen</span><span class="lang-en" lang="en">Summary writer</span></h3><code>summary-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">P · genera práctica, contenido o feedback</span><span class="lang-en" lang="en">P · produces practice, content or feedback</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Output (informe)</span><span class="lang-en" lang="en">Output (report)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Redacta el resumen de la sesión a partir de las métricas que le da el código</span><span class="lang-en" lang="en">Writes the session summary from the metrics that code gives it</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">Ninguna sentencia: solo el registro de llamadas (N8)</span><span class="lang-en" lang="en">No statement: only the call log (N8)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma; N14 pendiente</span><span class="lang-en" lang="en">registered; card awaiting signature; N14 pending</span></span></dd></div>
+    
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Redactor del resumen&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;summary-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag" id="support-agent">
+  <header><span class="num">11</span><div><h3><span class="lang-es" lang="es">Teo</span><span class="lang-en" lang="en">Teo</span></h3><code>support-agent</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Tipo</span><span class="lang-en" lang="en">Type</span></dt><dd><span class="lang-es" lang="es">S · soporte u operación + C · conversa con el alumno</span><span class="lang-en" lang="en">S · support or operations + C · talks to the learner</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Fase</span><span class="lang-en" lang="en">Phase</span></dt><dd><span class="lang-es" lang="es">Soporte</span><span class="lang-en" lang="en">Support</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Qué hace</span><span class="lang-en" lang="en">What it does</span></dt><dd><span class="lang-es" lang="es">Responde el soporte por correo; habla con el usuario, fuera del aprendizaje</span><span class="lang-en" lang="en">Answers support by email; talks to the user, outside learning</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Dónde aparece</span><span class="lang-en" lang="en">Where it appears</span></dt><dd><span class="lang-es" lang="es">Nunca en una sentencia de aprendizaje: solo el registro de llamadas (N8)</span><span class="lang-en" lang="en">Never in a learning statement: only the call log (N8)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Estado</span><span class="lang-en" lang="en">Status</span></dt><dd><span class="st"><span aria-hidden="true">!</span> <span class="lang-es" lang="es">registrado; ficha pendiente de firma</span><span class="lang-en" lang="en">registered; card awaiting signature</span></span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Base legal</span><span class="lang-en" lang="en">Legal basis</span></dt><dd><span class="lang-es" lang="es">AI Act (Reglamento (UE) 2024/1689), art. 50(1), aplicable desde el 2 ago 2026: «Providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system». RGPD: art. 5(1)(c) (minimización; según el inventario A2, Teo recibe el correo de soporte tal cual, con su remitente) y art. 28 (encargo de tratamiento). Lectura mínima por código (Q8).</span><span class="lang-en" lang="en">AI Act (Regulation (EU) 2024/1689), art. 50(1), applicable from 2 Aug 2026: people must be told that they are talking to an AI system. GDPR: art. 5(1)(c) (data minimisation; per inventory A2, Teo receives the support email as is, with its sender) and art. 28 (processor agreement). Minimum read by code (Q8).</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;Teo&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;support-agent&quot;}}</code></dd></div>
+  </dl>
+</article><article class="ag sys" id="tk-coach-engine">
+  <header><span class="num">—</span><div><h3><span class="lang-es" lang="es">Cuenta del sistema</span><span class="lang-en" lang="en">System account</span></h3><code>tk-coach-engine</code></div></header>
+  <dl>
+    <div><dt><span class="lang-es" lang="es">Qué es</span><span class="lang-en" lang="en">What it is</span></dt><dd><span class="lang-es" lang="es">No es un agente de IA. Es el actor de las anulaciones (voided). Nunca va en context.instructor.</span><span class="lang-en" lang="en">It is not an AI agent. It is the actor of the voids (voided). It never goes in context.instructor.</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">En el LRS</span><span class="lang-en" lang="en">In the LRS</span></dt><dd><span class="lang-es" lang="es">2026-11-09 (36 voided)</span><span class="lang-en" lang="en">2026-11-09 (36 voided)</span></dd></div>
+    <div><dt><span class="lang-es" lang="es">Objeto xAPI</span><span class="lang-en" lang="en">xAPI object</span></dt><dd><code class="obj">{&quot;objectType&quot;: &quot;Agent&quot;, &quot;name&quot;: &quot;TK Coach Engine&quot;, &quot;account&quot;: {&quot;homePage&quot;: &quot;https://tkcoach.talketika.app&quot;, &quot;name&quot;: &quot;tk-coach-engine&quot;}}</code></dd></div>
+  </dl>
+</article></main>
+</div>
+<footer><div class="wrap"><span class="lang-es" lang="es">Método MLLDE © 2026 Ana Eslava-Graterol (UPV). Hecho con ayuda de IA y revisado por la autora (Reglamento (UE) 2024/1689, art. 50). Registro v1.0, 2026-11-10.</span><span class="lang-en" lang="en">MLLDE method © 2026 Ana Eslava-Graterol (UPV). Made with AI assistance and reviewed by the author (Regulation (EU) 2024/1689, art. 50). Registry v1.0, 2026-11-10.</span></div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  var lb=document.getElementById('langBtn'), tb=document.getElementById('themeBtn');
+  function setLang(l){root.setAttribute('data-lang',l);root.setAttribute('lang',l);lb.textContent=l==='en'?'ES':'EN';set('mllde-reg-lang',l);}
+  function isDark(){var t=root.getAttribute('data-theme');if(t)return t==='dark';return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;}
+  function paintTheme(){var d=isDark();tb.innerHTML=d?'<span class="lang-es" lang="es">Claro</span><span class="lang-en" lang="en">Light</span>':'<span class="lang-es" lang="es">Oscuro</span><span class="lang-en" lang="en">Dark</span>';tb.setAttribute('aria-pressed',d?'true':'false');}
+  lb.addEventListener('click',function(){setLang(root.getAttribute('data-lang')==='en'?'es':'en');});
+  tb.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);set('mllde-reg-theme',n);paintTheme();});
+  var sl=get('mllde-reg-lang'); setLang(sl==='en'?'en':'es');
+  var st=get('mllde-reg-theme'); if(st==='dark'||st==='light') root.setAttribute('data-theme',st);
+  paintTheme();
+})();
+</script>
+
+</body>
+</html>
