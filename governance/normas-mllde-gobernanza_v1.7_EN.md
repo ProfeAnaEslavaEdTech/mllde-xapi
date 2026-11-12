@@ -89,14 +89,14 @@
 | N3 · Anti-stray-agent test (includes prompt-hash) | **N3** (same rule) |
 | N4 · Card before code (justified request + two signatures) | **R-ADM-1 and R-ADM-5** |
 | N5 · One function per agent; no agent decides | Guiding principle + **N10** |
-| N6 · Common block mandatory in every prompt | ➕ **Missing in v1.1 — to be added** (literal text in spec §6.2) |
+| N6 · Common block mandatory in every prompt | **Missing in v1.1 — to be added** (literal text in spec §6.2) |
 | N7 · The base is inherited by code | **N4** |
 | N8 · Traceability (actor = the agent that acts) | **N6** + **R-ID** (v1.7: the actor is the learner; the agent goes in `context.instructor`) |
 | N9 · Approved, fixed models, no fallback | **N5** |
 | N10 · Minimum data (no personal data) | **N9** |
 | N11 · Changes = new version, with test and signatures | **N12** |
-| N12 · Periodic audit (agents ↔ calls ↔ Veracity) | ➕ **Missing in v1.1 — to be added** |
-| N13 · Withdrawal of agents without a card on time | ➕ **Missing in v1.1 — to be added** |
+| N12 · Periodic audit (agents ↔ calls ↔ Veracity) | **Missing in v1.1 — to be added** |
+| N13 · Withdrawal of agents without a card on time | **Missing in v1.1 — to be added** |
 | N14 · Demonstrated need (8 Nov) | **R-ADM-1**, with the demonstrated-need condition |
 | N12-bis · Weekly cmi5 audit package (9 Nov) | **N6-bis** (v1.7) |
 

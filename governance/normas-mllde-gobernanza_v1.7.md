@@ -89,14 +89,14 @@
 | N3 · Prueba anti-agentes sueltos (incluye prompt-hash) | **N3** (misma regla) |
 | N4 · Ficha antes que código (solicitud justificada + dos firmas) | **R-ADM-1 y R-ADM-5** |
 | N5 · Una función por agente; ningún agente decide | Principio rector + **N10** |
-| N6 · Bloque común obligatorio en cada prompt | ➕ **Ausente en v1.1 — incorporar** (texto literal en la spec §6.2) |
+| N6 · Bloque común obligatorio en cada prompt | **Ausente en v1.1 — incorporar** (texto literal en la spec §6.2) |
 | N7 · La base se hereda por código | **N4** |
 | N8 · Trazabilidad (actor = el agente que actúa) | **N6** + **R-ID** (v1.7: el actor es el alumno; el agente va en `context.instructor`) |
 | N9 · Modelos aprobados y fijos, sin respaldo | **N5** |
 | N10 · Datos mínimos (sin datos personales) | **N9** |
 | N11 · Cambios = versión nueva, con prueba y firmas | **N12** |
-| N12 · Auditoría periódica (agentes ↔ llamadas ↔ Veracity) | ➕ **Ausente en v1.1 — incorporar** |
-| N13 · Retirada de agentes sin ficha en plazo | ➕ **Ausente en v1.1 — incorporar** |
+| N12 · Auditoría periódica (agentes ↔ llamadas ↔ Veracity) | **Ausente en v1.1 — incorporar** |
+| N13 · Retirada de agentes sin ficha en plazo | **Ausente en v1.1 — incorporar** |
 | N14 · Necesidad demostrada (8 nov) | **R-ADM-1**, con la condición de necesidad demostrada |
 | N12-bis · Paquete de auditoría semanal en cmi5 (9 nov) | **N6-bis** (v1.7) |
 
