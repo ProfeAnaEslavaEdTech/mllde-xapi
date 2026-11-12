@@ -78,6 +78,16 @@
 - **Record:** each package carries the date, the app version and the agents' `prompt-hash`; it is kept with the result of the check.
 - Rule agreed at the meeting of 9 Nov; it comes into force with the signatures of pedagogy and engineering (N12).
 
+### N6-ter — Keeping the transcripts (Ana Eslava-Graterol, 12 Nov)
+
+> **Rule:** the transcripts of every session are kept on the server for **at least 6 months**, pseudonymised (only the learner's UUID) and with limited access, and **they can be downloaded when an audit takes place**.
+
+- **Why:** the human validates, and without evidence they cannot validate. The teacher confirms the level with the learner's answers, errors and quotes (G-NIVEL-1 P4). The auditor checks that each label in the LRS (for example, an `implicit-recast`) matches what happened in the conversation (verification principle).
+- **Not met today:** only the Evaluator's JSON is kept, and the conversation lives for 3 hours in the learner's browser.
+- **Basis:** AI Act, arts. 12 and 19 (logs), and art. 26(6) (keeping logs for at least 6 months).
+- **How it is checked:** the ID of a session, its downloaded transcript and the date from which it holds.
+- It comes into force with the signatures of pedagogy and engineering (N12).
+
 ### Equivalence with the numbering of the Evaluator v2 spec (§6.1)
 
 > **Numbering notice.** The Evaluator v2 spec (8 Nov) numbers its norms differently from N4 onwards, and the Primer of the 7 (8 Nov) cites that spec numbering (e.g. "N9 = exact model"). So that the committee does not find two different "N9", this is the official correspondence:

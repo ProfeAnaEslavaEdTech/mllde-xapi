@@ -78,6 +78,16 @@
 - **Registro:** cada paquete lleva fecha, versión de la app y `prompt-hash` de los agentes; se conserva con el resultado de la comprobación.
 - Regla acordada en la reunión del 9 nov; entra en vigor con las firmas de pedagogía e ingeniería (N12).
 
+### N6-ter — Conservación de las transcripciones (Ana Eslava-Graterol, 12 nov)
+
+> **Regla:** las transcripciones de cada sesión se guardan en el servidor **al menos 6 meses**, seudonimizadas (solo el UUID del alumno) y con acceso limitado, y **se pueden descargar cuando se audita**.
+
+- **Por qué:** el humano valida, y sin evidencia no puede validar. El profesor constata el nivel con las respuestas, los errores y las citas del alumno (G-NIVEL-1 P4). El auditor comprueba que cada etiqueta del LRS (por ejemplo, un `implicit-recast`) corresponde a lo que pasó en la conversación (principio de verificación).
+- **Hoy no se cumple:** solo se guarda el JSON del Evaluador, y la conversación vive 3 horas en el navegador del alumno.
+- **Fundamento:** AI Act, arts. 12 y 19 (registros), y art. 26(6) (conservación de los registros al menos 6 meses).
+- **Cómo se comprueba:** el ID de una sesión, su transcripción descargada y la fecha desde la que se cumple.
+- Entra en vigor con las firmas de pedagogía e ingeniería (N12).
+
 ### Equivalencia con la numeración de la spec del Evaluador v2 (§6.1)
 
 > **Aviso de numeración.** La spec del Evaluador v2 (8 nov) numera sus normas de otra forma a partir de N4, y la Cartilla de los 7 (8 nov) cita esa numeración de la spec (p. ej. «N9 = modelo exacto»). Para que el comité no encuentre dos «N9» distintas, esta es la correspondencia oficial:
