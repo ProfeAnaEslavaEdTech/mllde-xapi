@@ -28,7 +28,7 @@
 | **N6 — Traceability** | The agent in `context.instructor`, with its `account` from the registry (R-ID, v1.7; formerly `agent-id`), + `agent-version` + `measure-model` (exact identifier) + `rules-version` in every statement. Goal: every registered agent with its own trace. The registry is in `governance/registro-agentes/`. |
 | **N7 — Flows that never cross** | Measurement (1×/session), pedagogy (per turn), activity (loop). The band arises only from the measurement flow. |
 | **N8 — Fail-closed** | When in doubt, nothing is emitted: ASR gate 0.70, judge unavailable → no tip, invalid schema → discard. |
-| **N9 — PII** | Only the UUID + transcript go to the model; never name, company, job title or email. LRS authority = service account, never a personal credential. |
+| **N9 — PII** | Only the UUID + transcript go to the model; never name, company, job title or email. LRS authority = service account, never a personal credential. **Milestones (free text in the profile) are no longer sent to the model** (author’s decision, 12 Nov). |
 | **N10 — Zero calculations in an LLM** | No agent generates competence numbers: marks (5.2/5.3), band (formula of 26/08), i+1 and proposed level are computed by code. |
 | **N11 — Declared incidents** | Each agent defines its incident types with an IRI from the registry; they go to its log, never to the learner's KPIs. |
 | **N12 — Signed versioning** | A change of prompt/model/rules = version bump + signature (pedagogy + engineering) + entry on the map + the date from which it counts. |
@@ -76,6 +76,7 @@
 - **Why cmi5 and not SCORM 2004:** cmi5 is based on xAPI, so it shows actors, verbs and objects. SCORM 2004 does not carry xAPI statements and does not allow this check.
 - **What the package does not replace:** the package proves what the version **emits**. What **has happened** is audited with the 3 LRS exports (statements, verbs and objects, agents) and with the admin dashboard's JSON (measurement model). The two audits are cross-checked.
 - **Record:** each package carries the date, the app version and the agents' `prompt-hash`; it is kept with the result of the check.
+- **Package content (author’s decision, 12 Nov):** the full learn, practice and progress sequences, not only `initialized` and `terminated`, with the verbs as defined officially by ADL (`governance/verbos-xapi/`).
 - Rule agreed at the meeting of 9 Nov; it comes into force with the signatures of pedagogy and engineering (N12).
 
 ### N6-ter — Keeping the transcripts (Ana Eslava-Graterol, 12 Nov)
