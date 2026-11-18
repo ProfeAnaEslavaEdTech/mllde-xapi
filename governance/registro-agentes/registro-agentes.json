@@ -91,7 +91,7 @@
       "tipo": "M",
       "pieza": "3",
       "fase": "Output",
-      "funcion": "Marca la evidencia de los descriptores (id, estado, turno, cita); el único que mide",
+      "funcion": "Compara el texto de la voz con los descriptores de la base y marca la evidencia (id, estado, turno, cita); no mide, no valora y no evalúa (terminología del 18 nov; antes decía «el único que mide»)",
       "aparece_en": "completed y mediated (el único agente en el flujo de medición)",
       "estado": "registrado; ficha pendiente de firma",
       "registrado_desde": "2026-11-10"
