@@ -15,6 +15,22 @@ Doce frases cambian (seis en español y sus seis equivalentes en inglés). El re
 
 **Lo que no se cambia y queda pendiente de la autora:** la página nombra a Talketika y a Orkelia (Q21, autorización por escrito).
 
+### 1b. Actualización del 18 nov 2026 (normas v1.7)
+
+La copia de esta carpeta se actualiza con las decisiones posteriores al 12 nov. **`main` no cambia.** La página publicada en `main` es la del 5 nov (`b5b17f8`). La que circula con las cifras del piloto («2.536 sentencias», «106/106», «≥ 80 h») es anterior a esa, y no se usa.
+
+| Lo que decía (12 nov) | Lo que dice (18 nov) | Por qué |
+|---|---|---|
+| «Evaluador v2 (en validación; hoy sigue midiendo el v1)» | «Evaluador v2 (diseñado, pendiente de implementar; hoy mide el v1)» | **Principio de verificación.** El v2 no está implementado. Plan del 18 nov: primero el código, luego el modo sombra y la activación |
+| «una persona docente valida el nivel» | «una persona valida el nivel: el profesor en B2B; en B2C, el propio usuario tras ver su evidencia» | Decisión de nivel en B2C (v1.5) y G-NIVEL-1 (11 nov) |
+| (modal 1) «El nivel lo valida una persona docente» | «El nivel lo valida una persona. Ningún agente decide, sea cual sea el modelo» | Principio de invariancia del rol (10 nov) |
+| (modal 2) «(El panel ya muestra la banda, no el %.)» | Se quita | No tiene sus tres pruebas |
+| (modal 4) «Prueba en vivo: 10 statements… se detectaron y excluyeron» | «Las sesiones medidas por un proveedor de respaldo se detectaron gracias a measure-model. Su salida de las medias queda pendiente de sus tres pruebas. Desde ahora, sin modelo de respaldo» | La exclusión «parece aplicada» en el cotejo del 18 nov, pero le faltan el extracto del código y la fecha (P13) |
+| Cabecera con degradado | Cabecera sobria, como el portafolio | Regla de diseño de la autora (12 nov): minimalista, Ocean Ink |
+| — | Nota al pie: «Actualizado el 18 nov 2026, con las normas de gobernanza v1.7» | Fecha desde la que rige |
+
+**Sigue pendiente de la autora:** la página nombra a Talketika y a Orkelia (Q21). Para el congreso hace falta una versión sin nombres, o su autorización por escrito.
+
 ## 2. `index.html` (registro y perfil v0.8.3)
 
 ### 2a. Rediseño sin cambio de contenido → copia en esta carpeta (12 nov) · **publicado en `main` el 18 nov** (commit `9523cd6`, con el visto bueno de la autora, para el congreso). La versión anterior sigue en el historial de git (`b5b17f8`)

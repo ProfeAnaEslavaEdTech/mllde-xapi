@@ -33,16 +33,16 @@
   .wrap{max-width:960px;margin:0 auto;padding:0 16px 56px}
   /* controls */
   .controls{position:fixed;top:12px;right:12px;display:flex;gap:8px;z-index:60}
-  .ctl{border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.18);color:#fff;font-family:inherit;
+  .ctl{border:1px solid var(--line);background:var(--surface);color:var(--primary-deep);font-family:inherit;
     font-weight:700;font-size:13px;border-radius:999px;padding:7px 12px;cursor:pointer;backdrop-filter:blur(4px);
     display:inline-flex;align-items:center;gap:6px;min-height:36px}
-  .ctl:hover{background:rgba(0,0,0,.30)}
-  .ctl:focus-visible{outline:3px solid #fff;outline-offset:2px}
-  .hero{background:linear-gradient(135deg,#3B5BD6,#E8A33D);color:#fff;border-radius:0 0 22px 22px;
+  .ctl:hover{border-color:var(--primary)}
+  .ctl:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+  .hero{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line);
     padding:46px 20px 30px;text-align:center;margin-bottom:28px}
-  .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
-  h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(26px,5.5vw,38px);margin:.3em 0 .2em;line-height:1.1}
-  .hero p{margin:.2em auto 0;max-width:54ch;font-size:15.5px;opacity:.95}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--primary)}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:700;color:var(--primary-deep);font-size:clamp(26px,5.5vw,38px);margin:.3em 0 .2em;line-height:1.1}
+  .hero p{margin:.2em auto 0;max-width:54ch;font-size:15.5px;color:var(--muted)}
   h2{font-family:Fraunces,Georgia,serif;color:var(--primary-deep);font-weight:600;font-size:22px;margin:30px 0 14px}
   .lead{color:var(--muted);max-width:65ch;margin:-6px 0 18px}
   .nest{border:2px solid var(--primary);border-radius:18px;background:var(--surface);padding:16px 16px 18px;position:relative}
@@ -197,20 +197,20 @@
       appline:"Voz · misiones de negocio · tarjetas (repetición espaciada) · drills · coach Capi · 3 paneles (alumno · profesor · admin)",
       coreTag:"MLLDE · el método dentro",
       coreH3:"Módulo de Medición — “Measure, Not Decide”",
-      coreP:"La IA <b>mide</b>: solo devuelve evidencia citada contra descriptores del MCER escritos por personas. El <b>código</b> calcula cada número con reglas publicadas y emite evidencia xAPI auditable. El progreso queda a nombre del alumno y una <b>persona docente valida</b> el nivel fuera de la app. La ayuda nunca puntúa.",
+      coreP:"La IA <b>mide</b>: solo devuelve evidencia citada contra descriptores del MCER escritos por personas. El <b>código</b> calcula cada número con reglas publicadas y emite evidencia xAPI auditable. El progreso queda a nombre del alumno y una <b>persona valida</b> el nivel fuera de la app: el profesor en B2B; en B2C, el propio usuario tras ver su evidencia. La ayuda nunca puntúa.",
       pmd:"<b>Measure, Not Decide</b>", pfw:"<b>Cortafuegos</b> de puntuación",
       pxa:"<b>MCER + xAPI</b> (IDs persistentes)", pev:"<b>Evidencia honesta</b> (tiers · auditable)",
       pillhint:"Pulsa cada principio para abrir su explicación y el enlace en GitHub ↗",
       h2b:"Una sola línea: de la voz a la evidencia",
       leadB:"El mismo turno recorre el sistema y termina como evidencia fiable — sin que la práctica infle la competencia.",
       s1n:"1 · HABLA", s1t:"Turno de voz", s1d:"El alumno habla en una misión; la transcripción se lee (gate ASR 0,70).",
-      s2n:"2 · MEASURE, NOT DECIDE", s2t:"La IA aporta evidencia", s2d:"Evaluador v2 (en validación; hoy sigue midiendo el v1): descriptor, estado, turno y cita literal, sin notas. El código calcula notas y banda. Drills y tarjetas NO la mueven.",
-      s3n:"3 · EVIDENCIA", s3t:"Banda + xAPI + docente", s3d:"Sentencia anclada a descriptores del MCER, con su nivel de evidencia. El progreso queda a nombre del alumno; el nivel lo valida una persona docente fuera de la app.",
+      s2n:"2 · MEASURE, NOT DECIDE", s2t:"La IA aporta evidencia", s2d:"Evaluador v2 (diseñado, pendiente de implementar; hoy mide el v1): descriptor, estado, turno y cita literal, sin notas. El código calcula notas y banda. Drills y tarjetas NO la mueven.",
+      s3n:"3 · EVIDENCIA", s3t:"Banda + xAPI + docente", s3d:"Sentencia anclada a descriptores del MCER, con su nivel de evidencia. El progreso queda a nombre del alumno. En B2B, un profesor valida el nivel fuera de la app; en B2C, el usuario lo acepta tras ver su evidencia.",
       h2c:"La misma verdad, tres vistas",
       d1n:"Alumno", d1d:"Su banda 0–10 por competencia, calculada por el código, y su progreso.",
       d2n:"Profesor", d2d:"Banda (del LRS), descriptores demostrados con sus citas y perfil por niveles; valida el nivel fuera de la app, con otra evaluación. El esfuerzo va aparte.",
       d3n:"Admin / RR.HH.", d3d:"Tiempo efectivo e indicadores agregados.",
-      note:"Aportación científica: un <b>patrón de gobernanza de la medición</b> reutilizable para el aprendizaje de lenguas mediado por IA — anclado al MCER, interoperable (xAPI), gobernado (Measure, Not Decide) y honesto (evidencia auditable). No depende de la app que lo probó.<br>MLLDE © 2026 Ana Eslava-Graterol, UPV. Registro de derechos de autor en trámite. · Documento elaborado con asistencia de IA, revisado y aprobado bajo responsabilidad humana (art. 50, Reg. (UE) 2024/1689).",
+      note:"Aportación científica: un <b>patrón de gobernanza de la medición</b> reutilizable para el aprendizaje de lenguas mediado por IA — anclado al MCER, interoperable (xAPI), gobernado (Measure, Not Decide) y honesto (evidencia auditable). No depende de la app que lo probó.<br>MLLDE © 2026 Ana Eslava-Graterol, UPV. Registro de derechos de autor en trámite. · Actualizado el 18 nov 2026, con las normas de gobernanza v1.7. · Documento elaborado con asistencia de IA, revisado y aprobado bajo responsabilidad humana (art. 50, Reg. (UE) 2024/1689).",
       mlink:"Ver en el registro MLLDE xAPI ↗", mclose:"Volver"
     },
     en:{
@@ -225,20 +225,20 @@
       appline:"Voice · business missions · cards (spaced repetition) · drills · Capi coach · 3 dashboards (learner · teacher · admin)",
       coreTag:"MLLDE · the method inside",
       coreH3:"Measurement Module — “Measure, Not Decide”",
-      coreP:"The AI <b>measures</b>: it returns only quoted evidence against human-written CEFR descriptors. <b>Code</b> computes every number with published rules and emits auditable xAPI evidence. Progress is recorded in the learner’s name and a <b>teacher validates</b> the level outside the app. Help never scores.",
+      coreP:"The AI <b>measures</b>: it returns only quoted evidence against human-written CEFR descriptors. <b>Code</b> computes every number with published rules and emits auditable xAPI evidence. Progress is recorded in the learner’s name and a <b>person validates</b> the level outside the app: the teacher in B2B; in B2C, the user after seeing their evidence. Help never scores.",
       pmd:"<b>Measure, Not Decide</b>", pfw:"<b>Scoring</b> firewall",
       pxa:"<b>CEFR + xAPI</b> (persistent IDs)", pev:"<b>Honest evidence</b> (tiers · auditable)",
       pillhint:"Tap each principle to open its explanation and the GitHub link ↗",
       h2b:"One line: from voice to evidence",
       leadB:"The same turn travels the system and ends as trustworthy evidence — without practice inflating competence.",
       s1n:"1 · SPEAKS", s1t:"Voice turn", s1d:"The learner speaks in a mission; the transcript is read (ASR gate 0.70).",
-      s2n:"2 · MEASURE, NOT DECIDE", s2t:"The AI gives evidence", s2d:"Evaluator v2 (in validation; v1 still measures today): descriptor, status, turn and verbatim quote, no marks. Code computes marks and band. Drills and cards do NOT move it.",
-      s3n:"3 · EVIDENCE", s3t:"Band + xAPI + teacher", s3d:"Statement anchored to CEFR descriptors, with its evidence tier. Progress is the learner’s; a teacher validates the level outside the app.",
+      s2n:"2 · MEASURE, NOT DECIDE", s2t:"The AI gives evidence", s2d:"Evaluator v2 (designed, not yet implemented; v1 measures today): descriptor, status, turn and verbatim quote, no marks. Code computes marks and band. Drills and cards do NOT move it.",
+      s3n:"3 · EVIDENCE", s3t:"Band + xAPI + teacher", s3d:"Statement anchored to CEFR descriptors, with its evidence tier. Progress is the learner’s. In B2B a teacher validates the level outside the app; in B2C the user accepts it after seeing their evidence.",
       h2c:"One truth, three views",
       d1n:"Learner", d1d:"Their 0–10 band per competence, computed by code, and their progress.",
       d2n:"Teacher", d2d:"Band (from the LRS), demonstrated descriptors with their quotes and a level profile; validates the level outside the app, with another assessment. Effort is shown separately.",
       d3n:"Admin / HR", d3d:"Effective time and aggregate indicators.",
-      note:"Scientific contribution: a reusable <b>measurement-governance pattern</b> for AI-mediated language learning — CEFR-anchored, interoperable (xAPI), governed (Measure, Not Decide) and honest (auditable evidence). It does not depend on the app that tested it.<br>MLLDE © 2026 Ana Eslava-Graterol, UPV. Copyright registration in progress. · Prepared with AI assistance; reviewed and approved under human responsibility (Art. 50, Reg. (EU) 2024/1689).",
+      note:"Scientific contribution: a reusable <b>measurement-governance pattern</b> for AI-mediated language learning — CEFR-anchored, interoperable (xAPI), governed (Measure, Not Decide) and honest (auditable evidence). It does not depend on the app that tested it.<br>MLLDE © 2026 Ana Eslava-Graterol, UPV. Copyright registration in progress. · Updated 18 Nov 2026, with governance norms v1.7. · Prepared with AI assistance; reviewed and approved under human responsibility (Art. 50, Reg. (EU) 2024/1689).",
       mlink:"Open in the MLLDE xAPI registry ↗", mclose:"Back"
     }
   };
@@ -246,31 +246,31 @@
   var MOD={
     es:{
       md:{k:"Principio 1 · Gobernanza",t:"Measure, Not Decide",
-        b:"La IA <b>mide</b>, el código <b>gobierna</b> y una persona <b>valida</b>. Con el Evaluador v2 (en validación; hoy sigue midiendo el v1), la IA revisa la lista completa de descriptores (A1–C2) sin conocer el nivel declarado y devuelve solo evidencia: descriptor, estado (logrado o intentado), turno y cita literal. Sin cita no hay marca. El código comprueba cada cita, calcula las notas y la banda con reglas publicadas y registra el modelo y la versión del prompt. El nivel lo valida una persona docente fuera de la app. No hay un cuarto agente que “arregle” los datos.",
+        b:"La IA <b>mide</b>, el código <b>gobierna</b> y una persona <b>valida</b>. Con el Evaluador v2 (diseñado, pendiente de implementar; hoy mide el v1), la IA revisa la lista completa de descriptores (A1–C2) sin conocer el nivel declarado y devuelve solo evidencia: descriptor, estado (logrado o intentado), turno y cita literal. Sin cita no hay marca. El código comprueba cada cita, calcula las notas y la banda con reglas publicadas y registra el modelo y la versión del prompt. El nivel lo valida una persona fuera de la app. Ningún agente decide, sea cual sea el modelo. No hay un cuarto agente que “arregle” los datos.",
         ex:"Ejemplo: la IA devuelve en.spk.b1.make-suggestions · logrado · T2 · “I think we should call them today”. El código comprueba que la frase está en ese turno del alumno y calcula la nota. La IA no da ningún número."},
       fw:{k:"Principio 2 · Integridad",t:"Cortafuegos de puntuación",
         b:"La banda de competencia deriva <b>solo</b> de la producción oral evidenciada (misiones de role-play + mediación), leída de la transcripción. Corrección, ayuda, drills, tarjetas, rachas y puntos <b>nunca</b> la mueven. Un informe es una consulta sobre statements → el falso positivo es estructuralmente difícil.",
-        ex:"Ejemplo: un drill de gramática al 57% (práctica) y la banda por voz 6,6/10 son constructos distintos — la práctica no toca la banda. (El panel ya muestra la banda, no el %.)"},
+        ex:"Ejemplo: un drill de gramática al 57% (práctica) y la banda por voz 6,6/10 son constructos distintos — la práctica no toca la banda."},
       xa:{k:"Principio 3 · Interoperabilidad",t:"MCER + xAPI (IDs persistentes)",
         b:"Cada turno se convierte en un <b>statement xAPI</b> anclado a los descriptores del Volumen Complementario del MCER mediante <b>identificadores</b> acuñados bajo w3id.org/mllde (resolución persistente pendiente). El inventario curado (382 descriptores, v0.7.2) da el “qué”; xAPI hace el dato portable; el MCER lo hace significativo. Mediación = 5ª destreza.",
         ex:"Ejemplo: content-ref = en.spk.b1.handle-complaint → la banda queda anclada a esa escala MCER. Los IRIs y el perfil están en GitHub."},
       ev:{k:"Principio 4 · Honestidad",t:"Evidencia honesta (tiers · auditable)",
         b:"Cada medición declara su <b>nivel de evidencia</b> (Tier 1 medible hoy · Tier 2 instrumentado · Tier 3 pendiente). El gate ASR 0,70 retiene audio poco fiable; un 0 nunca sustituye a un valor ausente; cada sentencia de medición (completed) declara el modelo que la midió (measure-model; con el Evaluador v2, también la versión del prompt). Así el registro se <b>auto-audita</b>.",
-        ex:"Prueba en vivo: 10 statements con banda puntuados por un proveedor de respaldo se detectaron y excluyeron — gracias a measure-model. La honestidad cazó el fallo."}
+        ex:"Caso real: las sesiones medidas por un proveedor de respaldo se detectaron gracias a measure-model. Su salida de las medias queda pendiente de sus tres pruebas (código, sentencias y fecha). Desde ahora, sin modelo de respaldo."}
     },
     en:{
       md:{k:"Principle 1 · Governance",t:"Measure, Not Decide",
-        b:"The AI <b>measures</b>, code <b>governs</b> and a person <b>validates</b>. With Evaluator v2 (in validation; v1 still measures today), the AI checks the whole descriptor list (A1–C2) without knowing the declared level and returns only evidence: descriptor, status (evidenced or attempted), turn and verbatim quote. No quote, no mark. Code checks every quote, computes the marks and the band with published rules and records the model and prompt version. A teacher validates the level outside the app. No fourth agent “fixes” the data.",
+        b:"The AI <b>measures</b>, code <b>governs</b> and a person <b>validates</b>. With Evaluator v2 (designed, not yet implemented; v1 measures today), the AI checks the whole descriptor list (A1–C2) without knowing the declared level and returns only evidence: descriptor, status (evidenced or attempted), turn and verbatim quote. No quote, no mark. Code checks every quote, computes the marks and the band with published rules and records the model and prompt version. A person validates the level outside the app. No agent decides, whatever the model. No fourth agent “fixes” the data.",
         ex:"Example: the AI returns en.spk.b1.make-suggestions · evidenced · T2 · “I think we should call them today”. Code checks that the quote is in that learner turn and computes the mark. The AI gives no number."},
       fw:{k:"Principle 2 · Integrity",t:"Scoring firewall",
         b:"The competence band derives <b>only</b> from evidenced oral production (role-play missions + mediation), read from the transcript. Correction, help, drills, cards, streaks and points <b>never</b> move it. A report is a query over statements → false positives are structurally hard.",
-        ex:"Example: a grammar drill at 57% (practice) and the voice band 6.6/10 are different constructs — practice does not touch the band. (The panel now shows the band, not the %.)"},
+        ex:"Example: a grammar drill at 57% (practice) and the voice band 6.6/10 are different constructs — practice does not touch the band."},
       xa:{k:"Principle 3 · Interoperability",t:"CEFR + xAPI (persistent IDs)",
         b:"Each turn becomes an <b>xAPI statement</b> anchored to the CEFR Companion Volume descriptors through <b>identifiers</b> minted under w3id.org/mllde (persistent resolution pending). The curated inventory (382 descriptors, v0.7.2) gives the “what”; xAPI makes the data portable; the CEFR makes it meaningful. Mediation = 5th skill.",
         ex:"Example: content-ref = en.spk.b1.handle-complaint → the band is anchored to that CEFR scale. The IRIs and the profile are on GitHub."},
       ev:{k:"Principle 4 · Honesty",t:"Honest evidence (tiers · auditable)",
         b:"Each measurement declares its <b>evidence tier</b> (Tier 1 measurable today · Tier 2 instrumented · Tier 3 pending). The ASR 0.70 gate withholds unreliable audio; a 0 never replaces a missing value; each measurement statement (completed) declares the model that measured it (measure-model; with Evaluator v2, also the prompt version). So the record <b>self-audits</b>.",
-        ex:"Live proof: 10 band-carrying statements scored by a fallback provider were detected and excluded — thanks to measure-model. Honesty caught the lapse."}
+        ex:"Real case: the sessions scored by a fallback provider were detected thanks to measure-model. Taking them out of the averages awaits its three proofs (code, statements and date). From now on, no fallback model."}
     }
   };
 
