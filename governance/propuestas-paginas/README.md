@@ -29,7 +29,7 @@ Aplica la regla de diseño de la autora: ES/EN, modo claro y oscuro, WCAG 2.1 AA
 - la traducción al inglés de las 15 etiquetas de categoría del inventario;
 - «Etiqueta» como cabecera de la columna «Label» en español.
 
-### 2b. Cambios de contenido previstos para la v0.8.4 → **no se hacen todavía**
+### 2b. Cambios de contenido previstos para la v0.8.4 → **no se hacen todavía** (la autora, 18 nov: van después del congreso; el congreso presenta el diseño de la orquestación de los agentes, sin resultados)
 
 `index.html` muestra el vocabulario del perfil v0.8.3. Sus definiciones cambian en la v0.8.4, al terminar la auditoría (Q24). La autora aprobó las definiciones de los verbos el 18 nov (`../verbos-xapi/README.md`). Cambios previstos:
 
