@@ -127,6 +127,13 @@ code{font-family:var(--fb);font-size:12.5px;background:var(--chip);color:var(--c
 /* footer */
 footer{border-top:1px solid var(--line);margin-top:48px;padding:24px 0 50px;color:var(--muted);font-size:13.5px}
 footer p{margin:0 0 8px;max-width:80ch}
+
+.tabs{border-bottom:1px solid var(--line);background:var(--surface)}
+.tabs ul{list-style:none;margin:0 auto;padding:0 20px;max-width:1100px;display:flex;flex-wrap:wrap;gap:4px 18px}
+.tabs a{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);font:600 14px var(--fb);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs a:hover{color:var(--primary-deep)}
+.tabs a[aria-current="page"]{color:var(--primary-deep);border-bottom-color:var(--primary)}
+.tabs a:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
 </style>
 </head>
 <body>
@@ -137,6 +144,8 @@ footer p{margin:0 0 8px;max-width:80ch}
   <button id="langBtn" type="button">EN</button>
   <button id="themeBtn" type="button">Oscuro</button>
 </div></div>
+<nav class="tabs" aria-label="MLLDE"><ul><li><a href="index.html" aria-current="page"><span class="lang-es" lang="es">Registro xAPI</span><span class="lang-en" lang="en">xAPI registry</span></a></li><li><a href="governance/html/normas-gobernanza.html"><span class="lang-es" lang="es">Normas de gobernanza</span><span class="lang-en" lang="en">Governance norms</span></a></li><li><a href="governance/html/registro-agentes.html"><span class="lang-es" lang="es">Agentes</span><span class="lang-en" lang="en">Agents</span></a></li></ul></nav>
+
 
 <header class="head"><div class="wrap">
   <p class="kick">w3id.org/mllde · Registry v0.8.3</p>

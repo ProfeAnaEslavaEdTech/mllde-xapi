@@ -31,7 +31,9 @@ Cite the work on two independent axes — do not conflate them:
 | `mllde-xapi-iri-registry_v0.8.2.json` | The IRI registry (JSON): verbs, activity types, extensions, CEFR levels/skills/scales, rubric categories, pedagogical actions, evidence tiers, incident types, acoustic metrics. A matching v0.8.3 JSON is pending; the v0.8.3 vocabulary is authoritative in `index.html` and in the Profile. |
 | `index.html` | Human-readable registry of every IRI, **v0.8.3** (served via GitHub Pages). |
 | `tk-coachai-mllde.html` | Interactive TK CoachAI · MLLDE visual. |
-| `governance/normas-mllde-gobernanza_v1.7.md` | MLLDE AI-governance norms v1.7 (Spanish): main measurement rule R-MED-1, structural norms N1–N13, level decision G-NIVEL-1 (teacher, and free user without a teacher), agent admission R-ADM, vocabulary tracks, the proposed IRI coinage for registry v0.8.4, and the weekly cmi5 audit package (N6-bis). |
+| `governance/normas-mllde-gobernanza_v1.7.md` · `_EN.md` | MLLDE AI-governance norms v1.7 (Spanish and English): the main rule R-MED-1, structural norms N1–N13, the level rule G-NIVEL-1 (B2B and B2C), agent admission R-ADM, agent identification R-ID, vocabulary tracks and the weekly cmi5 audit package (N6-bis). Not yet signed (N12). |
+| `governance/html/` | Readable pages, ES/EN: the governance norms and the agent registry (11 agents). Reached from the tabs at the top of `index.html`. |
+| `governance/registro-agentes/` | The agent registry (JSON): each agent's exact xAPI identifier for `context.instructor`. |
 | `w3id/ids/mllde/` | Payload for the `w3id.org/mllde` namespace pull request (`.htaccess` + `README.md`), mirroring the destination path in `perma-id/w3id.org`. |
 | `LICENSE` | CC BY 4.0. |
 

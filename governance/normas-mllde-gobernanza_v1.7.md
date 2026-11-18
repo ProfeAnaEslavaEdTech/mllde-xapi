@@ -212,7 +212,7 @@
 4. La etiqueta `name` (p. ej. «Capi») no identifica; los controles filtran siempre por `account.name`.
 5. La versión nunca va en el nombre (nada de `capi-agent-v2`): va en `ext/agent-version`.
 6. Un identificador no se renombra ni se reutiliza; el de un agente retirado no se asigna a otro.
-7. La `authority` no la escribe la app: la pone el LRS (`https://tk-coach-prod.lrs.io/keys/<clave>`).
+7. La `authority` no la escribe la app: la pone el LRS (`https://<lrs>/keys/<clave>`).
 
 **Detección de salidas de rol** (en el control diario y en la auditoría con el export del LRS):
 - **A1:** un `instructor` que no está en el registro indica un agente no autorizado.

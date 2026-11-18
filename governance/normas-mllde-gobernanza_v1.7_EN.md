@@ -211,7 +211,7 @@
 4. The `name` label (e.g. "Capi") does not identify; checks always filter by `account.name`.
 5. The version never goes in the name (no `capi-agent-v2`): it goes in `ext/agent-version`.
 6. An identifier is never renamed or reused; that of a withdrawn agent is not assigned to another.
-7. The `authority` is not written by the app: the LRS sets it (`https://tk-coach-prod.lrs.io/keys/<key>`).
+7. The `authority` is not written by the app: the LRS sets it (`https://<lrs>/keys/<key>`).
 
 **Detection of out-of-role behaviour** (in the daily check and in the audit with the LRS export):
 - **A1:** an `instructor` that is not in the registry indicates an unauthorised agent.

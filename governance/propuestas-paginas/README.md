@@ -54,7 +54,7 @@ La copia de `index.html` de esta carpeta añade al final, después del inventari
 
 **Antes de pasarla a `main`:** el enlace al texto completo solo funciona si `governance/` también pasa a `main`. Hace falta el visto bueno de la autora para las dos cosas.
 
-### 2b. Cambios de contenido previstos para la v0.8.4 → ~~no se hacen todavía (van después del congreso)~~ **Cambia el mismo 18 nov (la autora): la corrección de los 66 *can-do* va ahora**, en la versión que entra en producción con los arreglos de Alex, no en una «v0.8.4». Número de versión por confirmar: los *can-do* son del inventario (eje v0.7.x), no del perfil (eje v0.8.x)
+### 2b. Cambios de contenido previstos para la v0.8.4 → ~~no se hacen todavía (van después del congreso)~~ **Cambia el mismo 18 nov (la autora): la corrección de los 66 *can-do* va ahora**, en la versión que entra en producción con los arreglos del desarrollador, no en una «v0.8.4». Número de versión por confirmar: los *can-do* son del inventario (eje v0.7.x), no del perfil (eje v0.8.x)
 
 `index.html` muestra el vocabulario del perfil v0.8.3. Sus definiciones cambian en la v0.8.4, al terminar la auditoría (Q24). La autora aprobó las definiciones de los verbos el 18 nov (`../verbos-xapi/README.md`). Cambios previstos:
 
