@@ -91,7 +91,7 @@
       "tipo": "M",
       "pieza": "3",
       "fase": "Output",
-      "funcion": "Compara el texto de la voz con los descriptores de la base y marca la evidencia (id, estado, turno, cita); no mide, no valora y no evalúa (terminología del 18 nov; antes decía «el único que mide»)",
+      "funcion": "Compara el texto de la voz con los descriptores de la base y marca la evidencia (id, estado, turno, cita); no mide, no valora y no evalúa",
       "aparece_en": "completed y mediated (el único agente en el flujo de medición)",
       "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
@@ -215,7 +215,6 @@
         "name": "tk-coach-engine"
       }
     },
-    "nota": "No es un agente de IA. Es el actor de las anulaciones (voided). Nunca va en context.instructor.",
-    "en_el_lrs_desde": "2026-11-09 (36 voided)"
+    "nota": "No es un agente de IA. Es el actor de las anulaciones (voided). Nunca va en context.instructor."
   }
 }
