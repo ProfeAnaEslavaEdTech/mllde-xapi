@@ -26,6 +26,7 @@ La copia de esta carpeta se actualiza con las decisiones posteriores al 12 nov. 
 | (modal 1) «El nivel lo valida una persona docente» | «El nivel lo valida una persona. Ningún agente decide, sea cual sea el modelo» | Principio de invariancia del rol (10 nov) |
 | (modal 2) «(El panel ya muestra la banda, no el %.)» | Se quita | No tiene sus tres pruebas |
 | (modal 4) «Prueba en vivo: 10 statements… se detectaron y excluyeron» | «Las sesiones medidas por un proveedor de respaldo se detectaron gracias a measure-model. Su salida de las medias queda pendiente de sus tres pruebas. Desde ahora, sin modelo de respaldo» | La exclusión «parece aplicada» en el cotejo del 18 nov, pero le faltan el extracto del código y la fecha (P13) |
+| «La IA mide» · «el modelo que la midió» · «hoy mide el v1» | «La IA compara» · «el modelo que hizo la comparación» · «hoy funciona el v1» | **Decisión de Ana (18 nov):** ningún agente de IA mide, valora ni evalúa. Compara el texto de la voz con el knowledge base y localiza cuántos descriptores se cumplen; el código cuenta y calcula |
 | Cabecera con degradado | Cabecera sobria, como el portafolio | Regla de diseño de la autora (12 nov): minimalista, Ocean Ink |
 | — | Nota al pie: «Actualizado el 18 nov 2026, con las normas de gobernanza v1.7» | Fecha desde la que rige |
 
