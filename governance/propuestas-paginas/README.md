@@ -31,12 +31,14 @@ Aplica la regla de diseño de la autora: ES/EN, modo claro y oscuro, WCAG 2.1 AA
 
 ### 2b. Cambios de contenido previstos para la v0.8.4 → **no se hacen todavía**
 
-`index.html` muestra el vocabulario del perfil v0.8.3. Sus definiciones cambian en la v0.8.4, cuando la autora apruebe las de los verbos (`../verbos-xapi/README.md`) y al terminar la auditoría (Q24). Cambios previstos:
+`index.html` muestra el vocabulario del perfil v0.8.3. Sus definiciones cambian en la v0.8.4, al terminar la auditoría (Q24). La autora aprobó las definiciones de los verbos el 18 nov (`../verbos-xapi/README.md`). Cambios previstos:
 
 | Término | Hoy en el perfil v0.8.3 | Cambio previsto | Motivo |
 |---|---|---|---|
 | `adapted` | «Actor is the teaching agent (human or AI)…» | Actor = el alumno; el agente que adapta va en `context.instructor` | R-ID (10 nov) |
 | `progressed` | «Band or subskill progression event (e.g. B1 → B2 readiness signal)» | Progreso lineal y no final dentro del paquete de descriptores del nivel; nunca del nivel declarado al mismo | Definición de ADL y regla de la autora (11 nov) |
-| `completed` / `passed` de nivel | No existe | Cierre de nivel: regla pública del 80 % o todos los objetivos del nivel (pendiente: ¿`passed` o `completed`?) | Regla de la autora (11 nov) |
+| `completed` / `passed` de nivel | No existe | `passed` de nivel al alcanzar la regla pública del 80 %; `completed` de nivel al trabajar todos los objetivos del nivel | Decisión de la autora (12 nov) |
+| `completed` de misión | «Task completed — the <MISSION_COMPLETE> gate event» | Añade `result.completion = true`, `ext/input-channel` y el tipo de práctica | Decisión de la autora (18 nov) |
+| `attempted` | «Learner attempts a task/mission» | Se emite al empezar toda misión | Decisión de la autora (18 nov) |
 | `played` | `https://w3id.org/xapi/audio/verbs/played` | `https://w3id.org/xapi/video/verbs/played` | Esa IRI no existe en el perfil de audio de ADL, que reutiliza el `played` de vídeo |
 | `level-decision` | «demonstrated-level recalibration decision» | Sin la palabra «decision»: es la marca del progreso del alumno | La IA no decide (G-NIVEL-1) |

@@ -4,7 +4,7 @@
 - que la base de conocimiento de TK CoachAI use cada verbo con su definición oficial;
 - que no haya incongruencias entre lo que dice ADL, lo que dice el perfil MLLDE v0.8.3 y lo que emite la app.
 
-**Estado:** borrador. Las definiciones propuestas (§3) **no están aprobadas**; se revisan con Ana el 12 nov.
+**Estado (18 nov):** las definiciones del §3 están **aprobadas** por la autora. *Hasta el 18 nov decía: «borrador; las definiciones propuestas no están aprobadas».* En el perfil MLLDE entran en la v0.8.4 (Q24).
 
 ## 1. Fuentes
 
@@ -50,7 +50,7 @@ Copia de las definiciones en `mllde-xapi/governance/verbos-xapi/definiciones-adl
 
 Desde el 25 sep van con la IRI canónica.
 
-## 3. Definiciones propuestas para la base de conocimiento (borrador para el 12 nov)
+## 3. Definiciones para la base de conocimiento (aprobadas el 18 nov)
 
 Reglas que aplican:
 - **R-ID:** el actor es siempre el alumno, y el agente va en `context.instructor`.
@@ -59,10 +59,10 @@ Reglas que aplican:
 
 | Verbo | Propuesta (ES) | Objeto |
 |---|---|---|
-| attempted | El alumno inicia una misión o una tarjeta. No implica que la termine ni mide nada | Misión o tarjeta |
-| completed · misión | **Propuesta (12 nov):** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true` y la banda que calcula el código; si no se puede medir (p. ej., audio con confianza < 0,70), va sin nota y con su incidente. Una misión que no se termina no lleva `completed`. **Declara de dónde sale la práctica:** la entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Así las prácticas con OCR quedan identificadas (normas v1.3). **Hoy en el LRS:** 112 cierres de misiones de negocio, 20 de «Practica tu situación», 6 de «Presenta tu visual» (sin `input-channel: ocr` en ninguno) y 1 «Chrono» sin identificar. 139 vivos, todos con una misión como objeto (68 misiones, 21 alumnos); 127 con nota y 12 sin nota; **ninguno lleva `result.completion`**; 26 conversaciones (17 alumnos, del 17 ago al 10 nov) no tienen `completed` | Misión |
-| completed · nivel | **Nuevo.** El alumno ha trabajado todos los objetivos de su nivel | Nivel |
-| passed · nivel | **Por decidir:** el alumno alcanza la regla pública del 80 % de su paquete de descriptores | Nivel |
+| attempted | **Aprobada (18 nov):** el alumno inicia una misión o una tarjeta. **Se emite al empezar toda misión**, para que una misión abandonada deje rastro. No implica que la termine ni mide nada | Misión o tarjeta |
+| completed · misión | **Aprobada (18 nov):** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true` y la banda que calcula el código; si no se puede medir (p. ej., audio con confianza < 0,70), va sin nota y con su incidente. Una misión que no se termina no lleva `completed`. **Declara de dónde sale la práctica:** la entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Así las prácticas con OCR quedan identificadas (normas v1.3). **Hoy en el LRS:** 112 cierres de misiones de negocio, 20 de «Practica tu situación», 6 de «Presenta tu visual» (sin `input-channel: ocr` en ninguno) y 1 «Chrono» sin identificar. 139 vivos, todos con una misión como objeto (68 misiones, 21 alumnos); 127 con nota y 12 sin nota; **ninguno lleva `result.completion`**; 26 conversaciones (17 alumnos, del 17 ago al 10 nov) no tienen `completed` | Misión |
+| completed · nivel | **Decidida (12 nov).** El alumno ha trabajado todos los objetivos de su nivel | Nivel |
+| passed · nivel | **Decidida (12 nov):** el alumno alcanza la regla pública del 80 % de su paquete de descriptores | Nivel |
 | progressed | Progreso lineal y no final dentro del paquete de descriptores del nivel del alumno: **demuestra más descriptores que antes.** Lleva cuántos de cuántos. Nunca va del nivel declarado al mismo | Nivel |
 | answered | El alumno responde a un ítem de práctica (drill o tarjeta). No cuenta para la banda | Drill o tarjeta |
 | asked | El alumno pide ayuda o vocabulario. Si responde un agente, el agente va en `context.instructor` | La ayuda o la palabra |
@@ -78,8 +78,15 @@ Reglas que aplican:
 
 1. **El 80 %: decidido.** `passed` de nivel cuando el alumno alcanza la regla pública del 80 %; `completed` de nivel cuando ha trabajado todos los objetivos del nivel. Así lo hace cmi5. Está en las normas, G-NIVEL-1.
 2. **Los 8 `progressed` «B1 → B1»: se revisan con el desarrollador.**
-3. **La prueba T-NIVEL-1 (b):** pendiente.
-4. **Las definiciones del §3:** pendientes de aprobar, salvo las de `progressed`, `passed` y `completed` de nivel, que ya están en las normas.
+3. **La prueba T-NIVEL-1 (b):** ~~pendiente~~ → **retirada el 18 nov.** El actor del `progressed` lo fijan R-ID y su control A3.
+4. **Las definiciones del §3:** ~~pendientes de aprobar~~ → **aprobadas el 18 nov**, todas. Pasan al perfil en la v0.8.4, al terminar la auditoría (Q24).
+
+## 4-ter. Decisiones del 18 nov
+
+1. **`completed` de misión: aprobado**, con `result.completion = true`, `ext/input-channel` y el tipo de práctica. Está en las normas, G-NIVEL-1, «Verbos de la misión».
+2. **`attempted` al empezar toda misión: aprobado.** En el export del 11 nov, el `attempted` de misión solo aparece en las 19 misiones con incidente.
+3. **T-NIVEL-1 (b): retirada.**
+4. **Todas las definiciones del §3: aprobadas.**
 
 ## 4-bis. Lo que había que decidir (11 nov)
 
