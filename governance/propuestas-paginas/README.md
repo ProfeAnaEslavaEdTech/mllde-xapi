@@ -17,7 +17,7 @@ Doce frases cambian (seis en español y sus seis equivalentes en inglés). El re
 
 ## 2. `index.html` (registro y perfil v0.8.3)
 
-### 2a. Rediseño sin cambio de contenido → copia en esta carpeta (12 nov)
+### 2a. Rediseño sin cambio de contenido → copia en esta carpeta (12 nov) · **publicado en `main` el 18 nov** (commit `9523cd6`, con el visto bueno de la autora, para el congreso). La versión anterior sigue en el historial de git (`b5b17f8`)
 
 Aplica la regla de diseño de la autora: ES/EN, modo claro y oscuro, WCAG 2.1 AA, Ocean Ink y el estilo minimalista del portafolio.
 
@@ -25,7 +25,7 @@ Aplica la regla de diseño de la autora: ES/EN, modo claro y oscuro, WCAG 2.1 AA
 
 **Cambian el idioma de la interfaz y los títulos.** El contenido normativo (IRIs, definiciones y descriptores) queda en su idioma original en las dos versiones.
 
-**Por revisar antes de pasarla a `main`:**
+~~**Por revisar antes de pasarla a `main`:**~~ *revisado el 18 nov:*
 - la traducción al inglés de las 15 etiquetas de categoría del inventario;
 - «Etiqueta» como cabecera de la columna «Label» en español.
 
@@ -42,3 +42,5 @@ Aplica la regla de diseño de la autora: ES/EN, modo claro y oscuro, WCAG 2.1 AA
 | `attempted` | «Learner attempts a task/mission» | Se emite al empezar toda misión | Decisión de la autora (18 nov) |
 | `played` | `https://w3id.org/xapi/audio/verbs/played` | `https://w3id.org/xapi/video/verbs/played` | Esa IRI no existe en el perfil de audio de ADL, que reutiliza el `played` de vídeo |
 | `level-decision` | «demonstrated-level recalibration decision» | Sin la palabra «decision»: es la marca del progreso del alumno | La IA no decide (G-NIVEL-1) |
+| Inventario: 66 *can-do* de gramática | Empiezan por «Can» seguido de un sustantivo (p. ej. «Can location using…») | Un verbo en su lugar; la forma no cambia. Propuesta, uno por uno, en `revision-inventario/` | Revisión a mano del 18 nov (H10) |
+| Inventario: 11 hallazgos más | Ejemplos que no usan el término, solapes gramática–vocabulario, un id que no coincide con su forma | Ver `revision-inventario/README.md` | Revisión a mano del 18 nov |

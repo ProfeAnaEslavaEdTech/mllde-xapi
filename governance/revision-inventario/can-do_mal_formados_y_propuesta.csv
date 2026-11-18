@@ -1,0 +1,67 @@
+﻿id,nivel,can_do_v0.8.3,propuesta_de_correccion
+en.gram.a1.can-ability,A1,"Can ability, possibility, simple requests using: can / can't + base.","Can talk about ability and possibility, and make simple requests using: can / can't + base."
+en.gram.a1.freq-adverbs,A1,Can how often using: always / usually / often / never (mid-position).,Can say how often something happens using: always / usually / often / never (mid-position).
+en.gram.a1.prep-place,A1,Can location using: in / on / at / under / next to.,Can say where something is using: in / on / at / under / next to.
+en.gram.a1.prep-time,A1,Can position in time using: at (times) / on (days) / in (months).,Can say when something happens using: at (times) / on (days) / in (months).
+en.gram.a1.present-continuous,A1,Can actions happening now using: am/is/are + -ing.,Can talk about actions happening now using: am/is/are + -ing.
+en.gram.a1.some-any-basic,A1,Can unspecified quantity (affirm./neg.-quest.) using: some / any.,"Can talk about an unspecified quantity in statements, negatives and questions using: some / any."
+en.gram.a2.adverbs-manner,A2,Can how an action is done using: adjective + -ly.,Can say how an action is done using: adjective + -ly.
+en.gram.a2.as-as,A2,Can equality/inequality of degree using: (not) as … as.,Can compare things as equal or unequal in degree using: (not) as … as.
+en.gram.a2.because-so,A2,Can reason and result using: because / so.,Can give a reason and a result using: because / so.
+en.gram.a2.could-requests,A2,Can polite requests and offers using: could / would you …?.,Can make polite requests and offers using: could / would you …?.
+en.gram.a2.going-to,A2,Can plans and intentions; predictions from evidence using: am/is/are going to + base.,"Can talk about plans and intentions, and make predictions from evidence using: am/is/are going to + base."
+en.gram.a2.have-to,A2,Can external obligation / absence of obligation using: have to / don't have to.,Can talk about external obligation and absence of obligation using: have to / don't have to.
+en.gram.a2.past-continuous,A2,Can action in progress in the past / background using: was/were + -ing.,Can describe an action in progress in the past or set the background using: was/were + -ing.
+en.gram.a2.past-simple,A2,Can finished actions in the past using: -ed; irregular pasts; was/were.,Can talk about finished actions in the past using: -ed; irregular pasts; was/were.
+en.gram.a2.possessive-pronouns,A2,Can possession without repeating the noun using: mine / yours / his / hers / ours / theirs.,Can show possession without repeating the noun using: mine / yours / his / hers / ours / theirs.
+en.gram.a2.possessive-s,A2,Can possession / relationship using: noun + 's / s'.,Can show possession and relationships using: noun + 's / s'.
+en.gram.a2.pp-just-already-yet,A2,Can recent completion / expectation using: just / already / yet + present perfect.,Can talk about recent completion and expectation using: just / already / yet + present perfect.
+en.gram.a2.prep-movement,A2,Can direction and path using: to / into / out of / through / across.,Can describe direction and path using: to / into / out of / through / across.
+en.gram.a2.present-cont-future,A2,Can fixed future arrangements using: am/is/are + -ing (future meaning).,Can talk about fixed future arrangements using: am/is/are + -ing (future meaning).
+en.gram.a2.present-perfect-exp,A2,Can life experience up to now using: have/has + past participle (ever/never).,Can talk about life experience up to now using: have/has + past participle (ever/never).
+en.gram.a2.quantifiers,A2,Can quantity with count/uncount nouns using: much / many / a lot of / a few / a little.,Can talk about quantity with countable and uncountable nouns using: much / many / a lot of / a few / a little.
+en.gram.a2.reflexive,A2,Can subject and object are the same using: myself / yourself / themselves ….,Can show that the subject and the object are the same using: myself / yourself / themselves ….
+en.gram.a2.should-advice,A2,Can advice and recommendations using: should / shouldn't + base.,Can give advice and recommendations using: should / shouldn't + base.
+en.gram.a2.uncountable,A2,"Can mass, not counted using: uncountable nouns (information, advice, money).","Can talk about things that are not counted using: uncountable nouns (information, advice, money)."
+en.gram.a2.used-to,A2,Can past states/habits no longer true using: used to + base.,Can talk about past states and habits that are no longer true using: used to + base.
+en.gram.a2.will-basic,A2,"Can instant decisions, offers, predictions using: will / won't + base.","Can make instant decisions, offers and predictions using: will / won't + base."
+en.gram.b1.dependent-prepositions,B1,"Can collocational preposition choice using: verb/adj + fixed preposition (depend on, keen on).","Can choose the fixed preposition that a verb or adjective takes using: verb/adj + fixed preposition (depend on, keen on)."
+en.gram.b1.ed-ing-adjectives,B1,Can feeling vs cause of feeling using: -ed vs -ing adjectives (bored/boring).,Can distinguish a feeling from its cause using: -ed vs -ing adjectives (bored/boring).
+en.gram.b1.for-since,B1,Can duration with perfect tenses using: for + period / since + point.,Can express duration with perfect tenses using: for + period / since + point.
+en.gram.b1.future-time-clauses,B1,Can future events in time clauses using: when/as soon as/until + present (future meaning).,Can refer to future events in time clauses using: when/as soon as/until + present (future meaning).
+en.gram.b1.might-may-could,B1,Can future/present possibility using: might / may / could + base.,Can express present and future possibility using: might / may / could + base.
+en.gram.b1.modals-deduction-present,B1,Can degrees of certainty about now using: must / might / can't + base.,Can express degrees of certainty about the present using: must / might / can't + base.
+en.gram.b1.past-perfect,B1,Can an earlier past before another past using: had + past participle.,Can refer to an earlier past before another past event using: had + past participle.
+en.gram.b1.present-perfect-cont,B1,Can duration of an ongoing activity using: have/has been + -ing.,Can express the duration of an ongoing activity using: have/has been + -ing.
+en.gram.b1.present-perfect-vs-past,B1,Can unfinished/relevant-now vs finished time using: present perfect vs past simple.,Can distinguish unfinished or relevant-now time from finished time using: present perfect vs past simple.
+en.gram.b1.quantifiers-b1,B1,Can finer quantity using: enough / plenty of / several / most of.,Can express quantity more precisely using: enough / plenty of / several / most of.
+en.gram.b1.relative-whose,B1,Can relative possession using: whose + noun.,Can express possession in a relative clause using: whose + noun.
+en.gram.b1.second-conditional,B1,"Can hypothetical/unlikely present or future using: if + past, would + base.","Can talk about hypothetical or unlikely present and future situations using: if + past, would + base."
+en.gram.b1.used-would-habit,B1,Can past habitual actions (narrative) using: would + base (past repeated actions).,Can narrate repeated past actions using: would + base (past repeated actions).
+en.gram.b1.zero-first-conditional,B1,"Can general truths and real future conditions using: if + present, present/will.","Can state general truths and real future conditions using: if + present, present/will."
+en.gram.b2.future-continuous,B2,Can action in progress at a future time; polite enquiry using: will be + -ing.,Can describe an action in progress at a future time and make polite enquiries using: will be + -ing.
+en.gram.b2.future-perfect-cont,B2,Can completed/ongoing by a future point using: will have (been) + pp/-ing.,"Can say what will be completed, or still in progress, by a future point using: will have (been) + pp/-ing."
+en.gram.b2.gerund-after-prep,B2,Can verb complementation after prepositions using: preposition + -ing.,Can use the -ing form after prepositions using: preposition + -ing.
+en.gram.b2.mixed-conditionals,B2,Can cross-time hypotheticals using: mixed time reference (past→present etc.).,Can express hypotheticals that cross time using: mixed time reference (past→present etc.).
+en.gram.b2.modal-perfects,B2,"Can past deduction, criticism, regret using: must/should/could/might + have + pp.","Can make deductions, criticisms and express regret about the past using: must/should/could/might + have + pp."
+en.gram.b2.passive-full,B2,Can impersonal/formal focus on the action using: passive across tenses + modal passive.,"Can focus on the action in an impersonal, formal way using: passive across tenses + modal passive."
+en.gram.b2.result-so-such,B2,Can cause and consequence with emphasis using: so + adj + that / such + noun + that.,Can express cause and consequence with emphasis using: so + adj + that / such + noun + that.
+en.gram.b2.the-more-the-more,B2,"Can proportional change using: the + comparative …, the + comparative ….","Can describe proportional change using: the + comparative …, the + comparative …."
+en.gram.b2.third-conditional,B2,"Can unreal/regretted past using: if + past perfect, would have + pp.","Can talk about an unreal or regretted past using: if + past perfect, would have + pp."
+en.gram.b2.wish-if-only,B2,Can regrets and desired changes using: wish/if only + past / past perfect / would.,Can express regrets and desired changes using: wish/if only + past / past perfect / would.
+en.gram.c1.advanced-modality,C1,Can fine shades of necessity/probability/criticism using: needn't have / may well / could conceivably.,"Can express fine shades of necessity, probability and criticism using: needn't have / may well / could conceivably."
+en.gram.c1.cleft-advanced,C1,Can advanced focus and emphasis using: All (that) … is …; The reason … is …; It is only when ….,Can give advanced focus and emphasis using: All (that) … is …; The reason … is …; It is only when ….
+en.gram.c1.concession-advanced,C1,Can sophisticated concession using: much as / while / for all + noun.,Can make sophisticated concessions using: much as / while / for all + noun.
+en.gram.c1.condition-advanced,C1,Can precise conditions and exceptions using: provided (that) / as long as / unless / but for.,Can state precise conditions and exceptions using: provided (that) / as long as / unless / but for.
+en.gram.c1.conditional-inversion,C1,Can formal conditional without 'if' using: Had I known …; Were we to …; Should you need ….,Can express a formal condition without 'if' using: Had I known …; Were we to …; Should you need ….
+en.gram.c1.ellipsis-substitution,C1,Can cohesion and economy using: so/do/one substitution; ellipsis of repeated elements.,Can achieve cohesion and economy using: so/do/one substitution; ellipsis of repeated elements.
+en.gram.c1.formal-linkers,C1,Can formal/legal-register cohesion using: notwithstanding / thereby / whereby / insofar as.,Can create cohesion in a formal or legal register using: notwithstanding / thereby / whereby / insofar as.
+en.gram.c1.inversion-negative,C1,Can emphasis by fronting a negative adverbial using: Not only … but also …; Never before …; Rarely + aux + subj.,Can add emphasis by fronting a negative adverbial using: Not only … but also …; Never before …; Rarely + aux + subj.
+en.gram.c1.nominalisation,C1,"Can dense, formal/academic style using: verb/adj → noun (implement → implementation).","Can write and speak in a dense, formal or academic style using: verb/adj → noun (implement → implementation)."
+en.gram.c1.subjunctive-mandative,C1,Can formal proposals/demands using: suggest/insist/recommend (that) + base (were).,Can make formal proposals and demands using: suggest/insist/recommend (that) + base (were).
+en.gram.c2.advanced-ellipsis,C2,"Can concise, cohesive spoken/written flow using: extensive ellipsis/substitution across turns.",Can keep spoken and written flow concise and cohesive using: extensive ellipsis/substitution across turns.
+en.gram.c2.emphatic-nuance,C2,"Can exact emphasis and frequency nuance using: fine focus/degree adverbials (precisely, invariably, scarcely).","Can convey exact emphasis and nuances of frequency using: fine focus/degree adverbials (precisely, invariably, scarcely)."
+en.gram.c2.idiomatic-collocation,C2,"Can natural, precise, register-sensitive expression using: idioms, fixed & figurative collocations (business register).","Can express themselves naturally and precisely, sensitive to register using: idioms, fixed & figurative collocations (business register)."
+en.gram.c2.stylistic-inversion,C2,Can rhetorical emphasis and cohesion using: So/Such/To such an extent + inversion; locative inversion.,Can achieve rhetorical emphasis and cohesion using: So/Such/To such an extent + inversion; locative inversion.
+en.gram.c2.subjunctive-formulaic,C2,Can formulaic subjunctive & fixed formal frames using: were it not for / be that as it may / suffice it to say.,Can use formulaic subjunctive and fixed formal frames using: were it not for / be that as it may / suffice it to say.
+en.gram.c2.subtle-modality,C2,"Can diplomatic, finely graded stance using: layered modality & mitigation (may perhaps have wished to).","Can take a diplomatic, finely graded stance using: layered modality & mitigation (may perhaps have wished to)."
