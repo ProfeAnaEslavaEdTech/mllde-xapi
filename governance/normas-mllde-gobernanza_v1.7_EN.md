@@ -25,7 +25,7 @@
 | **N2 — Single gate** | Every write to the LRS goes through the Consolidator (code). No agent writes to the LRS on its own. |
 | **N3 — Anti-rogue-agent** | The prompt in production must match the approved one (`prompt-hash`); if it differs, the agent does not start. |
 | **N4 — Closed base** | A single knowledge bundle (registry v0.8.3 + inventory v0.7.2), mounted by code, with `kb-version` and `kb-hash` declared. No copyrighted material in the prompt. |
-| **N5 — Fixed models** | Model with its version fixed in writing; no-train contract verified; **never any fallback** (Gemini lesson, 5–19 Oct). The exact model identifier goes in every statement (R-ID). **It applies to every agent, not only to the one that measures** (author's decision, 11 Nov), with tracking of the adherence rate per model. Legal basis: see the note under this table. |
+| **N5 — Fixed models** | Model with its version fixed in writing; no-train contract verified; **never any fallback**. The exact model identifier goes in every statement (R-ID). **It applies to every agent, not only to the one that measures** (author's decision, 11 Nov), with tracking of the adherence rate per model. Legal basis: see the note under this table. |
 | **N6 — Traceability** | The agent in `context.instructor`, with its `account` from the registry (R-ID, v1.7; formerly `agent-id`), + `agent-version` + `measure-model` (exact identifier) + `rules-version` in every statement. Goal: every registered agent with its own trace. The registry is in `governance/registro-agentes/`. |
 | **N7 — Flows that never cross** | Measurement (1×/session), pedagogy (per turn), activity (loop). The band arises only from the measurement flow. |
 | **N8 — Fail-closed** | When in doubt, nothing is emitted: ASR gate 0.70, judge unavailable → no tip, invalid schema → discard. |
@@ -59,7 +59,7 @@
 >
 > **In TK CoachAI** it is the learner's pseudonymous identifier: it appears in the LRS as the actor's `account.name`, instead of their name. Only the UUID and the transcript go to the model: so the model knows which learner a session belongs to without knowing who they are (no name, company, job title or email).
 >
-> **The short pseudonym in the dashboards**, of the form `TK-7BA714B6`, is the first 8 characters of the UUID in capitals. Checked in the Veracity export of 11 Nov: 577 of 577 statements with a pseudonym.
+> **The short pseudonym in the dashboards**, of the form `TK-7BA714B6`, is the first 8 characters of the UUID in capitals.
 >
 > **A pseudonym is not anonymous:** whoever holds the table that links the UUID to the profile can identify the learner. That is why the UUID is still personal data and is protected as such.
 
@@ -143,7 +143,7 @@
 - **P3:** the proposal is never written into the profile; it is shown as "pending decision".
 - **P4 (Ana Eslava-Graterol, 11 Nov): actor of `progressed` = the learner, in B2B and in B2C.** The teacher's validation is external to the app: they confirm the level with another assessment (oral, written) and it does not enter the LRS. That is why the app never emits a `progressed` in the name of the teacher or of an agent. **What the app must guarantee:** that the evidence behind each `progressed` (answers, errors, quotes and descriptors) can be seen in the dashboards. *Replaces:* "every `progressed` requires a human actor + `evidenceReviewed: true`; otherwise the gate rejects it".
 - **P5:** the profile does not change through performance without a human decision (R-DESAJUSTE-1: 3 mismatched sessions → "review" flag, profile intact).
-- **P6 (Ana Eslava-Graterol, 11 Nov): the app's level test is disabled.** It changed the learner's level without leaving a statement and without a teacher, and the generators used that level.
+- **P6 (Ana Eslava-Graterol, 11 Nov): the app's level test is disabled.**
 - **Legal basis:** AI Act art. 14 + Annex III 3(b)/(c) · GDPR art. 22.
 - **Own incidents:** `incident/nivel-sin-decision-humana` · `incident/nivel-propuesto-escrito-en-perfil` (high severity: they stop emission).
 
@@ -258,12 +258,12 @@ Analysis of the published registry v0.8.3 (153 concepts) against these norms. **
 | `incident/nivel-sin-decision-humana` | incident | G-NIVEL-1 names it; the incident table does not have it |
 | `incident/nivel-propuesto-escrito-en-perfil` | incident | Same — today they are orphan references |
 
-**High — they close audit findings:**
+**High:**
 
 | Proposed IRI | Type | Reason |
 |---|---|---|
 | `ext/descriptor-results` | result | Output per descriptor `{id, evidenced, quote}`; without it there is no visible evidence for v1.5 self-acceptance (planned in v0.9) |
-| `ext/vocabulary-origin` | context | Closed values: `inventory · correction · prompt · image · summary · own-image`; it is the field that arrived "undefined" in 16 terms |
+| `ext/vocabulary-origin` | context | Closed values: `inventory · correction · prompt · image · summary · own-image`|
 | `ext/user-track` | context | `pilot · free`; it makes the two tracks and the decision by group auditable |
 
 **Medium — they make R-MED-1 and N6 machine-checkable:**

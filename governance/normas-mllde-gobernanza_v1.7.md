@@ -26,7 +26,7 @@
 | **N2 — Puerta única** | Toda emisión a la LRS pasa por el Consolidador (código). Ningún agente escribe a la LRS por su cuenta. |
 | **N3 — Anti-agente-rogue** | El prompt en producción debe coincidir con el aprobado (`prompt-hash`); si difiere, el agente no arranca. |
 | **N4 — Base cerrada** | Un solo bundle de conocimiento (registry v0.8.3 + inventario v0.7.2), montado por código, con `kb-version` y `kb-hash` declarados. Nada de material con copyright en el prompt. |
-| **N5 — Modelos fijos** | Modelo con versión fijada por escrito; contrato no-train verificado; **sin fallback jamás** (lección Gemini, 5–19 oct). El identificador exacto del modelo va en cada sentencia (R-ID). **Aplica a todos los agentes, no solo al que compara con la base** (el Evaluador; hasta el 18 nov decía «al que mide») (decisión de la autora, 11 nov), con seguimiento de la tasa de apego por modelo. Fundamento legal: ver la nota bajo esta tabla. |
+| **N5 — Modelos fijos** | Modelo con versión fijada por escrito; contrato no-train verificado; **sin fallback jamás**. El identificador exacto del modelo va en cada sentencia (R-ID). **Aplica a todos los agentes, no solo al que compara con la base** (el Evaluador; hasta el 18 nov decía «al que mide») (decisión de la autora, 11 nov), con seguimiento de la tasa de apego por modelo. Fundamento legal: ver la nota bajo esta tabla. |
 | **N6 — Trazabilidad** | El agente en `context.instructor`, con su `account` del registro (R-ID, v1.7; antes, `agent-id`), + `agent-version` + `measure-model` (identificador exacto) + `rules-version` en cada statement. Meta: todos los agentes registrados con rastro propio. El registro está en `governance/registro-agentes/`. |
 | **N7 — Flujos que no se cruzan** | Medición (1×/sesión), pedagogía (por turno), actividad (loop). La banda solo nace del flujo de medición. |
 | **N8 — Fail-closed** | Ante la duda, no emite: puerta ASR 0.70, juez no disponible → sin tip, esquema inválido → descarte. |
@@ -60,7 +60,7 @@
 >
 > **En TK CoachAI** es el identificador seudónimo del alumno: aparece en la LRS como `account.name` del actor, en lugar de su nombre. Al modelo solo van el UUID y la transcripción: así el modelo sabe a qué alumno pertenece una sesión sin saber quién es (sin nombre, empresa, puesto ni correo).
 >
-> **El seudónimo corto de los paneles**, del tipo `TK-7BA714B6`, son los 8 primeros caracteres del UUID en mayúsculas. Comprobado en el export de Veracity del 11 nov: 577 de 577 sentencias con seudónimo.
+> **El seudónimo corto de los paneles**, del tipo `TK-7BA714B6`, son los 8 primeros caracteres del UUID en mayúsculas.
 >
 > **Seudónimo no es anónimo:** quien tiene la tabla que une el UUID con el perfil puede identificar al alumno. Por eso el UUID sigue siendo un dato personal y se protege como tal.
 
@@ -144,7 +144,7 @@
 - **P3:** la propuesta nunca se escribe en el perfil; se muestra como «pendiente de decisión».
 - **P4 (Ana Eslava-Graterol, 11 nov): actor del `progressed` = el alumno, en B2B y en B2C.** La validación del profesor es externa a la app: constata el nivel con otra evaluación (oral, escrita) y no entra en la LRS. Por eso la app nunca emite un `progressed` en nombre del profesor ni de un agente. **Lo que la app debe garantizar:** que la evidencia que sostiene cada `progressed` (respuestas, errores, citas y descriptores) se pueda ver en los paneles. *Sustituye a:* «todo `progressed` exige actor humano + `evidenceReviewed: true`; si no, la puerta lo rechaza».
 - **P5:** el perfil no cambia por desempeño sin decisión humana (R-DESAJUSTE-1: 3 sesiones desajustadas → marca «revisar», perfil intacto).
-- **P6 (Ana Eslava-Graterol, 11 nov): el test de nivel de la app se desactiva.** Cambiaba el nivel del alumno sin dejar sentencia y sin profesor, y los generadores usaban ese nivel.
+- **P6 (Ana Eslava-Graterol, 11 nov): el test de nivel de la app se desactiva.**
 - **Base legal:** AI Act art. 14 + Anexo III 3(b)/(c) · RGPD art. 22.
 - **Incidentes propios:** `incident/nivel-sin-decision-humana` · `incident/nivel-propuesto-escrito-en-perfil` (severidad alta: detienen la emisión).
 
@@ -259,12 +259,12 @@ Análisis del registro publicado v0.8.3 (153 conceptos) frente a estas normas. *
 | `incident/nivel-sin-decision-humana` | incidente | G-NIVEL-1 lo nombra; la tabla de incidentes no lo tiene |
 | `incident/nivel-propuesto-escrito-en-perfil` | incidente | Ídem — hoy son referencias huérfanas |
 
-**Altos — cierran hallazgos de la auditoría:**
+**Altos:**
 
 | IRI propuesto | Tipo | Motivo |
 |---|---|---|
 | `ext/descriptor-results` | resultado | Salida por descriptor `{id, evidenciado, cita}`; sin ella no hay evidencia visible para la autoaceptación v1.5 (prevista en v0.9) |
-| `ext/vocabulary-origin` | contexto | Valores cerrados: `inventory · correction · prompt · image · summary · own-image`; es el campo que llegaba «undefined» en 16 términos |
+| `ext/vocabulary-origin` | contexto | Valores cerrados: `inventory · correction · prompt · image · summary · own-image` |
 | `ext/user-track` | contexto | `pilot · free`; hace auditable la doble vía y la decisión por colectivo |
 
 **Medios — hacen R-MED-1 y N6 comprobables por máquina:**
