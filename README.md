@@ -32,7 +32,7 @@ Cite the work on two independent axes — do not conflate them:
 | `mllde-xapi-iri-registry_v0.8.2.json` | Previous IRI registry — superseded by v0.8.3, kept for provenance. |
 | `index.html` | Human-readable registry of every IRI, **v0.8.3** (served via GitHub Pages). |
 | `tk-coachai-mllde.html` | Interactive TK CoachAI · MLLDE visual. |
-| `governance/normas-mllde-gobernanza_v1.7.md` · `_EN.md` | MLLDE AI-governance norms v1.7 (Spanish and English): the main rule R-MED-1, structural norms N1–N13, the level rule G-NIVEL-1 (B2B and B2C), agent admission R-ADM, agent identification R-ID, vocabulary tracks and the weekly cmi5 audit package (N6-bis). Not yet signed (N12). |
+| `governance/normas-mllde-gobernanza_v1.7.md` · `_EN.md` | MLLDE AI-governance norms v1.7 (Spanish and English): the main rule R-MED-1, structural norms N1–N13, the level rule G-NIVEL-1 (B2B and B2C), agent admission R-ADM, agent identification R-ID, vocabulary tracks and the weekly cmi5 audit package (N6-bis). |
 | `governance/html/` | Readable pages, ES/EN: the governance norms and the agent registry (11 agents). Reached from the tabs at the top of `index.html`. |
 | `governance/registro-agentes/` | The agent registry (JSON): each agent's exact xAPI identifier for `context.instructor`. |
 | `w3id/ids/mllde/` | Payload for the `w3id.org/mllde` namespace pull request (`.htaccess` + `README.md`), mirroring the destination path in `perma-id/w3id.org`. |

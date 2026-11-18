@@ -3,7 +3,7 @@
   "version": "1.0",
   "fecha": "2026-11-10",
   "regla": "R-ID, normas de gobernanza v1.7 (xAPI 1.0.3, §2.4.6): el actor de toda sentencia de aprendizaje es el alumno; el agente que interviene va en context.instructor con este objeto exacto (un Group si son dos).",
-  "registrado_no_es_aprobado": "Un identificador no autoriza a actuar: hace falta la ficha aprobada con dos firmas (N1, N4) y, para los agentes 8–10, la N14. A 10 nov ninguno la tiene.",
+  "registrado_no_es_aprobado": "Un identificador no autoriza a actuar: hace falta la ficha aprobada con dos firmas (N1, N4) y, para los agentes 8–10, la N14.",
   "homePage": "https://tkcoach.talketika.app",
   "agentes": [
     {
@@ -21,7 +21,7 @@
       "fase": "Input",
       "funcion": "Redacta la misión (escena, papeles y tarea) sobre los descriptores objetivo que le da el código",
       "aparece_en": "Ninguna sentencia propia hoy; cómo se registra la tarea está pendiente (Q24)",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -39,7 +39,7 @@
       "fase": "Process",
       "funcion": "Role-play: crea ocasiones para los objetivos y hace el recast después del intento",
       "aparece_en": "adapted (recast, andamiaje), en context.instructor",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -57,7 +57,7 @@
       "fase": "Process",
       "funcion": "Propone un tip sobre un error claro del turno del alumno",
       "aparece_en": "adapted por turno, en un Group con judge-agent",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -75,7 +75,7 @@
       "fase": "Process",
       "funcion": "Aprueba o rechaza el tip del Corrector antes de mostrarlo",
       "aparece_en": "adapted por turno, en un Group con corrector-agent",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -93,7 +93,7 @@
       "fase": "Output",
       "funcion": "Compara el texto de la voz con los descriptores de la base y marca la evidencia (id, estado, turno, cita); no mide, no valora y no evalúa (terminología del 18 nov; antes decía «el único que mide»)",
       "aparece_en": "completed y mediated (el único agente en el flujo de medición)",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -111,7 +111,7 @@
       "fase": "Adaptar",
       "funcion": "Redacta drills sobre el descriptor que le da el código (el i+1)",
       "aparece_en": "answered, en un Group con drill-judge-agent",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -129,7 +129,7 @@
       "fase": "Adaptar",
       "funcion": "Escribe el ejemplo y la función de cada término que le da el código",
       "aparece_en": "attempted del flujo SRS",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -147,7 +147,7 @@
       "fase": "Adaptar",
       "funcion": "Aprueba o descarta cada drill del lote antes de mostrarlo",
       "aparece_en": "answered, en un Group con drill-agent",
-      "estado": "registrado; ficha pendiente de firma; N14 pendiente",
+      "estado": "registrado; ficha entregada; debe demostrar su necesidad (N14)",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -165,7 +165,7 @@
       "fase": "Input",
       "funcion": "Redacta la tarea de mediación sobre el descriptor que le da el código",
       "aparece_en": "Ninguna sentencia propia hoy (los mediated los emite el Evaluador); rastro de la tarea pendiente (Q24)",
-      "estado": "registrado; ficha pendiente de firma; N14 pendiente",
+      "estado": "registrado; ficha entregada; debe demostrar su necesidad (N14)",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -183,7 +183,7 @@
       "fase": "Output (informe)",
       "funcion": "Redacta el resumen de la sesión a partir de las métricas que le da el código",
       "aparece_en": "Ninguna sentencia: solo el registro de llamadas (N8)",
-      "estado": "registrado; ficha pendiente de firma; N14 pendiente",
+      "estado": "registrado; ficha entregada; debe demostrar su necesidad (N14)",
       "registrado_desde": "2026-11-10"
     },
     {
@@ -201,7 +201,7 @@
       "fase": "Soporte",
       "funcion": "Responde el soporte por correo; habla con el usuario, fuera del aprendizaje",
       "aparece_en": "Nunca en una sentencia de aprendizaje: solo el registro de llamadas (N8)",
-      "estado": "registrado; ficha pendiente de firma",
+      "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10",
       "base_legal": "AI Act (Reglamento (UE) 2024/1689), art. 50(1), aplicable desde el 2 ago 2026: «Providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system». RGPD: art. 5(1)(c) (minimización; según el inventario A2, Teo recibe el correo de soporte tal cual, con su remitente) y art. 28 (encargo de tratamiento). Lectura mínima por código (Q8)."
     }
