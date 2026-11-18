@@ -46,6 +46,14 @@ Aplica la regla de diseño de la autora: ES/EN, modo claro y oscuro, WCAG 2.1 AA
 - la traducción al inglés de las 15 etiquetas de categoría del inventario;
 - «Etiqueta» como cabecera de la columna «Label» en español.
 
+### 2c. Dos secciones nuevas: «Normas de gobernanza» y «Agentes involucrados» (18 nov 2026, petición de la autora)
+
+La copia de `index.html` de esta carpeta añade al final, después del inventario, dos secciones con el mismo diseño (ES/EN, claro y oscuro, tablas que se apilan en el móvil) y dos entradas en el índice:
+- **Normas de gobernanza (v1.7):** los 5 principios (rector, terminología, verificación, invariancia del rol y conservación del registro) y 23 reglas en una línea cada una (R-MED-1, N1–N13 con N6-bis y N6-ter, G-NIVEL-1, P1–P6, R-ADM, R-ID, vocabulario, OCR y el guardián). Enlaza al texto completo, `governance/html/normas-gobernanza.html`.
+- **Agentes involucrados (registro v1.0):** los 11 agentes con su identificador (`account.name`), su fase, su función y su grupo, y lo que no es agente de IA (el motor, el consolidador y el guardián, la infraestructura y la cuenta del sistema). No muestra la `homePage`, que lleva el dominio de la empresa (Q21).
+
+**Antes de pasarla a `main`:** el enlace al texto completo solo funciona si `governance/` también pasa a `main`. Hace falta el visto bueno de la autora para las dos cosas.
+
 ### 2b. Cambios de contenido previstos para la v0.8.4 → ~~no se hacen todavía (van después del congreso)~~ **Cambia el mismo 18 nov (la autora): la corrección de los 66 *can-do* va ahora**, en la versión que entra en producción con los arreglos de Alex, no en una «v0.8.4». Número de versión por confirmar: los *can-do* son del inventario (eje v0.7.x), no del perfil (eje v0.8.x)
 
 `index.html` muestra el vocabulario del perfil v0.8.3. Sus definiciones cambian en la v0.8.4, al terminar la auditoría (Q24). La autora aprobó las definiciones de los verbos el 18 nov (`../verbos-xapi/README.md`). Cambios previstos:
