@@ -91,7 +91,6 @@
 
 - **Por qué:** el humano valida, y sin evidencia no puede validar. El profesor constata el nivel con las respuestas, los errores y las citas del alumno (G-NIVEL-1 P4). El auditor comprueba que cada etiqueta del LRS (por ejemplo, un `implicit-recast`) corresponde a lo que pasó en la conversación (principio de verificación).
 - **Por qué se activa por fines (18 nov):** el RGPD pide tratar los datos solo para un fin declarado y solo los necesarios (art. 5(1)(b) y (c)). El propio AI Act cede ante la protección de datos: el art. 26(6) exige guardar los registros al menos 6 meses «salvo que se disponga otra cosa en el Derecho de la Unión o nacional, en particular en el Derecho de la Unión en materia de protección de datos personales». Sin datos no hay auditoría: por eso la evidencia se diseña de antemano (para qué, cuánto tiempo y quién la ve).
-- **Hoy no se cumple:** solo se guarda el JSON del Evaluador, y la conversación vive 3 horas en el navegador del alumno.
 - **Fundamento:** AI Act, arts. 12 y 19 (registros), y art. 26(6) (conservación de los registros al menos 6 meses); RGPD, art. 5(1)(b) y (c).
 - **Cómo se comprueba:** el registro de la activación (quién, para qué y plazo), el ID de una sesión, su transcripción descargada y la fecha desde la que se cumple.
 - Entra en vigor con las firmas de pedagogía e ingeniería (N12).
@@ -137,7 +136,6 @@
   - **`progressed`:** progreso lineal y no final dentro del paquete de descriptores del nivel del alumno. Se emite cuando demuestra más descriptores que antes y lleva cuántos de cuántos. Nunca va del nivel declarado al mismo nivel.
   - **`passed` de nivel:** el alumno alcanza la regla pública del 80 % (12 nov).
   - **`completed` de nivel:** el alumno ha trabajado todos los objetivos del nivel (12 nov). El `completed` de misión sigue siendo el cierre de cada sesión.
-  - Los 8 `progressed` del nivel al mismo nivel que hay hoy en la LRS se revisan con el desarrollador (12 nov).
 - **Verbos de la misión (Ana Eslava-Graterol, 18 nov):**
   - **`attempted`:** se emite al empezar toda misión. Así una misión abandonada deja rastro. Hasta el 18 nov solo se emitía en las tarjetas y en las misiones con incidente.
   - **`completed` de misión:** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true`, la banda que calcula el código, el canal de entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Si no se puede medir, va sin nota y con su incidente. Una misión que no se termina no lleva `completed`.
@@ -227,14 +225,6 @@
 - 0 agentes como actor de una sentencia de aprendizaje;
 - 0 sentencias nuevas con `authority` personal.
 
-**Línea de base (export de Veracity, 10 nov, 2.243 sentencias):**
-- `account` como único identificador: 2.243 de 2.243;
-- una sola `homePage`, la correcta: 2.243 de 2.243;
-- 0 sentencias con `context.instructor`;
-- `capi-agent` como actor en 141 `adapted`;
-- `tk-coach-engine` en 36 `voided`;
-- `authority` = la clave personal de un miembro del equipo, no la de servicio, en 2.243 de 2.243.
-
 **Prueba de cumplimiento** (principio de verificación):
 - el ID de una sentencia nueva con `instructor`;
 - el extracto de código;
@@ -293,7 +283,7 @@ Análisis del registro publicado v0.8.3 (153 conceptos) frente a estas normas. *
 
 Ningún agente puede **analizar y corregir el sistema por su cuenta**. Un vigilante solo alerta (fail-closed, sin acceso de escritura). Su función la cubre la prueba N3 + CI: auditable, repetible y sin privilegios.
 
-**Vigilancia independiente (Ana Eslava-Graterol, 18 nov):** un aviso de «sin señal» corre **fuera del alojamiento de la app**. Comprueba cada pocos minutos que la app responde y que las sentencias llegan al LRS, y si no, avisa por correo a la autora y al desarrollador. Solo alerta: no lee ni escribe datos de alumnos. **Motivo, 11 nov:** fallaron la clave del LRS (20 accesos rechazados, de 11:00 a 20:02, hora de Madrid) y el alojamiento (17:09–20:00); 31 sentencias esperaron hasta 9 h 11 min, la sesión de un alumno quedó sin cierre y no saltó ningún aviso, porque el control diario corre en el mismo alojamiento.
+**Vigilancia independiente (Ana Eslava-Graterol, 18 nov):** un aviso de «sin señal» corre **fuera del alojamiento de la app**. Comprueba cada pocos minutos que la app responde y que las sentencias llegan al LRS, y si no, avisa por correo a la autora y al desarrollador. Solo alerta: no lee ni escribe datos de alumnos. **Motivo:** el control diario corre en el mismo alojamiento que la app; si el alojamiento falla, no puede avisar.
 
 ---
 

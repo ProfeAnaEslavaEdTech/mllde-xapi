@@ -89,7 +89,6 @@
 *Replaces the rule of 12 Nov:* ~~"the transcripts of every session are kept on the server for at least 6 months, pseudonymised and with limited access, and they can be downloaded when an audit takes place"~~.
 
 - **Why:** the human validates, and without evidence they cannot validate. The teacher confirms the level with the learner's answers, errors and quotes (G-NIVEL-1 P4). The auditor checks that each label in the LRS (for example, an `implicit-recast`) matches what happened in the conversation (verification principle).
-- **Not met today:** only the Evaluator's JSON is kept, and the conversation lives for 3 hours in the learner's browser.
 - **Why it is switched on by purpose (18 Nov):** the GDPR asks that data be processed only for a declared purpose and only as much as needed (art. 5(1)(b) and (c)). The AI Act itself gives way to data protection: art. 26(6) requires keeping logs for at least 6 months "unless provided otherwise in applicable Union or national law, in particular in Union law on the protection of personal data". Without data there is no audit: that is why the evidence is designed in advance (for what, for how long and who sees it).
 - **Basis:** AI Act, arts. 12 and 19 (logs), and art. 26(6) (keeping logs for at least 6 months); GDPR, art. 5(1)(b) and (c).
 - **How it is checked:** the record of the activation (who, for what and period), the ID of a session, its downloaded transcript and the date from which it holds.
@@ -136,7 +135,6 @@
   - **`progressed`:** linear, non-final progress within the learner's level package of descriptors. It is emitted when the learner shows more descriptors than before and carries how many out of how many. It never goes from the declared level to the same level.
   - **Level `passed`:** the learner reaches the public 80% rule (12 Nov).
   - **Level `completed`:** the learner has worked all the objectives of the level (12 Nov). The mission `completed` is still the close of each session.
-  - The 8 `progressed` from a level to the same level now in the LRS are reviewed with the developer (12 Nov).
 - **Mission verbs (Ana Eslava-Graterol, 18 Nov):**
   - **`attempted`:** emitted at the start of every mission, so that an abandoned mission leaves a trace. Until 18 Nov it was emitted only for cards and for missions with an incident.
   - **Mission `completed`:** the learner ends the session of a mission normally (MISSION_COMPLETE gate). One per registration. It carries `result.completion = true`, the band the code computes, the learner's input channel in `ext/input-channel` (voice, text or OCR) and the type of practice (business mission, "Practise your situation" or "Present your visual"). If it cannot be measured, it goes without a mark and with its incident. A mission that is not finished carries no `completed`.
@@ -226,14 +224,6 @@
 - 0 agents as actor of a learning statement;
 - 0 new statements with a personal `authority`.
 
-**Baseline (Veracity export, 10 Nov, 2,243 statements):**
-- `account` as the only identifier: 2,243 of 2,243;
-- a single `homePage`, the correct one: 2,243 of 2,243;
-- 0 statements with `context.instructor`;
-- `capi-agent` as actor in 141 `adapted`;
-- `tk-coach-engine` in 36 `voided`;
-- `authority` = the personal key of a team member, not the service key, in 2,243 of 2,243.
-
 **Proof of compliance** (verification principle):
 - the ID of a new statement with `instructor`;
 - the code excerpt;
@@ -292,7 +282,7 @@ Analysis of the published registry v0.8.3 (153 concepts) against these norms. **
 
 No agent may **analyse and correct the system on its own**. A watcher only alerts (fail-closed, without write access). Its function is covered by the N3 test + CI: auditable, repeatable and without privileges.
 
-**Independent monitoring (Ana Eslava-Graterol, 18 Nov):** a "no signal" alert runs **outside the app's hosting**. Every few minutes it checks that the app responds and that statements reach the LRS; if not, it emails the author and the developer. It only alerts: it neither reads nor writes learner data. **Reason, 11 Nov:** the LRS key failed (20 rejected logins, 11:00 to 20:02 Madrid time) and so did the hosting (17:09–20:00); 31 statements waited up to 9 h 11 min, a learner's session was left without a close, and no alert fired, because the daily check runs on the same hosting.
+**Independent monitoring (Ana Eslava-Graterol, 18 Nov):** a "no signal" alert runs **outside the app's hosting**. Every few minutes it checks that the app responds and that statements reach the LRS; if not, it emails the author and the developer. It only alerts: it neither reads nor writes learner data. **Reason:** the daily check runs on the same hosting as the app; if the hosting fails, it cannot alert.
 
 ---
 

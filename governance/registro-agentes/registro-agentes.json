@@ -20,7 +20,7 @@
       "pieza": "5",
       "fase": "Input",
       "funcion": "Redacta la misión (escena, papeles y tarea) sobre los descriptores objetivo que le da el código",
-      "aparece_en": "Ninguna sentencia propia hoy; cómo se registra la tarea está pendiente (Q24)",
+      "aparece_en": "Sin sentencia propia; su rastro es el registro de llamadas (N8)",
       "estado": "registrado; ficha entregada",
       "registrado_desde": "2026-11-10"
     },
@@ -164,7 +164,7 @@
       "pieza": "5",
       "fase": "Input",
       "funcion": "Redacta la tarea de mediación sobre el descriptor que le da el código",
-      "aparece_en": "Ninguna sentencia propia hoy (los mediated los emite el Evaluador); rastro de la tarea pendiente (Q24)",
+      "aparece_en": "Sin sentencia propia (los mediated los emite el Evaluador); su rastro es el registro de llamadas (N8)",
       "estado": "registrado; ficha entregada; debe demostrar su necesidad (N14)",
       "registrado_desde": "2026-11-10"
     },
