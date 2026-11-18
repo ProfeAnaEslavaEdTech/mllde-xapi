@@ -3,7 +3,7 @@
 **MLLDE** (Mobile Language Learning Design Environment) is a framework for
 designing language-learning products under one principle, **Measure, Not
 Decide**: AI agents measure against human-written CEFR descriptors, deterministic
-code governs, and a teacher decides attainment outside the system. This repository is MLLDE's
+code governs, and a teacher validates attainment outside the system. This repository is MLLDE's
 **measurement module**: the xAPI vocabulary, the machine-readable Profile, and
 the human-readable registry used to measure **voice-based language learning**
 against the **CEFR** descriptor scales (Companion Volume, 2020).
