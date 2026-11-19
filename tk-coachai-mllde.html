@@ -731,12 +731,12 @@
     var cont=document.getElementById('glossaryContent');
     if(!cont) return;
     var cats=GLOSS[lang];
-    var html='';
+    var html='', flat=0, slugs=glossSlugs();
     cats.forEach(function(cat,ci){
       html+='<div class="gcat"><span class="gcatlabel">'+cat.cat+'</span><div class="glist">';
       cat.terms.forEach(function(term,ti){
         var id='gi-'+ci+'-'+ti;
-        html+='<div class="gitem">';
+        html+='<div class="gitem" id="g-'+(slugs[flat++]||id)+'">';
         html+='<button class="ghead" type="button" aria-expanded="false" aria-controls="'+id+'-body" onclick="toggleGloss(this)">';
         html+='<span class="gt">'+term.t+'</span>';
         if(term.a) html+='<span class="ga">'+term.a+'</span>';
@@ -748,6 +748,35 @@
     });
     cont.innerHTML=html;
   }
+
+  // Stable anchors for each term, taken from the Spanish names, so a link such as
+  // tk-coachai-mllde.html#g-xapi opens the same entry in both languages.
+  function glossSlugs(){
+    var s=[];
+    GLOSS.es.forEach(function(cat){ cat.terms.forEach(function(t){
+      s.push(t.t.toLowerCase().split('/')[0].trim().normalize('NFD').replace(/[̀-ͯ]/g,'')
+        .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''));
+    });});
+    return s;
+  }
+
+  // Open the glossary from a link: #glosario, #glossary or #g-<term>.
+  function openFromHash(){
+    var h=(location.hash||'').slice(1);
+    if(!h) return;
+    if(h==='glosario'||h==='glossary'||h.indexOf('g-')===0){
+      showTab('glossary');
+      if(h.indexOf('g-')===0){
+        var item=document.getElementById(h);
+        if(item){
+          var btn=item.querySelector('.ghead');
+          if(btn && btn.getAttribute('aria-expanded')!=='true') toggleGloss(btn);
+          item.scrollIntoView({block:'start'});
+        }
+      }
+    }
+  }
+  window.addEventListener('hashchange',openFromHash);
 
   window.toggleGloss=function(btn){
     var expanded=btn.getAttribute('aria-expanded')==='true';
@@ -799,6 +828,7 @@
   var storedLang=ls.get("tkv-lang"); applyLang(storedLang==="en"?"en":"es");
   var storedTheme=ls.get("tkv-theme"); applyTheme(storedTheme==="light"||storedTheme==="dark"?storedTheme:null);
   var storedTab=ls.get("tkv-tab"); if(storedTab==="glossary") showTab("glossary");
+  openFromHash();
 
   document.getElementById("langBtn").addEventListener("click",function(){ applyLang(lang==="es"?"en":"es"); });
   document.getElementById("themeBtn").addEventListener("click",function(){ applyTheme(effTheme()==="dark"?"light":"dark"); });
