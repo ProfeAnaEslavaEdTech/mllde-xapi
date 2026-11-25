@@ -161,7 +161,7 @@
         "en": "adapted"
       },
       "definition": {
-        "en": "Actor is the teaching agent (human or AI): the learning path or assessment was adapted for the learner. Context carries the pedagogical-action IRI and the evidence that motivated it."
+        "en": "The actor is the learner. The teaching agent (AI or human) adapted the learning path, or its answer, for the learner; an AI agent goes in context.instructor with its registry account (R-ID, governance norms v1.7). Context carries the pedagogical-action IRI and the evidence that motivated it."
       }
     },
     {
@@ -2144,7 +2144,7 @@
         "en": "Level progression decision (Measure, Not Decide)"
       },
       "definition": {
-        "en": "A teacher reviews the learner's cumulative band evidence and decides level progression. Sequence: a completed session measurement (the evidence) followed by the teacher's progressed-level decision. The teacher decision is never automated."
+        "en": "The learner's cumulative evidence leads to level progression. Sequence: a completed session measurement (the evidence) followed by progressed-level, with the learner as actor in both (R-ID). The level decision is never automated: a person validates it outside the app (B2B) or the user accepts it after seeing the evidence (B2C)."
       },
       "sequence": [
         "https://w3id.org/mllde/template/completed-measurement",
@@ -2160,7 +2160,7 @@
         "en": "Adaptive pedagogy loop"
       },
       "definition": {
-        "en": "The AI teaching agent observes practice evidence and adapts the learning path. An adapted-pedagogy statement follows a practice signal (drill or card) and records the i+1 target. Actor of adapted-pedagogy is the AI agent, not the learner."
+        "en": "The AI teaching agent observes practice evidence and adapts the learning path. An adapted-pedagogy statement follows a practice signal (drill or card) and records the i+1 target. The actor of adapted-pedagogy is the learner; the AI agent goes in context.instructor (R-ID)."
       },
       "sequence": [
         "https://w3id.org/mllde/template/answered-practice-firewall",

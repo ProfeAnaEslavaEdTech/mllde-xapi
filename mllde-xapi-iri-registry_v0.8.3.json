@@ -418,7 +418,7 @@
       {
         "iri": "https://w3id.org/mllde/verb/adapted",
         "label": "adapted",
-        "definition": "Actor is the teaching agent (human or AI): the learning path or assessment was adapted for the learner. Context carries the pedagogical-action IRI and the evidence that motivated it."
+        "definition": "The actor is the learner. The teaching agent (AI or human) adapted the learning path, or its answer, for the learner; an AI agent goes in context.instructor with its registry account (R-ID, governance norms v1.7). Context carries the pedagogical-action IRI and the evidence that motivated it."
       }
     ]
   },
@@ -1219,7 +1219,7 @@
       "id": "https://w3id.org/mllde/template/progressed-level",
       "type": "StatementTemplate",
       "prefLabel": "Level progression (Measure != Decide)",
-      "definition": "Emitted when a teacher decides level progression outside the system. level-decision carries the new CEFR level IRI. Only a human teacher emits this via the teacher dashboard; the AI engine never emits it autonomously.",
+      "definition": "Level progression. The actor is the learner, in B2B and B2C (G-NIVEL-1 P4; R-ID). level-decision carries the CEFR level IRI. The AI never decides the level: in B2B the teacher's validation is external to the app and does not enter the LRS; in B2C the user accepts after seeing the evidence.",
       "verb": "http://adlnet.gov/expapi/verbs/progressed",
       "rules": [
         {
@@ -1227,13 +1227,13 @@
           "presence": "included"
         }
       ],
-      "note": "Actor = teacher (not the learner). Object = the learner's learning-unit or course. 'Measure, Not Decide' means this statement is the teacher's decision, not the AI engine's."
+      "note": "Actor = the learner, never the teacher, the app or an agent (R-ID check A3). Object = the learner's learning-unit or course. 'Measure, Not Decide': the statement records the learner's evidenced progress; the decision on the level is a person's."
     },
     {
       "id": "https://w3id.org/mllde/template/adapted-pedagogy",
       "type": "StatementTemplate",
       "prefLabel": "Pedagogy stream",
-      "definition": "The teaching agent (AI or human) adapts the learning path in response to learner evidence. pedagogical-action carries the action IRI (e.g. increase-difficulty, offer-review). learning-target carries the i+1 descriptor IRI.",
+      "definition": "The teaching agent (AI or human) adapts the learning path in response to learner evidence. The actor is the learner; the AI agent goes in context.instructor (R-ID). pedagogical-action carries the action IRI (e.g. increase-difficulty, offer-review). learning-target carries the i+1 descriptor IRI.",
       "verb": "https://w3id.org/mllde/verb/adapted",
       "rules": [
         {
@@ -1291,9 +1291,9 @@
         "type": "Pattern",
         "primary": true,
         "prefLabel": "Level progression decision",
-        "definition": "A teacher reviews the learner's cumulative band evidence and decides level progression. Sequence: completed-measurement (providing the evidence) followed by progressed-level (the teacher decision). The teacher decision is never automated.",
+        "definition": "The learner's cumulative evidence leads to level progression. Sequence: completed-measurement (the evidence) followed by progressed-level. The level decision is never automated: a person validates it outside the app (B2B) or the user accepts it after seeing the evidence (B2C).",
         "sequence_description": "one(completed-measurement) THEN one(progressed-level)",
-        "note": "Actor changes between the two statements: completed-measurement actor = learner; progressed-level actor = teacher. This is the 'Measure, Not Decide' pattern made explicit."
+        "note": "Both statements have the learner as actor (R-ID). The decision on the level is a person's and stays outside the AI: this is the 'Measure, Not Decide' pattern made explicit."
       },
       {
         "id": "https://w3id.org/mllde/pattern/adaptive-pedagogy-loop",
@@ -1302,7 +1302,7 @@
         "prefLabel": "Adaptive pedagogy loop",
         "definition": "The AI teaching agent observes practice evidence and adapts the learning path. adapted-pedagogy follows a practice signal and precedes the next practice or measurement event.",
         "sequence_description": "one(answered-practice-firewall | attempted-card-firewall) THEN one(adapted-pedagogy)",
-        "note": "adapted-pedagogy actor = the AI teaching agent (not the learner). It records the i+1 target, not a band."
+        "note": "adapted-pedagogy actor = the learner; the AI teaching agent goes in context.instructor (R-ID). It records the i+1 target, not a band."
       }
     ]
   },
