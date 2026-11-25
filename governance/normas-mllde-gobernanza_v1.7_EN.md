@@ -286,4 +286,4 @@ No agent may **analyse and correct the system on its own**. A watcher only alert
 
 ---
 
-*MLLDE method © 2026 Ana Eslava-Graterol (UPV). Prepared with AI assistance and reviewed by the author, in the spirit of art. 50 of Regulation (EU) 2024/1689.*
+*MLLDE teaching model © 2026 Ana Eslava-Graterol (UPV). Prepared with AI assistance and reviewed by the author, in the spirit of art. 50 of Regulation (EU) 2024/1689.*

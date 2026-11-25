@@ -287,4 +287,4 @@ Ningún agente puede **analizar y corregir el sistema por su cuenta**. Un vigila
 
 ---
 
-*Método MLLDE © 2026 Ana Eslava-Graterol (UPV). Preparado con asistencia de IA y revisado por la autora, en el espíritu del art. 50 del Reglamento (UE) 2024/1689.*
+*Modelo de enseñanza MLLDE © 2026 Ana Eslava-Graterol (UPV). Preparado con asistencia de IA y revisado por la autora, en el espíritu del art. 50 del Reglamento (UE) 2024/1689.*
