@@ -38,7 +38,7 @@ Copia de las definiciones en `mllde-xapi/governance/verbos-xapi/definiciones-adl
 | **voided** | «A special reserved verb used by a LRS or application to mark a statement as invalid.» | Reservado; el agregador excluye las anuladas |
 | **pronounced** (MLLDE) | No existe en ADL | «Made a pronunciation attempt at a declared target feature…» |
 | **mediated** (MLLDE) | No existe en ADL | «Performed a mediation activity: transformed or relayed content from a source for a recipient…» |
-| **adapted** (MLLDE) | No existe en ADL | «**Actor is the teaching agent (human or AI)**: the learning path or assessment was adapted for the learner…» |
+| **adapted** (MLLDE) | No existe en ADL | «**The actor is the learner.** The teaching agent (AI or human) adapted the learning path, or its answer, for the learner; an AI agent goes in context.instructor…» |
 | **evaluated** | No existe en ADL ni en el perfil MLLDE | — |
 
 
