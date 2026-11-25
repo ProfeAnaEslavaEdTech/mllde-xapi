@@ -1,0 +1,176 @@
+<title>Qué es xAPI</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: barra fija como el hub del portafolio, cabecera centrada, una ficha por agente. Ocean Ink · AE Evolution. */
+:root {
+  --fd:'Fraunces',Georgia,'Times New Roman',serif; --fb:'Inter',-apple-system,'Segoe UI',Roboto,Arial,sans-serif; --fm:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --primary:#3B5BD6; --primary-deep:#293B83; --accent-text:#9A5B00;
+  --ink:#1C1E2E; --muted:#5B5F77; --canvas:#F7F8FC; --surface:#FFFFFF; --line:#E6E8F2;
+  --bar:#293B83; --bar-sub:#A9B8F5; --chip:#ECEFFE; --chip-text:#293B83; --focus:#9A5B00;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ink:#EEF0FC; --muted:#A3ABD0; --canvas:#0F1120; --surface:#20243A; --line:#2F3556;
+  --primary:#A9B8F5; --primary-deep:#C6D2FB; --accent-text:#F3B861;
+  --bar:#0F1120; --bar-sub:#A9B8F5; --chip:#1E2240; --chip-text:#C6CFFA; --focus:#F3B861; color-scheme:dark; } }
+:root[data-theme="dark"] {
+  --ink:#EEF0FC; --muted:#A3ABD0; --canvas:#0F1120; --surface:#20243A; --line:#2F3556;
+  --primary:#A9B8F5; --primary-deep:#C6D2FB; --accent-text:#F3B861;
+  --bar:#0F1120; --bar-sub:#A9B8F5; --chip:#1E2240; --chip-text:#C6CFFA; --focus:#F3B861; color-scheme:dark; }
+:root[data-lang="en"] .lang-es, :root:not([data-lang="en"]) .lang-en { display:none !important; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:var(--fb); background:var(--canvas); color:var(--ink); line-height:1.6; font-size:16px; -webkit-font-smoothing:antialiased; }
+a { color:var(--primary); text-underline-offset:2px; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--focus); outline-offset:2px; border-radius:6px; }
+code { font-family:var(--fm); font-size:.86em; background:var(--chip); color:var(--chip-text); padding:.05em .35em; border-radius:4px; overflow-wrap:anywhere; }
+.wrap { max-width:1100px; margin:0 auto; padding-left:max(20px,env(safe-area-inset-left,0px)); padding-right:max(20px,env(safe-area-inset-right,0px)); }
+body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:60; background:var(--bar); }
+.bar { background:var(--bar); color:#FFFFFF; position:sticky; top:env(safe-area-inset-top,0px); z-index:50; }
+.bar .wrap { display:flex; align-items:center; gap:10px; min-height:56px; flex-wrap:wrap; padding-block:6px; }
+.brand { font-family:var(--fd); font-weight:700; font-size:16px; line-height:1.15; }
+.brand small { display:block; font:600 9.5px/1.3 var(--fb); letter-spacing:.14em; text-transform:uppercase; color:var(--bar-sub); margin-top:2px; }
+.spacer { flex:1; }
+.bar button { font:700 12.5px var(--fb); color:#FFFFFF; background:rgba(255,255,255,.16); border:1.5px solid rgba(255,255,255,.55); border-radius:999px; padding:8px 14px; cursor:pointer; min-height:44px; min-width:44px; }
+.bar button:hover { background:rgba(255,255,255,.28); }
+.head { text-align:center; padding-block:34px 8px; }
+.head h1 { font-family:var(--fd); font-weight:700; color:var(--primary-deep); font-size:clamp(24px,4vw,34px); line-height:1.2; margin:0; text-wrap:balance; }
+.head .sub { color:var(--muted); max-width:64ch; margin:10px auto 0; }
+.note { max-width:74ch; margin:16px auto 0; background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--primary); border-radius:10px; padding:12px 16px; font-size:14.5px; text-align:left; }
+.note p { margin:0 0 6px; } .note p:last-child { margin:0; }
+.layout { display:grid; grid-template-columns:1fr; gap:32px; padding-block:28px 56px; }
+@media (min-width:960px) { .layout { grid-template-columns:230px minmax(0,1fr); } nav.toc { position:sticky; top:calc(env(safe-area-inset-top,0px) + 72px); align-self:start; max-height:calc(100vh - 88px); overflow:auto; } }
+nav.toc { font-size:14px; min-width:0; }
+nav.toc p { font:700 10px var(--fb); letter-spacing:.14em; text-transform:uppercase; color:var(--primary); margin:0 0 6px; }
+nav.toc ol, nav.toc ul { list-style:none; margin:0 0 18px; padding:0; }
+nav.toc a { display:flex; gap:8px; padding:6px 8px; border-radius:6px; color:var(--ink); text-decoration:none; }
+nav.toc a span:first-child { color:var(--muted); font-variant-numeric:tabular-nums; min-width:1.4em; }
+nav.toc a:hover { background:var(--chip); }
+nav.toc .legend li { padding:3px 8px; color:var(--muted); } nav.toc .legend b { color:var(--primary-deep); margin-right:4px; }
+main { min-width:0; display:grid; gap:14px; }
+.ag { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 18px; scroll-margin-top:84px; min-width:0; }
+.ag header { display:flex; gap:12px; align-items:flex-start; margin-bottom:8px; }
+.num { flex:none; width:32px; height:32px; border-radius:50%; background:var(--chip); color:var(--chip-text); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; }
+.ag h3 { font-family:var(--fd); color:var(--primary-deep); font-size:19px; line-height:1.25; margin:0 0 2px; }
+.ag dl { margin:0; display:grid; gap:6px; font-size:14.5px; }
+.ag dl > div { display:grid; grid-template-columns:150px minmax(0,1fr); gap:10px; }
+.ag dt { color:var(--muted); font-weight:600; } .ag dd { margin:0; min-width:0; }
+@media (max-width:560px) { .ag dl > div { grid-template-columns:1fr; gap:0; } }
+.st { color:var(--accent-text); font-weight:700; }
+.obj { display:block; white-space:pre-wrap; padding:6px 8px; font-size:12.5px; }
+.sys { border-style:dashed; }
+footer { border-top:1px solid var(--line); color:var(--muted); font-size:13.5px; }
+footer .wrap { padding-block:18px 28px; }
+.ext { font-size:.82em; }
+
+.tabs{border-bottom:1px solid var(--line);background:var(--surface)}
+.tabs ul{list-style:none;margin:0 auto;padding:0 20px;max-width:1100px;display:flex;flex-wrap:wrap;gap:4px 18px}
+.tabs a{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);font:600 14px var(--fb);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs a:hover{color:var(--primary-deep)}
+.tabs a[aria-current="page"]{color:var(--primary-deep);border-bottom-color:var(--primary)}
+.tabs a:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+
+details.acc{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+article.ag{padding:0 !important;border:0 !important;background:none !important;box-shadow:none !important}
+details.acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;min-height:56px;padding:8px 18px;border-radius:12px}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary::after{content:"";flex:0 0 auto;margin-left:auto;width:10px;height:10px;border-right:2px solid var(--primary);border-bottom:2px solid var(--primary);transform:rotate(45deg);transition:transform .15s}
+details.acc[open]>summary::after{transform:rotate(-135deg)}
+details.acc>summary:hover{background:var(--canvas)}
+details.acc>summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+details.acc>summary h3{margin:0;font-size:17px}
+details.acc>summary .num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:999px;background:var(--chip);color:var(--chip-text);font-weight:700;font-size:13px}
+details.acc .acc-body{padding:0 18px 14px}
+@media (max-width:480px){details.acc>summary{padding:8px 12px}details.acc .acc-body{padding:0 10px 12px}}
+@media (prefers-reduced-motion:reduce){details.acc>summary::after{transition:none}}
+</style>
+<div class="bar"><div class="wrap">
+  <div class="brand">MLLDE<small><span class="lang-es" lang="es">Qué es xAPI (Experience API)</span><span class="lang-en" lang="en">What xAPI (Experience API) is</span></small></div>
+  <div class="spacer"></div>
+  <button id="langBtn" type="button" aria-label="Switch language / Cambiar idioma">EN</button>
+  <button id="themeBtn" type="button" aria-label="Toggle theme / Cambiar tema"><span class="lang-es" lang="es">Oscuro</span><span class="lang-en" lang="en">Dark</span></button>
+</div></div>
+<nav class="tabs" aria-label="MLLDE"><ul><li><a href="https://profeanaeslavaedtech.github.io/mllde-xapi/"><span class="lang-es" lang="es">Registro xAPI</span><span class="lang-en" lang="en">xAPI registry</span></a></li><li><a href="https://profeanaeslavaedtech.github.io/mllde-xapi/governance/html/normas-gobernanza.html"><span class="lang-es" lang="es">Normas de gobernanza</span><span class="lang-en" lang="en">Governance norms</span></a></li><li><a href="https://profeanaeslavaedtech.github.io/mllde-xapi/governance/html/registro-agentes.html"><span class="lang-es" lang="es">Agentes</span><span class="lang-en" lang="en">Agents</span></a></li><li><a href="https://profeanaeslavaedtech.github.io/mllde-xapi/governance/html/que-es-xapi.html" aria-current="page"><span class="lang-es" lang="es">Qué es xAPI</span><span class="lang-en" lang="en">What xAPI is</span></a></li></ul></nav>
+
+<header class="head"><div class="wrap">
+  <h1><span class="lang-es" lang="es">Qué es xAPI, un IRI y un LRS, y cómo apoyan la gobernanza de la IA</span><span class="lang-en" lang="en">What xAPI, an IRI and an LRS are, and how they support AI governance</span></h1>
+  <p class="sub"><span class="lang-es" lang="es">Una explicación sencilla de las piezas con las que el modelo MLLDE (entorno de diseño para el aprendizaje móvil de lenguas) registra el aprendizaje, y de por qué permiten comprobar qué hizo la IA (inteligencia artificial).</span><span class="lang-en" lang="en">A plain explanation of the pieces the MLLDE (Mobile Language Learning Design Environment) model uses to record learning, and of why they make it possible to check what the AI (artificial intelligence) did.</span></p>
+</div></header>
+<style>
+.doc { max-width:76ch; min-width:0; width:100%; margin:0 auto; padding-block:8px 56px; }
+.doc pre { max-width:100%; }
+.doc td code { overflow-wrap:anywhere; }
+.doc .parts td:first-child code { overflow-wrap:normal; white-space:nowrap; }
+.doc h2 { font-family:var(--fd); color:var(--primary-deep); font-size:22px; line-height:1.3; margin:40px 0 8px; scroll-margin-top:84px; }
+.doc p, .doc li { max-width:72ch; }
+.doc .box { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:16px 0; }
+.doc .box p { margin:6px 0; }
+.doc pre { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 16px; overflow-x:auto; font-family:var(--fm); font-size:13px; line-height:1.55; }
+.doc .cap { color:var(--muted); font-size:13.5px; margin-top:-6px; }
+.doc table { border-collapse:collapse; width:100%; font-size:14.5px; background:var(--surface); }
+.doc th, .doc td { text-align:left; vertical-align:top; padding:10px 12px; border-bottom:1px solid var(--line); }
+.doc thead th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.doc .tw { overflow-x:auto; border:1px solid var(--line); border-radius:10px; margin:14px 0; }
+.doc .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:14px 0; }
+.doc .grid div { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+.doc .grid b { display:block; color:var(--primary-deep); margin-bottom:4px; }
+</style>
+<main class="wrap"><div class="doc">
+<div class="box"><p><strong><span class="lang-es" lang="es">En pocas palabras.</span><span class="lang-en" lang="en">In short.</span></strong> <span class="lang-es" lang="es">xAPI (Experience API) guarda cada paso del aprendizaje como una frase sencilla: quién hizo qué, con qué. Un IRI (identificador internacionalizado de recursos) da a cada palabra de esa frase una dirección web única y permanente. Un LRS (almacén de registros de aprendizaje) guarda esas frases fuera de la app. Con las tres piezas, cualquiera con permiso puede comprobar qué hizo el alumno, qué hizo la IA (inteligencia artificial) y con qué base lo comparó.</span><span class="lang-en" lang="en">xAPI (Experience API) saves each step of learning as a simple sentence: who did what, with what. An IRI (Internationalized Resource Identifier) gives each word in that sentence a unique, permanent web address. An LRS (learning record store) keeps those sentences outside the app. With the three pieces, anyone with permission can check what the learner did, what the AI (artificial intelligence) did and which base it compared against.</span></p></div>
+<h2 id="xapi"><span class="lang-es" lang="es">1. Qué es xAPI (Experience API)</span><span class="lang-en" lang="en">1. What xAPI (Experience API) is</span></h2>
+<p><span class="lang-es" lang="es">xAPI (Experience API) es una especificación para registrar experiencias de aprendizaje. La mantiene ADL (Advanced Distributed Learning) y antes se llamaba Tin Can API (interfaz de programación de aplicaciones). Permite que apps, plataformas y dispositivos distintos guarden e intercambien datos sobre lo que hace quien aprende, con conexión o sin ella.</span><span class="lang-en" lang="en">xAPI (Experience API) is a specification for recording learning experiences. It is maintained by ADL (Advanced Distributed Learning) and used to be called the Tin Can API (application programming interface). It lets different apps, platforms and devices save and share data about what the learner does, online or offline.</span></p>
+<p><span class="lang-es" lang="es">Su diferencia con estándares anteriores, como SCORM (modelo de referencia para objetos de contenido compartible), es el alcance. SCORM (modelo de referencia para objetos de contenido compartible) registra lo que pasa dentro de un LMS (sistema de gestión del aprendizaje), sobre todo si se terminó un curso y con qué nota. xAPI (Experience API) puede registrar cualquier experiencia: una conversación por voz, un ejercicio en el móvil o una tarea fuera de la plataforma.</span><span class="lang-en" lang="en">Its difference from earlier standards such as SCORM (Sharable Content Object Reference Model) is scope. SCORM (Sharable Content Object Reference Model) records what happens inside an LMS (learning management system), mostly whether a course was finished and with what score. xAPI (Experience API) can record any experience: a voice conversation, an exercise on a phone or a task outside the platform.</span></p>
+<h2 id="sentencia"><span class="lang-es" lang="es">2. La sentencia: quién, qué y con qué</span><span class="lang-en" lang="en">2. The statement: who, what and with what</span></h2>
+<p><span class="lang-es" lang="es">Cada registro es una sentencia (<em>statement</em>) con una estructura fija:</span><span class="lang-en" lang="en">Each record is a statement with a fixed structure:</span></p>
+<div class="tw"><table class="parts"><thead><tr><th><span class="lang-es" lang="es">Parte</span><span class="lang-en" lang="en">Part</span></th><th><span class="lang-es" lang="es">Responde a</span><span class="lang-en" lang="en">Answers</span></th><th><span class="lang-es" lang="es">En MLLDE</span><span class="lang-en" lang="en">In MLLDE</span></th></tr></thead><tbody><tr><td><code>actor</code></td><td><span class="lang-es" lang="es">¿Quién?</span><span class="lang-en" lang="en">Who?</span></td><td><span class="lang-es" lang="es">Siempre el alumno, con un identificador seudónimo. Nunca su nombre.</span><span class="lang-en" lang="en">Always the learner, with a pseudonymous identifier. Never their name.</span></td></tr><tr><td><code>verb</code></td><td><span class="lang-es" lang="es">¿Qué hizo?</span><span class="lang-en" lang="en">What did they do?</span></td><td><span class="lang-es" lang="es">Un verbo con su IRI (identificador internacionalizado de recursos): por ejemplo, <em>completed</em> o <em>adapted</em>.</span><span class="lang-en" lang="en">A verb with its IRI (Internationalized Resource Identifier): for example, <em>completed</em> or <em>adapted</em>.</span></td></tr><tr><td><code>object</code></td><td><span class="lang-es" lang="es">¿Con qué?</span><span class="lang-en" lang="en">With what?</span></td><td><span class="lang-es" lang="es">La actividad: una misión, un turno de conversación, un ejercicio.</span><span class="lang-en" lang="en">The activity: a mission, a conversation turn, an exercise.</span></td></tr><tr><td><code>result</code></td><td><span class="lang-es" lang="es">¿Cómo salió?</span><span class="lang-en" lang="en">How did it go?</span></td><td><span class="lang-es" lang="es">Si se completó y, cuando aplica, el resultado que calcula el motor (determinista).</span><span class="lang-en" lang="en">Whether it was completed and, when relevant, the result the engine (deterministic) calculates.</span></td></tr><tr><td><code>context</code></td><td><span class="lang-es" lang="es">¿En qué situación?</span><span class="lang-en" lang="en">In what situation?</span></td><td><span class="lang-es" lang="es">El agente de IA (inteligencia artificial) que intervino, como <code>instructor</code>; la acción pedagógica, y el descriptor del MCER (Marco Común Europeo de Referencia) al que apunta.</span><span class="lang-en" lang="en">The AI (artificial intelligence) agent involved, as <code>instructor</code>; the pedagogical action; and the CEFR (Common European Framework of Reference for Languages) descriptor it points to.</span></td></tr></tbody></table></div>
+<p><span class="lang-es" lang="es">Un ejemplo: el alumno se equivoca al hacer una sugerencia y <a href='registro-agentes.html#capi-agent'>Capi</a>, el agente que conversa con él, le devuelve la frase bien dicha. La sentencia queda así:</span><span class="lang-en" lang="en">An example: the learner makes a mistake when making a suggestion, and <a href='registro-agentes.html#capi-agent'>Capi</a>, the agent that talks with them, says the sentence back correctly. The statement looks like this:</span></p>
+<pre>{
+  "actor":  { "account": { "name": "7f3c9a1e-…" } },
+  "verb":   { "id": "https://w3id.org/mllde/verb/adapted" },
+  "object": { "definition": { "type": "https://w3id.org/mllde/activity-type/spoken-turn" } },
+  "context": {
+    "instructor": { "account": { "name": "capi-agent" } },
+    "extensions": {
+      "https://w3id.org/mllde/ext/pedagogical-action": "https://w3id.org/mllde/action/implicit-recast",
+      "https://w3id.org/mllde/ext/content-ref": "en.spk.b1.make-suggestions",
+      "https://w3id.org/mllde/ext/cefr-level": "https://w3id.org/mllde/cefr/level/b1"
+    }
+  }
+}</pre>
+<p class="cap"><span class="lang-es" lang="es">Ejemplo simplificado, con un identificador inventado.</span><span class="lang-en" lang="en">Simplified example, with a made-up identifier.</span></p>
+<p><span class="lang-es" lang="es">Se lee así: el alumno (<code>actor</code>) recibió una reformulación (<em>adapted</em>, acción <em>implicit-recast</em>) en un turno de conversación. La hizo el agente <code>capi-agent</code> (<code>instructor</code>), y el turno apunta al descriptor «hacer sugerencias», de nivel B1.</span><span class="lang-en" lang="en">It reads: the learner (<code>actor</code>) received a reformulation (<em>adapted</em>, action <em>implicit-recast</em>) in a conversation turn. The agent <code>capi-agent</code> (<code>instructor</code>) made it, and the turn points to the descriptor “making suggestions”, at B1 level.</span></p>
+<h2 id="iri"><span class="lang-es" lang="es">3. Qué es un IRI (identificador internacionalizado de recursos)</span><span class="lang-en" lang="en">3. What an IRI (Internationalized Resource Identifier) is</span></h2>
+<p><span class="lang-es" lang="es">Un IRI (identificador internacionalizado de recursos) es una dirección web que nombra una sola cosa, sin ambigüedad y para siempre. En xAPI (Experience API), cada verbo, cada tipo de actividad y cada extensión se escribe como un IRI. Así, «completado» significa lo mismo en todos los sistemas que lean el registro, y quien abre la dirección encuentra su definición.</span><span class="lang-en" lang="en">An IRI (Internationalized Resource Identifier) is a web address that names one thing, unambiguously and permanently. In xAPI (Experience API), every verb, every activity type and every extension is written as an IRI. That way, “completed” means the same in every system that reads the record, and whoever opens the address finds its definition.</span></p>
+<div class="tw"><table><thead><tr><th>IRI</th><th><span class="lang-es" lang="es">Qué nombra</span><span class="lang-en" lang="en">What it names</span></th></tr></thead><tbody><tr><td><code>http://adlnet.gov/expapi/verbs/completed</code></td><td><span class="lang-es" lang="es">El verbo «completó», de ADL (Advanced Distributed Learning). MLLDE lo reutiliza.</span><span class="lang-en" lang="en">The verb “completed”, from ADL (Advanced Distributed Learning). MLLDE reuses it.</span></td></tr><tr><td><code>https://w3id.org/mllde/verb/adapted</code></td><td><span class="lang-es" lang="es">El verbo «adaptado», propuesto por MLLDE: el agente adaptó su respuesta al intento del alumno.</span><span class="lang-en" lang="en">The verb “adapted”, proposed by MLLDE: the agent adapted its answer to the learner’s attempt.</span></td></tr><tr><td><code>https://w3id.org/mllde/activity-type/mission</code></td><td><span class="lang-es" lang="es">El tipo de actividad «misión».</span><span class="lang-en" lang="en">The activity type “mission”.</span></td></tr><tr><td><code>https://w3id.org/mllde/cefr/level/b1</code></td><td><span class="lang-es" lang="es">El nivel B1 del MCER (Marco Común Europeo de Referencia).</span><span class="lang-en" lang="en">CEFR (Common European Framework of Reference for Languages) level B1.</span></td></tr><tr><td><code>https://w3id.org/mllde/action/implicit-recast</code></td><td><span class="lang-es" lang="es">La acción pedagógica «reformulación implícita».</span><span class="lang-en" lang="en">The pedagogical action “implicit recast”.</span></td></tr></tbody></table></div>
+<p><span class="lang-es" lang="es">Los IRI de MLLDE (entorno de diseño para el aprendizaje móvil de lenguas) viven en <code>w3id.org/mllde</code>, un servicio comunitario de identificadores permanentes que también usan otros perfiles de xAPI (Experience API). Si la web cambia de sitio, el IRI sigue funcionando. La regla es reutilizar primero: si ADL (Advanced Distributed Learning) ya tiene un término con el mismo significado, se usa ese y no se inventa otro.</span><span class="lang-en" lang="en">The MLLDE (Mobile Language Learning Design Environment) IRIs live at <code>w3id.org/mllde</code>, a community service for permanent identifiers that other xAPI (Experience API) profiles also use. If the website moves, the IRI keeps working. The rule is reuse first: if ADL (Advanced Distributed Learning) already has a term with the same meaning, that one is used and no new one is made up.</span></p>
+<h2 id="lrs"><span class="lang-es" lang="es">4. Qué es un LRS (almacén de registros de aprendizaje)</span><span class="lang-en" lang="en">4. What an LRS (learning record store) is</span></h2>
+<p><span class="lang-es" lang="es">El LRS (almacén de registros de aprendizaje) es la base de datos donde se guardan las sentencias xAPI (Experience API). Es la pieza central del sistema:</span><span class="lang-en" lang="en">The LRS (learning record store) is the database where xAPI (Experience API) statements are kept. It is the central piece of the system:</span></p>
+<ul><li><span class="lang-es" lang="es">recibe y guarda sentencias de muchas fuentes;</span><span class="lang-en" lang="en">it receives and stores statements from many sources;</span></li><li><span class="lang-es" lang="es">permite consultarlas para sacar informes;</span><span class="lang-en" lang="en">it lets you query them to produce reports;</span></li><li><span class="lang-es" lang="es">hace que sistemas distintos se entiendan, porque todos usan el mismo formato;</span><span class="lang-en" lang="en">it lets different systems understand each other, because they all use the same format;</span></li><li><span class="lang-es" lang="es">puede funcionar solo o dentro de un LMS (sistema de gestión del aprendizaje).</span><span class="lang-en" lang="en">it can work on its own or inside an LMS (learning management system).</span></li></ul>
+<p><span class="lang-es" lang="es">En MLLDE (entorno de diseño para el aprendizaje móvil de lenguas), el LRS (almacén de registros de aprendizaje) está fuera de la app. Esa separación es la que permite una auditoría externa.</span><span class="lang-en" lang="en">In MLLDE (Mobile Language Learning Design Environment), the LRS (learning record store) is outside the app. That separation is what makes an external audit possible.</span></p>
+<h2 id="gobernanza"><span class="lang-es" lang="es">5. Cómo apoyan la gobernanza de la IA</span><span class="lang-en" lang="en">5. How they support AI governance</span></h2>
+<p><span class="lang-es" lang="es">La regla del modelo es <em>Measure ≠ Decide</em>: la base define, la IA (inteligencia artificial) compara, el <a href='registro-agentes.html#tk-coach-engine'>motor (determinista)</a> calcula, una persona decide y el LRS (almacén de registros de aprendizaje) lo registra. xAPI (Experience API) y los IRI (identificadores internacionalizados de recursos) son los que permiten comprobarlo:</span><span class="lang-en" lang="en">The model’s rule is <em>Measure ≠ Decide</em>: the base defines, the AI (artificial intelligence) compares, the <a href='registro-agentes.html#tk-coach-engine'>engine (deterministic)</a> calculates, a person decides and the LRS (learning record store) records it. xAPI (Experience API) and IRIs (Internationalized Resource Identifiers) are what make it checkable:</span></p>
+<div class="grid"><div><b><span class="lang-es" lang="es">Trazabilidad</span><span class="lang-en" lang="en">Traceability</span></b><span class="lang-es" lang="es">Cada intervención de un agente de IA (inteligencia artificial) queda con su identificador como <code>instructor</code>. El actor es siempre el alumno, nunca la IA.</span><span class="lang-en" lang="en">Every intervention by an AI (artificial intelligence) agent is recorded with its identifier as <code>instructor</code>. The actor is always the learner, never the AI.</span></div><div><b><span class="lang-es" lang="es">Anclaje al MCER</span><span class="lang-en" lang="en">Anchored in the CEFR</span></b><span class="lang-es" lang="es">Cada evidencia apunta, con su IRI (identificador internacionalizado de recursos), al descriptor del MCER (Marco Común Europeo de Referencia) en que se apoya.</span><span class="lang-en" lang="en">Each piece of evidence points, through its IRI (Internationalized Resource Identifier), to the CEFR (Common European Framework of Reference for Languages) descriptor it rests on.</span></div><div><b><span class="lang-es" lang="es">Auditoría externa</span><span class="lang-en" lang="en">External audit</span></b><span class="lang-es" lang="es">Como el registro está fuera de la app, una universidad o un auditor puede comprobarlo sin fiarse de lo que diga la app.</span><span class="lang-en" lang="en">Because the record is outside the app, a university or an auditor can check it without trusting what the app says.</span></div><div><b><span class="lang-es" lang="es">Controles automáticos</span><span class="lang-en" lang="en">Automatic checks</span></b><span class="lang-es" lang="es">Sobre el propio registro se comprueba que no actúe ningún agente sin registrar, que ninguno se salga de su papel y que ninguna llamada a la IA (inteligencia artificial) quede sin su sentencia.</span><span class="lang-en" lang="en">On the record itself, checks confirm that no unregistered agent acts, that none steps out of its role and that no call to the AI (artificial intelligence) is left without its statement.</span></div><div><b><span class="lang-es" lang="es">Conservación</span><span class="lang-en" lang="en">Preservation</span></b><span class="lang-es" lang="es">Lo registrado no se borra: lo que deja de valer se anula con su fecha y queda como historia.</span><span class="lang-en" lang="en">What is recorded is not deleted: what stops being valid is voided with its date and stays as history.</span></div><div><b><span class="lang-es" lang="es">Privacidad</span><span class="lang-en" lang="en">Privacy</span></b><span class="lang-es" lang="es">En el registro y en el modelo de IA (inteligencia artificial) solo va un identificador seudónimo. Si el alumno pide el borrado, se destruye la tabla que lo une a la persona.</span><span class="lang-en" lang="en">Only a pseudonymous identifier goes into the record and to the AI (artificial intelligence) model. If the learner asks for erasure, the table that links it to the person is destroyed.</span></div></div>
+<p><span class="lang-es" lang="es">Las reglas completas están en las <a href='normas-gobernanza.html'>normas de gobernanza</a>, y cada agente con su identificador, en el <a href='registro-agentes.html'>registro de agentes</a>.</span><span class="lang-en" lang="en">The full rules are in the <a href='normas-gobernanza.html'>governance norms</a>, and each agent with its identifier, in the <a href='registro-agentes.html'>agent registry</a>.</span></p>
+<h2 id="fuentes"><span class="lang-es" lang="es">6. Para saber más</span><span class="lang-en" lang="en">6. Further reading</span></h2>
+<ul><li><a href="https://github.com/adlnet/xAPI-Spec" target="_blank" rel="noopener"><span class="lang-es" lang="es">La especificación xAPI (Experience API), de ADL (Advanced Distributed Learning)</span><span class="lang-en" lang="en">The xAPI (Experience API) specification, by ADL (Advanced Distributed Learning)</span></a> <span class="ext"><span class="lang-es" lang="es">(abre en pestaña nueva)</span><span class="lang-en" lang="en">(opens in a new tab)</span></span></li><li><a href="https://www.rfc-editor.org/rfc/rfc3987" target="_blank" rel="noopener"><span class="lang-es" lang="es">RFC (petición de comentarios) 3987: la definición de los IRI (identificadores internacionalizados de recursos)</span><span class="lang-en" lang="en">RFC (Request for Comments) 3987: the definition of IRIs (Internationalized Resource Identifiers)</span></a> <span class="ext"><span class="lang-es" lang="es">(abre en pestaña nueva)</span><span class="lang-en" lang="en">(opens in a new tab)</span></span></li><li><a href="https://profeanaeslavaedtech.github.io/mllde-xapi/"><span class="lang-es" lang="es">El registro xAPI (Experience API) de MLLDE (entorno de diseño para el aprendizaje móvil de lenguas): todos los IRI (identificadores internacionalizados de recursos) del modelo</span><span class="lang-en" lang="en">The MLLDE (Mobile Language Learning Design Environment) xAPI (Experience API) registry: all the model’s IRIs (Internationalized Resource Identifiers)</span></a></li><li><a href="https://github.com/ProfeAnaEslavaEdTech/mllde-xapi" target="_blank" rel="noopener"><span class="lang-es" lang="es">El perfil xAPI (Experience API) y el registro de IRI (identificadores internacionalizados de recursos) en GitHub (archivos JSON, notación de objetos de JavaScript)</span><span class="lang-en" lang="en">The xAPI (Experience API) profile and the IRI (Internationalized Resource Identifier) registry on GitHub (JSON, JavaScript Object Notation, files)</span></a> <span class="ext"><span class="lang-es" lang="es">(abre en pestaña nueva)</span><span class="lang-en" lang="en">(opens in a new tab)</span></span></li></ul>
+</div></main>
+<footer><div class="wrap"><span class="lang-es" lang="es">Método MLLDE (entorno de diseño para el aprendizaje móvil de lenguas) © 2026 Ana Eslava-Graterol, UPV (Universitat Politècnica de València). Hecho con ayuda de IA (inteligencia artificial) y revisado por la autora (Reglamento (UE, Unión Europea) 2024/1689, art. 50).</span><span class="lang-en" lang="en">MLLDE (Mobile Language Learning Design Environment) method © 2026 Ana Eslava-Graterol, UPV (Universitat Politècnica de València). Made with AI (artificial intelligence) assistance and reviewed by the author (Regulation (EU, European Union) 2024/1689, art. 50).</span></div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  var lb=document.getElementById('langBtn'), tb=document.getElementById('themeBtn');
+  function setLang(l){root.setAttribute('data-lang',l);root.setAttribute('lang',l);lb.textContent=l==='en'?'ES':'EN';set('mllde-xapi-lang',l);}
+  function isDark(){var t=root.getAttribute('data-theme');if(t)return t==='dark';return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;}
+  function paintTheme(){var d=isDark();tb.innerHTML=d?'<span class="lang-es" lang="es">Claro</span><span class="lang-en" lang="en">Light</span>':'<span class="lang-es" lang="es">Oscuro</span><span class="lang-en" lang="en">Dark</span>';tb.setAttribute('aria-pressed',d?'true':'false');}
+  lb.addEventListener('click',function(){setLang(root.getAttribute('data-lang')==='en'?'es':'en');});
+  tb.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);set('mllde-xapi-theme',n);paintTheme();});
+  var sl=get('mllde-xapi-lang'); setLang(sl==='en'?'en':'es');
+  var st=get('mllde-xapi-theme'); if(st==='dark'||st==='light') root.setAttribute('data-theme',st);
+  paintTheme();
+})();
+</script>
+<script>(function(){function openTo(h){if(!h||h.length<2)return;var el=document.getElementById(decodeURIComponent(h.slice(1)));if(!el)return;var d=el.closest('details')||el.querySelector('details.acc');if(d)d.open=true;}
+openTo(location.hash);window.addEventListener('hashchange',function(){openTo(location.hash);});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(){openTo(a.getAttribute('href'));});});})();</script>
