@@ -12,7 +12,7 @@
 > **MAIN RULE, binding on every AI agent:** the user's production is always checked by the measurement flow against the full base — **381 A1–C2 descriptors measurable from text** (the inventory has 382: gram 115 · voc 96 · spk 100 · med 71; one pronunciation descriptor, which cannot be measured from text, is excluded) — with `ext/input-channel` declared. **No other agent measures, scores or assesses the user on its own.**
 
 - An agent that is not the measurement flow may extract, select, write or plan, but **never passes judgement on the user's level or competence** (N10: zero calculations in an LLM; G-NIVEL-1 P2: a `level`/`grade` field invalidates the whole response).
-- The comparison **actual vs declared level** is computed by code with the public 80% rule (v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring).
+- The comparison **actual vs declared level** is computed by code (the engine, deterministic, which is not an AI: with the same input it always gives the same result) with the public 80% rule (v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring).
 - The descriptors the user evidences with a verbatim quote select the content of the next Process phase (i+1 by code).
 - Every write to the profile requires a human actor (G-NIVEL-1, P3–P5).
 - Rule coined on 9 Nov by the author's decision; it comes into force with the signatures of pedagogy and engineering (N12).

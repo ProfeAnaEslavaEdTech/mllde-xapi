@@ -13,7 +13,7 @@
 > **REGLA PRINCIPAL, vinculante para todo agente de IA:** la producción del usuario la contrasta siempre el flujo de medición contra la base completa — **381 descriptores A1–C2 medibles desde texto** (el inventario tiene 382: gram 115 · voc 96 · spk 100 · med 71; se excluye un descriptor de pronunciación, que no se mide desde texto) —, con `ext/input-channel` declarado. **Ningún agente de IA mide, valora, puntúa ni evalúa al usuario. El Evaluador compara su producción con la base y localiza la evidencia; el código cuenta y calcula.** *(Hasta el 18 nov decía: «Ningún otro agente mide, puntúa ni evalúa al usuario por su cuenta».)*
 
 - Un agente que no es el flujo de medición puede extraer, seleccionar, redactar o planificar, pero **nunca emite juicio sobre el nivel o la competencia del usuario** (N10: cero cálculos en LLM; P2 de G-NIVEL-1: un campo `level`/`grade` invalida la respuesta entera).
-- La comparación **nivel real vs declarado** la computa el código con la regla pública del 80 % (umbrales v0.7.2); el Evaluador nunca recibe el nivel declarado (P1, anti-anclaje).
+- La comparación **nivel real vs declarado** la computa el código —el motor (determinista), que no es una IA: con la misma entrada da siempre el mismo resultado— con la regla pública del 80 % (umbrales v0.7.2); el Evaluador nunca recibe el nivel declarado (P1, anti-anclaje).
 - Los descriptores que el usuario evidencia con cita literal seleccionan el contenido de la fase Process siguiente (i+1 por código).
 - Toda emisión al perfil exige actor humano (G-NIVEL-1, P3–P5).
 - Regla acuñada el 9 nov por decisión de la autora; entra en vigor con las firmas de pedagogía e ingeniería (N12).
