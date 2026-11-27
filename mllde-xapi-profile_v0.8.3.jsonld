@@ -2117,10 +2117,10 @@
       "activityDefinition": {
         "@context": "https://w3id.org/xapi/profiles/activity-context",
         "name": {
-          "en": "Corrective tip — a validated correction of a learner error, shown after the turn (the Corrector writes it, the Judge approves it)"
+          "en": "Pedagogical action: Corrective tip — a validated correction of a learner error, shown after the turn (the Corrector writes it, the Judge approves it)"
         },
         "description": {
-          "en": "Corrective tip — a validated correction of a learner error, shown after the turn (the Corrector writes it, the Judge approves it)"
+          "en": "Pedagogical action: Corrective tip — a validated correction of a learner error, shown after the turn (the Corrector writes it, the Judge approves it)"
         }
       }
     }
