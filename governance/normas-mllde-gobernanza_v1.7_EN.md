@@ -13,7 +13,7 @@
 
 - An agent that is not the measurement flow may extract, select, write or plan, but **never passes judgement on the user's level or competence** (N10: zero calculations in an LLM; G-NIVEL-1 P2: a `level`/`grade` field invalidates the whole response).
 - The comparison **actual vs declared level** is computed by the engine (deterministic), a program that does the sums like a calculator and is not an AI, with the public 80% rule (v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring).
-- The descriptors the user evidences with a verbatim quote select the content of the next Process phase (i+1 by code).
+- The descriptors the user evidences with a verbatim quote select the content of the next Process phase (the i+1, by the engine (deterministic)).
 - Every write to the profile requires a human actor (G-NIVEL-1, P3–P5).
 - Rule coined on 9 Nov by the author's decision; it comes into force with the signatures of pedagogy and engineering (N12).
 
@@ -22,15 +22,15 @@
 | Norm | Rule |
 |---|---|
 | **N1 — Closed registry** | Only the agents on the canonical map may act. A new agent = a proposal with a signed card, not an installation. |
-| **N2 — Single gate** | Every write to the LRS goes through the Consolidator (code). No agent writes to the LRS on its own. |
+| **N2 — Single gate** | Every write to the LRS goes through the Consolidator (deterministic engine). No agent writes to the LRS on its own. |
 | **N3 — Anti-rogue-agent** | The prompt in production must match the approved one (`prompt-hash`); if it differs, the agent does not start. |
-| **N4 — Closed base** | A single knowledge bundle (registry v0.8.3 + inventory v0.7.2), mounted by code, with `kb-version` and `kb-hash` declared. No copyrighted material in the prompt. |
+| **N4 — Closed base** | A single knowledge bundle (registry v0.8.3 + inventory v0.7.2), mounted by the engine (deterministic), with `kb-version` and `kb-hash` declared. No copyrighted material in the prompt. |
 | **N5 — Fixed models** | Model with its version fixed in writing; no-train contract verified; **never any fallback**. The exact model identifier goes in every statement (R-ID). **It applies to every agent, not only to the one that measures** (author's decision, 11 Nov), with tracking of the adherence rate per model. Legal basis: see the note under this table. |
 | **N6 — Traceability** | The agent in `context.instructor`, with its `account` from the registry (R-ID, v1.7; formerly `agent-id`), + `agent-version` + `measure-model` (exact identifier) + `rules-version` in every statement. Goal: every registered agent with its own trace. The registry is in `governance/registro-agentes/`. |
 | **N7 — Flows that never cross** | Measurement (1×/session), pedagogy (per turn), activity (loop). The band arises only from the measurement flow. |
-| **N8 — Fail-closed** | When in doubt, nothing is emitted: ASR gate 0.70, judge unavailable → no tip, invalid schema → discard. |
+| **N8 — Fail-closed** | When in doubt, nothing is emitted: ASR (automatic speech recognition) gate 0.70, using the median confidence of the learner's turns, judge unavailable → no tip, invalid schema → discard. |
 | **N9 — PII** | Only the UUID + transcript go to the model; never name, company, job title or email. LRS authority = service account, never a personal credential. **The personal key is removed (18 Nov);** the statements signed with it before that date are kept. **Milestones (free text in the profile): under review** (12 Nov), no final decision. Proposal: stop sending them to the model. |
-| **N10 — Zero calculations in an LLM** | No agent generates competence numbers: marks (5.2/5.3), band (formula of 26/08), i+1 and proposed level are computed by code. |
+| **N10 — Zero calculations in an LLM** | No agent generates competence numbers: marks (5.2/5.3), band (formula of 26/08), i+1 and proposed level are computed by the engine (deterministic). |
 | **N11 — Declared incidents** | Each agent defines its incident types with an IRI from the registry; they go to its log, never to the learner's KPIs. |
 | **N12 — Signed versioning** | A change of prompt/model/rules = version bump + signature (pedagogy + engineering) + entry on the map + the date from which it counts. |
 | **N13 — Tests in CI** | Every admission test runs in CI on every deployment; if it fails, the deployment is blocked. |
@@ -63,7 +63,7 @@
 >
 > **A pseudonym is not anonymous:** whoever holds the table that links the UUID to the profile can identify the learner. That is why the UUID is still personal data and is protected as such.
 
-> **Reminder of a prior agreement (N9 · personal data).** If the report has to show the learner's name, it is added by **the app when it presents the report, outside the AI**: the code takes the model's text and adds the name from the profile. So the name appears on screen or in the PDF **without ever passing through the model**. This is what data minimisation requires (GDPR, art. 5(1)(c)).
+> **Reminder of a prior agreement (N9 · personal data).** If the report has to show the learner's name, it is added by **the app when it presents the report, outside the AI**: the app takes the model's text and adds the name from the profile. So the name appears on screen or in the PDF **without ever passing through the model**. This is what data minimisation requires (GDPR, art. 5(1)(c)).
 
 ### N6-bis — Weekly cmi5 audit package (traceability rule, v1.7)
 
@@ -106,7 +106,7 @@
 | N4 · Card before code (justified request + two signatures) | **R-ADM-1 and R-ADM-5** |
 | N5 · One function per agent; no agent decides | Guiding principle + **N10** |
 | N6 · Common block mandatory in every prompt | **Missing in v1.1 — to be added** (literal text in spec §6.2) |
-| N7 · The base is inherited by code | **N4** |
+| N7 · The base is inherited by the engine (deterministic) | **N4** |
 | N8 · Traceability (actor = the agent that acts) | **N6** + **R-ID** (v1.7: the actor is the learner; the agent goes in `context.instructor`) |
 | N9 · Approved, fixed models, no fallback | **N5** |
 | N10 · Minimum data (no personal data) | **N9** |
@@ -130,7 +130,7 @@
 | External validation (outside the app; it does not enter the LRS) | The teacher confirms the level with another assessment, oral and written | If the person wants the level validated, a teacher confirms it outside, with another assessment |
 | Setting | Training with a responsible teacher | Outside official education settings |
 
-- **RULE:** the app PROPOSES a measure with a public rule, against the criteria set in the app: the highest level with **≥80% of descriptors evidenced with a verbatim quote** (v0.7.2 thresholds: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). **The AI does not decide:** it does not assess the evidence by its own judgement or by what seems right to it. It compares real data from different sources, the learner's evidence and the descriptors of the base: the AI locates the evidence and code counts and computes the band. **`progressed` is the learner's mark of progress in the app, not the certification of the level:** that is given, where appropriate, by an external validation.
+- **RULE:** the app PROPOSES a measure with a public rule, against the criteria set in the app: the highest level with **≥80% of descriptors evidenced with a verbatim quote** (v0.7.2 thresholds: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). **The AI does not decide:** it does not assess the evidence by its own judgement or by what seems right to it. It compares real data from different sources, the learner's evidence and the descriptors of the base: the AI locates the evidence and the engine (deterministic) counts and computes the band. **`progressed` is the learner's mark of progress in the app, not the certification of the level:** that is given, where appropriate, by an external validation.
 - **Level verbs (Ana Eslava-Graterol, 11–12 Nov):**
   - **`progressed`:** linear, non-final progress within the learner's level package of descriptors. It is emitted when the learner shows more descriptors than before and carries how many out of how many. It never goes from the declared level to the same level.
   - **Level `passed`:** the learner reaches the public 80% rule (12 Nov).
@@ -151,7 +151,7 @@
 
 *B2C = free user (`user-track: free`): they have no teacher and are not part of official education settings (Ana, 11 Nov).* *Their `progressed` follows the general rule of G-NIVEL-1 P4: the actor is the learner.*
 
-> **Rule:** for the free user, code proposes and **the user decides about their own profile after seeing the evidence**; in the highest-impact cases the decision requires a **human reviewer**.
+> **Rule:** for the free user, the engine (deterministic) proposes and **the user decides about their own profile after seeing the evidence**; in the highest-impact cases the decision requires a **human reviewer**.
 
 - **Proposal with evidence:** the proposal (public 80% rule) is shown with the evidenced descriptors and their verbatim quote; the user accepts or not. If they ignore it, nothing changes (P3/P5 intact).
 - **Trace of the free user's decision:** their acceptance does happen inside the app, so their `progressed` carries actor = the user's UUID + `evidenceReviewed: true` + the rule version.
@@ -235,7 +235,7 @@ It comes into force with the signatures of pedagogy and engineering (N12).
 
 - **Institutional learner (pilot) — Track A (default):** the component may only SELECT terms that already exist in the inventory (`en.voc.*`); validation against an allow-list in code; what is not there is discarded. The content is set by the programme, so that measurement is comparable.
 - **Institutional learner — Track B (new vocabulary):** the component PROPOSES candidates to a human review queue; they enter the inventory in the next version bump, with the date from which they count. The component never writes to the base.
-- **Free user — own track (the user's own selection):** the input is generated by the user (their image, their presentation). Their vocabulary cards are selected by **the user** from the terms extracted from their material; code validates the format and requires the origin (`own-image`), without going through the inventory queue. **CLIL justification:** language is learnt through content that is meaningful to the learner; their context and real communicative need decide which vocabulary is worked on.
+- **Free user — own track (the user's own selection):** the input is generated by the user (their image, their presentation). Their vocabulary cards are selected by **the user** from the terms extracted from their material; the engine (deterministic) validates the format and requires the origin (`own-image`), without going through the inventory queue. **CLIL justification:** language is learnt through content that is meaningful to the learner; their context and real communicative need decide which vocabulary is worked on.
 - **Forbidden in both tracks:** AI-generated vocabulary feeding cards or drills without validation in code and a declared origin.
 - In both cases, content vocabulary is **practice without measurement** (decision 51): objective mastery by SRS, never a band.
 
@@ -244,7 +244,7 @@ It comes into force with the signatures of pedagogy and engineering (N12).
 - The OCR reader decides **about the image, never about the learner**: it extracts text and terms from the stimulus; it does not assess.
 - **The learner's image (Ana Eslava-Graterol, 18 Nov):** the original is not kept. A small copy, 420 px wide, is kept to orient the user (to see what they presented). **The user can delete it themselves**, at any time, from the app. Deleting the image does not delete the LRS statements about that practice (record-preservation principle): it is the exercise of the user's right over their data (GDPR, art. 17).
 - **Every interaction** checks the user's production against the full base — 381 A1–C2 descriptors measurable from text (inventory of 382; one pronunciation descriptor excluded) — with `ext/input-channel` declared.
-- The **actual vs declared level** is computed by code (public 80% rule, v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring). The descriptors the user evidences with a verbatim quote select the content of the next Process phase (i+1 by code).
+- The **actual vs declared level** is computed by the engine (deterministic) (public 80% rule, v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring). The descriptors the user evidences with a verbatim quote select the content of the next Process phase (the i+1, by the engine (deterministic)).
 - `progressed` always has the learner as actor, and certification of the level is a validation external to the app (G-NIVEL-1); **for the free user, the rule in the section "Level decision in B2C" (v1.5) applies.** (Until 11 Nov this line said, by mistake, that it was still to be defined.) OCR is infrastructure: it is recorded with `ext/input-channel: ocr` and never goes in `context.instructor` (R-ID).
 
 ## Proposal to mint IRIs — registry bump v0.8.4 (v1.6)

@@ -49,10 +49,10 @@ Reglas que aplican:
 - **G-NIVEL-1:** B2B y B2C; la IA no decide.
 - **La regla de Ana sobre `progressed` y `completed`** (11 nov).
 
-| Verbo | Propuesta (ES) | Objeto |
+| Verbo | Definición (ES) | Objeto |
 |---|---|---|
 | attempted | **Aprobada (18 nov):** el alumno inicia una misión o una tarjeta. **Se emite al empezar toda misión**, para que una misión abandonada deje rastro. No implica que la termine ni mide nada | Misión o tarjeta |
-| completed · misión | **Aprobada (18 nov):** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true` y la banda que calcula el código; si no se puede medir (p. ej., audio con confianza < 0,70), va sin nota y con su incidente. Una misión que no se termina no lleva `completed`. **Declara de dónde sale la práctica:** la entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Así las prácticas con OCR quedan identificadas (normas v1.3). | Misión |
+| completed · misión | **Aprobada (18 nov):** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true` y la banda que calcula el motor (determinista); si la sesión no supera las puertas (por ejemplo, una mediana de la confianza de la voz en los turnos del alumno inferior a 0,70), va sin banda y con su incidente. Una misión que no se termina no lleva `completed`. **Declara de dónde sale la práctica:** la entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Así las prácticas con OCR quedan identificadas (normas v1.3). | Misión |
 | completed · nivel | **Decidida (12 nov).** El alumno ha trabajado todos los objetivos de su nivel | Nivel |
 | passed · nivel | **Decidida (12 nov):** el alumno alcanza la regla pública del 80 % de su paquete de descriptores | Nivel |
 | progressed | Progreso lineal y no final dentro del paquete de descriptores del nivel del alumno: **demuestra más descriptores que antes.** Lleva cuántos de cuántos. Nunca va del nivel declarado al mismo | Nivel |
@@ -60,17 +60,17 @@ Reglas que aplican:
 | asked | El alumno pide ayuda o vocabulario. Si responde un agente, el agente va en `context.instructor` | La ayuda o la palabra |
 | interacted | Sin uso en TK CoachAI (los turnos van como `adapted`) | — |
 | failed | Sin uso en TK CoachAI: el progreso es lineal y no hay suspensos | — |
-| played | IRI corregida: `https://w3id.org/xapi/video/verbs/played` (perfil de audio de ADL). Sin uso hoy | Audio |
+| played | IRI corregida: `https://w3id.org/xapi/video/verbs/played` (perfil de audio de ADL). Reservado para el audio | Audio |
 | pronounced | Sin cambios; depende de la reunión (Q5) | Rasgo de pronunciación |
 | mediated | Sin cambios | Misión |
-| adapted | **La ruta o la tarea se adaptó para el alumno.** Actor = el alumno; el agente que adapta va en `context.instructor` (R-ID). El «advance» que decide el código va sin `instructor` y con `rules-version` | Misión |
+| adapted | **La ruta o la tarea se adaptó para el alumno.** Actor = el alumno; el agente que adapta va en `context.instructor` (R-ID). El «advance» que decide el motor (determinista) va sin `instructor` y con `rules-version` | Misión |
 | voided | Sin cambios. Actor = `tk-coach-engine` | La sentencia anulada |
 
 ## 4. Decisiones del 12 nov
 
 1. **El 80 %: decidido.** `passed` de nivel cuando el alumno alcanza la regla pública del 80 %; `completed` de nivel cuando ha trabajado todos los objetivos del nivel. Así lo hace cmi5. Está en las normas, G-NIVEL-1.
-3. **La prueba T-NIVEL-1 (b):** ~~pendiente~~ → **retirada el 18 nov.** El actor del `progressed` lo fijan R-ID y su control A3.
-4. **Las definiciones del §3:** ~~pendientes de aprobar~~ → **aprobadas el 18 nov**, todas. Pasan al perfil en la v0.8.4 (Q24).
+2. **La prueba T-NIVEL-1 (b): retirada el 18 nov.** El actor del `progressed` lo fijan R-ID y su control A3.
+3. **Las definiciones del §3: aprobadas el 18 nov**, todas. Pasan al perfil en la v0.8.4 (Q24).
 
 ## 4-ter. Decisiones del 18 nov
 
@@ -79,11 +79,3 @@ Reglas que aplican:
 3. **T-NIVEL-1 (b): retirada.**
 4. **Todas las definiciones del §3: aprobadas.**
 
-## 4-bis. Lo que había que decidir (11 nov)
-
-1. **El 80 %:**
-   - ¿es `passed` (ADL: superar un umbral fijado) o `completed` (ADL: terminar con normalidad)?
-   - Propuesta: `passed` al alcanzar el 80 %, y `completed` cuando el alumno ha trabajado todos los objetivos del nivel. cmi5 los usa así, por separado.
-2. **¿Se aprueban las definiciones del §3?** Irían en las normas ya, y en el perfil en la v0.8.4 (Q24).
-4. **¿Se quita la prueba T-NIVEL-1 (b)?** Ya la cubre A3 de R-ID.
-5. **Dependencia:** el contador de `progressed` necesita el criterio de «demostrado», que se decide con casos reales.
