@@ -750,6 +750,10 @@
     {
       "iri": "https://w3id.org/mllde/action/advance",
       "label": "Advance — reduce support, raise challenge (i+1)"
+    },
+    {
+      "iri": "https://w3id.org/mllde/action/corrective-tip",
+      "label": "Corrective tip — a validated correction of a learner error, shown after the turn (the Corrector writes it, the Judge approves it)"
     }
   ],
   "evidenceTiers": [

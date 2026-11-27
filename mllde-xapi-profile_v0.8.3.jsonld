@@ -2109,6 +2109,20 @@
           "en": "Incident: Proposed level written to the profile before a person accepted it"
         }
       }
+    },
+    {
+      "id": "https://w3id.org/mllde/action/corrective-tip",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Corrective tip — a validated correction of a learner error, shown after the turn (the Corrector writes it, the Judge approves it)"
+        },
+        "description": {
+          "en": "Corrective tip — a validated correction of a learner error, shown after the turn (the Corrector writes it, the Judge approves it)"
+        }
+      }
     }
   ],
   "templates": [
