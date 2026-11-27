@@ -8,9 +8,9 @@
 
 > Estas normas gobiernan a todo agente de IA del modelo MLLDE y de sus aplicaciones (p. ej. TK CoachAI). Un agente que no está en el mapa no entra en el loop.
 
-## R-MED-1 — Regla principal: toda medición pasa por el flujo de medición
+## R-MED-1 — Regla principal: toda comparación con la base pasa por el flujo de medición
 
-> **REGLA PRINCIPAL, vinculante para todo agente de IA:** la producción del usuario la contrasta siempre el flujo de medición contra la base completa — **381 descriptores A1–C2 medibles desde texto** (el inventario tiene 382: gram 115 · voc 96 · spk 100 · med 71; se excluye un descriptor de pronunciación, que no se mide desde texto) —, con `ext/input-channel` declarado. **Ningún agente de IA mide, valora, puntúa ni evalúa al usuario. El Evaluador compara su producción con la base y localiza la evidencia; el motor (determinista) cuenta y calcula.** *(Hasta el 18 nov decía: «Ningún otro agente mide, puntúa ni evalúa al usuario por su cuenta».)*
+> **REGLA PRINCIPAL, vinculante para todo agente de IA:** la producción del usuario la contrasta siempre el flujo de medición contra la base completa — **381 descriptores A1–C2 medibles desde texto** (el inventario tiene 382: gram 115 · voc 96 · spk 100 · med 71; se excluye un descriptor de pronunciación, que no se puede comparar desde texto) —, con `ext/input-channel` declarado. **Ningún agente de IA mide, valora, puntúa ni evalúa al usuario. El Evaluador compara su producción con la base y localiza la evidencia; el motor (determinista) cuenta y calcula.** *(Hasta el 18 nov decía: «Ningún otro agente mide, puntúa ni evalúa al usuario por su cuenta».)*
 
 - Un agente que no es el flujo de medición puede extraer, seleccionar, redactar o planificar, pero **nunca emite juicio sobre el nivel o la competencia del usuario** (N10: cero cálculos en LLM; P2 de G-NIVEL-1: un campo `level`/`grade` invalida la respuesta entera).
 - La comparación **nivel real vs declarado** la computa el motor (determinista), un programa que hace las cuentas como una calculadora y no es una IA, con la regla pública del 80 % (umbrales v0.7.2); el Evaluador nunca recibe el nivel declarado (P1, anti-anclaje).
@@ -28,7 +28,7 @@
 | **N4 — Base cerrada** | Un solo bundle de conocimiento (registry v0.8.3 + inventario v0.7.2), montado por el motor (determinista), con `kb-version` y `kb-hash` declarados. Nada de material con copyright en el prompt. |
 | **N5 — Modelos fijos** | Modelo con versión fijada por escrito; contrato no-train verificado; **sin fallback jamás**. El identificador exacto del modelo va en cada sentencia (R-ID). **Aplica a todos los agentes, no solo al que compara con la base** (el Evaluador; hasta el 18 nov decía «al que mide») (decisión de la autora, 11 nov), con seguimiento de la tasa de apego por modelo. Fundamento legal: ver la nota bajo esta tabla. |
 | **N6 — Trazabilidad** | El agente en `context.instructor`, con su `account` del registro (R-ID, v1.7; antes, `agent-id`), + `agent-version` + `measure-model` (identificador exacto) + `rules-version` en cada statement. Meta: todos los agentes registrados con rastro propio. El registro está en `governance/registro-agentes/`. |
-| **N7 — Flujos que no se cruzan** | Medición (1×/sesión), pedagogía (por turno), actividad (loop). La banda solo nace del flujo de medición. |
+| **N7 — Flujos que no se cruzan** | Comparación con la base (1×/sesión), pedagogía (por turno), actividad (loop). La banda solo nace del flujo de medición. |
 | **N8 — Fail-closed** | Ante la duda, no emite: puerta ASR (reconocimiento automático del habla) 0,70, con la mediana de la confianza de la voz en los turnos del alumno, juez no disponible → sin tip, esquema inválido → descarte. |
 | **N9 — PII** | Al modelo solo va UUID + transcripción; nunca nombre, empresa, puesto ni correo. Autoridad LRS = cuenta de servicio, nunca credencial personal. **La clave personal se elimina (18 nov);** las sentencias firmadas con ella antes de esa fecha se conservan. **Los hitos (texto libre del perfil) no se envían al modelo** (12 nov); si hacen falta los objetivos del alumno, se usa una lista cerrada. **Capi llama al alumno solo por su nombre de pila:** el modelo escribe la marca `{nombre}` y la app la sustituye antes de mostrar o decir la respuesta, así que el nombre nunca llega al modelo. |
 | **N10 — Cero cálculos en LLM** | Ningún agente genera números de competencia: notas (5.2/5.3), banda (fórmula del 26/08), i+1 y nivel propuesto los calcula el motor (determinista). |
@@ -133,14 +133,14 @@
 | Validación externa (fuera de la app; no entra en la LRS) | El profesor constata el nivel con otra evaluación, oral y escrita | Si la persona quiere el nivel validado, un profesor lo constata fuera, con otra evaluación |
 | Entorno | Formación con profesor responsable | Fuera de los entornos educativos oficiales |
 
-- **REGLA:** la app PROPONE una medida con una regla pública, contra los criterios fijados en la app: el nivel más alto con **≥80% de descriptores evidenciados con cita literal** (umbrales v0.7.2: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). **La IA no decide:** no evalúa la evidencia con su propio criterio ni con lo que le parece. Compara datos reales de distintas fuentes, la evidencia del alumno y los descriptores de la base: la IA localiza la evidencia y el motor (determinista) cuenta y calcula la banda. **El `progressed` es la marca de progreso del alumno en la app, no la acreditación del nivel:** esa la da, cuando corresponde, una validación externa.
+- **REGLA:** la app PROPONE una medida con una regla pública, contra los criterios fijados en la app: el nivel más alto con **≥80% de descriptores evidenciados con cita literal** (umbrales v0.7.2: A1 48 · A2 53 · B1 62 · B2 52 · C1 48 · C2 43). **La IA no decide:** no evalúa la evidencia con su propio criterio ni con lo que le parece. Compara datos reales de distintas fuentes, la evidencia del alumno y los descriptores de la base: la IA localiza la evidencia y el motor (determinista) cuenta y calcula la banda. **El `progressed` es la marca de progreso del alumno en la app, no la acreditación del nivel:** esa la da, cuando corresponde, una validación externa.
 - **Verbos del nivel (11–12 nov):**
   - **`progressed`:** progreso lineal y no final dentro del paquete de descriptores del nivel del alumno. Se emite cuando demuestra más descriptores que antes y lleva cuántos de cuántos: cuando el motor (determinista) observa que el alumno ha respondido favorablemente al i+1 que se le puso, es decir, que logra ese descriptor en una sesión posterior. Nunca va del nivel declarado al mismo nivel.
   - **`passed` de nivel:** el alumno alcanza la regla pública del 80 % (12 nov).
   - **`completed` de nivel:** el alumno ha trabajado todos los objetivos del nivel (12 nov). El `completed` de misión sigue siendo el cierre de cada sesión.
 - **Verbos de la misión (18 nov):**
   - **`attempted`:** se emite al empezar toda misión. Así una misión abandonada deja rastro. Hasta el 18 nov solo se emitía en las tarjetas y en las misiones con incidente.
-  - **`completed` de misión:** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true`, la banda que calcula el motor (determinista), el canal de entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Si no se puede medir, va sin nota y con su incidente. Una misión que no se termina no lleva `completed`.
+  - **`completed` de misión:** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true`, la banda que calcula el motor (determinista), el canal de entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Si no se puede comparar con la base, va sin nota y con su incidente. Una misión que no se termina no lleva `completed`.
 - **P1:** ningún agente recibe el nivel declarado del alumno (anti-anclaje).
 - **P2:** ningún modelo devuelve niveles ni notas (un campo `level`/`grade` invalida la respuesta entera).
 - **P3:** la propuesta nunca se escribe en el perfil; se muestra como «pendiente de decisión».
@@ -236,13 +236,13 @@ Entra en vigor con las firmas de pedagogía e ingeniería (N12).
 
 ## Vocabulario desde imágenes o prompts — doble vía según el tipo de usuario (v1.3)
 
-- **Alumno institucional (piloto) — Vía A (por defecto):** el componente solo puede SELECCIONAR términos que ya existen en el inventario (`en.voc.*`); validación contra allow-list en código; lo que no está, se descarta. El contenido lo fija el programa, para que la medición sea comparable.
+- **Alumno institucional (piloto) — Vía A (por defecto):** el componente solo puede SELECCIONAR términos que ya existen en el inventario (`en.voc.*`); validación contra allow-list en código; lo que no está, se descarta. El contenido lo fija el programa, para que la comparación con la base dé resultados comparables.
 - **Alumno institucional — Vía B (vocabulario nuevo):** el componente PROPONE candidatos a una cola de revisión humana; entran al inventario en el próximo bump de versión con fecha desde la que cuentan. El componente nunca escribe en la base.
 - **Usuario libre — vía propia (selección del propio usuario):** el input lo genera él (su imagen, su presentación). Sus tarjetas de vocabulario las selecciona **el propio usuario** de entre los términos extraídos de su material; el motor (determinista) valida el formato y exige el origen (`own-image`), sin pasar por la cola del inventario. **Justificación CLIL/AICLE:** la lengua se aprende a través de contenido significativo para el aprendiz; su contexto y su necesidad comunicativa real deciden qué vocabulario se trabaja.
 - **Prohibido en ambas vías:** que vocabulario generado por IA alimente tarjetas o drills sin validación en código y origen declarado.
-- En ambos casos, el vocabulario de contenido es **práctica sin medición** (decisión 51): maestría objetiva por SRS, nunca banda.
+- En ambos casos, el vocabulario de contenido es **práctica sin comparación con la base** (decisión 51): maestría objetiva por SRS, nunca banda.
 
-## Alcance del lector OCR y medición en toda interacción (v1.3)
+## Alcance del lector OCR y comparación con la base en toda interacción (v1.3)
 
 - El lector OCR decide **sobre la imagen, nunca sobre el alumno**: extrae texto y términos del estímulo; no evalúa.
 - **La imagen del alumno (18 nov):** el original no se guarda. Se guarda una copia pequeña, de 420 px de ancho, para orientar al usuario (ver qué presentó). **El usuario puede borrarla él mismo**, en cualquier momento, desde la app. Borrar la imagen no borra las sentencias del LRS sobre esa práctica (principio de conservación del registro): es el ejercicio del derecho del usuario sobre sus datos (RGPD, art. 17).
@@ -250,7 +250,7 @@ Entra en vigor con las firmas de pedagogía e ingeniería (N12).
 - El **nivel real vs declarado** lo calcula el motor (determinista) (regla pública del 80 %, umbrales v0.7.2); el Evaluador nunca recibe el nivel declarado (P1, anti-anclaje). Los descriptores que el usuario evidencia con cita literal seleccionan el contenido de la fase Process siguiente (el i+1, por el motor (determinista)).
 - El `progressed` lleva siempre al alumno como actor, y la acreditación del nivel es una validación externa a la app (G-NIVEL-1); **para el usuario libre, rige la regla de la sección «Decisión de nivel del usuario libre, sin profesor» (v1.5).** (Hasta el 11 nov esta línea decía, por error, que estaba pendiente de definir.) El OCR es infraestructura: se registra con `ext/input-channel: ocr` y nunca va en `context.instructor` (R-ID).
 
-## Propuesta de acuñación de IRIs — bump v0.8.4 del registro (v1.6)
+## Acuñación de IRIs en el registro v0.8.3 (v1.6)
 
 Análisis del registro publicado v0.8.3 (153 conceptos) frente a estas normas. **No hacen falta verbos nuevos:** los ADL reusados (`progressed`, `attempted`, `completed`, `passed`, `failed`, `interacted`, `asked`, `answered`) y los 3 acuñados (`pronounced`, `mediated`, `adapted`) cubren todas las propuestas — la aceptación del usuario libre (v1.5) es un `progressed` con actor propio, no un verbo nuevo.
 
@@ -279,7 +279,7 @@ Análisis del registro publicado v0.8.3 (153 conceptos) frente a estas normas. *
 
 **Campos nuevos dentro de `ext/level-decision` (bump del objeto, no IRI nuevo):** `decisionActor` (self · reviewer; `teacher` sale el 11 nov: la decisión del profesor no entra en la LRS, P4) · `evidenceReviewed` (boolean, P4) · `status` (proposed · accepted · rejected · pending) · `reviewTrigger` (none · jump2plus · c-entry · dispute).
 
-**Lo que NO se acuña:** bajadas sin aceptación, patrones oscuros y menores son reglas de código, UX y onboarding; se auditan en T-NIVEL-1 y en revisión de diseño, no en la LRS. Los IRIs funcionan como identificadores aunque `w3id.org/mllde` siga en PR; conviene resolver el namespace antes de publicar v0.8.4. Propuesta del análisis del 9 nov; entra en vigor con las firmas de pedagogía e ingeniería (N12).
+**Lo que NO se acuña:** bajadas sin aceptación, patrones oscuros y menores son reglas de código, UX y onboarding; se auditan en T-NIVEL-1 y en revisión de diseño, no en la LRS. Los IRIs funcionan como identificadores aunque `w3id.org/mllde` siga en PR; conviene resolver el namespace. **Acuñados en el registro y en el perfil v0.8.3**, junto con la plantilla `attempted-mission` (la tarea que genera cada agente, con el generador en `context.instructor`). Análisis del 9 nov.
 
 ## El guardián (regla específica)
 

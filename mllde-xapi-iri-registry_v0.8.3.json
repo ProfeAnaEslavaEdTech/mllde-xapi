@@ -362,34 +362,34 @@
     "reused": [
       {
         "iri": "http://adlnet.gov/expapi/verbs/attempted",
-        "use": "Learner attempts a task/mission"
+        "use": "The learner starts a mission or a card. Emitted at the start of every mission, so that an abandoned mission leaves a trace. It does not imply completion and carries no band. For a generated mission or mediation task, the generator that wrote it goes in context.instructor (R-ID) and the mission's target descriptors go in content-ref (template attempted-mission)."
       },
       {
         "iri": "http://adlnet.gov/expapi/verbs/completed",
-        "use": "Task completed — the <MISSION_COMPLETE> gate event"
+        "use": "Mission: the learner ends a mission session normally (MISSION_COMPLETE gate); one per registration, with result.completion = true, ext/input-channel and the band that the engine (deterministic) calculates; if the session does not pass the gates (e.g. median voice confidence of the learner's turns below 0.70) it carries no band and has its incident. Level: the learner has worked all the objectives of their level."
       },
       {
         "iri": "http://adlnet.gov/expapi/verbs/passed",
-        "use": "Performance meets the level's can-do descriptors (rubric floors met)"
+        "use": "Level: the learner reaches the public 80% rule of their level's descriptor package, with at least 80 hours of effective interaction (ext/effective-time); the engine (deterministic) proposes and a person accepts the level (G-NIVEL-1)."
       },
       {
         "iri": "http://adlnet.gov/expapi/verbs/failed",
-        "use": "Attempt did not yet meet floors (non-punitive: pairs with unlimited retry)"
+        "use": "Not used: progress is linear and there are no fails."
       },
       {
         "iri": "http://adlnet.gov/expapi/verbs/progressed",
-        "use": "Band or subskill progression event (e.g. B1 → B2 readiness signal)"
+        "use": "Linear, non-final progress within the learner's level package: the learner shows more descriptors than before, i.e. achieves the i+1 they were given in a later session. Carries how many out of how many. Never from the declared level to the same level. The actor is the learner."
       },
       {
         "iri": "http://adlnet.gov/expapi/verbs/interacted",
-        "use": "A conversational turn in interaction scales"
+        "use": "Not used: conversation turns are recorded as adapted."
       },
       {
         "iri": "http://adlnet.gov/expapi/verbs/asked",
-        "use": "Vocabulary/help request by the learner"
+        "use": "The learner asks for help or vocabulary; if an agent answers, the agent goes in context.instructor (R-ID)."
       },
       {
-        "iri": "https://w3id.org/xapi/audio/verbs/played",
+        "iri": "https://w3id.org/xapi/video/verbs/played",
         "use": "Optional, listening media events (ADL audio profile)",
         "verifyOnPackaging": true
       },
@@ -400,7 +400,7 @@
       },
       {
         "iri": "http://adlnet.gov/expapi/verbs/answered",
-        "use": "Learner answers a discrete practice item (grammar drill / vocabulary card). Reused from ADL (H2).",
+        "use": "The learner answers a practice item (drill or card). Never moves the band (firewall).",
         "addedIn": "0.8.2"
       }
     ],
@@ -513,7 +513,7 @@
       },
       {
         "iri": "https://w3id.org/mllde/ext/level-decision",
-        "value": "Object {from, to, evidenceCount, confidence, note} — MLLDE's demonstrated-level recalibration decision, carried on a verbs/progressed statement. Gated: accumulated evidence, asr-confidence >= 0.70, floors intelligibility AND interaction >= 4. Self-declared level (learner-set) is kept separately in ext/cefr-level. Added v0.6."
+        "value": "Object {from, to, evidenceCount, confidence, note} — MLLDE's demonstrated-level recalibration decision, carried on a verbs/progressed statement. Gated: accumulated evidence, asr-confidence >= 0.70, floors intelligibility AND interaction >= 4. Self-declared level (learner-set) is kept separately in ext/cefr-level. Added v0.6. Fields (v0.8.3): decisionActor (self | reviewer; the teacher's validation is external and does not enter the LRS, G-NIVEL-1 P4), evidenceReviewed (boolean), status (proposed | accepted | rejected | pending), reviewTrigger (none | jump2plus | c-entry | dispute)."
       },
       {
         "iri": "https://w3id.org/mllde/ext/learning-target",
@@ -534,6 +534,48 @@
           "verb/pronounced"
         ],
         "note": "Absent = unknown channel; never assumed. Voice turns only: ext/asr-confidence must also be present."
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/user-track",
+        "label": "user-track",
+        "definition": "pilot | free — the learner track (B2B pilot with a teacher, or B2C free user). Makes the two-track rules and level decisions auditable per group (G-NIVEL-1). Added v0.8.3.",
+        "dataType": "string (enum: pilot | free)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/vocabulary-origin",
+        "label": "vocabulary-origin",
+        "definition": "inventory | correction | prompt | image | summary | own-image — where a vocabulary card came from (two-track vocabulary, OCR scope). Added v0.8.3.",
+        "dataType": "string (enum)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/flow",
+        "label": "flow",
+        "definition": "measurement | pedagogy | activity — which flow emitted the statement, so that R-MED-1 and N7 can be checked by machine. Added v0.8.3.",
+        "dataType": "string (enum: measurement | pedagogy | activity)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/agent-version",
+        "label": "agent-version",
+        "definition": "Exact version of the agent that intervened, as agent_id@version (e.g. evaluator-agent@2.0). The version never goes in the identifier (R-ID rule 5). Added v0.8.3.",
+        "dataType": "string"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/rules-version",
+        "label": "rules-version",
+        "definition": "Version of the published rules that the engine (deterministic) applied (e.g. the band and level rules). Added v0.8.3.",
+        "dataType": "string"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/prompt-hash",
+        "label": "prompt-hash",
+        "definition": "SHA-256 of the approved prompt that produced the agent output; compared with the approved hash (N3). Added v0.8.3.",
+        "dataType": "string (hex)"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/kb-version",
+        "label": "kb-version",
+        "definition": "Version and hash of the knowledge base sent to the agent (e.g. v0.7.2 · kb-hash) (N4). Added v0.8.3.",
+        "dataType": "string"
       }
     ],
     "result": [
@@ -628,6 +670,18 @@
         "iri": "https://w3id.org/mllde/ext/srs-schedule",
         "value": "Object {cardId, nextReviewDate, intervalDays} — the spaced-repetition SCHEDULE for a vocabulary-card (companion to ext/srs-outcome, which carries the outcome). Practice-loop signal, never a competency band. Minted v0.8.1 (was 'pending mint').",
         "addedIn": "0.8.1"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/descriptor-results",
+        "label": "descriptor-results",
+        "definition": "Array of {id, status: evidenced | attempted, quote, turn} — per-descriptor evidence located by the AI and kept by the engine (deterministic) after validation. Makes the evidence visible to the person who accepts a level. Added v0.8.3.",
+        "dataType": "array of objects"
+      },
+      {
+        "iri": "https://w3id.org/mllde/ext/ocr-confidence",
+        "label": "ocr-confidence",
+        "definition": "0–1 confidence of the OCR (optical character recognition) reading; analogous to asr-confidence for the OCR gate. Added v0.8.3.",
+        "dataType": "number 0–1"
       }
     ],
     "incident": [
@@ -760,6 +814,14 @@
       "iri": "https://w3id.org/mllde/incident/access-denied",
       "label": "Learner or teacher blocked from reaching a module or feature (onboarding/permissions incident)",
       "addedIn": "0.3.0"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/nivel-sin-decision-humana",
+      "label": "Level change without a human decision"
+    },
+    {
+      "iri": "https://w3id.org/mllde/incident/nivel-propuesto-escrito-en-perfil",
+      "label": "Proposed level written to the profile before a person accepted it"
     }
   ],
   "acousticMetrics": {
@@ -1212,6 +1274,35 @@
         "context": [
           "content-ref",
           "cefr-level"
+        ]
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/template/attempted-mission",
+      "type": "StatementTemplate",
+      "prefLabel": "Mission start — the generated task, with its generator in context.instructor",
+      "definition": "Emitted when the learner starts a mission, including a mediation task. The actor is the learner. The agent that wrote the task goes in context.instructor (R-ID): mission-agent for missions, mediation-agent for mediation tasks (a template of the mission generator with its own identifier). The mission's target descriptors go in context content-ref, one per objective, with ids from the knowledge base; mediation tasks also carry cefr-scale. No band: rubric-scores excluded (firewall).",
+      "verb": "http://adlnet.gov/expapi/verbs/attempted",
+      "rules": [
+        {
+          "location": "$.result.extensions['https://w3id.org/mllde/ext/rubric-scores']",
+          "presence": "excluded"
+        },
+        {
+          "location": "$.context.instructor",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/content-ref']",
+          "presence": "included"
+        }
+      ],
+      "recommendedExtensions": {
+        "context": [
+          "content-ref",
+          "cefr-level",
+          "cefr-scale",
+          "input-channel"
         ]
       }
     },

@@ -4,7 +4,7 @@
 - que la base de conocimiento de TK CoachAI use cada verbo con su definición oficial;
 - que no haya incongruencias entre lo que dice ADL y lo que dice el perfil MLLDE v0.8.3.
 
-**Estado (18 nov):** las definiciones del §3 están **aprobadas** por la autora. *Hasta el 18 nov decía: «borrador; las definiciones propuestas no están aprobadas».* En el perfil MLLDE entran en la v0.8.4 (Q24).
+**Estado (18 nov):** las definiciones del §3 están **aprobadas** por la autora. *Hasta el 18 nov decía: «borrador; las definiciones propuestas no están aprobadas».* Están en el perfil MLLDE v0.8.3.
 
 ## 1. Fuentes
 
@@ -51,7 +51,7 @@ Reglas que aplican:
 
 | Verbo | Definición (ES) | Objeto |
 |---|---|---|
-| attempted | **Aprobada (18 nov):** el alumno inicia una misión o una tarjeta. **Se emite al empezar toda misión**, para que una misión abandonada deje rastro. No implica que la termine ni mide nada | Misión o tarjeta |
+| attempted | **Aprobada (18 nov):** el alumno inicia una misión o una tarjeta. **Se emite al empezar toda misión**, para que una misión abandonada deje rastro. No implica que la termine y no lleva banda. Si la misión o la tarea de mediación la generó un agente, el agente va en `context.instructor` (`mission-agent` o `mediation-agent`) y los descriptores objetivo van en `content-ref` (plantilla `attempted-mission`) | Misión o tarjeta |
 | completed · misión | **Aprobada (18 nov):** el alumno termina la sesión de una misión con normalidad (puerta MISSION_COMPLETE). Uno por registration. Lleva `result.completion = true` y la banda que calcula el motor (determinista); si la sesión no supera las puertas (por ejemplo, una mediana de la confianza de la voz en los turnos del alumno inferior a 0,70), va sin banda y con su incidente. Una misión que no se termina no lleva `completed`. **Declara de dónde sale la práctica:** la entrada del alumno en `ext/input-channel` (voz, texto u OCR) y el tipo de práctica (misión de negocio, «Practica tu situación» o «Presenta tu visual»). Así las prácticas con OCR quedan identificadas (normas v1.3). | Misión |
 | completed · nivel | **Decidida (12 nov).** El alumno ha trabajado todos los objetivos de su nivel | Nivel |
 | passed · nivel | **Decidida (12 nov):** el alumno alcanza la regla pública del 80 % de su paquete de descriptores | Nivel |
@@ -60,7 +60,7 @@ Reglas que aplican:
 | asked | El alumno pide ayuda o vocabulario. Si responde un agente, el agente va en `context.instructor` | La ayuda o la palabra |
 | interacted | Sin uso en TK CoachAI (los turnos van como `adapted`) | — |
 | failed | Sin uso en TK CoachAI: el progreso es lineal y no hay suspensos | — |
-| played | IRI corregida: `https://w3id.org/xapi/video/verbs/played` (perfil de audio de ADL). Reservado para el audio | Audio |
+| played | IRI corregida en el perfil v0.8.3: `https://w3id.org/xapi/video/verbs/played` (perfil de audio de ADL). Reservado para el audio | Audio |
 | pronounced | Sin cambios; depende de la reunión (Q5) | Rasgo de pronunciación |
 | mediated | Sin cambios | Misión |
 | adapted | **La ruta o la tarea se adaptó para el alumno.** Actor = el alumno; el agente que adapta va en `context.instructor` (R-ID). El «advance» que decide el motor (determinista) va sin `instructor` y con `rules-version` | Misión |
@@ -70,7 +70,7 @@ Reglas que aplican:
 
 1. **El 80 %: decidido.** `passed` de nivel cuando el alumno alcanza la regla pública del 80 %; `completed` de nivel cuando ha trabajado todos los objetivos del nivel. Así lo hace cmi5. Está en las normas, G-NIVEL-1.
 2. **La prueba T-NIVEL-1 (b): retirada el 18 nov.** El actor del `progressed` lo fijan R-ID y su control A3.
-3. **Las definiciones del §3: aprobadas el 18 nov**, todas. Pasan al perfil en la v0.8.4 (Q24).
+3. **Las definiciones del §3: aprobadas el 18 nov**, todas. Están en el perfil v0.8.3, que se actualizó con ellas, y con la plantilla `attempted-mission` para la tarea que genera cada agente.
 
 ## 4-ter. Decisiones del 18 nov
 

@@ -29,7 +29,7 @@
         "en": "attempted"
       },
       "definition": {
-        "en": "Learner attempts a task/mission"
+        "en": "The learner starts a mission or a card. Emitted at the start of every mission, so that an abandoned mission leaves a trace. It does not imply completion and carries no band. For a generated mission or mediation task, the generator that wrote it goes in context.instructor (R-ID) and the mission's target descriptors go in content-ref (template attempted-mission)."
       }
     },
     {
@@ -40,7 +40,7 @@
         "en": "completed"
       },
       "definition": {
-        "en": "Task completed — the <MISSION_COMPLETE> gate event"
+        "en": "Mission: the learner ends a mission session normally (MISSION_COMPLETE gate); one per registration, with result.completion = true, ext/input-channel and the band that the engine (deterministic) calculates; if the session does not pass the gates (e.g. median voice confidence of the learner's turns below 0.70) it carries no band and has its incident. Level: the learner has worked all the objectives of their level."
       }
     },
     {
@@ -51,7 +51,7 @@
         "en": "passed"
       },
       "definition": {
-        "en": "Performance meets the level's can-do descriptors (rubric floors met)"
+        "en": "Level: the learner reaches the public 80% rule of their level's descriptor package, with at least 80 hours of effective interaction (ext/effective-time); the engine (deterministic) proposes and a person accepts the level (G-NIVEL-1)."
       }
     },
     {
@@ -62,7 +62,7 @@
         "en": "failed"
       },
       "definition": {
-        "en": "Attempt did not yet meet floors (non-punitive: pairs with unlimited retry)"
+        "en": "Not used: progress is linear and there are no fails."
       }
     },
     {
@@ -73,7 +73,7 @@
         "en": "progressed"
       },
       "definition": {
-        "en": "Band or subskill progression event (e.g. B1 → B2 readiness signal)"
+        "en": "Linear, non-final progress within the learner's level package: the learner shows more descriptors than before, i.e. achieves the i+1 they were given in a later session. Carries how many out of how many. Never from the declared level to the same level. The actor is the learner."
       }
     },
     {
@@ -84,7 +84,7 @@
         "en": "interacted"
       },
       "definition": {
-        "en": "A conversational turn in interaction scales"
+        "en": "Not used: conversation turns are recorded as adapted."
       }
     },
     {
@@ -95,11 +95,11 @@
         "en": "asked"
       },
       "definition": {
-        "en": "Vocabulary/help request by the learner"
+        "en": "The learner asks for help or vocabulary; if an agent answers, the agent goes in context.instructor (R-ID)."
       }
     },
     {
-      "id": "https://w3id.org/xapi/audio/verbs/played",
+      "id": "https://w3id.org/xapi/video/verbs/played",
       "type": "Verb",
       "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
       "prefLabel": {
@@ -128,7 +128,7 @@
         "en": "answered"
       },
       "definition": {
-        "en": "Discrete scorable practice item. H2 resolved: reuse ADL answered."
+        "en": "The learner answers a practice item (drill or card). Never moves the band (firewall)."
       }
     },
     {
@@ -370,7 +370,7 @@
         "en": "level-decision"
       },
       "definition": {
-        "en": "Object {from, to, evidenceCount, confidence, note} — MLLDE's demonstrated-level recalibration decision, carried on a verbs/progressed statement. Gated: accumulated evidence, asr-confidence >= 0.70, floors intelligibility AND interaction >= 4. Self-declared level (learner-set) is kept separately in ext/cefr-level. Added v0.6."
+        "en": "Object {from, to, evidenceCount, confidence, note} — MLLDE's demonstrated-level recalibration decision, carried on a verbs/progressed statement. Gated: accumulated evidence, asr-confidence >= 0.70, floors intelligibility AND interaction >= 4. Self-declared level (learner-set) is kept separately in ext/cefr-level. Added v0.6. Fields (v0.8.3): decisionActor (self | reviewer; the teacher's validation is external and does not enter the LRS, G-NIVEL-1 P4), evidenceReviewed (boolean), status (proposed | accepted | rejected | pending), reviewTrigger (none | jump2plus | c-entry | dispute)."
       }
     },
     {
@@ -1982,6 +1982,133 @@
           "en": "Pedagogical action: Advance — reduce support, raise challenge (i+1)"
         }
       }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/user-track",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "user-track"
+      },
+      "definition": {
+        "en": "pilot | free — the learner track (B2B pilot with a teacher, or B2C free user). Makes the two-track rules and level decisions auditable per group (G-NIVEL-1)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/vocabulary-origin",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "vocabulary-origin"
+      },
+      "definition": {
+        "en": "inventory | correction | prompt | image | summary | own-image — where a vocabulary card came from (two-track vocabulary, OCR scope)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/flow",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "flow"
+      },
+      "definition": {
+        "en": "measurement | pedagogy | activity — which flow emitted the statement, so that R-MED-1 and N7 can be checked by machine."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/agent-version",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "agent-version"
+      },
+      "definition": {
+        "en": "Exact version of the agent that intervened, as agent_id@version (e.g. evaluator-agent@2.0). The version never goes in the identifier (R-ID rule 5)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/rules-version",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "rules-version"
+      },
+      "definition": {
+        "en": "Version of the published rules that the engine (deterministic) applied (e.g. the band and level rules)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/prompt-hash",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "prompt-hash"
+      },
+      "definition": {
+        "en": "SHA-256 of the approved prompt that produced the agent output; compared with the approved hash (N3)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/kb-version",
+      "type": "ContextExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "kb-version"
+      },
+      "definition": {
+        "en": "Version and hash of the knowledge base sent to the agent (e.g. v0.7.2 · kb-hash) (N4)."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/descriptor-results",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "descriptor-results"
+      },
+      "definition": {
+        "en": "Array of {id, status: evidenced | attempted, quote, turn} — per-descriptor evidence located by the AI and kept by the engine (deterministic) after validation. Makes the evidence visible to the person who accepts a level."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/ext/ocr-confidence",
+      "type": "ResultExtension",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "ocr-confidence"
+      },
+      "definition": {
+        "en": "0–1 confidence of the OCR (optical character recognition) reading; analogous to asr-confidence for the OCR gate."
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/nivel-sin-decision-humana",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Level change without a human decision"
+        },
+        "description": {
+          "en": "Incident: Level change without a human decision"
+        }
+      }
+    },
+    {
+      "id": "https://w3id.org/mllde/incident/nivel-propuesto-escrito-en-perfil",
+      "type": "Activity",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "activityDefinition": {
+        "@context": "https://w3id.org/xapi/profiles/activity-context",
+        "name": {
+          "en": "Incident: Proposed level written to the profile before a person accepted it"
+        },
+        "description": {
+          "en": "Incident: Proposed level written to the profile before a person accepted it"
+        }
+      }
     }
   ],
   "templates": [
@@ -2052,6 +2179,32 @@
         {
           "location": "$.result.extensions['https://w3id.org/mllde/ext/rubric-scores']",
           "presence": "excluded"
+        }
+      ]
+    },
+    {
+      "id": "https://w3id.org/mllde/template/attempted-mission",
+      "type": "StatementTemplate",
+      "inScheme": "https://w3id.org/mllde/profile/v0.8.3",
+      "prefLabel": {
+        "en": "Mission start — the generated task, with its generator in context.instructor"
+      },
+      "definition": {
+        "en": "Emitted when the learner starts a mission, including a mediation task. The actor is the learner. The agent that wrote the task goes in context.instructor (R-ID): mission-agent for missions, mediation-agent for mediation tasks (a template of the mission generator with its own identifier). The mission's target descriptors go in context content-ref, one per objective, with ids from the knowledge base; mediation tasks also carry cefr-scale. No band: rubric-scores excluded (firewall)."
+      },
+      "verb": "http://adlnet.gov/expapi/verbs/attempted",
+      "rules": [
+        {
+          "location": "$.result.extensions['https://w3id.org/mllde/ext/rubric-scores']",
+          "presence": "excluded"
+        },
+        {
+          "location": "$.context.instructor",
+          "presence": "included"
+        },
+        {
+          "location": "$.context.extensions['https://w3id.org/mllde/ext/content-ref']",
+          "presence": "included"
         }
       ]
     },

@@ -7,9 +7,9 @@
 
 > These norms govern every AI agent of the MLLDE model and its applications (e.g. TK CoachAI). An agent that is not on the map does not enter the loop.
 
-## R-MED-1 — Main rule: every measurement goes through the measurement flow
+## R-MED-1 — Main rule: every comparison with the base goes through the measurement flow
 
-> **MAIN RULE, binding on every AI agent:** the user's production is always checked by the measurement flow against the full base — **381 A1–C2 descriptors measurable from text** (the inventory has 382: gram 115 · voc 96 · spk 100 · med 71; one pronunciation descriptor, which cannot be measured from text, is excluded) — with `ext/input-channel` declared. **No other agent measures, scores or assesses the user on its own.**
+> **MAIN RULE, binding on every AI agent:** the user's production is always checked by the measurement flow against the full base — **381 A1–C2 descriptors measurable from text** (the inventory has 382: gram 115 · voc 96 · spk 100 · med 71; one pronunciation descriptor, which cannot be compared from text, is excluded) — with `ext/input-channel` declared. **No AI agent measures, values, scores or assesses the user. The Evaluator compares their production with the base and locates the evidence; the engine (deterministic) counts and calculates.** *(Until 18 Nov it read: "No other agent measures, scores or assesses the user on its own".)*
 
 - An agent that is not the measurement flow may extract, select, write or plan, but **never passes judgement on the user's level or competence** (N10: zero calculations in an LLM; G-NIVEL-1 P2: a `level`/`grade` field invalidates the whole response).
 - The comparison **actual vs declared level** is computed by the engine (deterministic), a program that does the sums like a calculator and is not an AI, with the public 80% rule (v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring).
@@ -25,9 +25,9 @@
 | **N2 — Single gate** | Every write to the LRS goes through the Consolidator (deterministic engine). No agent writes to the LRS on its own. |
 | **N3 — Anti-rogue-agent** | The prompt in production must match the approved one (`prompt-hash`); if it differs, the agent does not start. |
 | **N4 — Closed base** | A single knowledge bundle (registry v0.8.3 + inventory v0.7.2), mounted by the engine (deterministic), with `kb-version` and `kb-hash` declared. No copyrighted material in the prompt. |
-| **N5 — Fixed models** | Model with its version fixed in writing; no-train contract verified; **never any fallback**. The exact model identifier goes in every statement (R-ID). **It applies to every agent, not only to the one that measures** (author's decision, 11 Nov), with tracking of the adherence rate per model. Legal basis: see the note under this table. |
+| **N5 — Fixed models** | Model with its version fixed in writing; no-train contract verified; **never any fallback**. The exact model identifier goes in every statement (R-ID). **It applies to every agent, not only to the one that compares with the base** (the Evaluator) (author's decision, 11 Nov), with tracking of the adherence rate per model. Legal basis: see the note under this table. |
 | **N6 — Traceability** | The agent in `context.instructor`, with its `account` from the registry (R-ID, v1.7; formerly `agent-id`), + `agent-version` + `measure-model` (exact identifier) + `rules-version` in every statement. Goal: every registered agent with its own trace. The registry is in `governance/registro-agentes/`. |
-| **N7 — Flows that never cross** | Measurement (1×/session), pedagogy (per turn), activity (loop). The band arises only from the measurement flow. |
+| **N7 — Flows that never cross** | Comparison with the base (1×/session), pedagogy (per turn), activity (loop). The band arises only from the measurement flow. |
 | **N8 — Fail-closed** | When in doubt, nothing is emitted: ASR (automatic speech recognition) gate 0.70, using the median confidence of the learner's turns, judge unavailable → no tip, invalid schema → discard. |
 | **N9 — PII** | Only the UUID + transcript go to the model; never name, company, job title or email. LRS authority = service account, never a personal credential. **The personal key is removed (18 Nov);** the statements signed with it before that date are kept. **Milestones (free text in the profile) are not sent to the model** (12 Nov); if the learner's goals are needed, a closed list is used. **Capi calls the learner by their first name only:** the model writes the marker `{nombre}` and the app replaces it before it shows or speaks the answer, so the name never reaches the model. |
 | **N10 — Zero calculations in an LLM** | No agent generates competence numbers: marks (5.2/5.3), band (formula of 26/08), i+1 and proposed level are computed by the engine (deterministic). |
@@ -132,14 +132,14 @@
 | External validation (outside the app; it does not enter the LRS) | The teacher confirms the level with another assessment, oral and written | If the person wants the level validated, a teacher confirms it outside, with another assessment |
 | Setting | Training with a responsible teacher | Outside official education settings |
 
-- **RULE:** the app PROPOSES a measure with a public rule, against the criteria set in the app: the highest level with **≥80% of descriptors evidenced with a verbatim quote** (v0.7.2 thresholds: A1 48 · A2 52 · B1 63 · B2 58 · C1 48 · C2 40). **The AI does not decide:** it does not assess the evidence by its own judgement or by what seems right to it. It compares real data from different sources, the learner's evidence and the descriptors of the base: the AI locates the evidence and the engine (deterministic) counts and computes the band. **`progressed` is the learner's mark of progress in the app, not the certification of the level:** that is given, where appropriate, by an external validation.
+- **RULE:** the app PROPOSES a measure with a public rule, against the criteria set in the app: the highest level with **≥80% of descriptors evidenced with a verbatim quote** (v0.7.2 thresholds: A1 48 · A2 53 · B1 62 · B2 52 · C1 48 · C2 43). **The AI does not decide:** it does not assess the evidence by its own judgement or by what seems right to it. It compares real data from different sources, the learner's evidence and the descriptors of the base: the AI locates the evidence and the engine (deterministic) counts and computes the band. **`progressed` is the learner's mark of progress in the app, not the certification of the level:** that is given, where appropriate, by an external validation.
 - **Level verbs (11–12 Nov):**
   - **`progressed`:** linear, non-final progress within the learner's level package of descriptors. It is emitted when the learner shows more descriptors than before and carries how many out of how many: when the engine (deterministic) observes that the learner has responded well to the i+1 they were given, that is, they achieve that descriptor in a later session. It never goes from the declared level to the same level.
   - **Level `passed`:** the learner reaches the public 80% rule (12 Nov).
   - **Level `completed`:** the learner has worked all the objectives of the level (12 Nov). The mission `completed` is still the close of each session.
 - **Mission verbs (18 Nov):**
   - **`attempted`:** emitted at the start of every mission, so that an abandoned mission leaves a trace. Until 18 Nov it was emitted only for cards and for missions with an incident.
-  - **Mission `completed`:** the learner ends the session of a mission normally (MISSION_COMPLETE gate). One per registration. It carries `result.completion = true`, the band the engine (deterministic) calculates, the learner's input channel in `ext/input-channel` (voice, text or OCR) and the type of practice (business mission, "Practise your situation" or "Present your visual"). If it cannot be measured, it goes without a mark and with its incident. A mission that is not finished carries no `completed`.
+  - **Mission `completed`:** the learner ends the session of a mission normally (MISSION_COMPLETE gate). One per registration. It carries `result.completion = true`, the band the engine (deterministic) calculates, the learner's input channel in `ext/input-channel` (voice, text or OCR) and the type of practice (business mission, "Practise your situation" or "Present your visual"). If it cannot be compared with the base, it goes without a mark and with its incident. A mission that is not finished carries no `completed`.
 - **P1:** no agent receives the learner's declared level (anti-anchoring).
 - **P2:** no model returns levels or marks (a `level`/`grade` field invalidates the whole response).
 - **P3:** the proposal is never written into the profile; it is shown as "pending decision".
@@ -235,13 +235,13 @@ It comes into force with the signatures of pedagogy and engineering (N12).
 
 ## Vocabulary from images or prompts — two tracks by user type (v1.3)
 
-- **Institutional learner (pilot) — Track A (default):** the component may only SELECT terms that already exist in the inventory (`en.voc.*`); validation against an allow-list in code; what is not there is discarded. The content is set by the programme, so that measurement is comparable.
+- **Institutional learner (pilot) — Track A (default):** the component may only SELECT terms that already exist in the inventory (`en.voc.*`); validation against an allow-list in code; what is not there is discarded. The content is set by the programme, so that the comparison with the base gives comparable results.
 - **Institutional learner — Track B (new vocabulary):** the component PROPOSES candidates to a human review queue; they enter the inventory in the next version bump, with the date from which they count. The component never writes to the base.
 - **Free user — own track (the user's own selection):** the input is generated by the user (their image, their presentation). Their vocabulary cards are selected by **the user** from the terms extracted from their material; the engine (deterministic) validates the format and requires the origin (`own-image`), without going through the inventory queue. **CLIL justification:** language is learnt through content that is meaningful to the learner; their context and real communicative need decide which vocabulary is worked on.
 - **Forbidden in both tracks:** AI-generated vocabulary feeding cards or drills without validation in code and a declared origin.
-- In both cases, content vocabulary is **practice without measurement** (decision 51): objective mastery by SRS, never a band.
+- In both cases, content vocabulary is **practice without comparison with the base** (decision 51): objective mastery by SRS, never a band.
 
-## Scope of the OCR reader and measurement in every interaction (v1.3)
+## Scope of the OCR reader and comparison with the base in every interaction (v1.3)
 
 - The OCR reader decides **about the image, never about the learner**: it extracts text and terms from the stimulus; it does not assess.
 - **The learner's image (18 Nov):** the original is not kept. A small copy, 420 px wide, is kept to orient the user (to see what they presented). **The user can delete it themselves**, at any time, from the app. Deleting the image does not delete the LRS statements about that practice (record-preservation principle): it is the exercise of the user's right over their data (GDPR, art. 17).
@@ -249,7 +249,7 @@ It comes into force with the signatures of pedagogy and engineering (N12).
 - The **actual vs declared level** is computed by the engine (deterministic) (public 80% rule, v0.7.2 thresholds); the Evaluator never receives the declared level (P1, anti-anchoring). The descriptors the user evidences with a verbatim quote select the content of the next Process phase (the i+1, by the engine (deterministic)).
 - `progressed` always has the learner as actor, and certification of the level is a validation external to the app (G-NIVEL-1); **for the free user, the rule in the section "Level decision in B2C" (v1.5) applies.** (Until 11 Nov this line said, by mistake, that it was still to be defined.) OCR is infrastructure: it is recorded with `ext/input-channel: ocr` and never goes in `context.instructor` (R-ID).
 
-## Proposal to mint IRIs — registry bump v0.8.4 (v1.6)
+## Minting IRIs in registry v0.8.3 (v1.6)
 
 Analysis of the published registry v0.8.3 (153 concepts) against these norms. **No new verbs are needed:** the reused ADL verbs (`progressed`, `attempted`, `completed`, `passed`, `failed`, `interacted`, `asked`, `answered`) and the 3 coined ones (`pronounced`, `mediated`, `adapted`) cover every proposal — the free user's acceptance (v1.5) is a `progressed` with its own actor, not a new verb.
 
@@ -278,7 +278,7 @@ Analysis of the published registry v0.8.3 (153 concepts) against these norms. **
 
 **New fields inside `ext/level-decision` (bump of the object, not a new IRI):** `decisionActor` (self · reviewer; `teacher` removed on 11 Nov: the teacher's decision does not enter the LRS, P4) · `evidenceReviewed` (boolean, P4) · `status` (proposed · accepted · rejected · pending) · `reviewTrigger` (none · jump2plus · c-entry · dispute).
 
-**What is NOT minted:** downgrades without acceptance, dark patterns and minors are rules of code, UX and onboarding; they are audited in T-NIVEL-1 and in design review, not in the LRS. The IRIs work as identifiers even while `w3id.org/mllde` is still in a PR; the namespace should be resolved before publishing v0.8.4. Proposal from the analysis of 9 Nov; it comes into force with the signatures of pedagogy and engineering (N12).
+**What is NOT minted:** downgrades without acceptance, dark patterns and minors are rules of code, UX and onboarding; they are audited in T-NIVEL-1 and in design review, not in the LRS. The IRIs work as identifiers even while `w3id.org/mllde` is still in a PR; the namespace should be resolved. **Minted in registry and profile v0.8.3**, together with the template `attempted-mission` (the task that each agent generates, with the generator in `context.instructor`). Analysis of 9 Nov.
 
 ## The guardian (specific rule)
 
