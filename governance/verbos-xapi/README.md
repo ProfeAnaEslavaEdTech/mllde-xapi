@@ -61,7 +61,7 @@ Reglas que aplican:
 | interacted | Sin uso en TK CoachAI (los turnos van como `adapted`) | — |
 | failed | Sin uso en TK CoachAI: el progreso es lineal y no hay suspensos | — |
 | played | IRI corregida en el perfil v0.8.3: `https://w3id.org/xapi/video/verbs/played` (perfil de audio de ADL). Reservado para el audio | Audio |
-| pronounced | Sin cambios; depende de la reunión (Q5) | Rasgo de pronunciación |
+| pronounced | Sin cambios. La pronunciación todavía no se informa: el modelo no tiene aún métrica de pronunciación | Rasgo de pronunciación |
 | mediated | Sin cambios | Misión |
 | adapted | **La ruta o la tarea se adaptó para el alumno.** Actor = el alumno; el agente que adapta va en `context.instructor` (R-ID). El «advance» que decide el motor (determinista) va sin `instructor` y con `rules-version` | Misión |
 | voided | Sin cambios. Actor = `tk-coach-engine` | La sentencia anulada |

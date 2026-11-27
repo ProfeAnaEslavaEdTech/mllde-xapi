@@ -180,7 +180,7 @@
 ## Classification of components (agent vs infrastructure)
 
 - Is it deterministic (same input → same output)? → **infrastructure**, not an agent (ASR, OCR, SRS scheduler). It is governed with a confidence gate, a no-train contract and without storing the raw input.
-- Is it generative and does it fit in a canonical piece? → **it is absorbed** (the 4 generators → piece 5; the Hint → piece 1). Absorbing does not remove the identifier: each generator template keeps its own (Q26, 18 Nov).
+- Is it generative and does it fit in a canonical piece? → **it is absorbed** (the 4 generators → piece 5; the Hint → piece 1). Absorbing does not remove the identifier: each generator template keeps its own (18 Nov).
 - Does it fit in none? → **full R-ADM examination or withdrawal**.
 
 ## R-ID — Identification of agents in the record (v1.7)

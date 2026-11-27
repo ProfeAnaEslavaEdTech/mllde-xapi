@@ -181,7 +181,7 @@
 ## Clasificación de componentes (agente vs. infraestructura)
 
 - ¿Es determinista (misma entrada → misma salida)? → **infraestructura**, no es agente (ASR, OCR, planificador SRS). Se gobierna con puerta de confianza, contrato no-train y sin almacenar la entrada cruda.
-- ¿Es generativo y cabe en una pieza canónica? → **se absorbe** (los 4 generadores → pieza 5; la Pista → pieza 1). Absorber no quita el identificador: cada plantilla del generador conserva el suyo (Q26, 18 nov).
+- ¿Es generativo y cabe en una pieza canónica? → **se absorbe** (los 4 generadores → pieza 5; la Pista → pieza 1). Absorber no quita el identificador: cada plantilla del generador conserva el suyo (18 nov).
 - ¿No cabe en ninguna? → **examen R-ADM completo o retirada**.
 
 ## R-ID — Identificación de los agentes en el registro (v1.7)
