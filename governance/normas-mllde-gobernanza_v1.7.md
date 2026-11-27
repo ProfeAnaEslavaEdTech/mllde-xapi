@@ -121,6 +121,8 @@
 
 ## G-NIVEL-1 — El nivel: la app propone, nunca genera el nivel
 
+**Cuándo interviene la persona (humano en el loop).** No en cada interacción. Cuando el alumno cumple a la vez todos los criterios de promoción (el 80 % de los descriptores de su nivel demostrados, las horas de interacción efectiva y los mínimos por criterio), a la persona le llega una notificación: el profesor en B2B y el propio usuario en B2C, según la regla del usuario libre. Esa persona analiza los datos, el panel y las métricas, y decide si el alumno está preparado para los retos del nivel siguiente. Es una **aceptación de nivel** dentro del loop de automatización de tareas con IA (*Task Automation based on AI*): no declara un nivel de inglés ni da un título o un certificado, porque la app no es una aplicación de examen. Lo que calculan la IA y el motor (determinista) es siempre una propuesta con todos sus datos; la última palabra es de la persona.
+
 **Dos modalidades de usuario (11 nov).** TK CoachAI se creó para B2B y para B2C. Las especificaciones las distinguen siempre:
 
 | | **B2B** (empresa · `user-track: pilot`) | **B2C** (consumidor · `user-track: free`) |
